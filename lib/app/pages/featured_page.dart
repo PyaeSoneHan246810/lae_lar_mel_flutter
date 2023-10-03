@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+
+import '../config/colors.dart';
 
 class FeaturedPage extends StatefulWidget {
   const FeaturedPage({super.key});
@@ -12,10 +15,31 @@ class _FeaturedPageState extends State<FeaturedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Featured',
+        backgroundColor: AppColor.pureWhiteColor,
+        elevation: 2,
+        toolbarHeight: 60,
+        title: const Padding(
+          padding: EdgeInsets.only(left: 10),
+          child: Text(
+            'Featured',
+            style: AppFontStyle.headerPrimary,
+          ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.favorite,
+                size: 28,
+                color: AppColor.lightBlackColor,
+              ),
+            ),
+          )
+        ],
       ),
+      backgroundColor: AppColor.pureWhiteColor,
     );
   }
 }
