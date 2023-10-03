@@ -16,7 +16,7 @@ class _RootPageState extends State<RootPage> {
     return const Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Text('test'),
+        child: Text('Hello!!'),
       ),
     );
   }
