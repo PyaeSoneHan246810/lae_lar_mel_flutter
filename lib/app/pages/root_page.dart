@@ -15,7 +15,9 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      body: FeaturedPage(),
+      body: Center(
+        child: Text('test'),
+      ),
     );
   }
 }
