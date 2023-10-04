@@ -42,7 +42,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
       ),
       backgroundColor: AppColor.pureWhiteColor,
       body: const Center(
-        child: Text('Pyae Sone Han'),
+        child: Text('I am Pyae Sone Han'),
       ),
     );
   }
