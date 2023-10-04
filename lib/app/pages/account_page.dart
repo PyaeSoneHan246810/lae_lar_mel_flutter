@@ -41,6 +41,9 @@ class _AccountPageState extends State<AccountPage> {
         ],
       ),
       backgroundColor: AppColor.pureWhiteColor,
+      body: const Center(
+        child: Text('May Nyein'),
+      ),
     );
   }
 }
