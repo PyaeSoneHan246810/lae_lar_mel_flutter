@@ -42,7 +42,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
       ),
       backgroundColor: AppColor.pureWhiteColor,
       body: const Center(
-        child: Text('Ye Min Thu'),
+        child: Text('I am Ye Min Thu'),
       ),
     );
   }
