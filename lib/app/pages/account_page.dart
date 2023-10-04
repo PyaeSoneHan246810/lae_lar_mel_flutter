@@ -19,7 +19,7 @@ class _AccountPageState extends State<AccountPage> {
         elevation: 2,
         toolbarHeight: 60,
         title: const Padding(
-          padding: EdgeInsets.only(left: 10),
+          padding: EdgeInsets.only(left: 8),
           child: Text(
             'Account',
             style: AppFontStyle.headerPrimary,
@@ -27,7 +27,7 @@ class _AccountPageState extends State<AccountPage> {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 8),
             child: IconButton(
               onPressed: () {},
               icon: const Icon(
