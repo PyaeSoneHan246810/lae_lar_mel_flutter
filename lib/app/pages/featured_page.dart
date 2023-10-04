@@ -25,6 +25,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             style: AppFontStyle.headerPrimary,
           ),
         ),
+        centerTitle: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),

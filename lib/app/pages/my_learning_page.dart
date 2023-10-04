@@ -25,6 +25,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
             style: AppFontStyle.headerPrimary,
           ),
         ),
+        centerTitle: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),

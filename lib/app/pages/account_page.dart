@@ -25,6 +25,7 @@ class _AccountPageState extends State<AccountPage> {
             style: AppFontStyle.headerPrimary,
           ),
         ),
+        centerTitle: false,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 8),
