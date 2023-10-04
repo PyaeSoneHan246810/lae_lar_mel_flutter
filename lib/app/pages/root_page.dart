@@ -70,7 +70,7 @@ class _RootPageState extends State<RootPage> {
           ],
           unselectedItemColor: AppColor.lightBlackColor,
           selectedItemColor: AppColor.primaryColor,
-          unselectedLabelStyle: AppFontStyle.bottomNavText,
+          unselectedLabelStyle: AppFontStyle.bottomNavTextUnselected,
           selectedLabelStyle: AppFontStyle.bottomNavTextSelected,
           currentIndex: _currentPage,
           onTap: _navigateBottomNavBarItem,
