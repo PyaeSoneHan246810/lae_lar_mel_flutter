@@ -257,19 +257,11 @@ class AppFontStyle {
     fontWeight: FontWeight.w600,
     color: AppColor.primaryColor,
   );
-  //tab_nav_text_unselected
-  static const TextStyle tabNavTextUnselected = TextStyle(
+  //tab_nav_text
+  static const TextStyle tabNavText = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
     fontWeight: FontWeight.w500,
-    color: AppColor.lightBlackColor,
-  );
-  //tab_nav_text_selected
-  static const TextStyle tabNavTextSelected = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColor.primaryColor,
   );
   //input_hint_text
   static const TextStyle inputHintText = TextStyle(

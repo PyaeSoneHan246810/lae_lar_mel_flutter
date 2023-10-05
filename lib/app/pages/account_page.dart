@@ -30,7 +30,9 @@ class _AccountPageState extends State<AccountPage> {
           Padding(
             padding: const EdgeInsets.only(right: 8),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, 'wishlistPage');
+              },
               icon: const Icon(
                 Icons.favorite,
                 size: 28,
