@@ -4,6 +4,7 @@ import 'package:lae_lar_mel_app/app/pages/language_pages/english_courses_page.da
 import 'package:lae_lar_mel_app/app/pages/language_pages/japanese_courses_page.dart';
 import 'package:lae_lar_mel_app/app/pages/language_pages/korean_courses_page.dart';
 import 'package:lae_lar_mel_app/app/pages/root_page.dart';
+import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
 
 class App extends StatelessWidget {
@@ -16,8 +17,9 @@ class App extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: false,
       ),
-      home: const RootPage(),
+      home: const SplashScreen(),
       routes: {
+        'rootPage': (context) => const RootPage(),
         'wishlistPage': (context) => const WishlistPage(),
         'englishCoursesPage': (context) => const EnglishCoursesPage(),
         'chineseCoursesPage': (context) => const ChineseCoursesPage(),
