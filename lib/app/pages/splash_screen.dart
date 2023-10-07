@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:animate_do/animate_do.dart';
 
 import '../config/colors.dart';
 
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen>
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        Navigator.of(context).pushReplacementNamed('rootPage');
+        Navigator.of(context).pushReplacementNamed('introPage');
       },
     );
   }
@@ -33,10 +34,13 @@ class _SplashScreenState extends State<SplashScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 300,
-              height: 300,
-              child: SvgPicture.asset('assets/images/app_logo.svg'),
+            FadeIn(
+              duration: const Duration(milliseconds: 1000),
+              child: SizedBox(
+                width: 300,
+                height: 300,
+                child: SvgPicture.asset('assets/images/app_logo.svg'),
+              ),
             ),
             SizedBox(
               width: 100,

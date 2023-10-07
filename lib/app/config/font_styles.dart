@@ -287,7 +287,7 @@ class AppFontStyle {
   //alert_title
   static const TextStyle alertText = TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 144,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColor.lightBlackColor,
   );

@@ -24,6 +24,7 @@ class CustomAppBar extends AppBar {
             ),
           ),
           centerTitle: false,
+          automaticallyImplyLeading: false,
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 8),

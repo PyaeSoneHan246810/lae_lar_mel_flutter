@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
-import 'package:lae_lar_mel_app/app/pages/edit_profile.dart';
 
 import '../config/colors.dart';
 import '../widgets/custom_appbar.dart';
@@ -13,44 +13,52 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-
-  Future<void> showAlertDialog() async{
-    return showDialog(context: context,
-    builder: (BuildContext context){
-      return AlertDialog(
-        backgroundColor: Colors.white,
-        title: const Text('Sign out',
-        style: AppFontStyle.alertTitle),
-        content: const SingleChildScrollView(
-          child: ListBody(
-            children: [
-              Text("Are you sure to log out of your account?",
-              style: TextStyle(
-                color: AppColor.offBlackColor,
-              ),)
+  final String username = 'Pyae Sone Han';
+  Future<void> showAlertDialog() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: const Text(
+              'Sign out',
+              style: AppFontStyle.alertTitle,
+            ),
+            content: const SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  Text(
+                    "Are you sure to log out of your account?",
+                    style: AppFontStyle.alertText,
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Yes',
+                  style: TextStyle(
+                      color: AppColor.primaryColor, fontFamily: 'Poppins'),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Close',
+                  style: TextStyle(
+                    color: AppColor.pureBlackColor,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+              ),
             ],
-          ),
-        ),
-        actions: [
-          TextButton(onPressed: () {
-            Navigator.of(context).pop();
-          },
-              child: const Text('Yes',
-              style: TextStyle(
-                color: AppColor.primaryColor,
-                fontFamily: 'Poppins'
-              ),)),
-
-          TextButton(onPressed: () {
-            Navigator.of(context).pop();
-          },
-              child: const Text('Close',
-              style: TextStyle(
-                color: AppColor.pureBlackColor,
-                fontFamily: 'Poppins',
-              ),))
-        ],
-      );
+          );
         });
   }
 
@@ -64,139 +72,187 @@ class _AccountPageState extends State<AccountPage> {
         },
       ),
       backgroundColor: AppColor.pureWhiteColor,
-      body: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
+      body: FadeInDown(
+        child: SingleChildScrollView(
+          child: Column(
             children: [
-              Container(
-                color: AppColor.primaryColor,
-                height: 236,
-                width: double.infinity,
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    color: AppColor.primaryColor,
+                    width: double.infinity,
+                    height: 236,
+                  ),
+                  Positioned(
+                    top: 30,
+                    child: ClipOval(
+                      child: Image.asset(
+                        'assets/images/profile_placeholder.jpg',
+                        height: 131,
+                        width: 131,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 30,
+                    child: Text(
+                      username,
+                      style: AppFontStyle.title1PureWhite,
+                    ),
+                  ),
+                ],
               ),
-              Positioned(
-                top: 30,
-                child: ClipOval(
-                    child: Image.asset('assets/images/profile_placeholder.jpg',
-                      height: 131,
-                      width: 131,)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('editProfilePage');
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Edit profile',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-
-              const Positioned(
-                bottom: 30,
-                child: Text('Pyae Sone Han',
-                style: AppFontStyle.title1PureWhite),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Redeem code',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Help and Support',
+                      style: AppFontStyle.captionSmallOffBlack,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'About us',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Contact us',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Frequently asked questions',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Share our app',
+                        style: AppFontStyle.bodyOffBlack,
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 12,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                child: TextButton(
+                  onPressed: () {
+                    showAlertDialog();
+                  },
+                  child: const Text(
+                    'Sign Out',
+                    style: AppFontStyle.navTextPrimary,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
+                child: Text(
+                  'v1.0.0',
+                  style: AppFontStyle.captionSmallOffBlack,
+                ),
               ),
             ],
           ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => const EditProfile()));
-              },
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Edit Profile',
-                    style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Redeem Code',
-                      style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          const Padding(padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Help and Support',
-                    style: AppFontStyle.captionSmallOffBlack),
-              ],
-            ),
-          ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('About us',
-                      style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Contact us',
-                      style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Frequently asked questions',
-                      style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          Padding(padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-            child: GestureDetector(
-              onTap: () {},
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Share our App',
-                      style: AppFontStyle.bodyOffBlack),
-                  Icon(Icons.arrow_forward_ios,
-                    size: 12,)
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-            child: TextButton(onPressed: () {
-              showAlertDialog();
-            },
-                child: const Text('Sign Out',
-                  style: AppFontStyle.navTextPrimary,),),
-          ),
-          const Text('v1.0.0',
-          style: AppFontStyle.captionSmallOffBlack,)
-        ]
+        ),
       ),
     );
   }
