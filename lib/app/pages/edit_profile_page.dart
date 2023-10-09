@@ -14,6 +14,7 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
+  final String username = 'Pyae Sone Han';
   late TextEditingController _usernameTextController;
   late TextEditingController _emailTextController;
 
@@ -97,7 +98,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.greyColor,
-                    hintText: "Pyae Son Han",
+                    hintText: username,
                     hintStyle: AppFontStyle.inputText,
                     labelStyle: AppFontStyle.inputText,
                     enabledBorder: OutlineInputBorder(

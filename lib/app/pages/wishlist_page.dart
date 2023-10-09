@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow.dart';
 
 import '../config/colors.dart';
@@ -23,30 +24,32 @@ class _WishlistPageState extends State<WishlistPage> {
         },
       ),
       backgroundColor: AppColor.pureWhiteColor,
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        scrollDirection: Axis.vertical,
-        children: [
-          const SizedBox(
-            width: double.infinity,
-            height: 100,
-          ),
-          SizedBox(
-            width: 230,
-            height: 170,
-            child: SvgPicture.asset(
-              'assets/images/empty_placeholder.svg',
+      body: FadeInDown(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          scrollDirection: Axis.vertical,
+          children: [
+            const SizedBox(
+              width: double.infinity,
+              height: 100,
             ),
-          ),
-          const SizedBox(
-            width: double.infinity,
-            height: 20,
-          ),
-          const Text(
-            "You don't have any courses on your wishlist. Want to save something for later?",
-            style: AppFontStyle.bodyOffBlack,
-          ),
-        ],
+            SizedBox(
+              width: 230,
+              height: 170,
+              child: SvgPicture.asset(
+                'assets/images/empty_placeholder.svg',
+              ),
+            ),
+            const SizedBox(
+              width: double.infinity,
+              height: 20,
+            ),
+            const Text(
+              "You don't have any courses on your wishlist. Want to save something for later?",
+              style: AppFontStyle.bodyOffBlack,
+            ),
+          ],
+        ),
       ),
     );
   }

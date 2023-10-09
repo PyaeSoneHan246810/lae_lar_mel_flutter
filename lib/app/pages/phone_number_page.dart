@@ -17,6 +17,7 @@ class PhoneNumberPage extends StatefulWidget {
 
 class _PhoneNumberPageState extends State<PhoneNumberPage> {
   late TextEditingController _phoneNumberTextController;
+  String _userPhoneNumber = '';
 
   @override
   void initState() {
@@ -67,6 +68,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
                         print(number.phoneNumber);
+                        _userPhoneNumber = number.phoneNumber!;
                       },
                       onInputValidated: (bool value) {
                         print(value);
@@ -109,11 +111,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                         signed: true,
                         decimal: true,
                       ),
-                      maxLength: 9,
+                      maxLength: 10,
                       cursorColor: AppColor.primaryColor,
-                      onSaved: (PhoneNumber number) {
-                        print('On Saved: $number');
-                      },
                     ),
                   ),
                 ),
@@ -125,8 +124,10 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     Expanded(
                       child: CustomFilledButton(
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushNamed('otpVerificationPage');
+                          Navigator.of(context).pushNamed(
+                            'otpVerificationPage',
+                            arguments: _userPhoneNumber,
+                          );
                         },
                         text: "Continue",
                       ),

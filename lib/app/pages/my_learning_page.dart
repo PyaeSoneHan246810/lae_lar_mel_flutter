@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import '../config/colors.dart';
-
-
+import '../widgets/custom_appbar.dart';
+import '../widgets/custom_separator.dart';
 
 class MyLearningPage extends StatefulWidget {
   const MyLearningPage({super.key});
@@ -12,71 +14,70 @@ class MyLearningPage extends StatefulWidget {
 }
 
 class _MyLearningPageState extends State<MyLearningPage> {
+  final int numberOfCoursesEnrolled = 0;
+  final int numberOfCoursesCompleted = 0;
+  final int totalMinutesLearnedToday = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.pureWhiteColor,
-        elevation: 2,
-        toolbarHeight: 60,
-        title: const Padding(
-          padding: EdgeInsets.only(left: 8),
-          child: Text(
-            'My Learning',
-            style: AppFontStyle.headerPrimary,
-          ),
-        ),
-        centerTitle: false,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, 'wishlistPage');
-              },
-              icon: const Icon(
-                Icons.favorite,
-                size: 28,
-                color: AppColor.lightBlackColor,
-              ),
-            ),
-          )
-        ],
+      appBar: CustomAppBar(
+        titleText: 'My Learning',
+        onBackButtonPressed: () {
+          Navigator.pushNamed(context, 'wishlistPage');
+        },
       ),
       backgroundColor: AppColor.pureWhiteColor,
-
-      body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(12.0),
+      body: FadeInDown(
+        child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   children: [
                     Expanded(
                       child: Column(
                         children: [
-                          Container(      // (Blue<secondaryColor> Enrolled Container Box)
-                            width: 170,
-                            height: 97,
+                          Container(
+                            // (Blue Enrolled Container Box)
+                            width: 155,
+                            height: 98,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                               color: AppColor.secondaryColor,
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(14.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Icon(Icons.fact_check, size: 30, color: AppColor.pureWhiteColor),
-                                    Text(
-                                      "0 Course",
-                                      style: AppFontStyle.subtitlePureWhite,
+                                    const Icon(
+                                      Icons.fact_check,
+                                      size: 30,
+                                      color: AppColor.pureWhiteColor,
                                     ),
-                                    Text(
+                                    Row(
+                                      children: [
+                                        Text(
+                                          numberOfCoursesEnrolled.toString(),
+                                          style: AppFontStyle.subtitlePureWhite,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 2,
+                                          height: 0,
+                                        ),
+                                        Text(
+                                          (numberOfCoursesEnrolled > 1)
+                                              ? 'Courses'
+                                              : 'Course',
+                                          style: AppFontStyle.subtitlePureWhite,
+                                        ),
+                                      ],
+                                    ),
+                                    const Text(
                                       "Enrolled",
                                       style: AppFontStyle.bodyPureWhite,
                                     ),
@@ -85,28 +86,48 @@ class _MyLearningPageState extends State<MyLearningPage> {
                               ),
                             ),
                           ),
-                           const SizedBox(height: 16),// Add  SizedBox widget to create space between the containers
-
-                          Container(     // (Teal<primaryColor> Completed Container Box)
-                            width: 170,
-                            height: 97,
+                          const CustomSeparator(
+                            height: 10,
+                          ), // to create space between the containers
+                          Container(
+                            // (Teal Completed Container Box)
+                            width: 155,
+                            height: 98,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(8),
                               color: AppColor.primaryColor,
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(14.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(14.0),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Icon(Icons.school, size: 30, color: AppColor.pureWhiteColor),
-                                    Text(
-                                      "0 Course",
-                                      style: AppFontStyle.subtitlePureWhite,
+                                    const Icon(
+                                      Icons.school,
+                                      size: 30,
+                                      color: AppColor.pureWhiteColor,
                                     ),
-                                    Text(
+                                    Row(
+                                      children: [
+                                        Text(
+                                          numberOfCoursesCompleted.toString(),
+                                          style: AppFontStyle.subtitlePureWhite,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 2,
+                                          height: 0,
+                                        ),
+                                        Text(
+                                          (numberOfCoursesCompleted > 1)
+                                              ? 'Courses'
+                                              : 'Course',
+                                          style: AppFontStyle.subtitlePureWhite,
+                                        ),
+                                      ],
+                                    ),
+                                    const Text(
                                       "Completed",
                                       style: AppFontStyle.bodyPureWhite,
                                     ),
@@ -115,136 +136,96 @@ class _MyLearningPageState extends State<MyLearningPage> {
                               ),
                             ),
                           ),
-
-
                         ],
                       ),
                     ),
-
-
-                    const SizedBox(width: 16),  // Add  SizedBox widget to create space between the containers
-
-                    Container( //(Orange<featuredColor> Learned Today Container Box)
-                      width: 160,
-                      height: 210,
+                    const CustomSeparator(
+                      width: 10,
+                      height: 0,
+                    ), // to create space between the containers
+                    Container(
+                      //(Orange<featuredColor> Learned Today Container Box)
+                      width: 155,
+                      height: 206,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColor.featuredColor,
                       ),
-
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                "0",
-                                style: AppFontStyle.alertText1,
+                                totalMinutesLearnedToday.toString(),
+                                style: AppFontStyle.hugeText,
                               ),
                             ],
                           ),
-
-                          Row(   //This row is for 'alarm icon' and 'minute text'.
-
+                          Row(
+                            //This row is for 'alarm icon' and 'minute text'.
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-
-
-                              Icon(Icons.alarm, size: 30, color: AppColor.pureWhiteColor),
-
-                              SizedBox(width: 10),
-
+                              const Icon(
+                                Icons.alarm,
+                                size: 30,
+                                color: AppColor.pureWhiteColor,
+                              ),
+                              const CustomSeparator(
+                                width: 10,
+                                height: 0,
+                              ),
                               Text(
-                                "Minute",
+                                (totalMinutesLearnedToday > 1)
+                                    ? 'Minutes'
+                                    : 'Minute',
                                 style: AppFontStyle.subtitlePureWhite,
                               ),
                             ],
                           ),
-
-                          SizedBox(height: 8),
-
-                          Padding(
-                            padding: EdgeInsets.only( bottom: 25,  ),
-                            child:
-
-                              Text(
-                            "Learned Today",
-                            style: AppFontStyle.bodyPureWhite,
-
+                          const SizedBox(height: 8),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                              bottom: 25,
+                            ),
+                            child: Text(
+                              "Learned Today",
+                              style: AppFontStyle.bodyPureWhite,
                             ),
                           ),
-
                         ],
                       ),
                     ),
-
                   ],
                 ),
-
-
-                const SizedBox(height: 10),
-
-                const Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only( top:1, bottom: 1,right: 156 ),
-                      child: SizedBox(
-                        width: 300,
-                        height: 50,
-                        child: Column( // Added a new Column widget to arrange the text widgets vertically
-                          mainAxisAlignment: MainAxisAlignment.end, // Center the text widgets vertically
-                          children: [
-                            Text(
-                              "Continue Learning",
-                              style: AppFontStyle.title1OffBlack, // Customize the text style
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                const CustomSeparator(
+                  height: 38,
                 ),
-
-
-                const SizedBox(height: 30),
-
-                SizedBox(
-                  width: 280,
-                  height: 210,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(3),
-                    child:Image.asset(
-                      'assets/images/empty_placeholder.png',
-                      fit: BoxFit.fill,
+                const Text(
+                  "Continue Learning",
+                  style:
+                      AppFontStyle.title1OffBlack, // Customize the text style
+                ),
+                const CustomSeparator(
+                  height: 28,
+                ),
+                Center(
+                  child: SizedBox(
+                    width: 230,
+                    height: 170,
+                    child: SvgPicture.asset(
+                      'assets/images/empty_placeholder.svg',
                     ),
                   ),
                 ),
-
-
-                const SizedBox(height: 34),
-
-                Container(
-                  margin: const EdgeInsets.only(bottom: 8.0),
-                  width: 330,
-                  height: 37,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-
-                  ),
-
-                  child:  const Center(
-
-                    child: Text(
-                      "You have no ongoing courses. What will you learn first?",
-                      style:AppFontStyle.captionMediumOffBlack,
-                    ),
-                    ),
-                  ),
-
-
-
+                const CustomSeparator(
+                  height: 28,
+                ),
+                const Text(
+                  "You have no ongoing courses. What will you learn first?",
+                  style: AppFontStyle.bodyOffBlack,
+                ),
               ],
             ),
           ),

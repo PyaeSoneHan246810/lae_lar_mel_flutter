@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/services.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
@@ -16,7 +15,13 @@ class OTPVerificationPage extends StatefulWidget {
 }
 
 class _OTPVerificationPageState extends State<OTPVerificationPage> {
-  final String userPhoneNumber = '+959771311442';
+  String? _userPhoneNumber;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _userPhoneNumber = ModalRoute.of(context)?.settings.arguments as String?;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
               const CustomSeparator(height: 15),
               FadeInDown(
                 child: Text(
-                  'Please enter the one-time password from the sms we sent to $userPhoneNumber.',
+                  'Please enter the one-time password from the sms we sent to $_userPhoneNumber.',
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
