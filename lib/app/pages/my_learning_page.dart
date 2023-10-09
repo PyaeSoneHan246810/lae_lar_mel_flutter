@@ -34,6 +34,9 @@ class _MyLearningPageState extends State<MyLearningPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const CustomSeparator(
+                  height: 14,
+                ),
                 Row(
                   children: [
                     Expanded(

@@ -246,7 +246,7 @@ class _AccountPageState extends State<AccountPage> {
               const Padding(
                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
                 child: Text(
-                  'v1.0.0',
+                  'v.1.0.0',
                   style: AppFontStyle.captionSmallOffBlack,
                 ),
               ),
