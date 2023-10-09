@@ -148,7 +148,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                       width: 155,
                       height: 206,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(8),
                         color: AppColor.featuredColor,
                       ),
                       child: Column(
