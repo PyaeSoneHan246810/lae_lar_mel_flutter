@@ -164,7 +164,6 @@ class _MyLearningPageState extends State<MyLearningPage> {
                             ],
                           ),
                           Row(
-                            //This row is for 'alarm icon' and 'minute text'.
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Icon(
