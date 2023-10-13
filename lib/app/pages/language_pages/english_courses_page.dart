@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_tabbar_view.dart';
 
 import '../../config/colors.dart';
-import '../../widgets/custom_appbar_with_back_arrow.dart';
+import '../../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../../widgets/custom_courses_tabbar.dart';
 
 class EnglishCoursesPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: CustomAppBarWithBackArrow(
+        appBar: CustomAppBarWithBackArrowAndTitle(
           titleText: 'English',
           onBackButtonPressed: () {
             Navigator.pop(context);

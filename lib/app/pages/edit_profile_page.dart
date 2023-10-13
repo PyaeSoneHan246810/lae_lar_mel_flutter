@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
-import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow.dart';
+import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
+import 'package:lae_lar_mel_app/app/widgets/profile_image.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -35,7 +36,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithBackArrow(
+      appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: 'Edit Profile',
         onBackButtonPressed: () {
           Navigator.pop(context);
@@ -47,37 +48,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FadeInDown(
-              child: Stack(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 20.0),
-                    child: Center(
-                      child: CircleAvatar(
-                        radius: 72,
-                        backgroundColor: AppColor.primaryColor,
-                        child: ClipOval(
-                          child: Image.asset(
-                            'assets/images/profile_placeholder.jpg',
-                            height: 140,
-                            width: 140,
-                          ),
-                        ),
-                      ),
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 20.0),
+                child: Center(
+                  child: ProfileImageWidget(
+                    imagePath:
+                        'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
+                    onClicked: () {},
                   ),
-                  Positioned(
-                    right: 110,
-                    top: 12,
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.edit,
-                        size: 28,
-                        color: AppColor.primaryColor,
-                      ),
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             FadeInDown(

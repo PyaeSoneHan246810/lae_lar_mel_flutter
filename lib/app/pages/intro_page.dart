@@ -33,7 +33,7 @@ class IntroPage extends StatelessWidget {
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
-              const CustomSeparator(height: 80),
+              const CustomSeparator(height: 100),
               FadeInDown(
                 child: Center(
                   child: SizedBox(

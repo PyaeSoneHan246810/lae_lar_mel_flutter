@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
-import '../enums/enums.dart';
 
-class CourseView extends StatelessWidget {
-  final CourseType courseType;
-  final String courseImagePath;
+class CustomCourseView extends StatelessWidget {
+  final String courseImage;
   final String courseName;
   final String coursePrice;
   final String courseInstructorName;
@@ -14,10 +13,9 @@ class CourseView extends StatelessWidget {
   final String courseLevel;
   final String courseSkill;
   final Function()? onTap;
-  const CourseView({
+  const CustomCourseView({
     super.key,
-    required this.courseType,
-    required this.courseImagePath,
+    required this.courseImage,
     required this.courseName,
     required this.coursePrice,
     required this.courseInstructorName,
@@ -35,18 +33,21 @@ class CourseView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: double.infinity,
-            height: 160,
-            decoration: const BoxDecoration(
-              color: AppColor.pureWhiteColor,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                courseImagePath,
-                fit: BoxFit.cover,
+          Hero(
+            tag: 'courseImage$courseImage',
+            child: Container(
+              width: double.infinity,
+              height: 160,
+              decoration: const BoxDecoration(
+                color: AppColor.pureWhiteColor,
               ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: courseImage,
+                    fit: BoxFit.cover,
+                  )),
             ),
           ),
           Padding(
@@ -97,7 +98,7 @@ class CourseView extends StatelessWidget {
                 style: AppFontStyle.bodyNavTextPrimary,
               ),
             ],
-          )
+          ),
         ],
       ),
     );

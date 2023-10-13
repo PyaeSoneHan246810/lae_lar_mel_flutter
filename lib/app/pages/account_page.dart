@@ -86,9 +86,10 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                   Positioned(
                     top: 30,
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/images/profile_placeholder.jpg',
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.network(
+                        'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
                         height: 131,
                         width: 131,
                       ),

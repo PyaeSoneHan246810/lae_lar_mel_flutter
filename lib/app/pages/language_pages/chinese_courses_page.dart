@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../config/colors.dart';
-import '../../widgets/custom_appbar_with_back_arrow.dart';
+import '../../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../../widgets/custom_courses_tabbar.dart';
 import '../../widgets/custom_courses_tabbar_view.dart';
 
@@ -18,7 +18,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        appBar: CustomAppBarWithBackArrow(
+        appBar: CustomAppBarWithBackArrowAndTitle(
           titleText: 'Chinese',
           onBackButtonPressed: () {
             Navigator.pop(context);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lae_lar_mel_app/app/pages/course_details_page.dart';
 import 'package:lae_lar_mel_app/app/pages/edit_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/featured_page.dart';
 import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
@@ -15,6 +16,8 @@ import 'package:lae_lar_mel_app/app/pages/root_page.dart';
 import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
 
+import 'config/colors.dart';
+
 class App extends StatelessWidget {
   const App({super.key});
 
@@ -24,6 +27,17 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
+        primaryColor: AppColor.primaryColor,
+        bottomSheetTheme: const BottomSheetThemeData(
+          dragHandleColor: AppColor.primaryColor,
+          showDragHandle: true,
+          backgroundColor: AppColor.lightestBlueColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(30),
+            ),
+          ),
+        ),
       ),
       home: const SplashScreen(),
       routes: {

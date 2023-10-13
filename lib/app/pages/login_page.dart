@@ -113,7 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                       child: CustomFilledButton(
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                              'rootPage', (route) => false);
+                            'rootPage',
+                            (route) => false,
+                          );
                         },
                         text: "Login",
                       ),

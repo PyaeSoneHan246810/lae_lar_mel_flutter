@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:lae_lar_mel_app/app/pages/course_details_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../models/language_category_model.dart';
-import '../widgets/course_view.dart';
+import '../widgets/custom_course_view.dart';
 
 class FeaturedPage extends StatefulWidget {
   const FeaturedPage({super.key});
@@ -20,12 +21,30 @@ class FeaturedPage extends StatefulWidget {
 class _FeaturedPageState extends State<FeaturedPage> {
   final String username = 'Pyae Sone';
   List<LanguageCategoryModel> languageCategories = [];
-  List<CourseModel> freeCourses = [];
-  List<CourseModel> premiumCourses = [];
+  List<Course> courses = [];
+  List<Course> freeCourses = [];
+  List<Course> premiumCourses = [];
   void _getInitialInfo() {
     languageCategories = LanguageCategoryModel.getLanguageCategories();
-    freeCourses = CourseModel.getFreeCourses();
-    premiumCourses = CourseModel.getPremiumCourses();
+    courses = Course.getCourses();
+    freeCourses = Course.getFreeCourses();
+    premiumCourses = Course.getPremiumCourses();
+  }
+
+  void navigateToFreeCourseDetailsPage(int index) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CourseDetailsPage(
+        course: freeCourses[index],
+      ),
+    ));
+  }
+
+  void navigateToPremiumCourseDetailsPage(int index) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => CourseDetailsPage(
+        course: premiumCourses[index],
+      ),
+    ));
   }
 
   @override
@@ -107,7 +126,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.only(left: 8),
                               child: Text(
                                 languageCategories[index].languageName,
                                 style: AppFontStyle.captionMediumPureWhite,
@@ -132,9 +151,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
               shrinkWrap: true,
               itemCount: 2,
               itemBuilder: (context, index) {
-                return CourseView(
-                  courseType: freeCourses[index].courseType,
-                  courseImagePath: freeCourses[index].courseImagePath,
+                return CustomCourseView(
+                  courseImage: freeCourses[index].courseImage,
                   courseName: freeCourses[index].courseName,
                   coursePrice: freeCourses[index].coursePrice,
                   courseInstructorName: freeCourses[index].courseInstructorName,
@@ -142,7 +160,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
                       freeCourses[index].courseLanguageCategory,
                   courseLevel: freeCourses[index].courseLevel,
                   courseSkill: freeCourses[index].courseSkill,
-                  onTap: () {},
+                  onTap: () => navigateToFreeCourseDetailsPage(index),
                 );
               },
               separatorBuilder: (context, index) {
@@ -179,9 +197,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
               shrinkWrap: true,
               itemCount: 2,
               itemBuilder: (context, index) {
-                return CourseView(
-                  courseType: premiumCourses[index].courseType,
-                  courseImagePath: premiumCourses[index].courseImagePath,
+                return CustomCourseView(
+                  courseImage: premiumCourses[index].courseImage,
                   courseName: premiumCourses[index].courseName,
                   coursePrice: premiumCourses[index].coursePrice,
                   courseInstructorName:
@@ -190,7 +207,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
                       premiumCourses[index].courseLanguageCategory,
                   courseLevel: premiumCourses[index].courseLevel,
                   courseSkill: premiumCourses[index].courseSkill,
-                  onTap: () {},
+                  onTap: () => navigateToPremiumCourseDetailsPage(index),
                 );
               },
               separatorBuilder: (context, index) {

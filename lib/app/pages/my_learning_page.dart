@@ -37,23 +37,24 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 const CustomSeparator(
                   height: 14,
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Container(
-                            // (Blue Enrolled Container Box)
-                            width: 155,
-                            height: 98,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColor.secondaryColor,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(14.0),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
+                IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          children: [
+                            // (Blue Container Box)
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColor.secondaryColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 16, top: 14, right: 16, bottom: 14),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -61,6 +62,9 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                       Icons.fact_check,
                                       size: 30,
                                       color: AppColor.pureWhiteColor,
+                                    ),
+                                    const CustomSeparator(
+                                      height: 6,
                                     ),
                                     Row(
                                       children: [
@@ -80,6 +84,9 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                         ),
                                       ],
                                     ),
+                                    const CustomSeparator(
+                                      height: 4,
+                                    ),
                                     const Text(
                                       "Enrolled",
                                       style: AppFontStyle.bodyPureWhite,
@@ -88,22 +95,18 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                 ),
                               ),
                             ),
-                          ),
-                          const CustomSeparator(
-                            height: 10,
-                          ), // to create space between the containers
-                          Container(
-                            // (Teal Completed Container Box)
-                            width: 155,
-                            height: 98,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: AppColor.primaryColor,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(14.0),
-                              child: Align(
-                                alignment: Alignment.centerLeft,
+                            const CustomSeparator(
+                              height: 10,
+                            ), // to create space between the containers
+                            // (Teal Container Box)
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: AppColor.primaryColor,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 16, top: 14, right: 16, bottom: 14),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -111,6 +114,9 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                       Icons.school,
                                       size: 30,
                                       color: AppColor.pureWhiteColor,
+                                    ),
+                                    const CustomSeparator(
+                                      height: 6,
                                     ),
                                     Row(
                                       children: [
@@ -130,6 +136,9 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                         ),
                                       ],
                                     ),
+                                    const CustomSeparator(
+                                      height: 4,
+                                    ),
                                     const Text(
                                       "Completed",
                                       style: AppFontStyle.bodyPureWhite,
@@ -138,68 +147,64 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const CustomSeparator(
-                      width: 10,
-                      height: 0,
-                    ), // to create space between the containers
-                    Container(
-                      //(Orange<featuredColor> Learned Today Container Box)
-                      width: 155,
-                      height: 206,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: AppColor.featuredColor,
+                      const CustomSeparator(
+                        width: 10,
+                        height: 0,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                totalMinutesLearnedToday.toString(),
-                                style: AppFontStyle.hugeText,
-                              ),
-                            ],
+                      //(Orange Container Box)
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: AppColor.featuredColor,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.alarm,
-                                size: 30,
-                                color: AppColor.pureWhiteColor,
-                              ),
-                              const CustomSeparator(
-                                width: 10,
-                                height: 0,
-                              ),
-                              Text(
-                                (totalMinutesLearnedToday > 1)
-                                    ? 'Minutes'
-                                    : 'Minute',
-                                style: AppFontStyle.subtitlePureWhite,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 25,
-                            ),
-                            child: Text(
-                              "Learned Today",
-                              style: AppFontStyle.bodyPureWhite,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 27, bottom: 27),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  totalMinutesLearnedToday.toString(),
+                                  style: AppFontStyle.hugeText,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(
+                                      Icons.alarm,
+                                      size: 28,
+                                      color: AppColor.pureWhiteColor,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 10,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      (totalMinutesLearnedToday > 1)
+                                          ? 'Minutes'
+                                          : 'Minute',
+                                      style: AppFontStyle.subtitlePureWhite,
+                                    ),
+                                  ],
+                                ),
+                                const CustomSeparator(
+                                  height: 6,
+                                ),
+                                const Text(
+                                  "Learned Today",
+                                  style: AppFontStyle.bodyPureWhite,
+                                ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const CustomSeparator(
                   height: 38,
@@ -217,7 +222,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                     width: 230,
                     height: 170,
                     child: SvgPicture.asset(
-                      'assets/images/empty_placeholder.svg',
+                      'assets/images/empty_course_placeholder.svg',
                     ),
                   ),
                 ),

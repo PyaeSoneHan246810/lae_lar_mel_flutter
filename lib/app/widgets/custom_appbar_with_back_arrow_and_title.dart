@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 
-class CustomAppBarWithBackArrow extends AppBar {
+class CustomAppBarWithBackArrowAndTitle extends AppBar {
   final String titleText;
   final Function()? onBackButtonPressed;
 
-  CustomAppBarWithBackArrow({
+  CustomAppBarWithBackArrowAndTitle({
     required this.titleText,
     this.onBackButtonPressed,
     Key? key,

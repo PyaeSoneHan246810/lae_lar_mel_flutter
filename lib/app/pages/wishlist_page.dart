@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow.dart';
+import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -17,7 +17,7 @@ class _WishlistPageState extends State<WishlistPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithBackArrow(
+      appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: 'Wishlist',
         onBackButtonPressed: () {
           Navigator.pop(context);
@@ -37,7 +37,7 @@ class _WishlistPageState extends State<WishlistPage> {
               width: 230,
               height: 170,
               child: SvgPicture.asset(
-                'assets/images/empty_placeholder.svg',
+                'assets/images/empty_course_placeholder.svg',
               ),
             ),
             const SizedBox(

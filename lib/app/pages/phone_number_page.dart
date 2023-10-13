@@ -67,7 +67,6 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                     ),
                     child: InternationalPhoneNumberInput(
                       onInputChanged: (PhoneNumber number) {
-                        print(number.phoneNumber);
                         _userPhoneNumber = number.phoneNumber!;
                       },
                       onInputValidated: (bool value) {

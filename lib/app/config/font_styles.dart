@@ -291,10 +291,16 @@ class AppFontStyle {
     fontWeight: FontWeight.w400,
     color: AppColor.lightBlackColor,
   );
-  //alert_title
+  static const TextStyle alertTextPureWhite = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColor.pureWhiteColor,
+  );
+  //huge_title
   static const TextStyle hugeText = TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 80,
+    fontSize: 64,
     fontWeight: FontWeight.w800,
     color: AppColor.pureWhiteColor,
   );

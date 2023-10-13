@@ -188,7 +188,9 @@ class _CompleteAccountPageState extends State<CompleteAccountPage> {
                       child: CustomFilledButton(
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil(
-                              'rootPage', (route) => false);
+                            'rootPage',
+                            (route) => false,
+                          );
                         },
                         text: "Complete",
                       ),
