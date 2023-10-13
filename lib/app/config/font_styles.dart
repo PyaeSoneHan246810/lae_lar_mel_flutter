@@ -142,6 +142,12 @@ class AppFontStyle {
     fontWeight: FontWeight.w500,
     color: AppColor.primaryColor,
   );
+  static const TextStyle captionMediumSecondary = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: AppColor.secondaryColor,
+  );
   //caption_small
   static const TextStyle captionSmallOffBlack = TextStyle(
     fontFamily: 'Poppins',

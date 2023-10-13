@@ -112,7 +112,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Total - ',
+                    'Total',
                     style: AppFontStyle.captionBigOffBlack,
                   ),
                   Text(
@@ -122,14 +122,29 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 ],
               ),
               const CustomSeparator(height: 12),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Discount - ',
-                    style: AppFontStyle.captionBigOffBlack,
+                  Row(
+                    children: [
+                      const Text(
+                        'Discount',
+                        style: AppFontStyle.captionBigOffBlack,
+                      ),
+                      const CustomSeparator(
+                        height: 0,
+                        width: 4,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: const Text(
+                          '[Add Coupon Code]',
+                          style: AppFontStyle.captionMediumSecondary,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
+                  const Text(
                     '0 MMK',
                     style: AppFontStyle.captionBigOffBlack,
                   ),
@@ -140,7 +155,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    'Grand Total - ',
+                    'Grand Total',
                     style: AppFontStyle.captionBigOffBlack,
                   ),
                   Text(
