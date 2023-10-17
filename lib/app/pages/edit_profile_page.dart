@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
@@ -6,6 +7,7 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:lae_lar_mel_app/app/widgets/profile_image.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -33,6 +35,101 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.dispose();
   }
 
+  Future<void> _displayImagePickerSheet(BuildContext context) async {
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      // Modal Button Sheet for android devices
+      return showModalBottomSheet(
+        enableDrag: true,
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return Container(
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+            child: Wrap(
+              alignment: WrapAlignment.end,
+              crossAxisAlignment: WrapCrossAlignment.end,
+              children: [
+                const Center(
+                  child: Text(
+                    'Select profile image from',
+                    style: AppFontStyle.alertTitlePrimary,
+                  ),
+                ),
+                const CustomSeparator(
+                  height: 12,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.image),
+                  iconColor: AppColor.lightBlackColor,
+                  titleTextStyle: AppFontStyle.alertText,
+                  horizontalTitleGap: 8,
+                  title: const Text(
+                    'Photo Gallery',
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.camera),
+                  iconColor: AppColor.lightBlackColor,
+                  titleTextStyle: AppFontStyle.alertText,
+                  horizontalTitleGap: 8,
+                  title: const Text(
+                    'Camera',
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    } else if (Theme.of(context).platform == TargetPlatform.iOS) {
+      // Cupertino Action Sheet for iOS devices
+      return showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoActionSheet(
+          title: const Text(
+            'Select profile image from',
+            style: AppFontStyle.alertTitlePrimary,
+          ),
+          actions: [
+            CupertinoActionSheetAction(
+              child: const Text(
+                'Photo Gallery',
+                style: AppFontStyle.alertText,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoActionSheetAction(
+              child: const Text(
+                'Camera',
+                style: AppFontStyle.alertText,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+          cancelButton: CupertinoActionSheetAction(
+            child: const Text(
+              'Cancel',
+              style: AppFontStyle.alertTextRed,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,12 +151,35 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: ProfileImageWidget(
                     imagePath:
                         'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
-                    onClicked: () {},
+                    onImageClicked: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Center(
+                            child: SizedBox(
+                              width: double.infinity,
+                              height: double.infinity,
+                              child: Center(
+                                child: FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image:
+                                      'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    onEditIconClicked: () {
+                      _displayImagePickerSheet(context);
+                    },
                   ),
                 ),
               ),
             ),
-            FadeInDown(
+            FadeInLeft(
               child: const Padding(
                 padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 child: Text(
@@ -69,7 +189,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             const CustomSeparator(height: 7),
-            FadeInDown(
+            FadeInLeft(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 child: TextField(
@@ -97,7 +217,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ),
             ),
-            FadeInDown(
+            FadeInLeft(
               child: const Padding(
                 padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: Text(
@@ -107,7 +227,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             const CustomSeparator(height: 7),
-            FadeInDown(
+            FadeInLeft(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 child: TextField(
@@ -135,7 +255,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
               ),
             ),
-            FadeInUp(
+            FadeInLeft(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: CustomFilledButton(

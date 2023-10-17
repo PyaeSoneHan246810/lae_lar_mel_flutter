@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lae_lar_mel_app/app/pages/course_details_page.dart';
+import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
+import 'package:lae_lar_mel_app/app/pages/contact_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/edit_profile_page.dart';
-import 'package:lae_lar_mel_app/app/pages/featured_page.dart';
+import 'package:lae_lar_mel_app/app/pages/faq_page.dart';
 import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
 import 'package:lae_lar_mel_app/app/pages/language_pages/chinese_courses_page.dart';
 import 'package:lae_lar_mel_app/app/pages/complete_account_page.dart';
@@ -54,6 +55,9 @@ class App extends StatelessWidget {
         'japaneseCoursesPage': (context) => const JapaneseCoursesPage(),
         'koreanCoursesPage': (context) => const KoreanCoursesPage(),
         'editProfilePage': (context) => const EditProfilePage(),
+        'aboutUsPage': (context) => const AboutUsPage(),
+        'contactUsPage': (context) => const ContactUsPage(),
+        'faqPage': (context) => const FAQPage(),
       },
     );
   }

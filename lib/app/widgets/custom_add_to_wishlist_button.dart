@@ -4,9 +4,11 @@ import '../config/colors.dart';
 
 class CustomAddToWishlistButton extends StatelessWidget {
   final Function()? onPressed;
+  final IconData iconData;
   const CustomAddToWishlistButton({
     super.key,
     required this.onPressed,
+    required this.iconData,
   });
 
   @override
@@ -24,8 +26,8 @@ class CustomAddToWishlistButton extends StatelessWidget {
         ),
       ),
       padding: const EdgeInsets.all(14),
-      child: const Icon(
-        Icons.favorite_outline_rounded,
+      child: Icon(
+        iconData,
         size: 24,
       ),
     );

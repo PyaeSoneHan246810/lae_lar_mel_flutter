@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
+import 'package:lae_lar_mel_app/boxes.dart';
 import 'dart:async';
-import 'package:video_player/video_player.dart';
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:pod_player/pod_player.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -27,20 +29,72 @@ class CourseDetailsPage extends StatefulWidget {
 }
 
 class _CourseDetailsPageState extends State<CourseDetailsPage> {
+  bool _isSecureMode = false;
   bool _isPlayArrowClicked = false;
   bool _isInstructorExpansionPanelExpanded = false;
-  late FlickManager _flickManager;
+  bool _isMorePaymentOptionsVisible = false;
+  String couponCode = "";
+  double discount = 0.0;
+  late double coursePrice;
+  late double grandTotal;
+  late TextEditingController _couponTextController;
   late List<bool> _isExpandedList;
+  late final PodPlayerController _podPlayerController;
 
   @override
   void initState() {
     super.initState();
-    _flickManager = FlickManager(
-      videoPlayerController:
-          VideoPlayerController.networkUrl(widget.course.coursePreviewVideo),
-    );
+    coursePrice = widget.course.coursePriceInMMK;
+    grandTotal = coursePrice;
+    _couponTextController = TextEditingController();
     _isExpandedList = List.generate(
         widget.course.courseSections.length, (index) => index == 0);
+    _podPlayerController = PodPlayerController(
+      playVideoFrom: PlayVideoFrom.vimeo(widget.course.coursePreviewVideo),
+      podPlayerConfig: const PodPlayerConfig(
+        autoPlay: true,
+        isLooping: false,
+      ),
+    )..initialise();
+  }
+
+  @override
+  void dispose() {
+    _couponTextController.dispose();
+    _podPlayerController.dispose();
+    super.dispose();
+  }
+
+  void _checkSecureMode() {
+    if (_isSecureMode) {
+      FlutterWindowManager.addFlags(
+        FlutterWindowManager.FLAG_SECURE,
+      );
+    } else {
+      FlutterWindowManager.clearFlags(
+        FlutterWindowManager.FLAG_SECURE,
+      );
+    }
+  }
+
+  void _applyCoupon() {
+    couponCode = _couponTextController.text;
+    if (couponCode == 'SAMPLE10') {
+      setState(() {
+        discount = 0.1 * coursePrice;
+      });
+    } else if (couponCode == 'SAMPLE20') {
+      setState(() {
+        discount = 0.2 * coursePrice;
+      });
+    } else {
+      setState(() {
+        discount = 0.0;
+      });
+    }
+    setState(() {
+      grandTotal = coursePrice - discount;
+    });
   }
 
   void _toggleExpansionState(int index) {
@@ -49,35 +103,42 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     });
   }
 
-  @override
-  void dispose() {
-    _flickManager.dispose();
-    super.dispose();
-  }
-
   void _onExpansionChanged(int index, bool isExpanded) {
     setState(() {
       _isExpandedList[index] = isExpanded;
     });
   }
 
-  Future<void> _displaySuccessfulSnackBar(BuildContext context) async {
+  void _navigateToVideoPlayer(CourseMaterial courseMaterial) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerPage(
+          videoID: courseMaterial.content,
+        ),
+      ),
+    );
+  }
+
+  Future<void> _displaySuccessfulSnackBar(
+      BuildContext context, String message, int durationInMilliseconds) async {
     // Create a Completer to represent the completion of the future
     final Completer<void> completer = Completer<void>();
-
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context)
         .showSnackBar(
-          const SnackBar(
+          SnackBar(
+            duration: Duration(milliseconds: durationInMilliseconds),
             backgroundColor: AppColor.primaryColor,
             showCloseIcon: true,
             closeIconColor: AppColor.pureWhiteColor,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(14),
               ),
             ),
             content: Text(
-              'You have successfully enrolled the course.',
+              message,
               style: AppFontStyle.alertTextPureWhite,
             ),
           ),
@@ -91,210 +152,344 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     return completer.future;
   }
 
-  Future _displayPaymentBottomSheet() {
+  Future<void> _displayPaymentBottomSheet() async {
     return showModalBottomSheet(
       enableDrag: true,
       isScrollControlled: true,
       context: context,
       builder: (context) {
-        return Container(
-          padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.course.courseName,
-                style: AppFontStyle.title3OffBlack,
-              ),
-              const CustomSeparator(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Container(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Total',
-                    style: AppFontStyle.captionBigOffBlack,
-                  ),
                   Text(
-                    widget.course.coursePrice,
-                    style: AppFontStyle.captionBigOffBlack,
+                    widget.course.courseName,
+                    style: AppFontStyle.title3OffBlack,
                   ),
-                ],
-              ),
-              const CustomSeparator(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                  const CustomSeparator(height: 12),
                   Row(
-                    children: [
-                      const Text(
-                        'Discount',
-                        style: AppFontStyle.captionBigOffBlack,
-                      ),
-                      const CustomSeparator(
-                        height: 0,
-                        width: 4,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: const Text(
-                          '[Add Coupon Code]',
-                          style: AppFontStyle.captionMediumSecondary,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    '0 MMK',
-                    style: AppFontStyle.captionBigOffBlack,
-                  ),
-                ],
-              ),
-              const CustomSeparator(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Grand Total',
-                    style: AppFontStyle.captionBigOffBlack,
-                  ),
-                  Text(
-                    widget.course.coursePrice,
-                    style: AppFontStyle.subtitleOffBlack,
-                  ),
-                ],
-              ),
-              const CustomSeparator(height: 24),
-              const Text(
-                'Select payment method',
-                style: AppFontStyle.captionBigOffBlack,
-              ),
-              const CustomSeparator(height: 12),
-              Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/kbz_pay_logo.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                      const Text(
+                        'Total',
+                        style: AppFontStyle.captionBigOffBlack,
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/aya_pay_logo.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/one_pay_logo.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                      Text(
+                        '${coursePrice.toStringAsFixed(2)} MMK',
+                        style: AppFontStyle.captionBigOffBlack,
                       ),
                     ],
                   ),
                   const CustomSeparator(height: 12),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/wave_pay_logo.png',
-                              fit: BoxFit.cover,
+                      Row(
+                        children: [
+                          const Text(
+                            'Discount',
+                            style: AppFontStyle.captionBigOffBlack,
+                          ),
+                          const CustomSeparator(
+                            height: 0,
+                            width: 4,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                              _displayEnterCouponCodeAlertDialog();
+                            },
+                            child: const Text(
+                              '[Add Coupon Code]',
+                              style: AppFontStyle.captionMediumSecondary,
                             ),
                           ),
-                        ),
+                        ],
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/visa_logo.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
+                      Text(
+                        '${discount.toStringAsFixed(2)} MMK',
+                        style: AppFontStyle.captionBigOffBlack,
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: SizedBox(
-                            width: 100,
-                            height: 75,
-                            child: Image.asset(
-                              'assets/images/mastercard_logo.jpg',
-                              fit: BoxFit.cover,
+                    ],
+                  ),
+                  const CustomSeparator(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Grand Total',
+                        style: AppFontStyle.captionBigOffBlack,
+                      ),
+                      Text(
+                        '${grandTotal.toStringAsFixed(2)} MMK',
+                        style: AppFontStyle.subtitleOffBlack,
+                      ),
+                    ],
+                  ),
+                  const CustomSeparator(height: 24),
+                  const Text(
+                    'Select payment method',
+                    style: AppFontStyle.captionBigOffBlack,
+                  ),
+                  const CustomSeparator(height: 12),
+                  Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/kbz_pay_logo.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/aya_pay_logo.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/one_pay_logo.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const CustomSeparator(height: 12),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/wave_pay_logo.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/visa_logo.png',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: SizedBox(
+                                width: 100,
+                                height: 75,
+                                child: Image.asset(
+                                  'assets/images/mastercard_logo.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const CustomSeparator(height: 12),
+                      Visibility(
+                        visible: _isMorePaymentOptionsVisible,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {},
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: SizedBox(
+                                  width: 100,
+                                  height: 75,
+                                  child: Image.asset(
+                                    'assets/images/mPiteSan_logo.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: SizedBox(
+                                  width: 100,
+                                  height: 75,
+                                  child: Image.asset(
+                                    'assets/images/mpu_logo.jpg',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {},
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: SizedBox(
+                                  width: 100,
+                                  height: 75,
+                                  child: Image.asset(
+                                    'assets/images/a_bank_logo.png',
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
+                  const CustomSeparator(height: 12),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _isMorePaymentOptionsVisible =
+                              !_isMorePaymentOptionsVisible;
+                        });
+                      },
+                      child: Text(
+                        _isMorePaymentOptionsVisible
+                            ? 'Less payment options'
+                            : 'More payment options',
+                        style: AppFontStyle.bodyNavTextOffBlack,
+                      ),
+                    ),
+                  ),
+                  const CustomSeparator(height: 24),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Back',
+                        style: AppFontStyle.navTextOffBlack,
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              const CustomSeparator(height: 12),
-              Center(
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    'More payment options',
-                    style: AppFontStyle.bodyNavTextOffBlack,
-                  ),
-                ),
-              ),
-              const CustomSeparator(height: 24),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text(
-                    'Back',
-                    style: AppFontStyle.navTextOffBlack,
-                  ),
-                ),
-              ),
-            ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _displayEnterCouponCodeAlertDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.only(
+            top: 20,
+            left: 16,
+            right: 16,
           ),
+          actionsPadding: const EdgeInsets.only(
+            right: 16,
+          ),
+          content: TextFormField(
+            controller: _couponTextController,
+            cursorColor: AppColor.primaryColor,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColor.greyColor,
+              hintText: 'Enter your coupon code',
+              hintStyle: AppFontStyle.inputHintText,
+              labelStyle: AppFontStyle.inputText,
+              contentPadding: const EdgeInsets.only(
+                left: 15,
+                right: 15,
+                top: 20,
+                bottom: 20,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColor.primaryColor,
+                ),
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                _applyCoupon();
+                Navigator.of(context).pop();
+                setState(() {
+                  _displayPaymentBottomSheet();
+                });
+              },
+              child: const Text(
+                "Apply",
+                style: AppFontStyle.navTextPrimary,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text(
+                "Cancel",
+                style: AppFontStyle.navTextOffBlack,
+              ),
+            ),
+          ],
         );
       },
     );
@@ -373,7 +568,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  _displaySuccessfulSnackBar(context);
+                  _displaySuccessfulSnackBar(
+                    context,
+                    "You have successfully enrolled the course.",
+                    2000,
+                  );
                 },
                 child: const Text(
                   'Enroll now',
@@ -401,11 +600,36 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   Widget _buildVideoPlayer() {
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
-      child: SizedBox(
-        height: 210,
-        child: FlickVideoPlayer(
-          flickManager: _flickManager,
+      child: PodVideoPlayer(
+        controller: _podPlayerController,
+        alwaysShowProgressBar: false,
+        podProgressBarConfig: const PodProgressBarConfig(
+          backgroundColor: AppColor.offBlackColor,
+          circleHandlerColor: AppColor.primaryColor,
+          bufferedBarColor: AppColor.lightBlackColor,
+          playingBarColor: AppColor.primaryColor,
         ),
+        onLoading: (context) {
+          return const Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(
+                color: AppColor.primaryColor,
+              ),
+              CustomSeparator(
+                height: 18,
+              ),
+              SizedBox(
+                height: 20.0,
+                child: Text(
+                  'Loading',
+                  style: AppFontStyle.captionBigPureWhite,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -419,7 +643,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: SizedBox(
-              height: 210,
+              height: 180,
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -444,16 +668,14 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           child: ElasticIn(
             child: IconButton(
               icon: const Icon(
-                Icons.play_arrow,
+                Icons.play_arrow_rounded,
                 size: 120,
                 color: AppColor.pureWhiteColor,
               ),
               onPressed: () {
                 setState(() {
+                  _isSecureMode = !_isSecureMode;
                   _isPlayArrowClicked = !_isPlayArrowClicked;
-                  if (_isPlayArrowClicked) {
-                    _flickManager.flickControlManager?.togglePlay();
-                  }
                 });
               },
             ),
@@ -545,7 +767,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 width: 18,
                 height: 0,
               ),
-              courseMaterial.duration != null
+              courseMaterial.durationInMinute != null
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -559,7 +781,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           ),
                         ),
                         Text(
-                          courseMaterial.duration!,
+                          "${courseMaterial.durationInMinute!.toStringAsFixed(2)} min",
                           style: AppFontStyle.captionSmallLightBlack,
                         ),
                       ],
@@ -587,6 +809,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       // Handle the actions for the first three course materials in the first premium course section based on the course material type.
                       switch (courseMaterial.courseMaterialType) {
                         case CourseMaterialType.video:
+                          _navigateToVideoPlayer(courseMaterial);
                           break;
                         case CourseMaterialType.document:
                           break;
@@ -613,6 +836,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       // Handle the actions for the first three course materials in the first free course section based on the course material type.
                       switch (courseMaterial.courseMaterialType) {
                         case CourseMaterialType.video:
+                          _navigateToVideoPlayer(courseMaterial);
                           break;
                         case CourseMaterialType.document:
                           break;
@@ -647,8 +871,12 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   @override
   Widget build(BuildContext context) {
     int currentSectionIndex;
+    final isFavourite = boxCourses.get('key_${widget.course.courseId}') != null;
+    _checkSecureMode();
     return Scaffold(
       appBar: CustomAppBarWithBackArrowWithoutTitle(
+        appBarBackgroundColor: AppColor.pureWhiteColor,
+        appBarBackArrowColor: AppColor.offBlackColor,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -703,7 +931,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     padding: const EdgeInsets.only(
                         left: 4, right: 4, top: 2, bottom: 2),
                     child: Text(
-                      '${widget.course.courseTotalDurationInHours} hours',
+                      '${widget.course.courseTotalDurationInHour.toStringAsFixed(1)} hours',
                       style: AppFontStyle.captionMediumOffBlack,
                     ),
                   ),
@@ -812,7 +1040,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           const CustomSeparator(height: 25),
           FadeInLeft(
             child: Text(
-              widget.course.coursePrice,
+              widget.course.courseType == CourseType.free
+                  ? 'Free'
+                  : '${coursePrice.toStringAsFixed(0)} MMK',
               style: AppFontStyle.title3OffBlack,
             ),
           ),
@@ -827,7 +1057,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   child: CustomFilledButtonRounded(
                     onPressed: () {
                       widget.course.courseType == CourseType.free
-                          ? _displaySuccessfulSnackBar(context)
+                          ? _displaySuccessfulSnackBar(
+                              context,
+                              "You have successfully enrolled the course.",
+                              2000,
+                            )
                           : _displayPaymentBottomSheet();
                     },
                     text: widget.course.courseType == CourseType.free
@@ -838,7 +1072,58 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 Expanded(
                   flex: 1,
                   child: CustomAddToWishlistButton(
-                    onPressed: () {},
+                    iconData: isFavourite
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_outline_rounded,
+                    onPressed: () {
+                      if (isFavourite) {
+                        _displaySuccessfulSnackBar(
+                          context,
+                          "Removed course from the wishlist.",
+                          1200,
+                        );
+                        //Todo: .delete
+                        setState(() {
+                          boxCourses.delete('key_${widget.course.courseId}');
+                        });
+                      } else {
+                        _displaySuccessfulSnackBar(
+                          context,
+                          "Added course to the wishlist.",
+                          1200,
+                        );
+                        //Todo: .put
+                        setState(() {
+                          boxCourses.put(
+                            'key_${widget.course.courseId}',
+                            Course(
+                              courseId: widget.course.courseId,
+                              courseType: widget.course.courseType,
+                              courseImage: widget.course.courseImage,
+                              courseName: widget.course.courseName,
+                              coursePriceInMMK: widget.course.coursePriceInMMK,
+                              courseTotalDurationInHour:
+                                  widget.course.courseTotalDurationInHour,
+                              courseInstructorImage:
+                                  widget.course.courseInstructorImage,
+                              courseInstructorName:
+                                  widget.course.courseInstructorName,
+                              courseInstructorMajor:
+                                  widget.course.courseInstructorMajor,
+                              courseInstructorDescription:
+                                  widget.course.courseInstructorDescription,
+                              courseLanguageCategory:
+                                  widget.course.courseLanguageCategory,
+                              courseLevel: widget.course.courseLevel,
+                              courseSkill: widget.course.courseSkill,
+                              coursePreviewVideo:
+                                  widget.course.coursePreviewVideo,
+                              courseSections: widget.course.courseSections,
+                            ),
+                          );
+                        });
+                      }
+                    },
                   ),
                 ),
               ],

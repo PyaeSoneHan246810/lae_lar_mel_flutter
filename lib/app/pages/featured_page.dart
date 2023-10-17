@@ -152,9 +152,10 @@ class _FeaturedPageState extends State<FeaturedPage> {
               itemCount: 2,
               itemBuilder: (context, index) {
                 return CustomCourseView(
+                  courseType: freeCourses[index].courseType,
                   courseImage: freeCourses[index].courseImage,
                   courseName: freeCourses[index].courseName,
-                  coursePrice: freeCourses[index].coursePrice,
+                  coursePriceInMMK: freeCourses[index].coursePriceInMMK,
                   courseInstructorName: freeCourses[index].courseInstructorName,
                   courseLanguageCategory:
                       freeCourses[index].courseLanguageCategory,
@@ -198,9 +199,10 @@ class _FeaturedPageState extends State<FeaturedPage> {
               itemCount: 2,
               itemBuilder: (context, index) {
                 return CustomCourseView(
+                  courseType: premiumCourses[index].courseType,
                   courseImage: premiumCourses[index].courseImage,
                   courseName: premiumCourses[index].courseName,
-                  coursePrice: premiumCourses[index].coursePrice,
+                  coursePriceInMMK: premiumCourses[index].coursePriceInMMK,
                   courseInstructorName:
                       premiumCourses[index].courseInstructorName,
                   courseLanguageCategory:

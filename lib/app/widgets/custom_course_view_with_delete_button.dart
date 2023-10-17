@@ -5,7 +5,7 @@ import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
 
-class CustomCourseView extends StatelessWidget {
+class CustomCourseViewWithDeleteButton extends StatelessWidget {
   final CourseType courseType;
   final String courseImage;
   final String courseName;
@@ -15,7 +15,8 @@ class CustomCourseView extends StatelessWidget {
   final String courseLevel;
   final String courseSkill;
   final Function()? onTap;
-  const CustomCourseView({
+  final Function()? onDeleteIconButtonTap;
+  const CustomCourseViewWithDeleteButton({
     super.key,
     required this.courseType,
     required this.courseImage,
@@ -26,6 +27,7 @@ class CustomCourseView extends StatelessWidget {
     required this.courseLevel,
     required this.courseSkill,
     required this.onTap,
+    required this.onDeleteIconButtonTap,
   });
 
   @override
@@ -36,22 +38,19 @@ class CustomCourseView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Hero(
-            tag: 'courseImage$courseImage',
-            child: Container(
-              width: double.infinity,
-              height: 160,
-              decoration: const BoxDecoration(
-                color: AppColor.pureWhiteColor,
-              ),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: courseImage,
-                    fit: BoxFit.cover,
-                  )),
+          Container(
+            width: double.infinity,
+            height: 160,
+            decoration: const BoxDecoration(
+              color: AppColor.pureWhiteColor,
             ),
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: courseImage,
+                  fit: BoxFit.cover,
+                )),
           ),
           Padding(
               padding: const EdgeInsets.only(top: 5),
@@ -81,26 +80,39 @@ class CustomCourseView extends StatelessWidget {
             style: AppFontStyle.bodyOffBlack,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                courseLanguageCategory,
-                style: AppFontStyle.bodyNavTextPrimary,
+              Row(
+                children: [
+                  Text(
+                    courseLanguageCategory,
+                    style: AppFontStyle.bodyNavTextPrimary,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 4, right: 4),
+                    child: Text('|'),
+                  ),
+                  Text(
+                    courseLevel,
+                    style: AppFontStyle.bodyNavTextPrimary,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 4, right: 4),
+                    child: Text('|'),
+                  ),
+                  Text(
+                    courseSkill,
+                    style: AppFontStyle.bodyNavTextPrimary,
+                  ),
+                ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 4, right: 4),
-                child: Text('|'),
-              ),
-              Text(
-                courseLevel,
-                style: AppFontStyle.bodyNavTextPrimary,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 4, right: 4),
-                child: Text('|'),
-              ),
-              Text(
-                courseSkill,
-                style: AppFontStyle.bodyNavTextPrimary,
+              IconButton(
+                onPressed: onDeleteIconButtonTap,
+                icon: const Icon(
+                  Icons.delete_rounded,
+                  color: Colors.red,
+                ),
               ),
             ],
           ),

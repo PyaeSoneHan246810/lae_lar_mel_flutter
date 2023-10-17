@@ -66,6 +66,12 @@ class AppFontStyle {
     fontWeight: FontWeight.w700,
     color: AppColor.primaryColor,
   );
+  static const TextStyle title2Secondary = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: AppColor.secondaryColor,
+  );
   //title3
   static const TextStyle title3OffBlack = TextStyle(
     fontFamily: 'Poppins',
@@ -179,18 +185,21 @@ class AppFontStyle {
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColor.offBlackColor,
+    height: 1.8,
   );
   static const TextStyle bodyPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColor.pureWhiteColor,
+    height: 1.8,
   );
   static const TextStyle bodyPrimary = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
     fontWeight: FontWeight.w400,
     color: AppColor.primaryColor,
+    height: 1.8,
   );
   //body_nav_text
   static const TextStyle bodyNavTextOffBlack = TextStyle(
@@ -229,6 +238,12 @@ class AppFontStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColor.primaryColor,
+  );
+  static const TextStyle navTextRed = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.red,
   );
   //button_nav_text
   static const TextStyle buttonNavTextOffBlack = TextStyle(
@@ -290,6 +305,12 @@ class AppFontStyle {
     fontWeight: FontWeight.w500,
     color: AppColor.offBlackColor,
   );
+  static const TextStyle alertTitlePrimary = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: AppColor.primaryColor,
+  );
   //alert_title
   static const TextStyle alertText = TextStyle(
     fontFamily: 'Poppins',
@@ -302,6 +323,12 @@ class AppFontStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
     color: AppColor.pureWhiteColor,
+  );
+  static const TextStyle alertTextRed = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Colors.red,
   );
   //huge_title
   static const TextStyle hugeText = TextStyle(
