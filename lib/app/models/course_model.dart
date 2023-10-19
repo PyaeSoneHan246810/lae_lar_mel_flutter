@@ -1,7 +1,6 @@
 import 'package:lae_lar_mel_app/app/enums/enums.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:hive/hive.dart';
-
 import 'course_section_model.dart';
 
 part 'course_model.g.dart';

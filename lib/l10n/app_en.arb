@@ -42,6 +42,64 @@
         "description" : "Continue Process"
     },
 
+    "otp_title" : "OTP Verification",
+    "@otp_title" : {
+        "description" : "OTP Verification Title"
+    },
+    "otp_subtitle" : "Please enter the one-time password (OTP) from the SMS we sent to:",
+    "@otp_subtitle" : {
+        "description" : "OTP Verification Subtitle"
+    },
+    "no_receive_code" : "I didn't receive any code.",
+    "@no_receive_code" : {
+        "description" : "No Receive Code"
+    },
+    "resend" : "RESEND",
+    "@resend" : {
+        "description" : "Resend"
+    },
+    "submit" : "Submit",
+    "@submit" : {
+        "description" : "Submit"
+    },
+    "wrong_phone_number" : "Not your phone number?",
+    "@wrong_phone_number" : {
+        "description" : "Wrong Phone Number"
+    },
+    "go_back" : "Go Back",
+    "@go_back" : {
+        "description" : "Go Back"
+    },
+
+    "complete_account_title" : "Complete your account",
+    "@complete_account_title" : {
+        "description" : "Complete Account Title"
+    },
+    "password" : "Password",
+    "@password" : {
+        "description" : "Password"
+    },
+    "confirm_password" : "Confirm Password",
+    "@confirm_password" : {
+        "description" : "Confirm Password"
+    },
+    "complete" : "Complete",
+    "@complete" : {
+        "description" : "Complete"
+    },
+    "set_username" : "Set your username",
+    "@set_username" : {
+        "description" : "Set Username"
+    },
+    "set_password" : "Set your password",
+    "@set_password" : {
+        "description" : "Set Password"
+    },
+    "type_password_again" : "Type your password again",
+    "@type_password_again" : {
+        "description" : "Type Password Again"
+    },
+
     "featured" : "Featured",
     "@featured" : {
         "description" : "Featured"

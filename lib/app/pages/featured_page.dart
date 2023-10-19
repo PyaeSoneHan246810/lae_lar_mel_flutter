@@ -7,7 +7,6 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../models/language_category_model.dart';
@@ -49,7 +48,6 @@ class _FeaturedPageState extends State<FeaturedPage> {
         titleText: AppLocalizations.of(context)!.featured,
         context: context,
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
         duration: const Duration(milliseconds: 750),
         child: ListView(

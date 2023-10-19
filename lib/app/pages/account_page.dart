@@ -4,7 +4,6 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../widgets/custom_appbar.dart';
 
@@ -146,7 +145,6 @@ class _AccountPageState extends State<AccountPage> {
         titleText: AppLocalizations.of(context)!.account,
         context: context,
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
         child: SingleChildScrollView(
           child: Column(

@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../widgets/custom_filled_button.dart';
@@ -35,7 +34,6 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding:

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_tabbar_view.dart';
-
-import '../config/colors.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_tabbar.dart';
 
@@ -25,7 +23,6 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: AppColor.pureWhiteColor,
         body: const Column(
           children: [
             CoursesTabBar(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:pod_player/pod_player.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 
@@ -47,7 +46,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.pureBlackColor,
-      body: Center(
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
         child: PodVideoPlayer(
           controller: _podPlayerController,
           alwaysShowProgressBar: false,

@@ -9,7 +9,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:pod_player/pod_player.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
@@ -761,7 +760,6 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           Navigator.pop(context);
         },
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: ListView(
         padding:
             const EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 20),

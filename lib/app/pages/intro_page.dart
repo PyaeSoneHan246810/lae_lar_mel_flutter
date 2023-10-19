@@ -21,14 +21,14 @@ class _IntroPageState extends State<IntroPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.pureWhiteColor,
       body: Padding(
         padding:
-            const EdgeInsets.only(left: 20, top: 40, right: 20, bottom: 10),
+            const EdgeInsets.only(left: 20, top: 50, right: 20, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
+              flex: 4,
               child: FadeInDown(
                 child: Column(
                   children: [
@@ -53,48 +53,54 @@ class _IntroPageState extends State<IntroPage> {
                 ),
               ),
             ),
-            FadeInUp(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CustomFilledButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('phoneNumberPage');
-                      },
-                      text: AppLocalizations.of(context)!.getting_started,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const CustomSeparator(height: 20),
-            FadeInUp(
-              child: GestureDetector(
-                onTap: () {
-                  displayLanguagePickerSheet(context, true);
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+            Expanded(
+              flex: 1,
+              child: FadeInUp(
+                child: Column(
                   children: [
-                    const Icon(
-                      Icons.g_translate_rounded,
-                      color: AppColor.offBlackColor,
-                      size: 24,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomFilledButton(
+                            onPressed: () {
+                              Navigator.of(context)
+                                  .pushNamed('phoneNumberPage');
+                            },
+                            text: AppLocalizations.of(context)!.getting_started,
+                          ),
+                        ),
+                      ],
                     ),
-                    const CustomSeparator(
-                      height: 0,
-                      width: 10,
+                    const CustomSeparator(height: 20),
+                    GestureDetector(
+                      onTap: () {
+                        displayLanguagePickerSheet(context, true);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.g_translate_rounded,
+                            color: AppColor.offBlackColor,
+                            size: 24,
+                          ),
+                          const CustomSeparator(
+                            height: 0,
+                            width: 10,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.select_language,
+                            style: AppFontStyle.bodyNavTextOffBlack,
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(
-                      AppLocalizations.of(context)!.select_language,
-                      style: AppFontStyle.bodyNavTextOffBlack,
-                    ),
+                    const CustomSeparator(height: 20),
                   ],
                 ),
               ),
             ),
-            const CustomSeparator(height: 20),
           ],
         ),
       ),

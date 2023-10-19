@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lae_lar_mel_app/app/config/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 
 class FAQPage extends StatefulWidget {
@@ -21,7 +19,6 @@ class _FAQPageState extends State<FAQPage> {
           Navigator.pop(context);
         },
       ),
-      backgroundColor: AppColor.pureWhiteColor,
     );
   }
 }

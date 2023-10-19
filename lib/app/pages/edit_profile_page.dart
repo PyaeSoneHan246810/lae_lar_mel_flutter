@@ -140,7 +140,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           Navigator.pop(context);
         },
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

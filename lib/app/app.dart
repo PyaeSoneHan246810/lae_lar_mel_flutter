@@ -37,6 +37,7 @@ class App extends StatelessWidget {
             theme: ThemeData(
               useMaterial3: false,
               primaryColor: AppColor.primaryColor,
+              scaffoldBackgroundColor: AppColor.pureWhiteColor,
               bottomSheetTheme: const BottomSheetThemeData(
                 dragHandleColor: AppColor.primaryColor,
                 showDragHandle: true,

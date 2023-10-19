@@ -6,7 +6,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
@@ -53,7 +52,6 @@ class _ContactUsPageState extends State<ContactUsPage>
           Navigator.pop(context);
         },
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(

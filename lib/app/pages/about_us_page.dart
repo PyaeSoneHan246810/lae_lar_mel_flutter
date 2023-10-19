@@ -5,7 +5,6 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:animate_do/animate_do.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../widgets/custom_separator.dart';
 
 class AboutUsPage extends StatefulWidget {
@@ -40,7 +39,6 @@ class _AboutUsPageState extends State<AboutUsPage>
           Navigator.pop(context);
         },
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Column(

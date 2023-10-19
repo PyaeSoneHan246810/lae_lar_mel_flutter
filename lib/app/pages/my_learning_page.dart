@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../config/colors.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
@@ -26,7 +25,6 @@ class _MyLearningPageState extends State<MyLearningPage> {
         titleText: AppLocalizations.of(context)!.my_learning,
         context: context,
       ),
-      backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
         child: SingleChildScrollView(
           child: Padding(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:lae_lar_mel_app/app/config/colors.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../widgets/custom_otp_code_text_input_field.dart';
 import '../widgets/custom_separator.dart';
 
@@ -26,7 +25,6 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding:
@@ -36,15 +34,17 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
             children: [
               const CustomSeparator(height: 40),
               FadeInDown(
-                child: const Text(
-                  'OTP Verification',
+                child: Text(
+                  AppLocalizations.of(context)!.otp_title,
                   style: AppFontStyle.title1OffBlack,
                 ),
               ),
               const CustomSeparator(height: 15),
               FadeInDown(
                 child: Text(
-                  'Please enter the one-time password from the sms we sent to $_userPhoneNumber.',
+                  AppLocalizations.of(context)!.localeName == 'my'
+                      ? '$_userPhoneNumber ${AppLocalizations.of(context)!.otp_subtitle}'
+                      : '${AppLocalizations.of(context)!.otp_subtitle} $_userPhoneNumber.',
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
@@ -78,16 +78,16 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      "I didn't receive any code.",
+                    Text(
+                      AppLocalizations.of(context)!.no_receive_code,
                       style: AppFontStyle.captionBigOffBlack,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: GestureDetector(
                         onTap: () {},
-                        child: const Text(
-                          'RESEND',
+                        child: Text(
+                          AppLocalizations.of(context)!.resend,
                           style: AppFontStyle.navTextPrimary,
                         ),
                       ),
@@ -105,7 +105,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                           Navigator.of(context).pushNamedAndRemoveUntil(
                               'completeAccountPage', (route) => false);
                         },
-                        text: "Submit",
+                        text: AppLocalizations.of(context)!.submit,
                       ),
                     ),
                   ],
@@ -117,8 +117,8 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Text(
-                      'Not your phone number?',
+                    Text(
+                      AppLocalizations.of(context)!.wrong_phone_number,
                       style: AppFontStyle.captionBigOffBlack,
                     ),
                     Padding(
@@ -127,8 +127,8 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: const Text(
-                          'Go Back',
+                        child: Text(
+                          AppLocalizations.of(context)!.go_back,
                           style: AppFontStyle.navTextPrimary,
                         ),
                       ),

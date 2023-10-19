@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../widgets/custom_filled_button.dart';
@@ -33,7 +32,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.pureWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding:
