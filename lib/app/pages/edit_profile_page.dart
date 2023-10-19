@@ -8,6 +8,7 @@ import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:lae_lar_mel_app/app/widgets/profile_image.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -134,7 +135,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'Edit Profile',
+        titleText: AppLocalizations.of(context)!.edit_profile,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -180,10 +181,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             FadeInLeft(
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 child: Text(
-                  'Username',
+                  AppLocalizations.of(context)!.username,
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
@@ -218,10 +219,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             ),
             FadeInLeft(
-              child: const Padding(
-                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: Text(
-                  'Email',
+                  AppLocalizations.of(context)!.email,
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
@@ -235,7 +236,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.greyColor,
-                    hintText: "Add your email",
+                    hintText: AppLocalizations.of(context)!.email_hint,
                     hintStyle: AppFontStyle.inputHintText,
                     labelStyle: AppFontStyle.inputText,
                     enabledBorder: OutlineInputBorder(
@@ -260,7 +261,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: CustomFilledButton(
                   onPressed: () {},
-                  text: 'Save',
+                  text: AppLocalizations.of(context)!.save,
                 ),
               ),
             ),

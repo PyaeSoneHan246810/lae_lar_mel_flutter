@@ -9,24 +9,28 @@ class AppFontStyle {
     fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColor.offBlackColor,
+    height: 1.45,
   );
   static const TextStyle headerPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColor.pureWhiteColor,
+    height: 1.45,
   );
   static const TextStyle headerPrimary = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColor.primaryColor,
+    height: 1.45,
   );
   static const TextStyle headerSecondary = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 22,
     fontWeight: FontWeight.w700,
     color: AppColor.secondaryColor,
+    height: 1.45,
   );
   //title1
   static const TextStyle title1OffBlack = TextStyle(

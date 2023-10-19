@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../config/colors.dart';
-import '../../widgets/custom_appbar_with_back_arrow_and_title.dart';
-import '../../widgets/custom_courses_tabbar.dart';
-import '../../widgets/custom_courses_tabbar_view.dart';
+import '../config/colors.dart';
+import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
+import '../widgets/custom_courses_tabbar.dart';
+import '../widgets/custom_courses_tabbar_view.dart';
 
 class ChineseCoursesPage extends StatefulWidget {
   const ChineseCoursesPage({super.key});
@@ -19,7 +20,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
       length: 4,
       child: Scaffold(
         appBar: CustomAppBarWithBackArrowAndTitle(
-          titleText: 'Chinese',
+          titleText: AppLocalizations.of(context)!.chinese,
           onBackButtonPressed: () {
             Navigator.pop(context);
           },

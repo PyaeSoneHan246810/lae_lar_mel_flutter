@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:pod_player/pod_player.dart';
 
@@ -22,6 +23,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   @override
   void initState() {
     super.initState();
+    //Window manager
+    FlutterWindowManager.addFlags(
+      FlutterWindowManager.FLAG_SECURE,
+    );
     //Pod Player
     _podPlayerController = PodPlayerController(
       playVideoFrom: PlayVideoFrom.vimeo(widget.videoID),

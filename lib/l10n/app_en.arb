@@ -1,0 +1,324 @@
+{
+    "select_language" : "Select Language",
+    "@select_language" : {
+        "description" : "Select Language"
+    },
+    "select_app_language" : "Select your preferred app language",
+    "@select_app_language" : {
+        "description" : "Select App Language"
+    },
+    "english_language" : "English",
+    "@english_language" : {
+        "description" : "English Language"
+    },
+    "burmese_language" : "Burmese",
+    "@burmese_language" : {
+        "description" : "Burmese Language"
+    },
+
+    "intro_title" : "Upgrade your language skills with us.",
+    "@intro_title" : {
+        "description" : "Intro Title"
+    },
+    "intro_subtitle" : "From beginner to advanced, learn from the experienced instructors.",
+    "@intro_subtitle" : {
+        "description" : "Intro Subtitle"
+    },
+    "getting_started" : "Getting Started",
+    "@getting_started" : {
+        "description" : "Getting Started"
+    },
+
+    "enter_phone_number" : "Enter your mobile phone number to continue.",
+    "@enter_phone_number" : {
+        "description" : "Enter Phone Number"
+    },
+    "phone_number" : "Mobile Phone Number",
+    "@phone_number" : {
+        "description" : "Phone Number"
+    },
+    "continue_process" : "Continue",
+    "@continue_process" : {
+        "description" : "Continue Process"
+    },
+
+    "featured" : "Featured",
+    "@featured" : {
+        "description" : "Featured"
+    },
+    "my_learning" : "My Learning",
+    "@my_learning" : {
+        "description" : "My Learning"
+    },
+    "account" : "Account",
+    "@account" : {
+        "description" : "Account"
+    },
+
+    "greeting_title" : "Hello",
+    "@greeting_title" : {
+        "description" : "Greeting Title"
+    },
+    "greeting_subtitle" : "Welcome to the world of languages.",
+    "@greeting_subtitle" : {
+        "description" : "Greeting Subtitle"
+    },
+    "languages_title" : "Languages",
+    "@languages_title" : {
+        "description" : "Language Title"
+    },
+    "languages_subtitle" : "Choose the language you want to learn.",
+    "@languages_subtitle" : {
+        "description" : "Language Subtitle"
+    },
+    "english" : "English",
+    "@english" : {
+        "description" : "English"
+    },
+    "chinese" : "Chinese",
+    "@chinese" : {
+        "description" : "Chinese"
+    },
+    "japanese" : "Japanese",
+    "@japanese" : {
+        "description" : "Japanese"
+    },
+    "korean" : "Korean",
+    "@korean" : {
+        "description" : "Korean"
+    },
+    "free_courses_title" : "Free Courses",
+    "@free_courses_title" : {
+        "description" : "Free Courses Title"
+    },
+    "premium_courses_title" : "Premium Courses",
+    "@premium_courses_title" : {
+        "description" : "Premium Courses Title"
+    },
+    "view_all" : "View all",
+    "@view_all" : {
+        "description" : "View All"
+    },
+
+    "continue_learning_title" : "Continue Learning",
+    "@continue_learning_title" : {
+        "description" : "Continue Learning Title"
+    },
+    "empty_ongoing_course_message" : "You have no ongoing courses. What will you learn first?",
+    "@empty_ongoing_course_message" : {
+        "description" : "Empty Ongoing Course Message"
+    },
+
+    "edit_profile" : "Edit profile",
+    "@edit_profile" : {
+        "description" : "Edit Profile"
+    },
+    "redeem_code" : "Redeem code",
+    "@redeem_code" : {
+        "description" : "Redeem Code"
+    },
+    "type_redeem_code" : "Type your redeem code",
+    "@type_redeem_code" : {
+        "description" : "Type Redeem Code"
+    },
+    "code_apply" : "Apply",
+    "@code_apply" : {
+        "description" : "Code Apply"
+    },
+    "code_cancel" : "Cancel",
+    "@code_cancel" : {
+        "description" : "Code Cancel"
+    },
+    "help_and_support" : "Help and Support",
+    "@help_and_support" : {
+        "description" : "Help And Support"
+    },
+    "about_us" : "About us",
+    "@about_us" : {
+        "description" : "About Us"
+    },
+    "about_laelarmel" : "About \"LaeLarMel\"",
+    "@about_laelarmel" : {
+        "description" : "About LaeLarMel"
+    },
+    "about_laelarmel_text" : "LaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors. \nThe application is available for both Android and iOS.",
+    "@about_laelarmel_text" : {
+        "description" : "About LaeLarMel Text 1"
+    },
+    "our_story" : "Our Story",
+    "@our_story" : {
+        "description" : "Our Story"
+    },
+    "our_story_text" : "A group of first-year students from GUSTO University came up with the innovative idea for the LaeLarMel mobile application platform during the GUSTO Innovation Challenge in 2023.",
+    "@our_story_text" : {
+        "description" : "Our Story Text"
+    },
+    "contact_us" : "Contact us",
+    "@contact_us" : {
+        "description" : "Contact Us"
+    },
+    "call_center" : "Call Center",
+    "@call_center" : {
+        "description" : "Call Center"
+    },
+    "business_calls" : "For Business Calls",
+    "@business_calls" : {
+        "description" : "Business Calls"
+    },
+    "faq" : "Frequently asked questions",
+    "@faq" : {
+        "description" : "Faq"
+    },
+    "share_app" : "Share our app",
+    "@share_app" : {
+        "description" : "Share App"
+    },
+    "sign_out" : "Sign Out",
+    "@sign_out" : {
+        "description" : "Sign Out"
+    },
+    "sign_out_text" : "Are you sure to log out of your account?",
+    "@sign_out_text" : {
+        "description" : "Sign Out Text"
+    },
+    "sign_out_yes" : "Yes",
+    "@sign_out_yes" : {
+        "description" : "Sign Out Yes"
+    },
+    "sign_out_no" : "No",
+    "@sign_out_no" : {
+        "description" : "Sign Out No"
+    },
+
+    "username" : "Username",
+    "@username" : {
+        "description" : "Username"
+    },
+    "email" : "Email Address",
+    "@email" : {
+        "description" : "Email Address"
+    },
+    "email_hint" : "Add your email",
+    "@email_hint" : {
+        "description" : "Email_hint"
+    },
+    "save" : "Save",
+    "@save" : {
+        "description" : "Save"
+    },
+
+    "wishlist" : "Wishlist",
+    "@wishlist" : {
+        "description" : "Wishlist"
+    },
+    "empty_wishlist_message" : "You don't have any courses on your wishlist yet. Want to save something for later?",
+    "@empty_wishlist_message" : {
+        "description" : "Empty Wishlist Message"
+    },
+    "remove_all" : "Remove all",
+    "@remove_all" : {
+        "description" : "Remove all"
+    },
+    "removed_course" : "Removed course from the wishlist",
+    "@remove_course" : {
+        "description" : "Removed course"
+    },
+    "added_course" : "Added course to the wishlist",
+    "@added_course" : {
+        "description" : "Added course"
+    },
+    "removed_all" : "Removed all courses from the wishlist",
+    "@removed_all" : {
+        "description" : "Removed all"
+    },
+    "already_removed_all" : "Already removed all courses from the wishlist",
+    "@already_removed_all" : {
+        "description" : "Already Removed all"
+    },
+
+    "preview_course" : "Preview the course",
+    "@preview_course" : {
+        "description" : "Preview Course"
+    },
+    "hours" : "hours",
+    "@hours" : {
+        "description" : "Hours"
+    },
+    "free" : "Free",
+    "@free" : {
+        "description" : "Free"
+    },
+    "mmk" : "MMK",
+    "@mmk" : {
+        "description" : "MMK"
+    },
+    "course_content" : "Course Content",
+    "@course_content" : {
+        "description" : "Course Content"
+    },
+    "enroll_course" : "Enroll the course",
+    "@enroll_course" : {
+        "description" : "Enroll Course"
+    },
+    "enroll_course_message" : "This course is completely free. Enroll the course now to start learning from our skilled instructors.",
+    "@enroll_course_message" : {
+        "description" : "Enroll Course Message"
+    },
+    "free_enroll" : "Free Enroll",
+    "@free_enroll" : {
+        "description" : "Free Enroll"
+    },
+    "enroll_now" : "Enroll Now",
+    "@enroll_now" : {
+        "description" : "Enroll Now"
+    },
+    "paid_content" : "Paid Content",
+    "@paid_content" : {
+        "description" : "Paid Content"
+    },
+    "paid_content_message" : "Please buy the course to access the premium content.",
+    "@paid_content_message" : {
+        "description" : "Paid Content Message"
+    },
+    "buy_now" : "Buy Now",
+    "@buy_now" : {
+        "description" : "Buy Now"
+    },
+    "close" : "Close",
+    "@close" : {
+        "description" : "Close"
+    },
+    "successfully_enrolled_course" : "You have successfully enrolled the course.",
+    "@successfully_enrolled_course" : {
+        "description" : "Successfully Enrolled Course"
+    },
+    "course_enrolled" : "Course Enrolled",
+    "@course_enrolled" : {
+        "description" : "Course Enrolled"
+    },
+    "already_enrolled_course" : "You have already enrolled the course.",
+    "@already_enrolled_course" : {
+        "description" : "Already Enrolled Course"
+    },
+
+    "select_payment_method" : "Please select payment method",
+    "@select_payment_method" : {
+        "description" : "Select Payment Method"
+    },
+    "pay_now" : "Pay Now",
+    "@pay_now" : {
+        "description" : "Pay Now"
+    },
+    "back" : "Back",
+    "@back" : {
+        "description" : "Back"
+    },
+    "coupon_code" : "Add Coupon Code",
+    "@coupon_code" : {
+        "description" : "Coupon Code"
+    },
+    "enter_coupon_code" : "Enter your redeem code",
+    "@enter_coupon_code" : {
+        "description" : "Enter Coupon Code"
+    }
+}

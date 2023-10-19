@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -52,8 +53,8 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                 ),
               ),
               FadeInDown(
-                child: const Text(
-                  'Enter your phone number to continue.',
+                child: Text(
+                  AppLocalizations.of(context)!.enter_phone_number,
                   style: AppFontStyle.captionBigOffBlack,
                 ),
               ),
@@ -89,7 +90,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                       inputDecoration: InputDecoration(
                         filled: true,
                         fillColor: AppColor.greyColor,
-                        hintText: 'Mobile Number',
+                        hintText: AppLocalizations.of(context)!.phone_number,
                         hintStyle: AppFontStyle.inputHintText,
                         labelStyle: AppFontStyle.inputText,
                         contentPadding: const EdgeInsets.only(
@@ -128,7 +129,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
                             arguments: _userPhoneNumber,
                           );
                         },
-                        text: "Continue",
+                        text: AppLocalizations.of(context)!.continue_process,
                       ),
                     ),
                   ],

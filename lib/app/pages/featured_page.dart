@@ -1,10 +1,12 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/pages/course_details_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
+import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../models/course_model.dart';
@@ -25,24 +27,16 @@ class _FeaturedPageState extends State<FeaturedPage> {
   List<Course> freeCourses = [];
   List<Course> premiumCourses = [];
   void _getInitialInfo() {
-    languageCategories = LanguageCategoryModel.getLanguageCategories();
+    languageCategories = LanguageCategoryModel.getLanguageCategories(context);
     courses = Course.getCourses();
     freeCourses = Course.getFreeCourses();
     premiumCourses = Course.getPremiumCourses();
   }
 
-  void navigateToFreeCourseDetailsPage(int index) {
+  void navigateToCourseDetailsPage(int index, List<Course> courses) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CourseDetailsPage(
-        course: freeCourses[index],
-      ),
-    ));
-  }
-
-  void navigateToPremiumCourseDetailsPage(int index) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CourseDetailsPage(
-        course: premiumCourses[index],
+        course: courses[index],
       ),
     ));
   }
@@ -52,10 +46,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
     _getInitialInfo();
     return Scaffold(
       appBar: CustomAppBar(
-        titleText: 'Featured',
-        onBackButtonPressed: () {
-          Navigator.pushNamed(context, 'wishlistPage');
-        },
+        titleText: AppLocalizations.of(context)!.featured,
+        context: context,
       ),
       backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
@@ -66,26 +58,28 @@ class _FeaturedPageState extends State<FeaturedPage> {
           children: [
             const CustomSeparator(height: 14),
             Text(
-              'Hello $username!',
+              '${AppLocalizations.of(context)!.greeting_title} $username!',
               style: AppFontStyle.headerSecondary,
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 4),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
               child: Text(
-                'Welcome to the world of languages.',
+                AppLocalizations.of(context)!.greeting_subtitle,
                 style: AppFontStyle.bodyOffBlack,
+                textAlign: TextAlign.justify,
               ),
             ),
             const CustomSeparator(height: 42),
-            const Text(
-              'Languages',
+            Text(
+              AppLocalizations.of(context)!.languages_title,
               style: AppFontStyle.title1OffBlack,
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 4),
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
               child: Text(
-                'Choose the language you want to learn.',
+                AppLocalizations.of(context)!.languages_subtitle,
                 style: AppFontStyle.bodyOffBlack,
+                textAlign: TextAlign.justify,
               ),
             ),
             const CustomSeparator(height: 16),
@@ -121,8 +115,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
                             SizedBox(
                               width: 50,
                               height: 34,
-                              child: SvgPicture.asset(
-                                languageCategories[index].languageFlagPath,
+                              child: CountryFlag.fromCountryCode(
+                                languageCategories[index].languageCountryCode,
                               ),
                             ),
                             Padding(
@@ -141,8 +135,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
               },
             ),
             const CustomSeparator(height: 42),
-            const Text(
-              'Free Courses',
+            Text(
+              AppLocalizations.of(context)!.free_courses_title,
               style: AppFontStyle.title1OffBlack,
             ),
             const CustomSeparator(height: 16),
@@ -161,7 +155,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
                       freeCourses[index].courseLanguageCategory,
                   courseLevel: freeCourses[index].courseLevel,
                   courseSkill: freeCourses[index].courseSkill,
-                  onTap: () => navigateToFreeCourseDetailsPage(index),
+                  onTap: () => navigateToCourseDetailsPage(index, freeCourses),
                 );
               },
               separatorBuilder: (context, index) {
@@ -170,26 +164,14 @@ class _FeaturedPageState extends State<FeaturedPage> {
             ),
             const CustomSeparator(height: 16),
             Center(
-              child: OutlinedButton(
+              child: CustomOutlinedButtonRounded(
                 onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: AppColor.primaryColor,
-                    width: 1,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                child: const Text(
-                  'View all',
-                  style: AppFontStyle.buttonNavTextOffBlack,
-                ),
+                text: AppLocalizations.of(context)!.view_all,
               ),
             ),
             const CustomSeparator(height: 42),
-            const Text(
-              'Premium Courses',
+            Text(
+              AppLocalizations.of(context)!.premium_courses_title,
               style: AppFontStyle.title1OffBlack,
             ),
             const CustomSeparator(height: 16),
@@ -209,7 +191,8 @@ class _FeaturedPageState extends State<FeaturedPage> {
                       premiumCourses[index].courseLanguageCategory,
                   courseLevel: premiumCourses[index].courseLevel,
                   courseSkill: premiumCourses[index].courseSkill,
-                  onTap: () => navigateToPremiumCourseDetailsPage(index),
+                  onTap: () =>
+                      navigateToCourseDetailsPage(index, premiumCourses),
                 );
               },
               separatorBuilder: (context, index) {
@@ -218,21 +201,9 @@ class _FeaturedPageState extends State<FeaturedPage> {
             ),
             const CustomSeparator(height: 16),
             Center(
-              child: OutlinedButton(
+              child: CustomOutlinedButtonRounded(
                 onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                    color: AppColor.primaryColor,
-                    width: 1,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-                child: const Text(
-                  'View all',
-                  style: AppFontStyle.buttonNavTextOffBlack,
-                ),
+                text: AppLocalizations.of(context)!.view_all,
               ),
             ),
           ],

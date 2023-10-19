@@ -25,9 +25,8 @@ class CustomFilledButtonRounded extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             height: 50,
-            elevation: 0, // Set elevation to 0 to remove the default elevation
-            highlightElevation:
-                0, // Set highlightElevation to 0 to remove elevation on press
+            elevation: 0,
+            highlightElevation: 0,
             child: Text(
               text,
               style: AppFontStyle.buttonNavTextPureWhite,

@@ -19,7 +19,7 @@ class CustomAppBarWithBackArrowWithoutTitle extends AppBar {
             child: IconButton(
               onPressed: onBackButtonPressed,
               icon: Icon(
-                Icons.arrow_back_ios,
+                Icons.arrow_back_ios_rounded,
                 size: 24,
                 color: appBarBackArrowColor,
               ),

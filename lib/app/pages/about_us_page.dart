@@ -4,6 +4,7 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lottie/lottie.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../widgets/custom_separator.dart';
 
@@ -34,7 +35,7 @@ class _AboutUsPageState extends State<AboutUsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'About Us',
+        titleText: AppLocalizations.of(context)!.about_us,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -65,8 +66,8 @@ class _AboutUsPageState extends State<AboutUsPage>
               height: 24,
             ),
             FadeInLeft(
-              child: const Text(
-                'About Lae Lar Mel',
+              child: Text(
+                AppLocalizations.of(context)!.about_laelarmel,
                 style: AppFontStyle.title1Primary,
               ),
             ),
@@ -74,23 +75,10 @@ class _AboutUsPageState extends State<AboutUsPage>
               height: 12,
             ),
             FadeInLeft(
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'LaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors.',
-                    style: AppFontStyle.bodyOffBlack,
-                    textAlign: TextAlign.justify,
-                  ),
-                  CustomSeparator(
-                    height: 2,
-                  ),
-                  Text(
-                    'The application is available for both Android and iOS.',
-                    style: AppFontStyle.bodyOffBlack,
-                    textAlign: TextAlign.justify,
-                  ),
-                ],
+              child: Text(
+                AppLocalizations.of(context)!.about_laelarmel_text,
+                style: AppFontStyle.bodyOffBlack,
+                textAlign: TextAlign.justify,
               ),
             ),
             const CustomSeparator(
@@ -100,8 +88,8 @@ class _AboutUsPageState extends State<AboutUsPage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Our Story',
+                  Text(
+                    AppLocalizations.of(context)!.our_story,
                     style: AppFontStyle.title2Secondary,
                   ),
                   const CustomSeparator(
@@ -121,8 +109,8 @@ class _AboutUsPageState extends State<AboutUsPage>
               height: 12,
             ),
             FadeInLeft(
-              child: const Text(
-                'A group of students from GUSTO University came up with the innovative idea for the LaeLarMel mobile application platform during the GUSTO Innovation Challenge in 2023.',
+              child: Text(
+                AppLocalizations.of(context)!.our_story_text,
                 style: AppFontStyle.bodyOffBlack,
                 textAlign: TextAlign.justify,
               ),

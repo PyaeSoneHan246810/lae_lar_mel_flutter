@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
+import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:pod_player/pod_player.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -33,19 +36,21 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   bool _isPlayArrowClicked = false;
   bool _isInstructorExpansionPanelExpanded = false;
   bool _isMorePaymentOptionsVisible = false;
-  String couponCode = "";
-  double discount = 0.0;
-  late double coursePrice;
-  late double grandTotal;
+  bool _isTheCourseEnrolled = false;
+  String _couponCode = "";
+  double _discount = 0.0;
+  late double _coursePrice;
+  late double _grandTotal;
   late TextEditingController _couponTextController;
   late List<bool> _isExpandedList;
   late final PodPlayerController _podPlayerController;
+  String? _selectedPaymentOption;
 
   @override
   void initState() {
     super.initState();
-    coursePrice = widget.course.coursePriceInMMK;
-    grandTotal = coursePrice;
+    _coursePrice = widget.course.coursePriceInMMK;
+    _grandTotal = _coursePrice;
     _couponTextController = TextEditingController();
     _isExpandedList = List.generate(
         widget.course.courseSections.length, (index) => index == 0);
@@ -78,22 +83,22 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   }
 
   void _applyCoupon() {
-    couponCode = _couponTextController.text;
-    if (couponCode == 'SAMPLE10') {
+    _couponCode = _couponTextController.text;
+    if (_couponCode == 'SAMPLE10') {
       setState(() {
-        discount = 0.1 * coursePrice;
+        _discount = 0.1 * _coursePrice;
       });
-    } else if (couponCode == 'SAMPLE20') {
+    } else if (_couponCode == 'SAMPLE20') {
       setState(() {
-        discount = 0.2 * coursePrice;
+        _discount = 0.2 * _coursePrice;
       });
     } else {
       setState(() {
-        discount = 0.0;
+        _discount = 0.0;
       });
     }
     setState(() {
-      grandTotal = coursePrice - discount;
+      _grandTotal = _coursePrice - _discount;
     });
   }
 
@@ -120,36 +125,174 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     );
   }
 
-  Future<void> _displaySuccessfulSnackBar(
-      BuildContext context, String message, int durationInMilliseconds) async {
-    // Create a Completer to represent the completion of the future
-    final Completer<void> completer = Completer<void>();
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
-          SnackBar(
-            duration: Duration(milliseconds: durationInMilliseconds),
-            backgroundColor: AppColor.primaryColor,
-            showCloseIcon: true,
-            closeIconColor: AppColor.pureWhiteColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(14),
+  void _updateSelectedOption(String? option) {
+    setState(() {
+      _selectedPaymentOption = option;
+    });
+  }
+
+  void _enrollTheCourse() {
+    setState(() {
+      _isTheCourseEnrolled = !_isTheCourseEnrolled;
+    });
+    displaySuccessfulSnackBar(
+      context,
+      AppLocalizations.of(context)!.successfully_enrolled_course,
+      2000,
+    );
+  }
+
+  void _makePayment() {
+    _enrollTheCourse();
+  }
+
+  Future<void> _displayEnterCouponCodeAlertDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.only(
+            top: 20,
+            left: 16,
+            right: 16,
+          ),
+          actionsPadding: const EdgeInsets.only(
+            right: 16,
+          ),
+          content: TextFormField(
+            controller: _couponTextController,
+            cursorColor: AppColor.primaryColor,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColor.greyColor,
+              hintText: AppLocalizations.of(context)!.enter_coupon_code,
+              hintStyle: AppFontStyle.inputHintText,
+              labelStyle: AppFontStyle.inputText,
+              contentPadding: const EdgeInsets.only(
+                left: 15,
+                right: 15,
+                top: 20,
+                bottom: 20,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: AppColor.primaryColor,
+                ),
               ),
             ),
-            content: Text(
-              message,
-              style: AppFontStyle.alertTextPureWhite,
-            ),
           ),
-        )
-        .closed
-        .then((reason) {
-      completer.complete(); // Complete the future when SnackBar is hidden
-    });
+          actions: [
+            TextButton(
+              onPressed: () {
+                _applyCoupon();
+                Navigator.of(context).pop();
+                setState(() {
+                  _displayPaymentBottomSheet();
+                });
+              },
+              child: Text(
+                AppLocalizations.of(context)!.code_apply,
+                style: AppFontStyle.navTextPrimary,
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  _displayPaymentBottomSheet();
+                });
+              },
+              child: Text(
+                AppLocalizations.of(context)!.code_cancel,
+                style: AppFontStyle.navTextOffBlack,
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-    // Return the Future
-    return completer.future;
+  Future<void> _displayPremiumAlertDialog() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: Text(
+              AppLocalizations.of(context)!.paid_content,
+              style: AppFontStyle.alertTitle,
+            ),
+            content: Text(
+              AppLocalizations.of(context)!.paid_content_message,
+              style: AppFontStyle.alertText,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _displayPaymentBottomSheet();
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.buy_now,
+                  style: AppFontStyle.navTextPrimary,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.close,
+                  style: AppFontStyle.navTextOffBlack,
+                ),
+              ),
+            ],
+          );
+        });
+  }
+
+  Future<void> _displayFreeEnrollAlertDialog() async {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            title: Text(
+              AppLocalizations.of(context)!.enroll_course,
+              style: AppFontStyle.alertTitle,
+            ),
+            content: Text(
+              AppLocalizations.of(context)!.enroll_course_message,
+              style: AppFontStyle.alertText,
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  _enrollTheCourse();
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.enroll_now,
+                  style: AppFontStyle.navTextPrimary,
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  AppLocalizations.of(context)!.close,
+                  style: AppFontStyle.navTextOffBlack,
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   Future<void> _displayPaymentBottomSheet() async {
@@ -179,7 +322,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         style: AppFontStyle.captionBigOffBlack,
                       ),
                       Text(
-                        '${coursePrice.toStringAsFixed(2)} MMK',
+                        '${_coursePrice.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.captionBigOffBlack,
                       ),
                     ],
@@ -203,15 +346,15 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                               Navigator.pop(context);
                               _displayEnterCouponCodeAlertDialog();
                             },
-                            child: const Text(
-                              '[Add Coupon Code]',
+                            child: Text(
+                              '[${AppLocalizations.of(context)!.coupon_code}]',
                               style: AppFontStyle.captionMediumSecondary,
                             ),
                           ),
                         ],
                       ),
                       Text(
-                        '${discount.toStringAsFixed(2)} MMK',
+                        '${_discount.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.captionBigOffBlack,
                       ),
                     ],
@@ -225,169 +368,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         style: AppFontStyle.captionBigOffBlack,
                       ),
                       Text(
-                        '${grandTotal.toStringAsFixed(2)} MMK',
+                        '${_grandTotal.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.subtitleOffBlack,
                       ),
                     ],
                   ),
                   const CustomSeparator(height: 24),
-                  const Text(
-                    'Select payment method',
+                  Text(
+                    AppLocalizations.of(context)!.select_payment_method,
                     style: AppFontStyle.captionBigOffBlack,
                   ),
                   const CustomSeparator(height: 12),
-                  Column(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/kbz_pay_logo.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/aya_pay_logo.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/one_pay_logo.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const CustomSeparator(height: 12),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/wave_pay_logo.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/visa_logo.png',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: SizedBox(
-                                width: 100,
-                                height: 75,
-                                child: Image.asset(
-                                  'assets/images/mastercard_logo.jpg',
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const CustomSeparator(height: 12),
-                      Visibility(
-                        visible: _isMorePaymentOptionsVisible,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: SizedBox(
-                                  width: 100,
-                                  height: 75,
-                                  child: Image.asset(
-                                    'assets/images/mPiteSan_logo.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: SizedBox(
-                                  width: 100,
-                                  height: 75,
-                                  child: Image.asset(
-                                    'assets/images/mpu_logo.jpg',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: SizedBox(
-                                  width: 100,
-                                  height: 75,
-                                  child: Image.asset(
-                                    'assets/images/a_bank_logo.png',
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                  PaymentOptionSelector(
+                    isMorePaymentOptionsVisible: _isMorePaymentOptionsVisible,
+                    onOptionSelected: _updateSelectedOption,
                   ),
                   const CustomSeparator(height: 12),
                   Center(
@@ -408,12 +402,43 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   ),
                   const CustomSeparator(height: 24),
                   Center(
+                    child: MaterialButton(
+                      onPressed: () {
+                        if (_selectedPaymentOption != null) {
+                          Navigator.of(context).pop();
+                          _makePayment();
+                        } else if (_selectedPaymentOption == null) {
+                          Fluttertoast.showToast(
+                            msg: AppLocalizations.of(context)!
+                                .select_payment_method,
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                          );
+                        }
+                      },
+                      color: AppColor.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      padding: const EdgeInsets.only(left: 24, right: 24),
+                      height: 50,
+                      elevation: 1.5,
+                      hoverElevation: 2.0,
+                      child: Text(
+                        AppLocalizations.of(context)!.pay_now,
+                        style: AppFontStyle.navTextPureWhite,
+                      ),
+                    ),
+                  ),
+                  const CustomSeparator(height: 12),
+                  Center(
                     child: GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: const Text(
-                        'Back',
+                      child: Text(
+                        AppLocalizations.of(context)!.back,
                         style: AppFontStyle.navTextOffBlack,
                       ),
                     ),
@@ -425,176 +450,6 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
         );
       },
     );
-  }
-
-  Future<void> _displayEnterCouponCodeAlertDialog() async {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          contentPadding: const EdgeInsets.only(
-            top: 20,
-            left: 16,
-            right: 16,
-          ),
-          actionsPadding: const EdgeInsets.only(
-            right: 16,
-          ),
-          content: TextFormField(
-            controller: _couponTextController,
-            cursorColor: AppColor.primaryColor,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColor.greyColor,
-              hintText: 'Enter your coupon code',
-              hintStyle: AppFontStyle.inputHintText,
-              labelStyle: AppFontStyle.inputText,
-              contentPadding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-                top: 20,
-                bottom: 20,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColor.primaryColor,
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                _applyCoupon();
-                Navigator.of(context).pop();
-                setState(() {
-                  _displayPaymentBottomSheet();
-                });
-              },
-              child: const Text(
-                "Apply",
-                style: AppFontStyle.navTextPrimary,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text(
-                "Cancel",
-                style: AppFontStyle.navTextOffBlack,
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> _displayPremiumAlertDialog() async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            title: const Text(
-              'Paid Content',
-              style: AppFontStyle.alertTitle,
-            ),
-            content: const SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  Text(
-                    'Please buy the course to access the premium contents.',
-                    style: AppFontStyle.alertText,
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _displayPaymentBottomSheet();
-                },
-                child: const Text(
-                  'Buy now',
-                  style: TextStyle(
-                      color: AppColor.primaryColor, fontFamily: 'Poppins'),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Close',
-                  style: TextStyle(
-                    color: AppColor.pureBlackColor,
-                    fontFamily: 'Poppins',
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
-  }
-
-  Future<void> _displayFreeEnrollAlertDialog() async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            title: const Text(
-              'Enroll the course',
-              style: AppFontStyle.alertTitle,
-            ),
-            content: const SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  Text(
-                    'This course is completely free. Enroll the course to start learning from our skilled instructors.',
-                    style: AppFontStyle.alertText,
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _displaySuccessfulSnackBar(
-                    context,
-                    "You have successfully enrolled the course.",
-                    2000,
-                  );
-                },
-                child: const Text(
-                  'Enroll now',
-                  style: TextStyle(
-                      color: AppColor.primaryColor, fontFamily: 'Poppins'),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text(
-                  'Close',
-                  style: TextStyle(
-                    color: AppColor.pureBlackColor,
-                    fontFamily: 'Poppins',
-                  ),
-                ),
-              ),
-            ],
-          );
-        });
   }
 
   Widget _buildVideoPlayer() {
@@ -684,8 +539,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
         Positioned(
           bottom: 25,
           child: ElasticIn(
-            child: const Text(
-              'Preview the course',
+            child: Text(
+              AppLocalizations.of(context)!.preview_course,
               style: AppFontStyle.captionMediumPureWhite,
             ),
           ),
@@ -697,42 +552,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   Widget _buildCourseMaterial(
       CourseMaterial courseMaterial, int index, int currentSectionIndex) {
     IconData iconData;
-    Color iconColor;
 
-    if (widget.course.courseType == CourseType.premium) {
-      if (widget.course.courseSections[currentSectionIndex] ==
-          widget.course.courseSections[0]) {
-        // This is the first premium course section.
-        if (index < 3) {
-          // Display the icons for the first three course materials in the first premium course section based on the course material type.
-          switch (courseMaterial.courseMaterialType) {
-            case CourseMaterialType.video:
-              iconData = Icons.play_circle_outline_rounded;
-              break;
-            case CourseMaterialType.document:
-              iconData = Icons.download_rounded;
-              break;
-            case CourseMaterialType.quiz:
-              iconData = Icons.lightbulb_outline_rounded;
-              break;
-            default:
-              // Set a default icon if needed
-              iconData = Icons.description;
-              break;
-          }
-          iconColor = AppColor.secondaryColor;
-        } else {
-          // Handle the lock icons for the other course materials in the first premium course section.
-          iconData = Icons.lock;
-          iconColor = AppColor.secondaryColor;
-        }
-      } else {
-        // Display the lock icons for the course materials in other premium course sections.
-        iconData = Icons.lock;
-        iconColor = AppColor.secondaryColor;
-      }
-    } else {
-      // Display the icons for the course materials in free course sections based on the course material type.
+    if (_isTheCourseEnrolled) {
       switch (courseMaterial.courseMaterialType) {
         case CourseMaterialType.video:
           iconData = Icons.play_circle_outline_rounded;
@@ -744,11 +565,55 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           iconData = Icons.lightbulb_outline_rounded;
           break;
         default:
-          // Set a default icon if needed
           iconData = Icons.description;
           break;
       }
-      iconColor = AppColor.secondaryColor;
+    } else {
+      if (widget.course.courseType == CourseType.premium) {
+        if (widget.course.courseSections[currentSectionIndex] ==
+            widget.course.courseSections[0]) {
+          // This is the first premium course section.
+          if (index < 3) {
+            // Display the icons for the first three course materials in the first premium course section based on the course material type.
+            switch (courseMaterial.courseMaterialType) {
+              case CourseMaterialType.video:
+                iconData = Icons.play_circle_outline_rounded;
+                break;
+              case CourseMaterialType.document:
+                iconData = Icons.download_rounded;
+                break;
+              case CourseMaterialType.quiz:
+                iconData = Icons.lightbulb_outline_rounded;
+                break;
+              default:
+                iconData = Icons.description;
+                break;
+            }
+          } else {
+            // Handle the lock icons for the other course materials in the first premium course section.
+            iconData = Icons.lock;
+          }
+        } else {
+          // Display the lock icons for the course materials in other premium course sections.
+          iconData = Icons.lock;
+        }
+      } else {
+        // Display the icons for the course materials in free course sections based on the course material type.
+        switch (courseMaterial.courseMaterialType) {
+          case CourseMaterialType.video:
+            iconData = Icons.play_circle_outline_rounded;
+            break;
+          case CourseMaterialType.document:
+            iconData = Icons.download_rounded;
+            break;
+          case CourseMaterialType.quiz:
+            iconData = Icons.lightbulb_outline_rounded;
+            break;
+          default:
+            iconData = Icons.description;
+            break;
+        }
+      }
     }
 
     return Padding(
@@ -800,65 +665,80 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             padding: const EdgeInsets.all(4),
             child: GestureDetector(
               onTap: () {
-                if (widget.course.courseType == CourseType.premium) {
-                  // Premium course sections
-                  if (widget.course.courseSections[currentSectionIndex] ==
-                      widget.course.courseSections[0]) {
-                    // This is the first premium course section.
-                    if (index < 3) {
-                      // Handle the actions for the first three course materials in the first premium course section based on the course material type.
-                      switch (courseMaterial.courseMaterialType) {
-                        case CourseMaterialType.video:
-                          _navigateToVideoPlayer(courseMaterial);
-                          break;
-                        case CourseMaterialType.document:
-                          break;
-                        case CourseMaterialType.quiz:
-                          break;
-                        default:
-                          // Set a default action if needed
-                          break;
+                if (_isTheCourseEnrolled) {
+                  switch (courseMaterial.courseMaterialType) {
+                    case CourseMaterialType.video:
+                      _navigateToVideoPlayer(courseMaterial);
+                      break;
+                    case CourseMaterialType.document:
+                      break;
+                    case CourseMaterialType.quiz:
+                      break;
+                    default:
+                      // Set a default action if needed
+                      break;
+                  }
+                } else {
+                  if (widget.course.courseType == CourseType.premium) {
+                    // Premium course sections
+                    if (widget.course.courseSections[currentSectionIndex] ==
+                        widget.course.courseSections[0]) {
+                      // This is the first premium course section.
+                      if (index < 3) {
+                        // Handle the actions for the first three course materials in the first premium course section based on the course material type.
+                        switch (courseMaterial.courseMaterialType) {
+                          case CourseMaterialType.video:
+                            _navigateToVideoPlayer(courseMaterial);
+                            break;
+                          case CourseMaterialType.document:
+                            break;
+                          case CourseMaterialType.quiz:
+                            break;
+                          default:
+                            // Set a default action if needed
+                            break;
+                        }
+                      } else {
+                        // Handle the actions for the other course materials in the first premium course section.
+                        _displayPremiumAlertDialog();
                       }
                     } else {
-                      // Handle the actions for the other course materials in the first premium course section.
+                      // Handle the actions for the course materials in other premium course sections.
                       _displayPremiumAlertDialog();
                     }
                   } else {
-                    // Handle the actions for the course materials in other premium course sections.
-                    _displayPremiumAlertDialog();
-                  }
-                } else {
-                  // Free course sections
-                  if (widget.course.courseSections[currentSectionIndex] ==
-                      widget.course.courseSections[0]) {
-                    // This is the first free course section.
-                    if (index < 3) {
-                      // Handle the actions for the first three course materials in the first free course section based on the course material type.
-                      switch (courseMaterial.courseMaterialType) {
-                        case CourseMaterialType.video:
-                          _navigateToVideoPlayer(courseMaterial);
-                          break;
-                        case CourseMaterialType.document:
-                          break;
-                        case CourseMaterialType.quiz:
-                          break;
-                        default:
-                          // Set a default action if needed
-                          break;
+                    // Free course sections
+                    if (widget.course.courseSections[currentSectionIndex] ==
+                        widget.course.courseSections[0]) {
+                      // This is the first free course section.
+                      if (index < 3) {
+                        // Handle the actions for the first three course materials in the first free course section based on the course material type.
+                        switch (courseMaterial.courseMaterialType) {
+                          case CourseMaterialType.video:
+                            _navigateToVideoPlayer(courseMaterial);
+                            break;
+                          case CourseMaterialType.document:
+                            break;
+                          case CourseMaterialType.quiz:
+                            break;
+                          default:
+                            // Set a default action if needed
+                            break;
+                        }
+                      } else {
+                        // Handle the actions for the other course materials in the first free course section.
+                        _displayFreeEnrollAlertDialog();
                       }
                     } else {
-                      // Handle the actions for the other course materials in the first free course section.
+                      // Handle the actions for the course materials in other free course sections.
                       _displayFreeEnrollAlertDialog();
                     }
-                  } else {
-                    // Handle the actions for the course materials in other free course sections.
-                    _displayFreeEnrollAlertDialog();
                   }
                 }
               },
               child: Icon(
                 iconData,
-                color: iconColor,
+                color: AppColor.secondaryColor,
                 size: 24,
               ),
             ),
@@ -931,7 +811,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     padding: const EdgeInsets.only(
                         left: 4, right: 4, top: 2, bottom: 2),
                     child: Text(
-                      '${widget.course.courseTotalDurationInHour.toStringAsFixed(1)} hours',
+                      '${widget.course.courseTotalDurationInHour.toStringAsFixed(1)}  ${AppLocalizations.of(context)!.hours}',
                       style: AppFontStyle.captionMediumOffBlack,
                     ),
                   ),
@@ -1014,8 +894,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             ),
                             Icon(
                               _isInstructorExpansionPanelExpanded == false
-                                  ? Icons.keyboard_arrow_down
-                                  : Icons.keyboard_arrow_up,
+                                  ? Icons.keyboard_arrow_down_rounded
+                                  : Icons.keyboard_arrow_up_rounded,
                               color: AppColor.offBlackColor,
                               size: 30,
                             ),
@@ -1041,8 +921,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           FadeInLeft(
             child: Text(
               widget.course.courseType == CourseType.free
-                  ? 'Free'
-                  : '${coursePrice.toStringAsFixed(0)} MMK',
+                  ? AppLocalizations.of(context)!.free
+                  : '${_coursePrice.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
               style: AppFontStyle.title3OffBlack,
             ),
           ),
@@ -1057,16 +937,30 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   child: CustomFilledButtonRounded(
                     onPressed: () {
                       widget.course.courseType == CourseType.free
-                          ? _displaySuccessfulSnackBar(
-                              context,
-                              "You have successfully enrolled the course.",
-                              2000,
-                            )
-                          : _displayPaymentBottomSheet();
+                          ? (!_isTheCourseEnrolled)
+                              ? _enrollTheCourse()
+                              : displaySuccessfulSnackBar(
+                                  context,
+                                  AppLocalizations.of(context)!
+                                      .already_enrolled_course,
+                                  2000,
+                                )
+                          : (!_isTheCourseEnrolled)
+                              ? _displayPaymentBottomSheet()
+                              : displaySuccessfulSnackBar(
+                                  context,
+                                  AppLocalizations.of(context)!
+                                      .already_enrolled_course,
+                                  2000,
+                                );
                     },
                     text: widget.course.courseType == CourseType.free
-                        ? 'Free Enroll'
-                        : 'Buy Now',
+                        ? _isTheCourseEnrolled
+                            ? AppLocalizations.of(context)!.course_enrolled
+                            : AppLocalizations.of(context)!.free_enroll
+                        : _isTheCourseEnrolled
+                            ? AppLocalizations.of(context)!.course_enrolled
+                            : AppLocalizations.of(context)!.buy_now,
                   ),
                 ),
                 Expanded(
@@ -1077,9 +971,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         : Icons.favorite_outline_rounded,
                     onPressed: () {
                       if (isFavourite) {
-                        _displaySuccessfulSnackBar(
+                        displaySuccessfulSnackBar(
                           context,
-                          "Removed course from the wishlist.",
+                          AppLocalizations.of(context)!.removed_course,
                           1200,
                         );
                         //Todo: .delete
@@ -1087,9 +981,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           boxCourses.delete('key_${widget.course.courseId}');
                         });
                       } else {
-                        _displaySuccessfulSnackBar(
+                        displaySuccessfulSnackBar(
                           context,
-                          "Added course to the wishlist.",
+                          AppLocalizations.of(context)!.added_course,
                           1200,
                         );
                         //Todo: .put
@@ -1131,8 +1025,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           ),
           const CustomSeparator(height: 30),
           FadeInLeft(
-            child: const Text(
-              'Course Content',
+            child: Text(
+              AppLocalizations.of(context)!.course_content,
               style: AppFontStyle.title3OffBlack,
             ),
           ),
@@ -1175,7 +1069,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                               ),
                             ),
                             Icon(
-                              isExpanded == true ? Icons.remove : Icons.add,
+                              isExpanded == true
+                                  ? Icons.remove_rounded
+                                  : Icons.add_rounded,
                               color: AppColor.offBlackColor,
                               size: 30,
                             ),
@@ -1206,4 +1102,36 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       ),
     );
   }
+}
+
+Future<void> displaySuccessfulSnackBar(
+    BuildContext context, String message, int durationInMilliseconds) async {
+  // Create a Completer to represent the completion of the future
+  final Completer<void> completer = Completer<void>();
+  ScaffoldMessenger.of(context).clearSnackBars();
+  ScaffoldMessenger.of(context)
+      .showSnackBar(
+        SnackBar(
+          duration: Duration(milliseconds: durationInMilliseconds),
+          backgroundColor: AppColor.primaryColor,
+          showCloseIcon: true,
+          closeIconColor: AppColor.pureWhiteColor,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(14),
+            ),
+          ),
+          content: Text(
+            message,
+            style: AppFontStyle.alertTextPureWhite,
+          ),
+        ),
+      )
+      .closed
+      .then((reason) {
+    completer.complete(); // Complete the future when SnackBar is hidden
+  });
+
+  // Return the Future
+  return completer.future;
 }

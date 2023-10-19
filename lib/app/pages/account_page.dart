@@ -3,6 +3,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../widgets/custom_appbar.dart';
@@ -49,7 +50,7 @@ class _AccountPageState extends State<AccountPage> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColor.greyColor,
-              hintText: 'Type your redeem code',
+              hintText: AppLocalizations.of(context)!.type_redeem_code,
               hintStyle: AppFontStyle.inputHintText,
               labelStyle: AppFontStyle.inputText,
               contentPadding: const EdgeInsets.only(
@@ -74,8 +75,8 @@ class _AccountPageState extends State<AccountPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                "Apply",
+              child: Text(
+                AppLocalizations.of(context)!.code_apply,
                 style: AppFontStyle.navTextPrimary,
               ),
             ),
@@ -83,8 +84,8 @@ class _AccountPageState extends State<AccountPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                "Cancel",
+              child: Text(
+                AppLocalizations.of(context)!.code_cancel,
                 style: AppFontStyle.navTextOffBlack,
               ),
             ),
@@ -100,15 +101,15 @@ class _AccountPageState extends State<AccountPage> {
         builder: (BuildContext context) {
           return AlertDialog(
             backgroundColor: Colors.white,
-            title: const Text(
-              'Sign out',
+            title: Text(
+              AppLocalizations.of(context)!.sign_out,
               style: AppFontStyle.alertTitle,
             ),
-            content: const SingleChildScrollView(
+            content: SingleChildScrollView(
               child: ListBody(
                 children: [
                   Text(
-                    "Are you sure to log out of your account?",
+                    AppLocalizations.of(context)!.sign_out_text,
                     style: AppFontStyle.alertText,
                   ),
                 ],
@@ -119,24 +120,18 @@ class _AccountPageState extends State<AccountPage> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Yes',
-                  style: TextStyle(
-                    color: AppColor.primaryColor,
-                    fontFamily: 'Poppins',
-                  ),
+                child: Text(
+                  AppLocalizations.of(context)!.sign_out_yes,
+                  style: AppFontStyle.navTextPrimary,
                 ),
               ),
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: const Text(
-                  'Close',
-                  style: TextStyle(
-                    color: AppColor.pureBlackColor,
-                    fontFamily: 'Poppins',
-                  ),
+                child: Text(
+                  AppLocalizations.of(context)!.sign_out_no,
+                  style: AppFontStyle.navTextOffBlack,
                 ),
               ),
             ],
@@ -148,10 +143,8 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        titleText: 'Account',
-        onBackButtonPressed: () {
-          Navigator.pushNamed(context, 'wishlistPage');
-        },
+        titleText: AppLocalizations.of(context)!.account,
+        context: context,
       ),
       backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
@@ -215,15 +208,15 @@ class _AccountPageState extends State<AccountPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed('editProfilePage');
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Edit profile',
+                        AppLocalizations.of(context)!.edit_profile,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
@@ -234,28 +227,28 @@ class _AccountPageState extends State<AccountPage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: GestureDetector(
                   onTap: _displayEnterRedeemCodeAlertDialog,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Redeem code',
+                        AppLocalizations.of(context)!.redeem_code,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Help and Support',
+                      AppLocalizations.of(context)!.help_and_support,
                       style: AppFontStyle.captionSmallOffBlack,
                     ),
                   ],
@@ -267,15 +260,15 @@ class _AccountPageState extends State<AccountPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed('aboutUsPage');
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'About us',
+                        AppLocalizations.of(context)!.about_us,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
@@ -288,15 +281,15 @@ class _AccountPageState extends State<AccountPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed('contactUsPage');
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Contact us',
+                        AppLocalizations.of(context)!.contact_us,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
@@ -309,15 +302,15 @@ class _AccountPageState extends State<AccountPage> {
                   onTap: () {
                     Navigator.of(context).pushNamed('faqPage');
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Frequently asked questions',
+                        AppLocalizations.of(context)!.faq,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
@@ -329,18 +322,18 @@ class _AccountPageState extends State<AccountPage> {
                 child: GestureDetector(
                   onTap: () {
                     Share.share(
-                      'LaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors. The application is available for both Android and iOS. Download the app now to start improving your language skills with us. https://linktr.ee/laelarmel',
+                      'လေ့လာမယ်ဟာ အရည်အချင်းပြည့်မှီသော ဆရာဆရာမများမှ သင်ကြားပို့ချသည့် ဘာသာစကား video courses များကို ၀ယ်ယူရရှိနိုင်ပြီး ကျောင်းသားကျောင်းသူများ လွယ်ကူအဆင်ပြေချောမွေ့စွာ မိမိလေ့လာလိုသောဘာသာစကားများကို အချိန်နေရာမရွေး ဈေးနှုန်းသက်သာစွာ ၀ယ်ယူလေ့လာနိုင်မည့် အဆင့်မြင့် e-learning mobile application platform တစ်ခုပဲဖြစ်ပါတယ်။\nLaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors.\nThe application is available for both Android and iOS. Download the app now to start improving your language skills with us. https://linktr.ee/laelarmel',
                     );
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Share our app',
+                        AppLocalizations.of(context)!.share_app,
                         style: AppFontStyle.bodyOffBlack,
                       ),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
                         size: 16,
                       ),
                     ],
@@ -353,8 +346,8 @@ class _AccountPageState extends State<AccountPage> {
                   onPressed: () {
                     showAlertDialog();
                   },
-                  child: const Text(
-                    'Sign Out',
+                  child: Text(
+                    AppLocalizations.of(context)!.sign_out,
                     style: AppFontStyle.navTextPrimary,
                   ),
                 ),

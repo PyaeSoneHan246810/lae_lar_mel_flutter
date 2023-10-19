@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import '../config/colors.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
@@ -14,17 +16,15 @@ class MyLearningPage extends StatefulWidget {
 }
 
 class _MyLearningPageState extends State<MyLearningPage> {
-  final int numberOfCoursesEnrolled = 0;
-  final int numberOfCoursesCompleted = 0;
-  final int totalMinutesLearnedToday = 0;
+  int numberOfCoursesEnrolled = 0;
+  int numberOfCoursesCompleted = 0;
+  int totalMinutesLearnedToday = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        titleText: 'My Learning',
-        onBackButtonPressed: () {
-          Navigator.pushNamed(context, 'wishlistPage');
-        },
+        titleText: AppLocalizations.of(context)!.my_learning,
+        context: context,
       ),
       backgroundColor: AppColor.pureWhiteColor,
       body: FadeInDown(
@@ -59,7 +59,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Icon(
-                                      Icons.fact_check,
+                                      Icons.fact_check_rounded,
                                       size: 30,
                                       color: AppColor.pureWhiteColor,
                                     ),
@@ -111,7 +111,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const Icon(
-                                      Icons.school,
+                                      Icons.school_rounded,
                                       size: 30,
                                       color: AppColor.pureWhiteColor,
                                     ),
@@ -175,7 +175,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Icon(
-                                      Icons.alarm,
+                                      Icons.alarm_rounded,
                                       size: 28,
                                       color: AppColor.pureWhiteColor,
                                     ),
@@ -209,8 +209,8 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 const CustomSeparator(
                   height: 38,
                 ),
-                const Text(
-                  "Continue Learning",
+                Text(
+                  AppLocalizations.of(context)!.continue_learning_title,
                   style:
                       AppFontStyle.title1OffBlack, // Customize the text style
                 ),
@@ -229,8 +229,8 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 const CustomSeparator(
                   height: 28,
                 ),
-                const Text(
-                  "You have no ongoing courses. What will you learn first?",
+                Text(
+                  AppLocalizations.of(context)!.empty_ongoing_course_message,
                   style: AppFontStyle.bodyOffBlack,
                 ),
               ],

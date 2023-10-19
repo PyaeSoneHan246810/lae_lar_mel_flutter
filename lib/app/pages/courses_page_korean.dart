@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:lae_lar_mel_app/app/widgets/custom_courses_tabbar_view.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../config/colors.dart';
-import '../../widgets/custom_appbar_with_back_arrow_and_title.dart';
-import '../../widgets/custom_courses_tabbar.dart';
+import '../config/colors.dart';
+import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
+import '../widgets/custom_courses_tabbar.dart';
+import '../widgets/custom_courses_tabbar_view.dart';
 
-class EnglishCoursesPage extends StatefulWidget {
-  const EnglishCoursesPage({super.key});
+class KoreanCoursesPage extends StatefulWidget {
+  const KoreanCoursesPage({super.key});
 
   @override
-  State<EnglishCoursesPage> createState() => _EnglishCoursesPageState();
+  State<KoreanCoursesPage> createState() => _KoreanCoursesPageState();
 }
 
-class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
+class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: CustomAppBarWithBackArrowAndTitle(
-          titleText: 'English',
+          titleText: AppLocalizations.of(context)!.korean,
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
@@ -31,35 +32,35 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
               tab1Label: 'Beginner',
               tab2Label: 'Intermediate',
               tab3Label: 'Advanced',
-              tab4Label: 'IELTS',
+              tab4Label: 'TOPIK',
             ),
             Expanded(
               child: TabBarView(
                 children: [
                   CoursesTabBarView(
                     level: 'Beginner',
-                    language: 'English',
+                    language: 'Korean',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
                     level: 'Intermediate',
-                    language: 'English',
+                    language: 'Korean',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
                     level: 'Advanced',
-                    language: 'English',
+                    language: 'Korean',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
-                    level: 'IELTS',
-                    language: 'English',
+                    level: 'TOPIK',
+                    language: 'Korean',
                     child: Center(
                       child: Text('Example'),
                     ),

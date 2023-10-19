@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../config/colors.dart';
-import '../../widgets/custom_appbar_with_back_arrow_and_title.dart';
-import '../../widgets/custom_courses_tabbar.dart';
-import '../../widgets/custom_courses_tabbar_view.dart';
+import '../config/colors.dart';
+import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
+import '../widgets/custom_courses_tabbar.dart';
+import '../widgets/custom_courses_tabbar_view.dart';
 
-class KoreanCoursesPage extends StatefulWidget {
-  const KoreanCoursesPage({super.key});
+class JapaneseCoursesPage extends StatefulWidget {
+  const JapaneseCoursesPage({super.key});
 
   @override
-  State<KoreanCoursesPage> createState() => _KoreanCoursesPageState();
+  State<JapaneseCoursesPage> createState() => _JapaneseCoursesPageState();
 }
 
-class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
+class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: CustomAppBarWithBackArrowAndTitle(
-          titleText: 'Korean',
+          titleText: AppLocalizations.of(context)!.japanese,
           onBackButtonPressed: () {
             Navigator.pop(context);
           },
@@ -31,35 +32,35 @@ class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
               tab1Label: 'Beginner',
               tab2Label: 'Intermediate',
               tab3Label: 'Advanced',
-              tab4Label: 'TOPIK',
+              tab4Label: 'JLPT',
             ),
             Expanded(
               child: TabBarView(
                 children: [
                   CoursesTabBarView(
                     level: 'Beginner',
-                    language: 'Korean',
+                    language: 'Japanese',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
                     level: 'Intermediate',
-                    language: 'Korean',
+                    language: 'Japanese',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
                     level: 'Advanced',
-                    language: 'Korean',
+                    language: 'Japanese',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   CoursesTabBarView(
-                    level: 'TOPIK',
-                    language: 'Korean',
+                    level: 'JLPT',
+                    language: 'Japanese',
                     child: Center(
                       child: Text('Example'),
                     ),

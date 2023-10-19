@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
@@ -7,6 +5,7 @@ import 'package:lae_lar_mel_app/app/models/course_model.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_course_view_with_delete_button.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -22,7 +21,6 @@ class WishlistPage extends StatefulWidget {
 
 class _WishlistPageState extends State<WishlistPage> {
   bool _isVisible = true;
-  List<Course> courses = [];
 
   @override
   void initState() {
@@ -32,11 +30,7 @@ class _WishlistPageState extends State<WishlistPage> {
     }
   }
 
-  void _getInitialInfo() {
-    courses = Course.getCourses();
-  }
-
-  void navigateToCourseDetailsPage(int index) {
+  void _navigateToCourseDetailsPage(int index) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => CourseDetailsPage(
         course: boxCourses.getAt(index),
@@ -44,43 +38,11 @@ class _WishlistPageState extends State<WishlistPage> {
     ));
   }
 
-  Future<void> _displaySuccessfulSnackBar(
-      BuildContext context, String message, int durationInMilliseconds) async {
-    // Create a Completer to represent the completion of the future
-    final Completer<void> completer = Completer<void>();
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
-          SnackBar(
-            duration: Duration(milliseconds: durationInMilliseconds),
-            backgroundColor: AppColor.primaryColor,
-            showCloseIcon: true,
-            closeIconColor: AppColor.pureWhiteColor,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(14),
-              ),
-            ),
-            content: Text(
-              message,
-              style: AppFontStyle.alertTextPureWhite,
-            ),
-          ),
-        )
-        .closed
-        .then((reason) {
-      completer.complete(); // Complete the future when SnackBar is hidden
-    });
-
-    // Return the Future
-    return completer.future;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'Wishlist',
+        titleText: AppLocalizations.of(context)!.wishlist,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -111,9 +73,10 @@ class _WishlistPageState extends State<WishlistPage> {
                         width: double.infinity,
                         height: 20,
                       ),
-                      const Text(
-                        "You don't have any courses on your wishlist. Want to save something for later?",
+                      Text(
+                        AppLocalizations.of(context)!.empty_wishlist_message,
                         style: AppFontStyle.bodyOffBlack,
+                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),
@@ -137,15 +100,15 @@ class _WishlistPageState extends State<WishlistPage> {
                         courseLanguageCategory: course.courseLanguageCategory,
                         courseLevel: course.courseLevel,
                         courseSkill: course.courseSkill,
-                        onTap: () => navigateToCourseDetailsPage(index),
+                        onTap: () => _navigateToCourseDetailsPage(index),
                         onDeleteIconButtonTap: () {
                           //Todo: .deleteAt
                           setState(() {
                             boxCourses.deleteAt(index);
                           });
-                          _displaySuccessfulSnackBar(
+                          displaySuccessfulSnackBar(
                             context,
-                            "Removed course from the wishlist",
+                            AppLocalizations.of(context)!.removed_course,
                             1200,
                           );
                         },
@@ -164,11 +127,11 @@ class _WishlistPageState extends State<WishlistPage> {
                     setState(() {
                       boxCourses.clear();
                     });
-                    _displaySuccessfulSnackBar(
+                    displaySuccessfulSnackBar(
                       context,
                       (boxCourses.length > 0)
-                          ? "Removed all courses from the wishlist"
-                          : "Already removed all courses from the wishlist",
+                          ? AppLocalizations.of(context)!.removed_all
+                          : AppLocalizations.of(context)!.already_removed_all,
                       1200,
                     );
                   },
@@ -178,16 +141,16 @@ class _WishlistPageState extends State<WishlistPage> {
                       color: AppColor.greyColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.delete_rounded,
                           color: Colors.red,
                         ),
                         Text(
-                          'Delete all',
+                          AppLocalizations.of(context)!.remove_all,
                           style: AppFontStyle.navTextOffBlack,
                         )
                       ],

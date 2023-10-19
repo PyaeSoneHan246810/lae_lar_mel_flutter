@@ -58,7 +58,7 @@ class ProfileImageWidget extends StatelessWidget {
             color: color,
             all: 8,
             child: const Icon(
-              Icons.edit,
+              Icons.edit_rounded,
               color: Colors.white,
               size: 20,
             ),

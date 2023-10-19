@@ -1,32 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class LanguageCategoryModel {
-  String languageFlagPath;
+  String languageCountryCode;
   String languageName;
   String pageRouteName;
   LanguageCategoryModel({
-    required this.languageFlagPath,
+    required this.languageCountryCode,
     required this.languageName,
     required this.pageRouteName,
   });
-  static List<LanguageCategoryModel> getLanguageCategories() {
+  static List<LanguageCategoryModel> getLanguageCategories(
+      BuildContext context) {
     List<LanguageCategoryModel> languageCategories = [];
     languageCategories.add(LanguageCategoryModel(
-      languageFlagPath: 'assets/images/uk_flag.svg',
-      languageName: 'English',
+      languageCountryCode: 'GB',
+      languageName: AppLocalizations.of(context)!.english,
       pageRouteName: 'englishCoursesPage',
     ));
     languageCategories.add(LanguageCategoryModel(
-      languageFlagPath: 'assets/images/china_flag.svg',
-      languageName: 'Chinese',
+      languageCountryCode: 'CN',
+      languageName: AppLocalizations.of(context)!.chinese,
       pageRouteName: 'chineseCoursesPage',
     ));
     languageCategories.add(LanguageCategoryModel(
-      languageFlagPath: 'assets/images/japan_flag.svg',
-      languageName: 'Japanese',
+      languageCountryCode: 'JP',
+      languageName: AppLocalizations.of(context)!.japanese,
       pageRouteName: 'japaneseCoursesPage',
     ));
     languageCategories.add(LanguageCategoryModel(
-      languageFlagPath: 'assets/images/south_korea_flag.svg',
-      languageName: 'Korean',
+      languageCountryCode: 'KR',
+      languageName: AppLocalizations.of(context)!.korean,
       pageRouteName: 'koreanCoursesPage',
     ));
     return languageCategories;

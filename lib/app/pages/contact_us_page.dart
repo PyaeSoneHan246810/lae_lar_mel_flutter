@@ -5,6 +5,7 @@ import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -47,7 +48,7 @@ class _ContactUsPageState extends State<ContactUsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'Contact Us',
+        titleText: AppLocalizations.of(context)!.contact_us,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -77,8 +78,8 @@ class _ContactUsPageState extends State<ContactUsPage>
               height: 24,
             ),
             FadeInLeft(
-              child: const Text(
-                'Call Center',
+              child: Text(
+                AppLocalizations.of(context)!.call_center,
                 style: AppFontStyle.subtitleOffBlack,
               ),
             ),
@@ -108,7 +109,7 @@ class _ContactUsPageState extends State<ContactUsPage>
                         );
                       },
                       icon: const Icon(
-                        Icons.phone,
+                        Icons.phone_rounded,
                         size: 20,
                         color: AppColor.pureWhiteColor,
                       ),
@@ -143,7 +144,7 @@ class _ContactUsPageState extends State<ContactUsPage>
                         );
                       },
                       icon: const Icon(
-                        Icons.phone,
+                        Icons.phone_rounded,
                         size: 20,
                         color: AppColor.pureWhiteColor,
                       ),
@@ -156,8 +157,8 @@ class _ContactUsPageState extends State<ContactUsPage>
               height: 24,
             ),
             FadeInLeft(
-              child: const Text(
-                'For Business Calls',
+              child: Text(
+                AppLocalizations.of(context)!.business_calls,
                 style: AppFontStyle.subtitleOffBlack,
               ),
             ),
@@ -191,7 +192,7 @@ class _ContactUsPageState extends State<ContactUsPage>
                         }
                       },
                       icon: const Icon(
-                        Icons.phone,
+                        Icons.phone_rounded,
                         size: 20,
                         color: AppColor.pureWhiteColor,
                       ),

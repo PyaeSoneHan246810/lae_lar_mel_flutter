@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 
 class CustomAppBar extends AppBar {
   final String titleText;
-  final Function()? onBackButtonPressed;
+  final BuildContext context;
 
   CustomAppBar({
     required this.titleText,
-    this.onBackButtonPressed,
+    required this.context,
     Key? key,
   }) : super(
           key: key,
@@ -28,15 +29,32 @@ class CustomAppBar extends AppBar {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: IconButton(
-                onPressed: onBackButtonPressed,
-                icon: const Icon(
-                  Icons.favorite,
-                  size: 28,
-                  color: AppColor.lightBlackColor,
-                ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('wishlistPage');
+                    },
+                    icon: const Icon(
+                      Icons.favorite_rounded,
+                      size: 28,
+                      color: AppColor.lightBlackColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      displayLanguagePickerSheet(context, false);
+                    },
+                    icon: const Icon(
+                      Icons.language_rounded,
+                      size: 28,
+                      color: AppColor.lightBlackColor,
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         );
 }
