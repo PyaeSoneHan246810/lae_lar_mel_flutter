@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 

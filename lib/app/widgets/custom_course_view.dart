@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
@@ -70,8 +70,8 @@ class CustomCourseView extends StatelessWidget {
                   ),
                   Text(
                     courseType == CourseType.free
-                        ? 'Free'
-                        : '${coursePriceInMMK.toStringAsFixed(0)} MMK',
+                        ? AppLocalizations.of(context)!.free
+                        : '${coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
                     style: AppFontStyle.captionMediumOffBlack,
                   ),
                 ],

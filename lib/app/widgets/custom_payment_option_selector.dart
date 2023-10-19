@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
-
 import 'custom_separator.dart';
 
 class PaymentOptionSelector extends StatefulWidget {
