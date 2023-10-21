@@ -5,7 +5,7 @@ import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
 
-class CustomCourseView extends StatelessWidget {
+class CustomCourseView extends StatefulWidget {
   final CourseType courseType;
   final String courseImage;
   final String courseName;
@@ -14,6 +14,7 @@ class CustomCourseView extends StatelessWidget {
   final String courseLanguageCategory;
   final String courseLevel;
   final String courseSkill;
+  final bool isHeroAnimationEnabled;
   final Function()? onTap;
   const CustomCourseView({
     super.key,
@@ -26,33 +27,54 @@ class CustomCourseView extends StatelessWidget {
     required this.courseLevel,
     required this.courseSkill,
     required this.onTap,
+    required this.isHeroAnimationEnabled,
   });
 
   @override
+  State<CustomCourseView> createState() => _CustomCourseViewState();
+}
+
+class _CustomCourseViewState extends State<CustomCourseView> {
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Hero(
-            tag: 'courseImage$courseImage',
-            child: Container(
-              width: double.infinity,
-              height: 160,
-              decoration: const BoxDecoration(
-                color: AppColor.pureWhiteColor,
-              ),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: courseImage,
-                    fit: BoxFit.cover,
-                  )),
-            ),
-          ),
+          widget.isHeroAnimationEnabled
+              ? Hero(
+                  tag: 'courseImage${widget.courseImage}',
+                  child: Container(
+                    width: double.infinity,
+                    height: 160,
+                    decoration: const BoxDecoration(
+                      color: AppColor.pureWhiteColor,
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: widget.courseImage,
+                          fit: BoxFit.cover,
+                        )),
+                  ),
+                )
+              : Container(
+                  width: double.infinity,
+                  height: 160,
+                  decoration: const BoxDecoration(
+                    color: AppColor.pureWhiteColor,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: widget.courseImage,
+                        fit: BoxFit.cover,
+                      )),
+                ),
           Padding(
               padding: const EdgeInsets.only(top: 5),
               child: Row(
@@ -62,28 +84,28 @@ class CustomCourseView extends StatelessWidget {
                   SizedBox(
                     width: 240,
                     child: Text(
-                      courseName,
+                      widget.courseName,
                       style: AppFontStyle.subtitleOffBlack,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
                   ),
                   Text(
-                    courseType == CourseType.free
+                    widget.courseType == CourseType.free
                         ? AppLocalizations.of(context)!.free
-                        : '${coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
+                        : '${widget.coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
                     style: AppFontStyle.captionMediumOffBlack,
                   ),
                 ],
               )),
           Text(
-            courseInstructorName,
+            widget.courseInstructorName,
             style: AppFontStyle.bodyOffBlack,
           ),
           Row(
             children: [
               Text(
-                courseLanguageCategory,
+                widget.courseLanguageCategory,
                 style: AppFontStyle.bodyNavTextPrimary,
               ),
               const Padding(
@@ -91,7 +113,7 @@ class CustomCourseView extends StatelessWidget {
                 child: Text('|'),
               ),
               Text(
-                courseLevel,
+                widget.courseLevel,
                 style: AppFontStyle.bodyNavTextPrimary,
               ),
               const Padding(
@@ -99,7 +121,7 @@ class CustomCourseView extends StatelessWidget {
                 child: Text('|'),
               ),
               Text(
-                courseSkill,
+                widget.courseSkill,
                 style: AppFontStyle.bodyNavTextPrimary,
               ),
             ],

@@ -132,6 +132,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             CoursesListView(
               courses: freeCourses,
               displayItemCount: 2,
+              isHeroAnimationEnabled: true,
             ),
             const CustomSeparator(height: 16),
             Center(
@@ -149,6 +150,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             CoursesListView(
               courses: premiumCourses,
               displayItemCount: 2,
+              isHeroAnimationEnabled: true,
             ),
             const CustomSeparator(height: 16),
             Center(

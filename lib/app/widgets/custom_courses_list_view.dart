@@ -8,8 +8,13 @@ import 'custom_separator.dart';
 class CoursesListView extends StatefulWidget {
   final List<Course> courses;
   final int displayItemCount;
-  const CoursesListView(
-      {super.key, required this.courses, required this.displayItemCount});
+  final bool isHeroAnimationEnabled;
+  const CoursesListView({
+    super.key,
+    required this.courses,
+    required this.displayItemCount,
+    required this.isHeroAnimationEnabled,
+  });
 
   @override
   State<CoursesListView> createState() => _CoursesListViewState();
@@ -42,6 +47,7 @@ class _CoursesListViewState extends State<CoursesListView> {
           courseLanguageCategory: widget.courses[index].courseLanguage,
           courseLevel: widget.courses[index].courseLevel,
           courseSkill: widget.courses[index].courseSkill,
+          isHeroAnimationEnabled: widget.isHeroAnimationEnabled,
           onTap: () =>
               navigateToCourseDetailsPage(context, index, widget.courses),
         );
