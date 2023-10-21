@@ -49,7 +49,7 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                       child: CoursesListView(
                         courses: beginnerEnglishCourses,
                         displayItemCount: beginnerEnglishCourses.length,
-                        isHeroAnimationEnabled: false,
+                        isHeroAnimationEnabled: true,
                       ),
                     ),
                   ),
