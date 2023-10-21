@@ -21,6 +21,7 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool isHeroAnimationEnabled = false;
     _getInitialInfo();
     return DefaultTabController(
       length: 4,
@@ -49,7 +50,10 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                       child: CoursesListView(
                         courses: beginnerEnglishCourses,
                         displayItemCount: beginnerEnglishCourses.length,
-                        isHeroAnimationEnabled: true,
+                        isHeroAnimationEnabled: isHeroAnimationEnabled,
+                        extraOnTapFunction: () {
+                          isHeroAnimationEnabled = !isHeroAnimationEnabled;
+                        },
                       ),
                     ),
                   ),

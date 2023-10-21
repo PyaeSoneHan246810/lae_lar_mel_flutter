@@ -9,11 +9,13 @@ class CoursesListView extends StatefulWidget {
   final List<Course> courses;
   final int displayItemCount;
   final bool isHeroAnimationEnabled;
+  final Function()? extraOnTapFunction;
   const CoursesListView({
     super.key,
     required this.courses,
     required this.displayItemCount,
     required this.isHeroAnimationEnabled,
+    this.extraOnTapFunction,
   });
 
   @override
@@ -48,8 +50,10 @@ class _CoursesListViewState extends State<CoursesListView> {
           courseLevel: widget.courses[index].courseLevel,
           courseSkill: widget.courses[index].courseSkill,
           isHeroAnimationEnabled: widget.isHeroAnimationEnabled,
-          onTap: () =>
-              navigateToCourseDetailsPage(context, index, widget.courses),
+          onTap: () {
+            navigateToCourseDetailsPage(context, index, widget.courses);
+            widget.extraOnTapFunction;
+          },
         );
       },
       separatorBuilder: (context, index) {
