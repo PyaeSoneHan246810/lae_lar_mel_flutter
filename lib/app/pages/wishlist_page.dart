@@ -61,12 +61,12 @@ class _WishlistPageState extends State<WishlistPage> {
                           Course course = boxCourses.getAt(index);
                           return CustomCourseViewWithDeleteButton(
                             courseType: course.courseType,
-                            courseImage: course.courseImage,
+                            courseImage: course.coursePreviewImage,
                             courseName: course.courseName,
                             coursePriceInMMK: course.coursePriceInMMK,
-                            courseInstructorName: course.courseInstructorName,
-                            courseLanguageCategory:
-                                course.courseLanguageCategory,
+                            courseInstructorName:
+                                course.courseInstructor.courseInstructorName,
+                            courseLanguageCategory: course.courseLanguage,
                             courseLevel: course.courseLevel,
                             courseSkill: course.courseSkill,
                             onTap: () => _navigateToCourseDetailsPage(index),

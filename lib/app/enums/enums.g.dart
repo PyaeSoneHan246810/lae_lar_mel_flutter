@@ -8,7 +8,7 @@ part of 'enums.dart';
 
 class CourseTypeAdapter extends TypeAdapter<CourseType> {
   @override
-  final int typeId = 4;
+  final int typeId = 5;
 
   @override
   CourseType read(BinaryReader reader) {
@@ -47,7 +47,7 @@ class CourseTypeAdapter extends TypeAdapter<CourseType> {
 
 class CourseMaterialTypeAdapter extends TypeAdapter<CourseMaterialType> {
   @override
-  final int typeId = 5;
+  final int typeId = 6;
 
   @override
   CourseMaterialType read(BinaryReader reader) {

@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 
 part 'course_material_model.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 class CourseMaterial {
   @HiveField(0)
   int courseMaterialId;

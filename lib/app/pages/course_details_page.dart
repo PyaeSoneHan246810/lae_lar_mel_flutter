@@ -493,7 +493,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       alignment: Alignment.center,
       children: [
         Hero(
-          tag: 'courseImage${widget.course.courseImage}',
+          tag: 'courseImage${widget.course.coursePreviewImage}',
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: SizedBox(
@@ -503,7 +503,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 children: [
                   FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
-                    image: widget.course.courseImage,
+                    image: widget.course.coursePreviewImage,
                     fit: BoxFit.cover,
                   ),
                   Container(
@@ -846,8 +846,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                 CircleAvatar(
                                   radius: 35,
                                   backgroundColor: AppColor.greyColor,
-                                  backgroundImage: NetworkImage(
-                                      widget.course.courseInstructorImage),
+                                  backgroundImage: NetworkImage(widget.course
+                                      .courseInstructor.courseInstructorImage),
                                   child: GestureDetector(
                                     onTap: () {
                                       showDialog(
@@ -862,7 +862,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                                     FadeInImage.memoryNetwork(
                                                   placeholder:
                                                       kTransparentImage,
-                                                  image: widget.course
+                                                  image: widget
+                                                      .course
+                                                      .courseInstructor
                                                       .courseInstructorImage,
                                                   fit: BoxFit.cover,
                                                 ),
@@ -879,11 +881,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      widget.course.courseInstructorName,
+                                      widget.course.courseInstructor
+                                          .courseInstructorName,
                                       style: AppFontStyle.title3OffBlack,
                                     ),
                                     Text(
-                                      widget.course.courseInstructorMajor,
+                                      widget.course.courseInstructor
+                                          .courseInstructorMajor,
                                       style: AppFontStyle.captionMediumOffBlack,
                                     ),
                                   ],
@@ -905,7 +909,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   body: Padding(
                     padding: const EdgeInsets.only(top: 12, bottom: 12),
                     child: Text(
-                      widget.course.courseInstructorDescription,
+                      widget
+                          .course.courseInstructor.courseInstructorDescription,
                       style: AppFontStyle.bodyOffBlack,
                       textAlign: TextAlign.justify,
                     ),
@@ -990,24 +995,17 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             'key_${widget.course.courseId}',
                             Course(
                               courseId: widget.course.courseId,
-                              courseType: widget.course.courseType,
-                              courseImage: widget.course.courseImage,
                               courseName: widget.course.courseName,
+                              courseType: widget.course.courseType,
                               coursePriceInMMK: widget.course.coursePriceInMMK,
                               courseTotalDurationInHour:
                                   widget.course.courseTotalDurationInHour,
-                              courseInstructorImage:
-                                  widget.course.courseInstructorImage,
-                              courseInstructorName:
-                                  widget.course.courseInstructorName,
-                              courseInstructorMajor:
-                                  widget.course.courseInstructorMajor,
-                              courseInstructorDescription:
-                                  widget.course.courseInstructorDescription,
-                              courseLanguageCategory:
-                                  widget.course.courseLanguageCategory,
+                              courseInstructor: widget.course.courseInstructor,
+                              courseLanguage: widget.course.courseLanguage,
                               courseLevel: widget.course.courseLevel,
                               courseSkill: widget.course.courseSkill,
+                              coursePreviewImage:
+                                  widget.course.coursePreviewImage,
                               coursePreviewVideo:
                                   widget.course.coursePreviewVideo,
                               courseSections: widget.course.courseSections,

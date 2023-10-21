@@ -2,7 +2,6 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
-import 'package:lae_lar_mel_app/app/pages/course_details_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
@@ -10,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../models/language_category_model.dart';
-import '../widgets/custom_course_view.dart';
+import '../widgets/custom_courses_list_view.dart';
 
 class FeaturedPage extends StatefulWidget {
   const FeaturedPage({super.key});
@@ -30,14 +29,6 @@ class _FeaturedPageState extends State<FeaturedPage> {
     courses = Course.getCourses();
     freeCourses = Course.getFreeCourses();
     premiumCourses = Course.getPremiumCourses();
-  }
-
-  void navigateToCourseDetailsPage(int index, List<Course> courses) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => CourseDetailsPage(
-        course: courses[index],
-      ),
-    ));
   }
 
   @override
@@ -138,27 +129,9 @@ class _FeaturedPageState extends State<FeaturedPage> {
               style: AppFontStyle.title1OffBlack,
             ),
             const CustomSeparator(height: 16),
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return CustomCourseView(
-                  courseType: freeCourses[index].courseType,
-                  courseImage: freeCourses[index].courseImage,
-                  courseName: freeCourses[index].courseName,
-                  coursePriceInMMK: freeCourses[index].coursePriceInMMK,
-                  courseInstructorName: freeCourses[index].courseInstructorName,
-                  courseLanguageCategory:
-                      freeCourses[index].courseLanguageCategory,
-                  courseLevel: freeCourses[index].courseLevel,
-                  courseSkill: freeCourses[index].courseSkill,
-                  onTap: () => navigateToCourseDetailsPage(index, freeCourses),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const CustomSeparator(height: 15);
-              },
+            CoursesListView(
+              courses: freeCourses,
+              displayItemCount: 2,
             ),
             const CustomSeparator(height: 16),
             Center(
@@ -173,29 +146,9 @@ class _FeaturedPageState extends State<FeaturedPage> {
               style: AppFontStyle.title1OffBlack,
             ),
             const CustomSeparator(height: 16),
-            ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 2,
-              itemBuilder: (context, index) {
-                return CustomCourseView(
-                  courseType: premiumCourses[index].courseType,
-                  courseImage: premiumCourses[index].courseImage,
-                  courseName: premiumCourses[index].courseName,
-                  coursePriceInMMK: premiumCourses[index].coursePriceInMMK,
-                  courseInstructorName:
-                      premiumCourses[index].courseInstructorName,
-                  courseLanguageCategory:
-                      premiumCourses[index].courseLanguageCategory,
-                  courseLevel: premiumCourses[index].courseLevel,
-                  courseSkill: premiumCourses[index].courseSkill,
-                  onTap: () =>
-                      navigateToCourseDetailsPage(index, premiumCourses),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const CustomSeparator(height: 15);
-              },
+            CoursesListView(
+              courses: premiumCourses,
+              displayItemCount: 2,
             ),
             const CustomSeparator(height: 16),
             Center(

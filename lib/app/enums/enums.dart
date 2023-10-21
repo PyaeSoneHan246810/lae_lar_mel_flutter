@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'enums.g.dart';
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 5)
 enum CourseType {
   @HiveField(0)
   free,
@@ -10,7 +10,7 @@ enum CourseType {
   premium,
 }
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 6)
 enum CourseMaterialType {
   @HiveField(0)
   video,

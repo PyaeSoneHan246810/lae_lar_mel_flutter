@@ -1,7 +1,8 @@
 import 'package:lae_lar_mel_app/app/enums/enums.dart';
+import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
+import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:hive/hive.dart';
-import 'course_section_model.dart';
 
 part 'course_model.g.dart';
 
@@ -10,47 +11,38 @@ class Course {
   @HiveField(0)
   int courseId;
   @HiveField(1)
-  CourseType courseType;
-  @HiveField(2)
-  String courseImage;
-  @HiveField(3)
   String courseName;
-  @HiveField(4)
+  @HiveField(2)
+  CourseType courseType;
+  @HiveField(3)
   double coursePriceInMMK;
-  @HiveField(5)
+  @HiveField(4)
   double courseTotalDurationInHour;
+  @HiveField(5)
+  CourseInstructor courseInstructor;
   @HiveField(6)
-  String courseInstructorImage;
+  String courseLanguage;
   @HiveField(7)
-  String courseInstructorName;
-  @HiveField(8)
-  String courseInstructorMajor;
-  @HiveField(9)
-  String courseInstructorDescription;
-  @HiveField(10)
-  String courseLanguageCategory;
-  @HiveField(11)
   String courseLevel;
-  @HiveField(12)
+  @HiveField(8)
   String courseSkill;
-  @HiveField(13)
+  @HiveField(9)
+  String coursePreviewImage;
+  @HiveField(10)
   String coursePreviewVideo;
-  @HiveField(14)
+  @HiveField(11)
   List<CourseSection> courseSections;
   Course({
     required this.courseId,
-    required this.courseType,
-    required this.courseImage,
     required this.courseName,
+    required this.courseType,
     required this.coursePriceInMMK,
     required this.courseTotalDurationInHour,
-    required this.courseInstructorImage,
-    required this.courseInstructorName,
-    required this.courseInstructorMajor,
-    required this.courseInstructorDescription,
-    required this.courseLanguageCategory,
+    required this.courseInstructor,
+    required this.courseLanguage,
     required this.courseLevel,
     required this.courseSkill,
+    required this.coursePreviewImage,
     required this.coursePreviewVideo,
     required this.courseSections,
   });
@@ -59,21 +51,24 @@ class Course {
     courses.add(
       Course(
         courseId: 1,
-        courseType: CourseType.free,
-        courseImage:
-            'https://m.economictimes.com/thumb/msid-77058712,width-1200,height-900,resizemode-4,imgsize-172210/english_istock.jpg',
         courseName: 'Basic English Grammar Course',
+        courseType: CourseType.free,
         coursePriceInMMK: 0.0,
         courseTotalDurationInHour: 2.0,
-        courseInstructorImage:
-            'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
-        courseInstructorName: 'Tr. Hsu',
-        courseInstructorMajor: 'YUFL English',
-        courseInstructorDescription:
-            'Tr. Hsu is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
-        courseLanguageCategory: 'English',
+        courseInstructor: CourseInstructor(
+          courseInstructorId: 1,
+          courseInstructorName: 'Tr. Hsu',
+          courseInstructorImage:
+              'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
+          courseInstructorMajor: 'YUFL English',
+          courseInstructorDescription:
+              'Tr. Hsu is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
+        ),
+        courseLanguage: 'English',
         courseLevel: 'Beginner',
         courseSkill: 'Grammar',
+        coursePreviewImage:
+            'https://m.economictimes.com/thumb/msid-77058712,width-1200,height-900,resizemode-4,imgsize-172210/english_istock.jpg',
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
@@ -199,21 +194,24 @@ class Course {
     courses.add(
       Course(
         courseId: 2,
-        courseType: CourseType.free,
-        courseImage:
-            'https://teaching.weblogs.anu.edu.au/files/2023/05/Speaking-English862x485.jpg',
         courseName: 'Daily English Conversations',
+        courseType: CourseType.free,
         coursePriceInMMK: 0.0,
         courseTotalDurationInHour: 2.0,
-        courseInstructorImage:
-            'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
-        courseInstructorName: 'Tr. May',
-        courseInstructorMajor: 'YUFL English',
-        courseInstructorDescription:
-            'Tr. May is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
-        courseLanguageCategory: 'English',
+        courseInstructor: CourseInstructor(
+          courseInstructorId: 2,
+          courseInstructorName: 'Tr. May',
+          courseInstructorImage:
+              'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
+          courseInstructorMajor: 'YUFL English',
+          courseInstructorDescription:
+              'Tr. May is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
+        ),
+        courseLanguage: 'English',
         courseLevel: 'Beginner',
         courseSkill: 'Speaking',
+        coursePreviewImage:
+            'https://teaching.weblogs.anu.edu.au/files/2023/05/Speaking-English862x485.jpg',
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
@@ -339,21 +337,24 @@ class Course {
     courses.add(
       Course(
         courseId: 3,
-        courseType: CourseType.premium,
-        courseImage:
-            'https://img.freepik.com/premium-photo/japan-illustration-ai-generated_201606-7376.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1696896000&semt=ais',
         courseName: 'Japanese N5 Grammar Course',
+        courseType: CourseType.premium,
         coursePriceInMMK: 20000.0,
         courseTotalDurationInHour: 10.0,
-        courseInstructorImage:
-            'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
-        courseInstructorName: 'Tr. Hnin',
-        courseInstructorMajor: 'YUFL Japanese',
-        courseInstructorDescription:
-            'Tr. Hnin is a highly experienced Japanese language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Japanese, Tr. Hsu has been a valuable member of our team. Known for making Japanese learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
-        courseLanguageCategory: 'Japanese',
+        courseInstructor: CourseInstructor(
+          courseInstructorId: 3,
+          courseInstructorName: 'Tr. Hnin',
+          courseInstructorImage:
+              'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
+          courseInstructorMajor: 'YUFL Japanese',
+          courseInstructorDescription:
+              'Tr. Hnin is a highly experienced Japanese language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Japanese, Tr. Hsu has been a valuable member of our team. Known for making Japanese learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
+        ),
+        courseLanguage: 'Japanese',
         courseLevel: 'Beginner',
         courseSkill: 'Grammar',
+        coursePreviewImage:
+            'https://img.freepik.com/premium-photo/japan-illustration-ai-generated_201606-7376.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1696896000&semt=ais',
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
@@ -479,21 +480,24 @@ class Course {
     courses.add(
       Course(
         courseId: 4,
-        courseType: CourseType.premium,
-        courseImage:
-            'https://contenthub-static.grammarly.com/blog/wp-content/uploads/2021/07/how-to-become-a-writer.png',
         courseName: 'Intermediate English Writing Course',
+        courseType: CourseType.premium,
         coursePriceInMMK: 50000.0,
         courseTotalDurationInHour: 10.0,
-        courseInstructorImage:
-            'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
-        courseInstructorName: 'Tr. Phyo',
-        courseInstructorMajor: 'YUFL English',
-        courseInstructorDescription:
-            'Tr. Phyo is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
-        courseLanguageCategory: 'English',
+        courseInstructor: CourseInstructor(
+          courseInstructorId: 4,
+          courseInstructorName: 'Tr. Phyo',
+          courseInstructorImage:
+              'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
+          courseInstructorMajor: 'YUFL English',
+          courseInstructorDescription:
+              'Tr. Phyo is a highly experienced English language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in English, Tr. Hsu has been a valuable member of our team. Known for making English learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
+        ),
+        courseLanguage: 'English',
         courseLevel: 'Intermediate',
         courseSkill: 'Writing',
+        coursePreviewImage:
+            'https://contenthub-static.grammarly.com/blog/wp-content/uploads/2021/07/how-to-become-a-writer.png',
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
@@ -619,15 +623,52 @@ class Course {
     return courses;
   }
 
+  //free courses
   static List<Course> getFreeCourses() {
     return getCourses()
         .where((course) => course.courseType == CourseType.free)
         .toList();
   }
 
+  //premium courses
   static List<Course> getPremiumCourses() {
     return getCourses()
         .where((course) => course.courseType == CourseType.premium)
+        .toList();
+  }
+
+  //beginner english courses
+  static List<Course> getBeginnerEnglishCourses() {
+    return getCourses()
+        .where((course) =>
+            course.courseLevel == 'Beginner' &&
+            course.courseLanguage == 'English')
+        .toList();
+  }
+
+  //intermediate english courses
+  static List<Course> getIntermediateEnglishCourses() {
+    return getCourses()
+        .where((course) =>
+            course.courseLevel == 'Intermediate' &&
+            course.courseLanguage == 'English')
+        .toList();
+  }
+
+  //advanced english courses
+  static List<Course> getAdvancedEnglishCourses() {
+    return getCourses()
+        .where((course) =>
+            course.courseLevel == 'Advanced' &&
+            course.courseLanguage == 'English')
+        .toList();
+  }
+
+  //advanced ielts courses
+  static List<Course> getIeltsEnglishCourses() {
+    return getCourses()
+        .where((course) =>
+            course.courseLevel == 'IELTS' && course.courseLanguage == 'English')
         .toList();
   }
 }
