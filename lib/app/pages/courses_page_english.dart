@@ -45,13 +45,11 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                   CoursesTabBarView(
                     level: 'Beginner',
                     language: 'English',
-                    child: GestureDetector(
-                      child: Center(
-                        child: CoursesListView(
-                          courses: beginnerEnglishCourses,
-                          displayItemCount: beginnerEnglishCourses.length,
-                          isHeroAnimationEnabled: false,
-                        ),
+                    child: Center(
+                      child: CoursesListView(
+                        courses: beginnerEnglishCourses,
+                        displayItemCount: beginnerEnglishCourses.length,
+                        isHeroAnimationEnabled: false,
                       ),
                     ),
                   ),
