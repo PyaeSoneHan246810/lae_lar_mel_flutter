@@ -15,7 +15,6 @@ class EnglishCoursesPage extends StatefulWidget {
 
 class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
   List<Course> beginnerEnglishCourses = [];
-  bool isHeroAnimationEnabled = false;
   void _getInitialInfo() {
     beginnerEnglishCourses = Course.getBeginnerEnglishCourses();
   }
@@ -46,15 +45,12 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                   CoursesTabBarView(
                     level: 'Beginner',
                     language: 'English',
-                    child: Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          isHeroAnimationEnabled = !isHeroAnimationEnabled;
-                        },
+                    child: GestureDetector(
+                      child: Center(
                         child: CoursesListView(
                           courses: beginnerEnglishCourses,
                           displayItemCount: beginnerEnglishCourses.length,
-                          isHeroAnimationEnabled: isHeroAnimationEnabled,
+                          isHeroAnimationEnabled: false,
                         ),
                       ),
                     ),
