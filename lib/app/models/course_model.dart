@@ -339,7 +339,7 @@ class Course {
         courseId: 3,
         courseName: 'Japanese N5 Grammar Course',
         courseType: CourseType.premium,
-        coursePriceInMMK: 20000.0,
+        coursePriceInMMK: 3000.0,
         courseTotalDurationInHour: 10.0,
         courseInstructor: CourseInstructor(
           courseInstructorId: 3,
@@ -482,7 +482,7 @@ class Course {
         courseId: 4,
         courseName: 'Intermediate English Writing Course',
         courseType: CourseType.premium,
-        coursePriceInMMK: 50000.0,
+        coursePriceInMMK: 5000.0,
         courseTotalDurationInHour: 10.0,
         courseInstructor: CourseInstructor(
           courseInstructorId: 4,
