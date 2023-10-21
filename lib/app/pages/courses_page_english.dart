@@ -15,13 +15,13 @@ class EnglishCoursesPage extends StatefulWidget {
 
 class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
   List<Course> beginnerEnglishCourses = [];
+  bool isHeroAnimationEnabled = false;
   void _getInitialInfo() {
     beginnerEnglishCourses = Course.getBeginnerEnglishCourses();
   }
 
   @override
   Widget build(BuildContext context) {
-    bool isHeroAnimationEnabled = false;
     _getInitialInfo();
     return DefaultTabController(
       length: 4,
@@ -51,9 +51,8 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                         courses: beginnerEnglishCourses,
                         displayItemCount: beginnerEnglishCourses.length,
                         isHeroAnimationEnabled: isHeroAnimationEnabled,
-                        extraOnTapFunction: () {
-                          isHeroAnimationEnabled = !isHeroAnimationEnabled;
-                        },
+                        extraOnTapFunction: () =>
+                            isHeroAnimationEnabled = !isHeroAnimationEnabled,
                       ),
                     ),
                   ),

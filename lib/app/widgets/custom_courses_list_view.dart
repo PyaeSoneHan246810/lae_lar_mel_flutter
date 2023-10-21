@@ -51,8 +51,8 @@ class _CoursesListViewState extends State<CoursesListView> {
           courseSkill: widget.courses[index].courseSkill,
           isHeroAnimationEnabled: widget.isHeroAnimationEnabled,
           onTap: () {
-            navigateToCourseDetailsPage(context, index, widget.courses);
             widget.extraOnTapFunction;
+            navigateToCourseDetailsPage(context, index, widget.courses);
           },
         );
       },
