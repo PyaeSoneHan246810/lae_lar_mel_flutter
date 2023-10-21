@@ -47,12 +47,15 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                     level: 'Beginner',
                     language: 'English',
                     child: Center(
-                      child: CoursesListView(
-                        courses: beginnerEnglishCourses,
-                        displayItemCount: beginnerEnglishCourses.length,
-                        isHeroAnimationEnabled: isHeroAnimationEnabled,
-                        extraOnTapFunction: () =>
-                            isHeroAnimationEnabled = !isHeroAnimationEnabled,
+                      child: GestureDetector(
+                        onTap: () {
+                          isHeroAnimationEnabled = !isHeroAnimationEnabled;
+                        },
+                        child: CoursesListView(
+                          courses: beginnerEnglishCourses,
+                          displayItemCount: beginnerEnglishCourses.length,
+                          isHeroAnimationEnabled: isHeroAnimationEnabled,
+                        ),
                       ),
                     ),
                   ),
