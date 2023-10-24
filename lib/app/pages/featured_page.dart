@@ -2,6 +2,8 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:lae_lar_mel_app/app/enums/enums.dart';
+import 'package:lae_lar_mel_app/app/pages/view_all_courses_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
@@ -29,6 +31,16 @@ class _FeaturedPageState extends State<FeaturedPage> {
     courses = Course.getCourses();
     freeCourses = Course.getFreeCourses();
     premiumCourses = Course.getPremiumCourses();
+  }
+
+  void _navigateToViewAllCoursesPage(
+      List<Course> courses, CourseType courseType) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => ViewAllCoursesPage(
+        courses: courses,
+        courseType: courseType,
+      ),
+    ));
   }
 
   @override
@@ -137,7 +149,9 @@ class _FeaturedPageState extends State<FeaturedPage> {
             const CustomSeparator(height: 16),
             Center(
               child: CustomOutlinedButtonRounded(
-                onPressed: () {},
+                onPressed: () {
+                  _navigateToViewAllCoursesPage(freeCourses, CourseType.free);
+                },
                 text: AppLocalizations.of(context)!.view_all,
               ),
             ),
@@ -155,7 +169,10 @@ class _FeaturedPageState extends State<FeaturedPage> {
             const CustomSeparator(height: 16),
             Center(
               child: CustomOutlinedButtonRounded(
-                onPressed: () {},
+                onPressed: () {
+                  _navigateToViewAllCoursesPage(
+                      premiumCourses, CourseType.premium);
+                },
                 text: AppLocalizations.of(context)!.view_all,
               ),
             ),

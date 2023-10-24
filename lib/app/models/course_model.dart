@@ -625,50 +625,56 @@ class Course {
 
   //free courses
   static List<Course> getFreeCourses() {
-    return getCourses()
+    List<Course> freeCourses = getCourses()
         .where((course) => course.courseType == CourseType.free)
         .toList();
+    return freeCourses.reversed.toList();
   }
 
   //premium courses
   static List<Course> getPremiumCourses() {
-    return getCourses()
+    List<Course> premiumCourses = getCourses()
         .where((course) => course.courseType == CourseType.premium)
         .toList();
+    return premiumCourses.reversed.toList();
   }
 
   //beginner english courses
   static List<Course> getBeginnerEnglishCourses() {
-    return getCourses()
+    List<Course> beginnerEnglishCourses = getCourses()
         .where((course) =>
             course.courseLevel == 'Beginner' &&
             course.courseLanguage == 'English')
         .toList();
+    return beginnerEnglishCourses.reversed.toList();
   }
 
   //intermediate english courses
   static List<Course> getIntermediateEnglishCourses() {
-    return getCourses()
+    List<Course> intermediateEnglishCourses = getCourses()
         .where((course) =>
             course.courseLevel == 'Intermediate' &&
             course.courseLanguage == 'English')
         .toList();
+    return intermediateEnglishCourses.reversed.toList();
   }
 
   //advanced english courses
   static List<Course> getAdvancedEnglishCourses() {
-    return getCourses()
+    List<Course> advancedEnglishCourses = getCourses()
         .where((course) =>
             course.courseLevel == 'Advanced' &&
             course.courseLanguage == 'English')
         .toList();
+    return advancedEnglishCourses.reversed.toList();
   }
 
   //advanced ielts courses
   static List<Course> getIeltsEnglishCourses() {
-    return getCourses()
+    List<Course> ieltsEnglishCourses = getCourses()
         .where((course) =>
             course.courseLevel == 'IELTS' && course.courseLanguage == 'English')
         .toList();
+    return ieltsEnglishCourses.reversed.toList();
   }
 }
