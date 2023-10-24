@@ -16,7 +16,6 @@ class CoursesTabBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.pureWhiteColor,
       body: ListView(
         padding: const EdgeInsets.all(20),
         scrollDirection: Axis.vertical,
@@ -27,7 +26,7 @@ class CoursesTabBarView extends StatelessWidget {
           ),
           Text(
             '$level $language Courses',
-            style: AppFontStyle.title2OffBlack,
+            style: AppFontStyle.title2OffBlack(context),
           ),
           const SizedBox(
             width: double.infinity,

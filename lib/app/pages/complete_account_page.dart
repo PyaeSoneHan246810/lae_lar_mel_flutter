@@ -50,14 +50,14 @@ class _CompleteAccountPageState extends State<CompleteAccountPage> {
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.complete_account_title,
-                  style: AppFontStyle.title1OffBlack,
+                  style: AppFontStyle.title1OffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 25),
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.username,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 7),
@@ -90,7 +90,7 @@ class _CompleteAccountPageState extends State<CompleteAccountPage> {
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.password,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 7),
@@ -136,7 +136,7 @@ class _CompleteAccountPageState extends State<CompleteAccountPage> {
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.confirm_password,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 7),

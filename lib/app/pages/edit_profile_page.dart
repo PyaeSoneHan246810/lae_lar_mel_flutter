@@ -7,8 +7,11 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:lae_lar_mel_app/app/widgets/profile_image.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../providers/theme_mode_provider.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -44,6 +47,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
         isScrollControlled: true,
         context: context,
         builder: (context) {
+          final themeModeProvider =
+              Provider.of<ThemeModeProvider>(context, listen: false);
           return Container(
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
             child: Wrap(
@@ -60,9 +65,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   height: 12,
                 ),
                 ListTile(
-                  leading: const Icon(Icons.image),
+                  leading: Icon(
+                    Icons.image,
+                    color: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.offBlackColor
+                        : AppColor.greyColor,
+                  ),
                   iconColor: AppColor.lightBlackColor,
-                  titleTextStyle: AppFontStyle.alertText,
+                  titleTextStyle: AppFontStyle.alertTextOffBlack(context),
                   horizontalTitleGap: 8,
                   title: const Text(
                     'Photo Gallery',
@@ -72,9 +82,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.camera),
+                  leading: Icon(
+                    Icons.camera,
+                    color: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.offBlackColor
+                        : AppColor.greyColor,
+                  ),
                   iconColor: AppColor.lightBlackColor,
-                  titleTextStyle: AppFontStyle.alertText,
+                  titleTextStyle: AppFontStyle.alertTextOffBlack(context),
                   horizontalTitleGap: 8,
                   title: const Text(
                     'Camera',
@@ -99,18 +114,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
           ),
           actions: [
             CupertinoActionSheetAction(
-              child: const Text(
+              child: Text(
                 'Photo Gallery',
-                style: AppFontStyle.alertText,
+                style: AppFontStyle.alertTextOffBlack(context),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             CupertinoActionSheetAction(
-              child: const Text(
+              child: Text(
                 'Camera',
-                style: AppFontStyle.alertText,
+                style: AppFontStyle.alertTextOffBlack(context),
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -184,7 +199,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
                 child: Text(
                   AppLocalizations.of(context)!.username,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
             ),
@@ -222,7 +237,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: Text(
                   AppLocalizations.of(context)!.email,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
             ),

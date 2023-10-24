@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../config/colors.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
 
@@ -20,6 +22,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
   int totalMinutesLearnedToday = 0;
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.my_learning,
@@ -48,7 +51,10 @@ class _MyLearningPageState extends State<MyLearningPage> {
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                color: AppColor.secondaryColor,
+                                color: themeModeProvider.themeMode ==
+                                        ThemeMode.light
+                                    ? AppColor.secondaryColor
+                                    : AppColor.darkGreyLight2,
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -56,10 +62,13 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.fact_check_rounded,
                                       size: 30,
-                                      color: AppColor.pureWhiteColor,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.pureWhiteColor
+                                          : AppColor.lightPurpleColor,
                                     ),
                                     const CustomSeparator(
                                       height: 6,
@@ -100,7 +109,10 @@ class _MyLearningPageState extends State<MyLearningPage> {
                             Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                color: AppColor.primaryColor,
+                                color: themeModeProvider.themeMode ==
+                                        ThemeMode.light
+                                    ? AppColor.primaryColor
+                                    : AppColor.darkGreyLight2,
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -108,10 +120,13 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.school_rounded,
                                       size: 30,
-                                      color: AppColor.pureWhiteColor,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.pureWhiteColor
+                                          : AppColor.primaryColor,
                                     ),
                                     const CustomSeparator(
                                       height: 6,
@@ -158,7 +173,10 @@ class _MyLearningPageState extends State<MyLearningPage> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: AppColor.featuredColor,
+                            color:
+                                themeModeProvider.themeMode == ThemeMode.light
+                                    ? AppColor.featuredColor
+                                    : AppColor.darkGreyLight2,
                           ),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 27, bottom: 27),
@@ -172,10 +190,13 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    const Icon(
+                                    Icon(
                                       Icons.alarm_rounded,
                                       size: 28,
-                                      color: AppColor.pureWhiteColor,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.pureWhiteColor
+                                          : AppColor.featuredColor,
                                     ),
                                     const CustomSeparator(
                                       width: 10,
@@ -209,8 +230,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 ),
                 Text(
                   AppLocalizations.of(context)!.continue_learning_title,
-                  style:
-                      AppFontStyle.title1OffBlack, // Customize the text style
+                  style: AppFontStyle.title1OffBlack(context),
                 ),
                 const CustomSeparator(
                   height: 28,
@@ -229,7 +249,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 ),
                 Text(
                   AppLocalizations.of(context)!.empty_ongoing_course_message,
-                  style: AppFontStyle.bodyOffBlack,
+                  style: AppFontStyle.bodyOffBlack(context),
                 ),
               ],
             ),

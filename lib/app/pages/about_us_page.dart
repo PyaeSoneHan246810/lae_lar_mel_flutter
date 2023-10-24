@@ -5,6 +5,8 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:animate_do/animate_do.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_separator.dart';
 
 class AboutUsPage extends StatefulWidget {
@@ -32,6 +34,7 @@ class _AboutUsPageState extends State<AboutUsPage>
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: AppLocalizations.of(context)!.about_us,
@@ -75,7 +78,7 @@ class _AboutUsPageState extends State<AboutUsPage>
             FadeInLeft(
               child: Text(
                 AppLocalizations.of(context)!.about_laelarmel_text,
-                style: AppFontStyle.bodyOffBlack,
+                style: AppFontStyle.bodyOffBlack(context),
                 textAlign: TextAlign.justify,
               ),
             ),
@@ -88,7 +91,7 @@ class _AboutUsPageState extends State<AboutUsPage>
                 children: [
                   Text(
                     AppLocalizations.of(context)!.our_story,
-                    style: AppFontStyle.title2Secondary,
+                    style: AppFontStyle.title2Secondary(context),
                   ),
                   const CustomSeparator(
                     height: 4,
@@ -96,8 +99,10 @@ class _AboutUsPageState extends State<AboutUsPage>
                   Container(
                     width: 28,
                     height: 4,
-                    decoration: const BoxDecoration(
-                      color: AppColor.featuredColor,
+                    decoration: BoxDecoration(
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.featuredColor
+                          : AppColor.lightPurpleColor,
                     ),
                   ),
                 ],
@@ -109,7 +114,7 @@ class _AboutUsPageState extends State<AboutUsPage>
             FadeInLeft(
               child: Text(
                 AppLocalizations.of(context)!.our_story_text,
-                style: AppFontStyle.bodyOffBlack,
+                style: AppFontStyle.bodyOffBlack(context),
                 textAlign: TextAlign.justify,
               ),
             ),

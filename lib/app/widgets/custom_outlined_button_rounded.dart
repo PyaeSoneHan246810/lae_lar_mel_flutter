@@ -27,7 +27,7 @@ class CustomOutlinedButtonRounded extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: AppFontStyle.buttonNavTextOffBlack,
+        style: AppFontStyle.buttonNavTextOffBlack(context),
       ),
     );
   }

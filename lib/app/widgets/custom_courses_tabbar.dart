@@ -27,8 +27,6 @@ class CoursesTabBar extends StatelessWidget {
       isScrollable: true,
       indicatorColor: AppColor.primaryColor,
       labelStyle: AppFontStyle.tabNavText,
-      labelColor: AppColor.primaryColor,
-      unselectedLabelColor: AppColor.lightBlackColor,
       labelPadding: const EdgeInsets.only(left: 18, right: 18),
     );
   }

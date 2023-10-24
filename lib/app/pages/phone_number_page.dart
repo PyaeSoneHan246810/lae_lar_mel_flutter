@@ -53,7 +53,7 @@ class _PhoneNumberPageState extends State<PhoneNumberPage> {
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.enter_phone_number,
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 15),

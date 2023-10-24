@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
+import '../providers/theme_mode_provider.dart';
 
 class CustomCourseViewWithDeleteButton extends StatelessWidget {
   final CourseType courseType;
@@ -32,6 +34,7 @@ class CustomCourseViewWithDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -62,7 +65,7 @@ class CustomCourseViewWithDeleteButton extends StatelessWidget {
                     width: 240,
                     child: Text(
                       courseName,
-                      style: AppFontStyle.subtitleOffBlack,
+                      style: AppFontStyle.subtitleOffBlack(context),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
@@ -71,13 +74,13 @@ class CustomCourseViewWithDeleteButton extends StatelessWidget {
                     courseType == CourseType.free
                         ? AppLocalizations.of(context)!.free
                         : '${coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
-                    style: AppFontStyle.captionMediumOffBlack,
+                    style: AppFontStyle.captionMediumOffBlack(context),
                   ),
                 ],
               )),
           Text(
             courseInstructorName,
-            style: AppFontStyle.bodyOffBlack,
+            style: AppFontStyle.bodyOffBlack(context),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,11 +110,19 @@ class CustomCourseViewWithDeleteButton extends StatelessWidget {
                   ),
                 ],
               ),
-              IconButton(
-                onPressed: onDeleteIconButtonTap,
-                icon: const Icon(
-                  Icons.delete_rounded,
-                  color: Colors.red,
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: themeModeProvider.themeMode == ThemeMode.light
+                      ? AppColor.pureWhiteColor
+                      : AppColor.darkGreyLight2,
+                ),
+                child: IconButton(
+                  onPressed: onDeleteIconButtonTap,
+                  icon: const Icon(
+                    Icons.delete_rounded,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ],

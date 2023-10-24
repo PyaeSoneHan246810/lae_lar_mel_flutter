@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
 
 class AccountPage extends StatefulWidget {
@@ -34,7 +36,12 @@ class _AccountPageState extends State<AccountPage> {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
+        final themeModeProvider =
+            Provider.of<ThemeModeProvider>(context, listen: false);
         return AlertDialog(
+          backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+              ? AppColor.primaryColor
+              : AppColor.darkGreyLight2,
           contentPadding: const EdgeInsets.only(
             top: 20,
             left: 16,
@@ -85,7 +92,7 @@ class _AccountPageState extends State<AccountPage> {
               },
               child: Text(
                 AppLocalizations.of(context)!.code_cancel,
-                style: AppFontStyle.navTextOffBlack,
+                style: AppFontStyle.navTextOffBlack(context),
               ),
             ),
           ],
@@ -98,18 +105,22 @@ class _AccountPageState extends State<AccountPage> {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
+          final themeModeProvider =
+              Provider.of<ThemeModeProvider>(context, listen: false);
           return AlertDialog(
-            backgroundColor: Colors.white,
+            backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+                ? AppColor.primaryColor
+                : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.sign_out,
-              style: AppFontStyle.alertTitle,
+              style: AppFontStyle.alertTitleOffBlack(context),
             ),
             content: SingleChildScrollView(
               child: ListBody(
                 children: [
                   Text(
                     AppLocalizations.of(context)!.sign_out_text,
-                    style: AppFontStyle.alertText,
+                    style: AppFontStyle.alertTextOffBlack(context),
                   ),
                 ],
               ),
@@ -130,7 +141,7 @@ class _AccountPageState extends State<AccountPage> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.sign_out_no,
-                  style: AppFontStyle.navTextOffBlack,
+                  style: AppFontStyle.navTextOffBlack(context),
                 ),
               ),
             ],
@@ -140,6 +151,8 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    bool isSwitched = themeModeProvider.isDarkThemeEnabled;
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.account,
@@ -153,7 +166,9 @@ class _AccountPageState extends State<AccountPage> {
                 alignment: Alignment.center,
                 children: [
                   Container(
-                    color: AppColor.primaryColor,
+                    color: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.primaryColor
+                        : AppColor.darkGrey,
                     width: double.infinity,
                     height: 236,
                   ),
@@ -201,7 +216,25 @@ class _AccountPageState extends State<AccountPage> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 10.0, 0.0),
+                child: SwitchListTile(
+                  contentPadding: const EdgeInsets.all(0),
+                  title: Text(
+                    'Dark Theme',
+                    style: AppFontStyle.bodyOffBlack(context),
+                  ),
+                  value: isSwitched,
+                  activeColor: AppColor.primaryColor,
+                  onChanged: (value) {
+                    setState(() {
+                      isSwitched = value;
+                    });
+                    themeModeProvider.toggleTheme();
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 0.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed('editProfilePage');
@@ -211,7 +244,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.edit_profile,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -230,7 +263,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.redeem_code,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -247,7 +280,7 @@ class _AccountPageState extends State<AccountPage> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.help_and_support,
-                      style: AppFontStyle.captionSmallOffBlack,
+                      style: AppFontStyle.captionSmallOffBlack(context),
                     ),
                   ],
                 ),
@@ -263,7 +296,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.about_us,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -284,7 +317,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.contact_us,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -305,7 +338,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.faq,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -328,7 +361,7 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.share_app,
-                        style: AppFontStyle.bodyOffBlack,
+                        style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
                         Icons.arrow_forward_ios_rounded,
@@ -350,11 +383,11 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 20.0),
                 child: Text(
                   'v.1.0.0',
-                  style: AppFontStyle.captionSmallOffBlack,
+                  style: AppFontStyle.captionSmallOffBlack(context),
                 ),
               ),
             ],

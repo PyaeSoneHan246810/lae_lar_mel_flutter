@@ -6,7 +6,9 @@ import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
+import 'package:provider/provider.dart';
 
+import 'app/providers/theme_mode_provider.dart';
 import 'boxes.dart';
 
 void main() async {
@@ -18,5 +20,10 @@ void main() async {
   Hive.registerAdapter(CourseTypeAdapter());
   Hive.registerAdapter(CourseMaterialTypeAdapter());
   boxCourses = await Hive.openBox<Course>('courseBox');
-  runApp(const App());
+  runApp(
+    ChangeNotifierProvider<ThemeModeProvider>(
+      create: (_) => ThemeModeProvider(),
+      child: const App(),
+    ),
+  );
 }

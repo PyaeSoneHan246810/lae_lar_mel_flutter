@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../config/colors.dart';
+import '../providers/theme_mode_provider.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final String imagePath;
@@ -24,7 +26,7 @@ class ProfileImageWidget extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 4,
-            child: buildEditIcon(color),
+            child: buildEditIcon(color, context),
           ),
         ],
       ),
@@ -48,22 +50,27 @@ class ProfileImageWidget extends StatelessWidget {
     );
   }
 
-  Widget buildEditIcon(Color color) => buildCircle(
-        color: Colors.white,
-        all: 3,
-        child: GestureDetector(
-          onTap: onEditIconClicked,
-          child: buildCircle(
-            color: color,
-            all: 8,
-            child: const Icon(
-              Icons.edit_rounded,
-              color: Colors.white,
-              size: 20,
-            ),
+  Widget buildEditIcon(Color color, BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    return buildCircle(
+      color: themeModeProvider.themeMode == ThemeMode.light
+          ? AppColor.pureWhiteColor
+          : AppColor.darkGrey,
+      all: 3,
+      child: GestureDetector(
+        onTap: onEditIconClicked,
+        child: buildCircle(
+          color: color,
+          all: 8,
+          child: const Icon(
+            Icons.edit_rounded,
+            color: Colors.white,
+            size: 20,
           ),
         ),
-      );
+      ),
+    );
+  }
 
   Widget buildCircle({
     required Widget child,

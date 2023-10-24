@@ -6,8 +6,10 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:lae_lar_mel_app/app/widgets/custom_course_view_with_delete_button.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_separator.dart';
 import 'course_details_page.dart';
 
@@ -39,6 +41,7 @@ class _WishlistPageState extends State<WishlistPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: AppLocalizations.of(context)!.wishlist,
@@ -108,7 +111,9 @@ class _WishlistPageState extends State<WishlistPage> {
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: AppColor.greyColor,
+                          color: themeModeProvider.themeMode == ThemeMode.light
+                              ? AppColor.greyColor
+                              : AppColor.darkGreyLight2,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Row(
@@ -121,7 +126,7 @@ class _WishlistPageState extends State<WishlistPage> {
                             ),
                             Text(
                               AppLocalizations.of(context)!.remove_all,
-                              style: AppFontStyle.navTextOffBlack,
+                              style: AppFontStyle.navTextOffBlack(context),
                             )
                           ],
                         ),
@@ -144,7 +149,7 @@ class _WishlistPageState extends State<WishlistPage> {
                     ),
                     Text(
                       AppLocalizations.of(context)!.empty_wishlist_message,
-                      style: AppFontStyle.bodyOffBlack,
+                      style: AppFontStyle.bodyOffBlack(context),
                       textAlign: TextAlign.justify,
                     ),
                   ],

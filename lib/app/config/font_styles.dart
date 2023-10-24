@@ -4,13 +4,18 @@ import 'package:lae_lar_mel_app/app/config/colors.dart';
 class AppFontStyle {
   AppFontStyle._();
   //header
-  static const TextStyle headerOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 22,
-    fontWeight: FontWeight.w700,
-    color: AppColor.offBlackColor,
-    height: 1.45,
-  );
+  static TextStyle headerOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 22,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+      height: 1.45,
+    );
+  }
+
   static const TextStyle headerPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 22,
@@ -25,20 +30,30 @@ class AppFontStyle {
     color: AppColor.primaryColor,
     height: 1.45,
   );
-  static const TextStyle headerSecondary = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 22,
-    fontWeight: FontWeight.w700,
-    color: AppColor.secondaryColor,
-    height: 1.45,
-  );
+  static TextStyle headerSecondary(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 22,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.secondaryColor
+          : AppColor.lightPurpleColor,
+      height: 1.45,
+    );
+  }
+
   //title1
-  static const TextStyle title1OffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 18,
-    fontWeight: FontWeight.w700,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle title1OffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 18,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle title1PureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 18,
@@ -52,12 +67,17 @@ class AppFontStyle {
     color: AppColor.primaryColor,
   );
   //title2
-  static const TextStyle title2OffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: FontWeight.w700,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle title2OffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle title2PureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16,
@@ -70,19 +90,29 @@ class AppFontStyle {
     fontWeight: FontWeight.w700,
     color: AppColor.primaryColor,
   );
-  static const TextStyle title2Secondary = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: FontWeight.w700,
-    color: AppColor.secondaryColor,
-  );
+  static TextStyle title2Secondary(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.secondaryColor
+          : AppColor.lightPurpleColor,
+    );
+  }
+
   //title3
-  static const TextStyle title3OffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle title3OffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle title3PureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16,
@@ -96,12 +126,17 @@ class AppFontStyle {
     color: AppColor.primaryColor,
   );
   //subtitle
-  static const TextStyle subtitleOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w600,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle subtitleOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle subtitlePureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 14,
@@ -115,12 +150,17 @@ class AppFontStyle {
     color: AppColor.primaryColor,
   );
   //caption_big
-  static const TextStyle captionBigOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle captionBigOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle captionBigPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 14,
@@ -134,12 +174,17 @@ class AppFontStyle {
     color: AppColor.primaryColor,
   );
   //caption_medium
-  static const TextStyle captionMediumOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle captionMediumOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle captionMediumPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -152,19 +197,29 @@ class AppFontStyle {
     fontWeight: FontWeight.w500,
     color: AppColor.primaryColor,
   );
-  static const TextStyle captionMediumSecondary = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColor.secondaryColor,
-  );
+  static TextStyle captionMediumSecondary(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.secondaryColor
+          : AppColor.lightPurpleColor,
+    );
+  }
+
   //caption_small
-  static const TextStyle captionSmallOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 10,
-    fontWeight: FontWeight.w400,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle captionSmallOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle captionSmallPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 10,
@@ -184,13 +239,18 @@ class AppFontStyle {
     color: AppColor.lightBlackColor,
   );
   //body
-  static const TextStyle bodyOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    color: AppColor.offBlackColor,
-    height: 1.8,
-  );
+  static TextStyle bodyOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+      height: 1.8,
+    );
+  }
+
   static const TextStyle bodyPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -206,12 +266,17 @@ class AppFontStyle {
     height: 1.8,
   );
   //body_nav_text
-  static const TextStyle bodyNavTextOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle bodyNavTextOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle bodyNavTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -225,12 +290,17 @@ class AppFontStyle {
     color: AppColor.primaryColor,
   );
   //nav_text
-  static const TextStyle navTextOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle navTextOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle navTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 14,
@@ -250,12 +320,17 @@ class AppFontStyle {
     color: Colors.red,
   );
   //button_nav_text
-  static const TextStyle buttonNavTextOffBlack = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle buttonNavTextOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle buttonNavTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -303,25 +378,35 @@ class AppFontStyle {
     color: AppColor.offBlackColor,
   );
   //alert_title
-  static const TextStyle alertTitle = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    color: AppColor.offBlackColor,
-  );
+  static TextStyle alertTitleOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle alertTitlePrimary = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColor.primaryColor,
   );
-  //alert_title
-  static const TextStyle alertText = TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: AppColor.lightBlackColor,
-  );
+  //alert_text
+  static TextStyle alertTextOffBlack(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+    );
+  }
+
   static const TextStyle alertTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 14,

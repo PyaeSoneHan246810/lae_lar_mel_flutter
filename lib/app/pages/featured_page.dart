@@ -8,9 +8,11 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../models/language_category_model.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_courses_list_view.dart';
 
 class FeaturedPage extends StatefulWidget {
@@ -45,6 +47,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     _getInitialInfo();
     return Scaffold(
       appBar: CustomAppBar(
@@ -60,26 +63,26 @@ class _FeaturedPageState extends State<FeaturedPage> {
             const CustomSeparator(height: 14),
             Text(
               '${AppLocalizations.of(context)!.greeting_title} $username!',
-              style: AppFontStyle.headerSecondary,
+              style: AppFontStyle.headerSecondary(context),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 AppLocalizations.of(context)!.greeting_subtitle,
-                style: AppFontStyle.bodyOffBlack,
+                style: AppFontStyle.bodyOffBlack(context),
                 textAlign: TextAlign.justify,
               ),
             ),
             const CustomSeparator(height: 42),
             Text(
               AppLocalizations.of(context)!.languages_title,
-              style: AppFontStyle.title1OffBlack,
+              style: AppFontStyle.title1OffBlack(context),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 4),
               child: Text(
                 AppLocalizations.of(context)!.languages_subtitle,
-                style: AppFontStyle.bodyOffBlack,
+                style: AppFontStyle.bodyOffBlack(context),
                 textAlign: TextAlign.justify,
               ),
             ),
@@ -106,7 +109,9 @@ class _FeaturedPageState extends State<FeaturedPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Container(
-                      color: AppColor.secondaryColor,
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.secondaryColor
+                          : AppColor.darkGreyLight2,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Row(
@@ -138,7 +143,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             const CustomSeparator(height: 42),
             Text(
               AppLocalizations.of(context)!.free_courses_title,
-              style: AppFontStyle.title1OffBlack,
+              style: AppFontStyle.title1OffBlack(context),
             ),
             const CustomSeparator(height: 16),
             CoursesListView(
@@ -158,7 +163,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             const CustomSeparator(height: 42),
             Text(
               AppLocalizations.of(context)!.premium_courses_title,
-              style: AppFontStyle.title1OffBlack,
+              style: AppFontStyle.title1OffBlack(context),
             ),
             const CustomSeparator(height: 16),
             CoursesListView(

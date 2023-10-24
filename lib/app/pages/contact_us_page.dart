@@ -78,7 +78,7 @@ class _ContactUsPageState extends State<ContactUsPage>
             FadeInLeft(
               child: Text(
                 AppLocalizations.of(context)!.call_center,
-                style: AppFontStyle.subtitleOffBlack,
+                style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
             const CustomSeparator(
@@ -89,9 +89,9 @@ class _ContactUsPageState extends State<ContactUsPage>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     '09-989366779',
-                    style: AppFontStyle.captionBigOffBlack,
+                    style: AppFontStyle.captionBigOffBlack(context),
                   ),
                   Container(
                     width: 40,
@@ -124,9 +124,9 @@ class _ContactUsPageState extends State<ContactUsPage>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     '09-454343475',
-                    style: AppFontStyle.captionBigOffBlack,
+                    style: AppFontStyle.captionBigOffBlack(context),
                   ),
                   Container(
                     width: 40,
@@ -157,7 +157,7 @@ class _ContactUsPageState extends State<ContactUsPage>
             FadeInLeft(
               child: Text(
                 AppLocalizations.of(context)!.business_calls,
-                style: AppFontStyle.subtitleOffBlack,
+                style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
             const CustomSeparator(
@@ -168,9 +168,9 @@ class _ContactUsPageState extends State<ContactUsPage>
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     '09-650466358',
-                    style: AppFontStyle.captionBigOffBlack,
+                    style: AppFontStyle.captionBigOffBlack(context),
                   ),
                   Container(
                     width: 40,
@@ -203,9 +203,9 @@ class _ContactUsPageState extends State<ContactUsPage>
               height: 24,
             ),
             FadeInLeft(
-              child: const Text(
+              child: Text(
                 'Follow Us On',
-                style: AppFontStyle.subtitleOffBlack,
+                style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
             const CustomSeparator(

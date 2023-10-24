@@ -12,7 +12,6 @@ class CustomAppBarWithBackArrowAndTitle extends AppBar {
     Key? key,
   }) : super(
           key: key,
-          backgroundColor: AppColor.pureWhiteColor,
           elevation: 0,
           title: Text(
             titleText,
@@ -26,7 +25,6 @@ class CustomAppBarWithBackArrowAndTitle extends AppBar {
               icon: const Icon(
                 Icons.arrow_back_ios_rounded,
                 size: 24,
-                color: AppColor.offBlackColor,
               ),
             ),
           ),

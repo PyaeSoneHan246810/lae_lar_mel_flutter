@@ -52,16 +52,16 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               ),
               const CustomSeparator(height: 42),
               FadeInDown(
-                child: const Text(
+                child: Text(
                   'Reset your password',
-                  style: AppFontStyle.title1OffBlack,
+                  style: AppFontStyle.title1OffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 25),
               FadeInDown(
-                child: const Text(
+                child: Text(
                   'Password',
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 7),

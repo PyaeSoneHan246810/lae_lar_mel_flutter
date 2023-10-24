@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../enums/enums.dart';
+import '../providers/theme_mode_provider.dart';
 
 class CustomCourseView extends StatefulWidget {
   final CourseType courseType;
@@ -37,6 +39,7 @@ class CustomCourseView extends StatefulWidget {
 class _CustomCourseViewState extends State<CustomCourseView> {
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return GestureDetector(
       onTap: widget.onTap,
       child: Column(
@@ -49,8 +52,10 @@ class _CustomCourseViewState extends State<CustomCourseView> {
                   child: Container(
                     width: double.infinity,
                     height: 160,
-                    decoration: const BoxDecoration(
-                      color: AppColor.pureWhiteColor,
+                    decoration: BoxDecoration(
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.pureWhiteColor
+                          : AppColor.darkGrey,
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
@@ -64,8 +69,10 @@ class _CustomCourseViewState extends State<CustomCourseView> {
               : Container(
                   width: double.infinity,
                   height: 160,
-                  decoration: const BoxDecoration(
-                    color: AppColor.pureWhiteColor,
+                  decoration: BoxDecoration(
+                    color: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.pureWhiteColor
+                        : AppColor.darkGrey,
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
@@ -85,7 +92,7 @@ class _CustomCourseViewState extends State<CustomCourseView> {
                     width: 240,
                     child: Text(
                       widget.courseName,
-                      style: AppFontStyle.subtitleOffBlack,
+                      style: AppFontStyle.subtitleOffBlack(context),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
@@ -94,13 +101,13 @@ class _CustomCourseViewState extends State<CustomCourseView> {
                     widget.courseType == CourseType.free
                         ? AppLocalizations.of(context)!.free
                         : '${widget.coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
-                    style: AppFontStyle.captionMediumOffBlack,
+                    style: AppFontStyle.captionMediumOffBlack(context),
                   ),
                 ],
               )),
           Text(
             widget.courseInstructorName,
-            style: AppFontStyle.bodyOffBlack,
+            style: AppFontStyle.bodyOffBlack(context),
           ),
           Row(
             children: [

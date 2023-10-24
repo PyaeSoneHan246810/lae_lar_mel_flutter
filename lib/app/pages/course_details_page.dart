@@ -3,6 +3,7 @@ import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
+import 'package:provider/provider.dart';
 import 'dart:async';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +15,7 @@ import '../config/font_styles.dart';
 import '../enums/enums.dart';
 import '../models/course_material_model.dart';
 import '../models/course_model.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_add_to_wishlist_button.dart';
 import '../widgets/custom_appbar_with_back_arrow_without_title.dart';
 import '../widgets/custom_filled_button_rounded.dart';
@@ -149,7 +151,12 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
+        final themeModeProvider =
+            Provider.of<ThemeModeProvider>(context, listen: false);
         return AlertDialog(
+          backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+              ? AppColor.primaryColor
+              : AppColor.darkGreyLight2,
           contentPadding: const EdgeInsets.only(
             top: 20,
             left: 16,
@@ -207,7 +214,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               },
               child: Text(
                 AppLocalizations.of(context)!.code_cancel,
-                style: AppFontStyle.navTextOffBlack,
+                style: AppFontStyle.navTextOffBlack(context),
               ),
             ),
           ],
@@ -220,15 +227,19 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
+          final themeModeProvider =
+              Provider.of<ThemeModeProvider>(context, listen: false);
           return AlertDialog(
-            backgroundColor: Colors.white,
+            backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+                ? AppColor.primaryColor
+                : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.paid_content,
-              style: AppFontStyle.alertTitle,
+              style: AppFontStyle.alertTitleOffBlack(context),
             ),
             content: Text(
               AppLocalizations.of(context)!.paid_content_message,
-              style: AppFontStyle.alertText,
+              style: AppFontStyle.alertTextOffBlack(context),
             ),
             actions: [
               TextButton(
@@ -247,7 +258,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.close,
-                  style: AppFontStyle.navTextOffBlack,
+                  style: AppFontStyle.navTextOffBlack(context),
                 ),
               ),
             ],
@@ -259,15 +270,19 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
+          final themeModeProvider =
+              Provider.of<ThemeModeProvider>(context, listen: false);
           return AlertDialog(
-            backgroundColor: Colors.white,
+            backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+                ? AppColor.primaryColor
+                : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.enroll_course,
-              style: AppFontStyle.alertTitle,
+              style: AppFontStyle.alertTitleOffBlack(context),
             ),
             content: Text(
               AppLocalizations.of(context)!.enroll_course_message,
-              style: AppFontStyle.alertText,
+              style: AppFontStyle.alertTextOffBlack(context),
             ),
             actions: [
               TextButton(
@@ -286,7 +301,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 },
                 child: Text(
                   AppLocalizations.of(context)!.close,
-                  style: AppFontStyle.navTextOffBlack,
+                  style: AppFontStyle.navTextOffBlack(context),
                 ),
               ),
             ],
@@ -310,19 +325,19 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 children: [
                   Text(
                     widget.course.courseName,
-                    style: AppFontStyle.title3OffBlack,
+                    style: AppFontStyle.title3OffBlack(context),
                   ),
                   const CustomSeparator(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                      Text(
                         'Total',
-                        style: AppFontStyle.captionBigOffBlack,
+                        style: AppFontStyle.captionBigOffBlack(context),
                       ),
                       Text(
                         '${_coursePrice.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
-                        style: AppFontStyle.captionBigOffBlack,
+                        style: AppFontStyle.captionBigOffBlack(context),
                       ),
                     ],
                   ),
@@ -332,9 +347,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     children: [
                       Row(
                         children: [
-                          const Text(
+                          Text(
                             'Discount',
-                            style: AppFontStyle.captionBigOffBlack,
+                            style: AppFontStyle.captionBigOffBlack(context),
                           ),
                           const CustomSeparator(
                             height: 0,
@@ -347,14 +362,15 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             },
                             child: Text(
                               '[${AppLocalizations.of(context)!.coupon_code}]',
-                              style: AppFontStyle.captionMediumSecondary,
+                              style:
+                                  AppFontStyle.captionMediumSecondary(context),
                             ),
                           ),
                         ],
                       ),
                       Text(
                         '${_discount.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
-                        style: AppFontStyle.captionBigOffBlack,
+                        style: AppFontStyle.captionBigOffBlack(context),
                       ),
                     ],
                   ),
@@ -362,20 +378,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
+                      Text(
                         'Grand Total',
-                        style: AppFontStyle.captionBigOffBlack,
+                        style: AppFontStyle.captionBigOffBlack(context),
                       ),
                       Text(
                         '${_grandTotal.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
-                        style: AppFontStyle.subtitleOffBlack,
+                        style: AppFontStyle.subtitleOffBlack(context),
                       ),
                     ],
                   ),
                   const CustomSeparator(height: 24),
                   Text(
                     AppLocalizations.of(context)!.select_payment_method,
-                    style: AppFontStyle.captionBigOffBlack,
+                    style: AppFontStyle.captionBigOffBlack(context),
                   ),
                   const CustomSeparator(height: 12),
                   PaymentOptionSelector(
@@ -395,7 +411,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         _isMorePaymentOptionsVisible
                             ? 'Less payment options'
                             : 'More payment options',
-                        style: AppFontStyle.bodyNavTextOffBlack,
+                        style: AppFontStyle.bodyNavTextOffBlack(context),
                       ),
                     ),
                   ),
@@ -438,7 +454,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       },
                       child: Text(
                         AppLocalizations.of(context)!.back,
-                        style: AppFontStyle.navTextOffBlack,
+                        style: AppFontStyle.navTextOffBlack(context),
                       ),
                     ),
                   ),
@@ -551,6 +567,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   Widget _buildCourseMaterial(
       CourseMaterial courseMaterial, int index, int currentSectionIndex) {
     IconData iconData;
+    final themeModeProvider =
+        Provider.of<ThemeModeProvider>(context, listen: false);
 
     if (_isTheCourseEnrolled) {
       switch (courseMaterial.courseMaterialType) {
@@ -625,7 +643,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             children: [
               Text(
                 courseMaterial.courseMaterialId.toString(),
-                style: AppFontStyle.bodyOffBlack,
+                style: AppFontStyle.bodyOffBlack(context),
               ),
               const CustomSeparator(
                 width: 18,
@@ -639,20 +657,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           width: 240,
                           child: Text(
                             courseMaterial.courseMaterialTitle,
-                            style: AppFontStyle.bodyOffBlack,
+                            style: AppFontStyle.bodyOffBlack(context),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                           ),
                         ),
                         Text(
                           "${courseMaterial.durationInMinute!.toStringAsFixed(2)} min",
-                          style: AppFontStyle.captionSmallLightBlack,
+                          style: AppFontStyle.captionSmallOffBlack(context),
                         ),
                       ],
                     )
                   : Text(
                       courseMaterial.courseMaterialTitle,
-                      style: AppFontStyle.bodyOffBlack,
+                      style: AppFontStyle.bodyOffBlack(context),
                     ),
             ],
           ),
@@ -737,7 +755,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               },
               child: Icon(
                 iconData,
-                color: AppColor.secondaryColor,
+                color: themeModeProvider.themeMode == ThemeMode.light
+                    ? AppColor.offBlackColor
+                    : AppColor.primaryColor,
                 size: 24,
               ),
             ),
@@ -751,6 +771,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   Widget build(BuildContext context) {
     int currentSectionIndex;
     final isFavourite = boxCourses.get('key_${widget.course.courseId}') != null;
+    final themeModeProvider =
+        Provider.of<ThemeModeProvider>(context, listen: false);
     _checkSecureMode();
     return Scaffold(
       appBar: CustomAppBarWithBackArrowWithoutTitle(
@@ -775,7 +797,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           FadeInLeft(
             child: Text(
               widget.course.courseName,
-              style: AppFontStyle.title3OffBlack,
+              style: AppFontStyle.title3OffBlack(context),
             ),
           ),
           const CustomSeparator(height: 4),
@@ -810,7 +832,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         left: 4, right: 4, top: 2, bottom: 2),
                     child: Text(
                       '${widget.course.courseTotalDurationInHour.toStringAsFixed(1)}  ${AppLocalizations.of(context)!.hours}',
-                      style: AppFontStyle.captionMediumOffBlack,
+                      style: AppFontStyle.captionMediumOffBlack(context),
                     ),
                   ),
                 ),
@@ -825,9 +847,15 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               children: [
                 ExpansionPanel(
                   hasIcon: false,
+                  backgroundColor:
+                      themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.pureWhiteColor
+                          : AppColor.darkGrey,
                   headerBuilder: (context, isExpanded) {
                     return Material(
-                      color: AppColor.pureWhiteColor,
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.pureWhiteColor
+                          : AppColor.darkGrey,
                       child: InkWell(
                         onTap: () {
                           setState(() {
@@ -883,12 +911,14 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                     Text(
                                       widget.course.courseInstructor
                                           .courseInstructorName,
-                                      style: AppFontStyle.title3OffBlack,
+                                      style:
+                                          AppFontStyle.title3OffBlack(context),
                                     ),
                                     Text(
                                       widget.course.courseInstructor
                                           .courseInstructorMajor,
-                                      style: AppFontStyle.captionMediumOffBlack,
+                                      style: AppFontStyle.captionMediumOffBlack(
+                                          context),
                                     ),
                                   ],
                                 ),
@@ -898,7 +928,10 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                               _isInstructorExpansionPanelExpanded == false
                                   ? Icons.keyboard_arrow_down_rounded
                                   : Icons.keyboard_arrow_up_rounded,
-                              color: AppColor.offBlackColor,
+                              color:
+                                  themeModeProvider.themeMode == ThemeMode.light
+                                      ? AppColor.offBlackColor
+                                      : AppColor.greyColor,
                               size: 30,
                             ),
                           ],
@@ -911,7 +944,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     child: Text(
                       widget
                           .course.courseInstructor.courseInstructorDescription,
-                      style: AppFontStyle.bodyOffBlack,
+                      style: AppFontStyle.bodyOffBlack(context),
                       textAlign: TextAlign.justify,
                     ),
                   ),
@@ -926,7 +959,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               widget.course.courseType == CourseType.free
                   ? AppLocalizations.of(context)!.free
                   : '${_coursePrice.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
-              style: AppFontStyle.title3OffBlack,
+              style: AppFontStyle.title3OffBlack(context),
             ),
           ),
           const CustomSeparator(height: 15),
@@ -1023,7 +1056,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           FadeInLeft(
             child: Text(
               AppLocalizations.of(context)!.course_content,
-              style: AppFontStyle.title3OffBlack,
+              style: AppFontStyle.title3OffBlack(context),
             ),
           ),
           const CustomSeparator(height: 20),
@@ -1042,11 +1075,17 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 currentSectionIndex = index;
                 final courseSection = entry.value;
                 return ExpansionPanel(
+                  backgroundColor:
+                      themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.pureWhiteColor
+                          : AppColor.darkGrey,
                   hasIcon: false,
                   canTapOnHeader: true,
                   headerBuilder: (context, isExpanded) {
                     return Material(
-                      color: AppColor.pureWhiteColor,
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.pureWhiteColor
+                          : AppColor.darkGrey,
                       child: InkWell(
                         onTap: () {
                           _toggleExpansionState(index);
@@ -1059,7 +1098,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                               width: 240,
                               child: Text(
                                 courseSection.courseSectionTitle,
-                                style: AppFontStyle.captionBigOffBlack,
+                                style: AppFontStyle.captionBigOffBlack(context),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
                               ),
@@ -1068,7 +1107,10 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                               isExpanded == true
                                   ? Icons.remove_rounded
                                   : Icons.add_rounded,
-                              color: AppColor.offBlackColor,
+                              color:
+                                  themeModeProvider.themeMode == ThemeMode.light
+                                      ? AppColor.offBlackColor
+                                      : AppColor.greyColor,
                               size: 30,
                             ),
                           ],

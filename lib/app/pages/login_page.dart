@@ -52,16 +52,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               const CustomSeparator(height: 42),
               FadeInDown(
-                child: const Text(
+                child: Text(
                   'Enter your password to log in',
-                  style: AppFontStyle.title1OffBlack,
+                  style: AppFontStyle.title1OffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 25),
               FadeInDown(
-                child: const Text(
+                child: Text(
                   'Password',
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 7),

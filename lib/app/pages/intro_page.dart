@@ -40,7 +40,7 @@ class _IntroPageState extends State<IntroPage> {
                     const CustomSeparator(height: 10),
                     Text(
                       AppLocalizations.of(context)!.intro_subtitle,
-                      style: AppFontStyle.captionBigOffBlack,
+                      style: AppFontStyle.captionBigOffBlack(context),
                     ),
                     const CustomSeparator(height: 70),
                     Center(
@@ -91,7 +91,7 @@ class _IntroPageState extends State<IntroPage> {
                           ),
                           Text(
                             AppLocalizations.of(context)!.select_language,
-                            style: AppFontStyle.bodyNavTextOffBlack,
+                            style: AppFontStyle.bodyNavTextOffBlack(context),
                           ),
                         ],
                       ),
@@ -137,10 +137,11 @@ Future<void> displayLanguagePickerSheet(
                 width: 40,
               ),
               iconColor: AppColor.lightBlackColor,
-              titleTextStyle: AppFontStyle.alertText,
+              titleTextStyle: AppFontStyle.alertTextOffBlack(context),
               horizontalTitleGap: 12,
               title: Text(
                 AppLocalizations.of(context)!.english_language,
+                style: AppFontStyle.bodyOffBlack(context),
               ),
               onTap: () {
                 final provider =
@@ -155,10 +156,11 @@ Future<void> displayLanguagePickerSheet(
                 width: 40,
               ),
               iconColor: AppColor.lightBlackColor,
-              titleTextStyle: AppFontStyle.alertText,
+              titleTextStyle: AppFontStyle.alertTextOffBlack(context),
               horizontalTitleGap: 12,
               title: Text(
                 AppLocalizations.of(context)!.burmese_language,
+                style: AppFontStyle.bodyOffBlack(context),
               ),
               onTap: () {
                 final provider =
@@ -169,15 +171,15 @@ Future<void> displayLanguagePickerSheet(
             ),
             Visibility(
               visible: isMessageVisible,
-              child: const Column(
+              child: Column(
                 children: [
-                  CustomSeparator(
+                  const CustomSeparator(
                     height: 12,
                   ),
                   Center(
                     child: Text(
                       "You can change it later if you want",
-                      style: AppFontStyle.bodyOffBlack,
+                      style: AppFontStyle.bodyOffBlack(context),
                       textAlign: TextAlign.center,
                     ),
                   ),

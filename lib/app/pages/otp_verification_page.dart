@@ -36,7 +36,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
               FadeInDown(
                 child: Text(
                   AppLocalizations.of(context)!.otp_title,
-                  style: AppFontStyle.title1OffBlack,
+                  style: AppFontStyle.title1OffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 15),
@@ -45,7 +45,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                   AppLocalizations.of(context)!.localeName == 'my'
                       ? '$_userPhoneNumber ${AppLocalizations.of(context)!.otp_subtitle}'
                       : '${AppLocalizations.of(context)!.otp_subtitle} $_userPhoneNumber.',
-                  style: AppFontStyle.captionBigOffBlack,
+                  style: AppFontStyle.captionBigOffBlack(context),
                 ),
               ),
               const CustomSeparator(height: 80),
@@ -80,7 +80,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.no_receive_code,
-                      style: AppFontStyle.captionBigOffBlack,
+                      style: AppFontStyle.captionBigOffBlack(context),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 4),
@@ -119,7 +119,7 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.wrong_phone_number,
-                      style: AppFontStyle.captionBigOffBlack,
+                      style: AppFontStyle.captionBigOffBlack(context),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 4),

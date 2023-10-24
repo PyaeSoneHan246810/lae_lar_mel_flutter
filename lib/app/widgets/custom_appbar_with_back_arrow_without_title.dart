@@ -12,16 +12,14 @@ class CustomAppBarWithBackArrowWithoutTitle extends AppBar {
     Key? key,
   }) : super(
           key: key,
-          backgroundColor: appBarBackgroundColor,
           elevation: 0,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8),
             child: IconButton(
               onPressed: onBackButtonPressed,
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_rounded,
                 size: 24,
-                color: appBarBackArrowColor,
               ),
             ),
           ),

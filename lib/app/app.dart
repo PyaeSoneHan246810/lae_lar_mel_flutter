@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lae_lar_mel_app/app/config/themes.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/contact_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_japanese.dart';
@@ -19,10 +20,10 @@ import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/providers/locale_provider.dart';
+import 'package:lae_lar_mel_app/app/providers/theme_mode_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../l10n/l10n.dart';
-import 'config/colors.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -32,23 +33,12 @@ class App extends StatelessWidget {
         create: (context) => LocaleProvider(),
         builder: (context, child) {
           final provider = Provider.of<LocaleProvider>(context);
+          final themeModeProvider = Provider.of<ThemeModeProvider>(context);
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              useMaterial3: false,
-              primaryColor: AppColor.primaryColor,
-              scaffoldBackgroundColor: AppColor.pureWhiteColor,
-              bottomSheetTheme: const BottomSheetThemeData(
-                dragHandleColor: AppColor.primaryColor,
-                showDragHandle: true,
-                backgroundColor: AppColor.lightestBlueColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(30),
-                  ),
-                ),
-              ),
-            ),
+            theme: lightTheme,
+            darkTheme: darkTheme,
+            themeMode: themeModeProvider.themeMode,
             locale: provider.locale,
             supportedLocales: L10n.all,
             localizationsDelegates: const [

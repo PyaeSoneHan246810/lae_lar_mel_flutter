@@ -32,7 +32,6 @@ class _RootPageState extends State<RootPage> {
       body: _mainPages[_currentPage],
       bottomNavigationBar: SizedBox(
         child: BottomNavigationBar(
-          backgroundColor: AppColor.pureWhiteColor,
           elevation: 12,
           items: [
             BottomNavigationBarItem(
@@ -66,8 +65,6 @@ class _RootPageState extends State<RootPage> {
               label: AppLocalizations.of(context)!.account,
             ),
           ],
-          unselectedItemColor: AppColor.lightBlackColor,
-          selectedItemColor: AppColor.primaryColor,
           unselectedLabelStyle: AppFontStyle.bottomNavTextUnselected,
           selectedLabelStyle: AppFontStyle.bottomNavTextSelected,
           currentIndex: _currentPage,

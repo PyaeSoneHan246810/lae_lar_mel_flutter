@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
-import '../config/colors.dart';
+import 'package:provider/provider.dart';
 import '../config/font_styles.dart';
+import '../providers/theme_mode_provider.dart';
 
 class CustomAppBar extends AppBar {
   final String titleText;
@@ -13,7 +14,6 @@ class CustomAppBar extends AppBar {
     Key? key,
   }) : super(
           key: key,
-          backgroundColor: AppColor.pureWhiteColor,
           elevation: 2,
           toolbarHeight: 60,
           title: Padding(
@@ -38,17 +38,18 @@ class CustomAppBar extends AppBar {
                     icon: const Icon(
                       Icons.favorite_rounded,
                       size: 28,
-                      color: AppColor.lightBlackColor,
                     ),
                   ),
                   IconButton(
                     onPressed: () {
+                      final themeModeProvider = Provider.of<ThemeModeProvider>(
+                          context,
+                          listen: false);
                       displayLanguagePickerSheet(context, false);
                     },
                     icon: const Icon(
                       Icons.language_rounded,
                       size: 28,
-                      color: AppColor.lightBlackColor,
                     ),
                   ),
                 ],
