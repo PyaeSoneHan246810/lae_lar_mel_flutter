@@ -10,98 +10,100 @@ import 'package:provider/provider.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 
-class IntroPage extends StatefulWidget {
-  const IntroPage({super.key});
+class WelcomePage extends StatefulWidget {
+  const WelcomePage({super.key});
 
   @override
-  State<IntroPage> createState() => _IntroPageState();
+  State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _IntroPageState extends State<IntroPage> {
+class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, top: 50, right: 20, bottom: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 4,
-              child: FadeInDown(
-                child: Column(
-                  children: [
-                    const CustomSeparator(height: 20),
-                    Text(
-                      AppLocalizations.of(context)!.intro_title,
-                      style: AppFontStyle.headerPrimary,
-                    ),
-                    const CustomSeparator(height: 10),
-                    Text(
-                      AppLocalizations.of(context)!.intro_subtitle,
-                      style: AppFontStyle.captionBigOffBlack(context),
-                    ),
-                    const CustomSeparator(height: 70),
-                    Center(
-                      child: Image.asset(
-                        'assets/images/intro_illustration.png',
-                        fit: BoxFit.cover,
+      body: SafeArea(
+        child: Padding(
+          padding:
+              const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 4,
+                child: FadeInDown(
+                  child: Column(
+                    children: [
+                      const CustomSeparator(height: 10),
+                      Text(
+                        AppLocalizations.of(context)!.intro_title,
+                        style: AppFontStyle.headerPrimary,
                       ),
-                    ),
-                  ],
+                      const CustomSeparator(height: 10),
+                      Text(
+                        AppLocalizations.of(context)!.intro_subtitle,
+                        style: AppFontStyle.captionBigOffBlack(context),
+                      ),
+                      const CustomSeparator(height: 70),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/intro_illustration.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              flex: 1,
-              child: FadeInUp(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomFilledButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed('phoneNumberPage');
-                            },
-                            text: AppLocalizations.of(context)!.getting_started,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const CustomSeparator(height: 20),
-                    GestureDetector(
-                      onTap: () {
-                        displayLanguagePickerSheet(context, true);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+              Expanded(
+                flex: 1,
+                child: FadeInUp(
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          const Icon(
-                            Icons.g_translate_rounded,
-                            color: AppColor.offBlackColor,
-                            size: 24,
-                          ),
-                          const CustomSeparator(
-                            height: 0,
-                            width: 10,
-                          ),
-                          Text(
-                            AppLocalizations.of(context)!.select_language,
-                            style: AppFontStyle.bodyNavTextOffBlack(context),
+                          Expanded(
+                            child: CustomFilledButton(
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed('phoneNumberPage');
+                              },
+                              text:
+                                  AppLocalizations.of(context)!.getting_started,
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                    const CustomSeparator(height: 20),
-                  ],
+                      const CustomSeparator(height: 20),
+                      GestureDetector(
+                        onTap: () {
+                          displayLanguagePickerSheet(context, true);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.g_translate_rounded,
+                              color: AppColor.offBlackColor,
+                              size: 24,
+                            ),
+                            const CustomSeparator(
+                              height: 0,
+                              width: 10,
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.select_language,
+                              style: AppFontStyle.bodyNavTextOffBlack(context),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

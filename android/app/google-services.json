@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "141912895768",
+    "project_id": "laelarmelflutter",
+    "storage_bucket": "laelarmelflutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141912895768:android:d423e894aadbb294116e6d",
+        "android_client_info": {
+          "package_name": "com.example.lae_lar_mel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm9GAHb41wC71uSJ5kTIM-OdQXEF9jniI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

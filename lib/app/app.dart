@@ -7,7 +7,7 @@ import 'package:lae_lar_mel_app/app/pages/courses_page_japanese.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_korean.dart';
 import 'package:lae_lar_mel_app/app/pages/edit_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/faq_page.dart';
-import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
+import 'package:lae_lar_mel_app/app/pages/welcome_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_chinese.dart';
 import 'package:lae_lar_mel_app/app/pages/complete_account_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_english.dart';
@@ -49,7 +49,7 @@ class App extends StatelessWidget {
             ],
             home: const SplashScreen(),
             routes: {
-              'introPage': (context) => const IntroPage(),
+              'welcomePage': (context) => const WelcomePage(),
               'phoneNumberPage': (context) => const PhoneNumberPage(),
               'otpVerificationPage': (context) => const OTPVerificationPage(),
               'completeAccountPage': (context) => const CompleteAccountPage(),

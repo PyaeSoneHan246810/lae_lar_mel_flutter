@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lae_lar_mel_app/app/pages/intro_page.dart';
+import 'package:lae_lar_mel_app/app/pages/welcome_page.dart';
 import 'package:provider/provider.dart';
 import '../config/font_styles.dart';
 import '../providers/theme_mode_provider.dart';

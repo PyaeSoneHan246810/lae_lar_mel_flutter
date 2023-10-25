@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -12,6 +13,8 @@ import 'app/providers/theme_mode_provider.dart';
 import 'boxes.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await Hive.initFlutter();
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(CourseInstructorAdapter());
