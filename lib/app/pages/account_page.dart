@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:lae_lar_mel_app/app/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -17,7 +18,6 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  final String username = 'Pyae Sone Han';
   late TextEditingController _redeemCodeTextController;
 
   @override
@@ -40,7 +40,7 @@ class _AccountPageState extends State<AccountPage> {
             Provider.of<ThemeModeProvider>(context, listen: false);
         return AlertDialog(
           backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-              ? AppColor.primaryColor
+              ? AppColor.lightestBlueColor
               : AppColor.darkGreyLight2,
           contentPadding: const EdgeInsets.only(
             top: 20,
@@ -107,9 +107,11 @@ class _AccountPageState extends State<AccountPage> {
         builder: (BuildContext context) {
           final themeModeProvider =
               Provider.of<ThemeModeProvider>(context, listen: false);
+          final authProvider =
+              Provider.of<AuthProvider>(context, listen: false);
           return AlertDialog(
             backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-                ? AppColor.primaryColor
+                ? AppColor.lightestBlueColor
                 : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.sign_out,
@@ -128,6 +130,9 @@ class _AccountPageState extends State<AccountPage> {
             actions: [
               TextButton(
                 onPressed: () {
+                  authProvider.userSignOut().then((value) {
+                    Navigator.pushNamed(context, 'welcomePage');
+                  });
                   Navigator.of(context).pop();
                 },
                 child: Text(
@@ -152,6 +157,7 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     bool isSwitched = themeModeProvider.isDarkThemeEnabled;
     return Scaffold(
       appBar: CustomAppBar(
@@ -186,8 +192,7 @@ class _AccountPageState extends State<AccountPage> {
                                 child: Center(
                                   child: FadeInImage.memoryNetwork(
                                     placeholder: kTransparentImage,
-                                    image:
-                                        'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
+                                    image: authProvider.userModel.profilePic,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -196,20 +201,19 @@ class _AccountPageState extends State<AccountPage> {
                           },
                         );
                       },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.network(
-                          'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
-                          height: 131,
-                          width: 131,
+                      child: CircleAvatar(
+                        radius: 75,
+                        backgroundColor: AppColor.greyColor,
+                        backgroundImage: NetworkImage(
+                          authProvider.userModel.profilePic,
                         ),
                       ),
                     ),
                   ),
                   Positioned(
-                    bottom: 30,
+                    bottom: 20,
                     child: Text(
-                      username,
+                      authProvider.userModel.name,
                       style: AppFontStyle.title1PureWhite,
                     ),
                   ),

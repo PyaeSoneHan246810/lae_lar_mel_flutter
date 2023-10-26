@@ -8,13 +8,15 @@ import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
 import 'package:provider/provider.dart';
-
+import 'firebase_options.dart';
 import 'app/providers/theme_mode_provider.dart';
 import 'boxes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await Hive.initFlutter();
   Hive.registerAdapter(CourseAdapter());
   Hive.registerAdapter(CourseInstructorAdapter());

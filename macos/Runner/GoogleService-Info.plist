@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBqr8VcvGhgvTFHxPITFIXXuNX0il-3O5w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>141912895768</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.laeLarMelApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>laelarmelflutter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>laelarmelflutter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:141912895768:ios:c242302ff0ced587116e6d</string>
+</dict>
+</plist>

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../providers/auth_provider.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -20,6 +21,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -63,9 +65,21 @@ class _WelcomePageState extends State<WelcomePage> {
                         children: [
                           Expanded(
                             child: CustomFilledButton(
-                              onPressed: () {
-                                Navigator.of(context)
-                                    .pushNamed('phoneNumberPage');
+                              onPressed: () async {
+                                if (authProvider.isSignedIn == true) {
+                                  await authProvider
+                                      .getUserDataFromSharedPreferences()
+                                      .whenComplete(() {
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                      'rootPage',
+                                      (route) => false,
+                                    );
+                                  });
+                                } else {
+                                  Navigator.of(context)
+                                      .pushNamed('phoneNumberPage');
+                                }
                               },
                               text:
                                   AppLocalizations.of(context)!.getting_started,

@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../providers/auth_provider.dart';
 import '../providers/theme_mode_provider.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -21,7 +22,6 @@ class EditProfilePage extends StatefulWidget {
 }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  final String username = 'Pyae Sone Han';
   late TextEditingController _usernameTextController;
   late TextEditingController _emailTextController;
 
@@ -148,6 +148,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: AppLocalizations.of(context)!.edit_profile,
@@ -164,8 +165,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 20.0),
                 child: Center(
                   child: ProfileImageWidget(
-                    imagePath:
-                        'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
+                    imagePath: authProvider.userModel.profilePic,
                     onImageClicked: () {
                       showDialog(
                         context: context,
@@ -177,8 +177,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               child: Center(
                                 child: FadeInImage.memoryNetwork(
                                   placeholder: kTransparentImage,
-                                  image:
-                                      'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg',
+                                  image: authProvider.userModel.profilePic,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -212,8 +211,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.greyColor,
-                    hintText: username,
-                    hintStyle: AppFontStyle.inputText,
+                    hintText: authProvider.userModel.name,
+                    hintStyle: AppFontStyle.inputHintText,
                     labelStyle: AppFontStyle.inputText,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -250,7 +249,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: AppColor.greyColor,
-                    hintText: AppLocalizations.of(context)!.email_hint,
+                    hintText: authProvider.userModel.email,
                     hintStyle: AppFontStyle.inputHintText,
                     labelStyle: AppFontStyle.inputText,
                     enabledBorder: OutlineInputBorder(

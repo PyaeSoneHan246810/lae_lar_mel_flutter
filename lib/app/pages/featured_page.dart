@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../models/language_category_model.dart';
+import '../providers/auth_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_courses_list_view.dart';
 
@@ -23,7 +24,6 @@ class FeaturedPage extends StatefulWidget {
 }
 
 class _FeaturedPageState extends State<FeaturedPage> {
-  final String username = 'Pyae Sone';
   List<LanguageCategoryModel> languageCategories = [];
   List<Course> courses = [];
   List<Course> freeCourses = [];
@@ -48,6 +48,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
   @override
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     _getInitialInfo();
     return Scaffold(
       appBar: CustomAppBar(
@@ -62,7 +63,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
           children: [
             const CustomSeparator(height: 14),
             Text(
-              '${AppLocalizations.of(context)!.greeting_title} $username!',
+              '${AppLocalizations.of(context)!.greeting_title} ${authProvider.userModel.name}',
               style: AppFontStyle.headerSecondary(context),
             ),
             Padding(

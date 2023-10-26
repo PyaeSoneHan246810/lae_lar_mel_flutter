@@ -19,6 +19,7 @@ import 'package:lae_lar_mel_app/app/pages/root_page.dart';
 import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lae_lar_mel_app/app/providers/auth_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/locale_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/theme_mode_provider.dart';
 import 'package:provider/provider.dart';
@@ -29,9 +30,16 @@ class App extends StatelessWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => LocaleProvider(),
-        builder: (context, child) {
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<LocaleProvider>(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider<ThemeModeProvider>(
+            create: (_) => ThemeModeProvider()),
+        ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+      ],
+      child: Builder(
+        builder: (context) {
           final provider = Provider.of<LocaleProvider>(context);
           final themeModeProvider = Provider.of<ThemeModeProvider>(context);
           return MaterialApp(
@@ -51,7 +59,6 @@ class App extends StatelessWidget {
             routes: {
               'welcomePage': (context) => const WelcomePage(),
               'phoneNumberPage': (context) => const PhoneNumberPage(),
-              'otpVerificationPage': (context) => const OTPVerificationPage(),
               'completeAccountPage': (context) => const CompleteAccountPage(),
               'loginPage': (context) => const LoginPage(),
               'resetPasswordPage': (context) => const ResetPasswordPage(),
@@ -68,5 +75,7 @@ class App extends StatelessWidget {
             },
           );
         },
-      );
+      ),
+    );
+  }
 }

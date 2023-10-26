@@ -46,7 +46,7 @@
     "@otp_title" : {
         "description" : "OTP Verification Title"
     },
-    "otp_subtitle" : "Please enter the one-time password (OTP) from the SMS we sent to:",
+    "otp_subtitle" : "Please enter the one-time password (OTP) from the SMS we sent.",
     "@otp_subtitle" : {
         "description" : "OTP Verification Subtitle"
     },
@@ -78,10 +78,6 @@
     "password" : "Password",
     "@password" : {
         "description" : "Password"
-    },
-    "confirm_password" : "Confirm Password",
-    "@confirm_password" : {
-        "description" : "Confirm Password"
     },
     "complete" : "Complete",
     "@complete" : {
