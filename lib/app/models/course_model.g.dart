@@ -19,7 +19,7 @@ class CourseAdapter extends TypeAdapter<Course> {
     return Course(
       courseId: fields[0] as int,
       courseName: fields[1] as String,
-      courseType: fields[2] as CourseType,
+      courseType: fields[2] as String,
       coursePriceInMMK: fields[3] as double,
       courseTotalDurationInHour: fields[4] as double,
       courseInstructor: fields[5] as CourseInstructor,

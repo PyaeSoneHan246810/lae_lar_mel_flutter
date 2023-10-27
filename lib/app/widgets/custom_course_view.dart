@@ -4,11 +4,10 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
-import '../enums/enums.dart';
 import '../providers/theme_mode_provider.dart';
 
 class CustomCourseView extends StatefulWidget {
-  final CourseType courseType;
+  final String courseType;
   final String courseImage;
   final String courseName;
   final double coursePriceInMMK;
@@ -98,7 +97,7 @@ class _CustomCourseViewState extends State<CustomCourseView> {
                     ),
                   ),
                   Text(
-                    widget.courseType == CourseType.free
+                    widget.courseType == "free"
                         ? AppLocalizations.of(context)!.free
                         : '${widget.coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
                     style: AppFontStyle.captionMediumOffBlack(context),

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_list_view.dart';
 
-import '../enums/enums.dart';
 import '../models/course_model.dart';
 
 class ViewAllCoursesPage extends StatefulWidget {
   final List<Course> courses;
-  final CourseType courseType;
+  final String courseType;
   const ViewAllCoursesPage({
     super.key,
     required this.courses,
@@ -24,9 +23,8 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: (widget.courseType == CourseType.free)
-            ? "Free Courses"
-            : "Premium Courses",
+        titleText:
+            (widget.courseType == "free") ? "Free Courses" : "Premium Courses",
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },

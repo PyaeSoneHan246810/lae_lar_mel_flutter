@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/app.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:lae_lar_mel_app/app/enums/enums.dart';
 import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_model.dart';
@@ -22,8 +21,6 @@ void main() async {
   Hive.registerAdapter(CourseInstructorAdapter());
   Hive.registerAdapter(CourseSectionAdapter());
   Hive.registerAdapter(CourseMaterialAdapter());
-  Hive.registerAdapter(CourseTypeAdapter());
-  Hive.registerAdapter(CourseMaterialTypeAdapter());
   boxCourses = await Hive.openBox<Course>('courseBox');
   runApp(
     ChangeNotifierProvider<ThemeModeProvider>(

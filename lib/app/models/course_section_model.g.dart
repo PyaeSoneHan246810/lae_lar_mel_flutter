@@ -17,21 +17,18 @@ class CourseSectionAdapter extends TypeAdapter<CourseSection> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CourseSection(
-      courseSectionId: fields[0] as int,
-      courseSectionTitle: fields[1] as String,
-      courseMaterials: (fields[2] as List).cast<CourseMaterial>(),
+      courseSectionTitle: fields[0] as String,
+      courseMaterials: (fields[1] as List).cast<CourseMaterial>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, CourseSection obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.courseSectionId)
-      ..writeByte(1)
-      ..write(obj.courseSectionTitle)
       ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.courseSectionTitle)
+      ..writeByte(1)
       ..write(obj.courseMaterials);
   }
 
