@@ -755,7 +755,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               child: Icon(
                 iconData,
                 color: themeModeProvider.themeMode == ThemeMode.light
-                    ? AppColor.offBlackColor
+                    ? AppColor.secondaryColor
                     : AppColor.primaryColor,
                 size: 24,
               ),
@@ -783,7 +783,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       ),
       body: ListView(
         padding:
-            const EdgeInsets.only(left: 20, top: 10, right: 20, bottom: 20),
+            const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
         scrollDirection: Axis.vertical,
         children: [
           AnimatedSwitcher(
