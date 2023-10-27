@@ -374,5 +374,13 @@
     "enter_coupon_code" : "Enter your redeem code",
     "@enter_coupon_code" : {
         "description" : "Enter Coupon Code"
+    },
+    "updated_message" : "The user information has been updated. Please log in to your account again.",
+    "@updated_message" : {
+        "description" : "Updated Message"
+    },
+    "enter_6_digit" : "Please enter 6-digit code.",
+    "@enter_6_digit" : {
+        "description" : "Enter 6 Digit"
     }
 }

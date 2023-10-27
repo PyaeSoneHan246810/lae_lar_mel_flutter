@@ -117,7 +117,9 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
                                   verifyOTP(context, otpCode!);
                                 } else {
                                   showSnackBar(
-                                      context, "Please enter 6-digit code.");
+                                      context,
+                                      AppLocalizations.of(context)!
+                                          .enter_6_digit);
                                 }
                               },
                               text: AppLocalizations.of(context)!.submit,
@@ -167,7 +169,6 @@ class _OTPVerificationPageState extends State<OTPVerificationPage> {
       userOTP: userOTP,
       onSuccess: () {
         authProvider.checkExistingUser().then((value) async {
-          print(value);
           if (value == true) {
             //user exists
             authProvider.getDataFromFireStore().then((value) {

@@ -283,10 +283,6 @@ class _CompleteAccountPageState extends State<CompleteAccountPage> {
                           Expanded(
                             child: CustomFilledButton(
                               onPressed: () {
-                                // Navigator.of(context).pushNamedAndRemoveUntil(
-                                //   'rootPage',
-                                //   (route) => false,
-                                // );
                                 storeUserData();
                               },
                               text: AppLocalizations.of(context)!.complete,
