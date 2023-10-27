@@ -155,7 +155,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             Provider.of<ThemeModeProvider>(context, listen: false);
         return AlertDialog(
           backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-              ? AppColor.primaryColor
+              ? AppColor.lightestBlueColor
               : AppColor.darkGreyLight2,
           contentPadding: const EdgeInsets.only(
             top: 20,
@@ -231,7 +231,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               Provider.of<ThemeModeProvider>(context, listen: false);
           return AlertDialog(
             backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-                ? AppColor.primaryColor
+                ? AppColor.lightestBlueColor
                 : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.paid_content,
@@ -274,7 +274,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               Provider.of<ThemeModeProvider>(context, listen: false);
           return AlertDialog(
             backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-                ? AppColor.primaryColor
+                ? AppColor.lightestBlueColor
                 : AppColor.darkGreyLight2,
             title: Text(
               AppLocalizations.of(context)!.enroll_course,
