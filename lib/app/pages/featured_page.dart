@@ -63,7 +63,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
           children: [
             const CustomSeparator(height: 14),
             Text(
-              '${AppLocalizations.of(context)!.greeting_title} ${authProvider.userModel.name}',
+              '${AppLocalizations.of(context)!.greeting_title} ${authProvider.userModel.name}.',
               style: AppFontStyle.headerSecondary(context),
             ),
             Padding(
