@@ -4,11 +4,10 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
-import '../enums/enums.dart';
 import '../providers/theme_mode_provider.dart';
 
 class CustomCourseViewWithDeleteButton extends StatelessWidget {
-  final CourseType courseType;
+  final String courseType;
   final String courseImage;
   final String courseName;
   final double coursePriceInMMK;
@@ -71,7 +70,7 @@ class CustomCourseViewWithDeleteButton extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    courseType == CourseType.free
+                    courseType == "free"
                         ? AppLocalizations.of(context)!.free
                         : '${coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
                     style: AppFontStyle.captionMediumOffBlack(context),

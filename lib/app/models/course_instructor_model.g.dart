@@ -17,27 +17,24 @@ class CourseInstructorAdapter extends TypeAdapter<CourseInstructor> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CourseInstructor(
-      courseInstructorId: fields[0] as int,
-      courseInstructorName: fields[1] as String,
-      courseInstructorImage: fields[2] as String,
-      courseInstructorMajor: fields[3] as String,
-      courseInstructorDescription: fields[4] as String,
+      courseInstructorName: fields[0] as String,
+      courseInstructorImage: fields[1] as String,
+      courseInstructorMajor: fields[2] as String,
+      courseInstructorDescription: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, CourseInstructor obj) {
     writer
-      ..writeByte(5)
-      ..writeByte(0)
-      ..write(obj.courseInstructorId)
-      ..writeByte(1)
-      ..write(obj.courseInstructorName)
-      ..writeByte(2)
-      ..write(obj.courseInstructorImage)
-      ..writeByte(3)
-      ..write(obj.courseInstructorMajor)
       ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.courseInstructorName)
+      ..writeByte(1)
+      ..write(obj.courseInstructorImage)
+      ..writeByte(2)
+      ..write(obj.courseInstructorMajor)
+      ..writeByte(3)
       ..write(obj.courseInstructorDescription);
   }
 

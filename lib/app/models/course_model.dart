@@ -1,4 +1,3 @@
-import 'package:lae_lar_mel_app/app/enums/enums.dart';
 import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
@@ -13,7 +12,7 @@ class Course {
   @HiveField(1)
   String courseName;
   @HiveField(2)
-  CourseType courseType;
+  String courseType;
   @HiveField(3)
   double coursePriceInMMK;
   @HiveField(4)
@@ -52,11 +51,10 @@ class Course {
       Course(
         courseId: 1,
         courseName: 'Basic English Grammar Course',
-        courseType: CourseType.free,
+        courseType: "free",
         coursePriceInMMK: 0.0,
         courseTotalDurationInHour: 2.0,
         courseInstructor: CourseInstructor(
-          courseInstructorId: 1,
           courseInstructorName: 'Tr. Hsu',
           courseInstructorImage:
               'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
@@ -72,117 +70,114 @@ class Course {
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
-            courseSectionId: 1,
             courseSectionTitle: 'Introduction',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Introduction to the course',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lessons Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Goals & Grammar List',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Classroom Vocabulary',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the textbook',
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 2,
             courseSectionTitle: 'Lesson 1',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 1 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 1 Quizzes',
                 durationInMinute: 03.00,
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 3,
             courseSectionTitle: 'Lesson 2',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 2 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the notes',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 2 Quizzes',
                 durationInMinute: 03.00,
               ),
@@ -195,11 +190,10 @@ class Course {
       Course(
         courseId: 2,
         courseName: 'Daily English Conversations',
-        courseType: CourseType.free,
+        courseType: "free",
         coursePriceInMMK: 0.0,
         courseTotalDurationInHour: 2.0,
         courseInstructor: CourseInstructor(
-          courseInstructorId: 2,
           courseInstructorName: 'Tr. May',
           courseInstructorImage:
               'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
@@ -215,117 +209,114 @@ class Course {
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
-            courseSectionId: 1,
             courseSectionTitle: 'Introduction',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Introduction to the course',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lessons Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Goals & Grammar List',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Classroom Vocabulary',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the textbook',
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 2,
             courseSectionTitle: 'Lesson 1',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 1 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 1 Quizzes',
                 durationInMinute: 03.00,
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 3,
             courseSectionTitle: 'Lesson 2',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 2 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the notes',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 2 Quizzes',
                 durationInMinute: 03.00,
               ),
@@ -338,11 +329,10 @@ class Course {
       Course(
         courseId: 3,
         courseName: 'Japanese N5 Grammar Course',
-        courseType: CourseType.premium,
+        courseType: "premium",
         coursePriceInMMK: 3000.0,
         courseTotalDurationInHour: 10.0,
         courseInstructor: CourseInstructor(
-          courseInstructorId: 3,
           courseInstructorName: 'Tr. Hnin',
           courseInstructorImage:
               'https://www.studykyoto.jp/wp/wp-content/uploads/2020/10/student_zhang04.jpg',
@@ -358,117 +348,114 @@ class Course {
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
-            courseSectionId: 1,
             courseSectionTitle: 'Introduction',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Introduction to the course',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lessons Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Goals & Grammar List',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Classroom Vocabulary',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the textbook',
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 2,
             courseSectionTitle: 'Lesson 1',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 1 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 1 Quizzes',
                 durationInMinute: 03.00,
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 3,
             courseSectionTitle: 'Lesson 2',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 2 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the notes',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 2 Quizzes',
                 durationInMinute: 03.00,
               ),
@@ -481,11 +468,10 @@ class Course {
       Course(
         courseId: 4,
         courseName: 'Intermediate English Writing Course',
-        courseType: CourseType.premium,
+        courseType: "premium",
         coursePriceInMMK: 5000.0,
         courseTotalDurationInHour: 10.0,
         courseInstructor: CourseInstructor(
-          courseInstructorId: 4,
           courseInstructorName: 'Tr. Phyo',
           courseInstructorImage:
               'https://motto-jp.com/media/wp-content/uploads/2021/04/AdobeStock_74877484.jpeg',
@@ -501,117 +487,114 @@ class Course {
         coursePreviewVideo: '874742058',
         courseSections: [
           CourseSection(
-            courseSectionId: 1,
             courseSectionTitle: 'Introduction',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Introduction to the course',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lessons Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Goals & Grammar List',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Classroom Vocabulary',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the textbook',
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 2,
             courseSectionTitle: 'Lesson 1',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 1 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 1 Quizzes',
                 durationInMinute: 03.00,
               ),
             ],
           ),
           CourseSection(
-            courseSectionId: 3,
             courseSectionTitle: 'Lesson 2',
             courseMaterials: [
               CourseMaterial(
                 courseMaterialId: 1,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Lesson 2 Overview',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 2,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 3,
-                courseMaterialType: CourseMaterialType.video,
+                courseMaterialType: "video",
                 courseMaterialTitle: 'Video',
                 durationInMinute: 03.00,
                 content: '874742058',
               ),
               CourseMaterial(
                 courseMaterialId: 4,
-                courseMaterialType: CourseMaterialType.document,
+                courseMaterialType: "document",
                 courseMaterialTitle: 'Download the notes',
               ),
               CourseMaterial(
                 courseMaterialId: 5,
-                courseMaterialType: CourseMaterialType.quiz,
+                courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 2 Quizzes',
                 durationInMinute: 03.00,
               ),
@@ -625,17 +608,15 @@ class Course {
 
   //free courses
   static List<Course> getFreeCourses() {
-    List<Course> freeCourses = getCourses()
-        .where((course) => course.courseType == CourseType.free)
-        .toList();
+    List<Course> freeCourses =
+        getCourses().where((course) => course.courseType == "free").toList();
     return freeCourses.reversed.toList();
   }
 
   //premium courses
   static List<Course> getPremiumCourses() {
-    List<Course> premiumCourses = getCourses()
-        .where((course) => course.courseType == CourseType.premium)
-        .toList();
+    List<Course> premiumCourses =
+        getCourses().where((course) => course.courseType == "premium").toList();
     return premiumCourses.reversed.toList();
   }
 

@@ -18,8 +18,8 @@ class CourseMaterialAdapter extends TypeAdapter<CourseMaterial> {
     };
     return CourseMaterial(
       courseMaterialId: fields[0] as int,
-      courseMaterialType: fields[1] as CourseMaterialType,
-      courseMaterialTitle: fields[2] as String,
+      courseMaterialTitle: fields[1] as String,
+      courseMaterialType: fields[2] as String,
       durationInMinute: fields[3] as double?,
       content: fields[4] as dynamic,
     );
@@ -32,9 +32,9 @@ class CourseMaterialAdapter extends TypeAdapter<CourseMaterial> {
       ..writeByte(0)
       ..write(obj.courseMaterialId)
       ..writeByte(1)
-      ..write(obj.courseMaterialType)
-      ..writeByte(2)
       ..write(obj.courseMaterialTitle)
+      ..writeByte(2)
+      ..write(obj.courseMaterialType)
       ..writeByte(3)
       ..write(obj.durationInMinute)
       ..writeByte(4)

@@ -12,7 +12,6 @@ import 'package:pod_player/pod_player.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
-import '../enums/enums.dart';
 import '../models/course_material_model.dart';
 import '../models/course_model.dart';
 import '../providers/theme_mode_provider.dart';
@@ -572,13 +571,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
 
     if (_isTheCourseEnrolled) {
       switch (courseMaterial.courseMaterialType) {
-        case CourseMaterialType.video:
+        case "video":
           iconData = Icons.play_circle_outline_rounded;
           break;
-        case CourseMaterialType.document:
+        case "document":
           iconData = Icons.download_rounded;
           break;
-        case CourseMaterialType.quiz:
+        case "quiz":
           iconData = Icons.lightbulb_outline_rounded;
           break;
         default:
@@ -586,20 +585,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           break;
       }
     } else {
-      if (widget.course.courseType == CourseType.premium) {
+      if (widget.course.courseType == "premium") {
         if (widget.course.courseSections[currentSectionIndex] ==
             widget.course.courseSections[0]) {
           // This is the first premium course section.
           if (index < 3) {
             // Display the icons for the first three course materials in the first premium course section based on the course material type.
             switch (courseMaterial.courseMaterialType) {
-              case CourseMaterialType.video:
+              case "video":
                 iconData = Icons.play_circle_outline_rounded;
                 break;
-              case CourseMaterialType.document:
+              case "document":
                 iconData = Icons.download_rounded;
                 break;
-              case CourseMaterialType.quiz:
+              case "quiz":
                 iconData = Icons.lightbulb_outline_rounded;
                 break;
               default:
@@ -617,13 +616,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       } else {
         // Display the icons for the course materials in free course sections based on the course material type.
         switch (courseMaterial.courseMaterialType) {
-          case CourseMaterialType.video:
+          case "video":
             iconData = Icons.play_circle_outline_rounded;
             break;
-          case CourseMaterialType.document:
+          case "document":
             iconData = Icons.download_rounded;
             break;
-          case CourseMaterialType.quiz:
+          case "quiz":
             iconData = Icons.lightbulb_outline_rounded;
             break;
           default:
@@ -684,19 +683,19 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               onTap: () {
                 if (_isTheCourseEnrolled) {
                   switch (courseMaterial.courseMaterialType) {
-                    case CourseMaterialType.video:
+                    case "video":
                       _navigateToVideoPlayer(courseMaterial);
                       break;
-                    case CourseMaterialType.document:
+                    case "document":
                       break;
-                    case CourseMaterialType.quiz:
+                    case "quiz":
                       break;
                     default:
                       // Set a default action if needed
                       break;
                   }
                 } else {
-                  if (widget.course.courseType == CourseType.premium) {
+                  if (widget.course.courseType == "premium") {
                     // Premium course sections
                     if (widget.course.courseSections[currentSectionIndex] ==
                         widget.course.courseSections[0]) {
@@ -704,12 +703,12 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       if (index < 3) {
                         // Handle the actions for the first three course materials in the first premium course section based on the course material type.
                         switch (courseMaterial.courseMaterialType) {
-                          case CourseMaterialType.video:
+                          case "video":
                             _navigateToVideoPlayer(courseMaterial);
                             break;
-                          case CourseMaterialType.document:
+                          case "document":
                             break;
-                          case CourseMaterialType.quiz:
+                          case "quiz":
                             break;
                           default:
                             // Set a default action if needed
@@ -731,12 +730,12 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       if (index < 3) {
                         // Handle the actions for the first three course materials in the first free course section based on the course material type.
                         switch (courseMaterial.courseMaterialType) {
-                          case CourseMaterialType.video:
+                          case "video":
                             _navigateToVideoPlayer(courseMaterial);
                             break;
-                          case CourseMaterialType.document:
+                          case "document":
                             break;
-                          case CourseMaterialType.quiz:
+                          case "quiz":
                             break;
                           default:
                             // Set a default action if needed
@@ -956,7 +955,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           const CustomSeparator(height: 25),
           FadeInLeft(
             child: Text(
-              widget.course.courseType == CourseType.free
+              widget.course.courseType == "free"
                   ? AppLocalizations.of(context)!.free
                   : '${_coursePrice.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
               style: AppFontStyle.title3OffBlack(context),
@@ -972,7 +971,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   flex: 4,
                   child: CustomFilledButtonRounded(
                     onPressed: () {
-                      widget.course.courseType == CourseType.free
+                      widget.course.courseType == "free"
                           ? (!_isTheCourseEnrolled)
                               ? _enrollTheCourse()
                               : displaySuccessfulSnackBar(
@@ -990,7 +989,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                   2000,
                                 );
                     },
-                    text: widget.course.courseType == CourseType.free
+                    text: widget.course.courseType == "free"
                         ? _isTheCourseEnrolled
                             ? AppLocalizations.of(context)!.course_enrolled
                             : AppLocalizations.of(context)!.free_enroll

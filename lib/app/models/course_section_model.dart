@@ -6,13 +6,10 @@ part 'course_section_model.g.dart';
 @HiveType(typeId: 3)
 class CourseSection {
   @HiveField(0)
-  int courseSectionId;
-  @HiveField(1)
   String courseSectionTitle;
-  @HiveField(2)
+  @HiveField(1)
   List<CourseMaterial> courseMaterials;
   CourseSection({
-    required this.courseSectionId,
     required this.courseSectionTitle,
     required this.courseMaterials,
   });

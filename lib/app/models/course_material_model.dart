@@ -1,4 +1,3 @@
-import 'package:lae_lar_mel_app/app/enums/enums.dart';
 import 'package:hive/hive.dart';
 
 part 'course_material_model.g.dart';
@@ -8,17 +7,17 @@ class CourseMaterial {
   @HiveField(0)
   int courseMaterialId;
   @HiveField(1)
-  CourseMaterialType courseMaterialType;
-  @HiveField(2)
   String courseMaterialTitle;
+  @HiveField(2)
+  String courseMaterialType;
   @HiveField(3)
   double? durationInMinute;
   @HiveField(4)
   dynamic content;
   CourseMaterial({
     required this.courseMaterialId,
-    required this.courseMaterialType,
     required this.courseMaterialTitle,
+    required this.courseMaterialType,
     this.durationInMinute,
     this.content,
   });
