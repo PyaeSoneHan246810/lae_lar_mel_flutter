@@ -20,6 +20,7 @@ import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/providers/auth_provider.dart';
+import 'package:lae_lar_mel_app/app/providers/course_enrollment_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/locale_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/theme_mode_provider.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,8 @@ class App extends StatelessWidget {
         ChangeNotifierProvider<ThemeModeProvider>(
             create: (_) => ThemeModeProvider()),
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
+        ChangeNotifierProvider<CourseEnrollmentProvider>(
+            create: (_) => CourseEnrollmentProvider()),
       ],
       child: Builder(
         builder: (context) {

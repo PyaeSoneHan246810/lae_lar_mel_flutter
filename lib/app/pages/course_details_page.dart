@@ -14,6 +14,7 @@ import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_material_model.dart';
 import '../models/course_model.dart';
+import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_add_to_wishlist_button.dart';
 import '../widgets/custom_appbar_with_back_arrow_without_title.dart';
@@ -36,21 +37,20 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   bool _isPlayArrowClicked = false;
   bool _isInstructorExpansionPanelExpanded = false;
   bool _isMorePaymentOptionsVisible = false;
-  bool _isTheCourseEnrolled = false;
-  String _couponCode = "";
-  double _discount = 0.0;
-  late double _coursePrice;
-  late double _grandTotal;
+  String? _selectedPaymentOption;
+  late double _courseTotalInMMK;
+  late double _discountInMMK;
+  late double _grandTotalInMMK;
   late TextEditingController _couponTextController;
   late List<bool> _isExpandedList;
   late final PodPlayerController _podPlayerController;
-  String? _selectedPaymentOption;
 
   @override
   void initState() {
     super.initState();
-    _coursePrice = widget.course.coursePriceInMMK;
-    _grandTotal = _coursePrice;
+    _courseTotalInMMK = widget.course.coursePriceInMMK;
+    _discountInMMK = 0.0;
+    _grandTotalInMMK = _courseTotalInMMK;
     _couponTextController = TextEditingController();
     _isExpandedList = List.generate(
         widget.course.courseSections.length, (index) => index == 0);
@@ -82,26 +82,6 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     }
   }
 
-  void _applyCoupon() {
-    _couponCode = _couponTextController.text;
-    if (_couponCode == 'SAMPLE10') {
-      setState(() {
-        _discount = 0.1 * _coursePrice;
-      });
-    } else if (_couponCode == 'SAMPLE20') {
-      setState(() {
-        _discount = 0.2 * _coursePrice;
-      });
-    } else {
-      setState(() {
-        _discount = 0.0;
-      });
-    }
-    setState(() {
-      _grandTotal = _coursePrice - _discount;
-    });
-  }
-
   void _toggleExpansionState(int index) {
     setState(() {
       _isExpandedList[index] = !_isExpandedList[index];
@@ -111,6 +91,32 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   void _onExpansionChanged(int index, bool isExpanded) {
     setState(() {
       _isExpandedList[index] = isExpanded;
+    });
+  }
+
+  void _applyCoupon() {
+    String couponCode = _couponTextController.text;
+    if (couponCode == 'SAMPLE10') {
+      setState(() {
+        _discountInMMK = 0.1 * _courseTotalInMMK;
+      });
+    } else if (couponCode == 'SAMPLE20') {
+      setState(() {
+        _discountInMMK = 0.2 * _courseTotalInMMK;
+      });
+    } else {
+      setState(() {
+        _discountInMMK = 0.0;
+      });
+    }
+    setState(() {
+      _grandTotalInMMK = _courseTotalInMMK - _discountInMMK;
+    });
+  }
+
+  void _updateSelectedPaymentOption(String? option) {
+    setState(() {
+      _selectedPaymentOption = option;
     });
   }
 
@@ -125,28 +131,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     );
   }
 
-  void _updateSelectedOption(String? option) {
-    setState(() {
-      _selectedPaymentOption = option;
-    });
-  }
-
-  void _enrollTheCourse() {
-    setState(() {
-      _isTheCourseEnrolled = !_isTheCourseEnrolled;
-    });
-    displaySuccessfulSnackBar(
-      context,
-      AppLocalizations.of(context)!.successfully_enrolled_course,
-      2000,
-    );
-  }
-
-  void _makePayment() {
-    _enrollTheCourse();
-  }
-
-  Future<void> _displayEnterCouponCodeAlertDialog() async {
+  Future<void> _displayEnterCouponCodeAlertDialog(BuildContext context) async {
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -196,7 +181,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 _applyCoupon();
                 Navigator.of(context).pop();
                 setState(() {
-                  _displayPaymentBottomSheet();
+                  _displayPaymentBottomSheet(context);
                 });
               },
               child: Text(
@@ -208,7 +193,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               onPressed: () {
                 Navigator.of(context).pop();
                 setState(() {
-                  _displayPaymentBottomSheet();
+                  _displayPaymentBottomSheet(context);
                 });
               },
               child: Text(
@@ -222,93 +207,9 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     );
   }
 
-  Future<void> _displayPremiumAlertDialog() async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          final themeModeProvider =
-              Provider.of<ThemeModeProvider>(context, listen: false);
-          return AlertDialog(
-            backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-                ? AppColor.lightestBlueColor
-                : AppColor.darkGreyLight2,
-            title: Text(
-              AppLocalizations.of(context)!.paid_content,
-              style: AppFontStyle.alertTitleOffBlack(context),
-            ),
-            content: Text(
-              AppLocalizations.of(context)!.paid_content_message,
-              style: AppFontStyle.alertTextOffBlack(context),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _displayPaymentBottomSheet();
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.buy_now,
-                  style: AppFontStyle.navTextPrimary,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.close,
-                  style: AppFontStyle.navTextOffBlack(context),
-                ),
-              ),
-            ],
-          );
-        });
-  }
-
-  Future<void> _displayFreeEnrollAlertDialog() async {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          final themeModeProvider =
-              Provider.of<ThemeModeProvider>(context, listen: false);
-          return AlertDialog(
-            backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-                ? AppColor.lightestBlueColor
-                : AppColor.darkGreyLight2,
-            title: Text(
-              AppLocalizations.of(context)!.enroll_course,
-              style: AppFontStyle.alertTitleOffBlack(context),
-            ),
-            content: Text(
-              AppLocalizations.of(context)!.enroll_course_message,
-              style: AppFontStyle.alertTextOffBlack(context),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _enrollTheCourse();
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.enroll_now,
-                  style: AppFontStyle.navTextPrimary,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.close,
-                  style: AppFontStyle.navTextOffBlack(context),
-                ),
-              ),
-            ],
-          );
-        });
-  }
-
-  Future<void> _displayPaymentBottomSheet() async {
+  Future<void> _displayPaymentBottomSheet(BuildContext context) async {
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context, listen: false);
     return showModalBottomSheet(
       enableDrag: true,
       isScrollControlled: true,
@@ -335,7 +236,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         style: AppFontStyle.captionBigOffBlack(context),
                       ),
                       Text(
-                        '${_coursePrice.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
+                        '${_courseTotalInMMK.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.captionBigOffBlack(context),
                       ),
                     ],
@@ -357,7 +258,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           GestureDetector(
                             onTap: () {
                               Navigator.pop(context);
-                              _displayEnterCouponCodeAlertDialog();
+                              _displayEnterCouponCodeAlertDialog(context);
                             },
                             child: Text(
                               '[${AppLocalizations.of(context)!.coupon_code}]',
@@ -368,7 +269,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         ],
                       ),
                       Text(
-                        '${_discount.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
+                        '${_discountInMMK.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.captionBigOffBlack(context),
                       ),
                     ],
@@ -382,7 +283,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         style: AppFontStyle.captionBigOffBlack(context),
                       ),
                       Text(
-                        '${_grandTotal.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
+                        '${_grandTotalInMMK.toStringAsFixed(2)} ${AppLocalizations.of(context)!.mmk}',
                         style: AppFontStyle.subtitleOffBlack(context),
                       ),
                     ],
@@ -395,7 +296,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   const CustomSeparator(height: 12),
                   PaymentOptionSelector(
                     isMorePaymentOptionsVisible: _isMorePaymentOptionsVisible,
-                    onOptionSelected: _updateSelectedOption,
+                    onOptionSelected: _updateSelectedPaymentOption,
                   ),
                   const CustomSeparator(height: 12),
                   Center(
@@ -420,7 +321,19 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       onPressed: () {
                         if (_selectedPaymentOption != null) {
                           Navigator.of(context).pop();
-                          _makePayment();
+                          // Implement your payment logic here.
+                          // For example, you can use packages like in_app_purchase or another payment method to process payments.
+                          // For example, you might show a payment gateway or payment dialog.
+                          // Upon successful payment, you can enroll the user in the course.
+                          // Once payment is successful, you can enroll the user in the course, similar to the enrollTheCourse method.
+                          courseEnrollmentProvider
+                              .enrollCourse(widget.course.courseId);
+                          displaySuccessfulSnackBar(
+                            context,
+                            AppLocalizations.of(context)!
+                                .successfully_enrolled_course,
+                            2000,
+                          );
                         } else if (_selectedPaymentOption == null) {
                           Fluttertoast.showToast(
                             msg: AppLocalizations.of(context)!
@@ -568,8 +481,107 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     IconData iconData;
     final themeModeProvider =
         Provider.of<ThemeModeProvider>(context, listen: false);
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context);
+    final bool isTheCourseEnrolled =
+        courseEnrollmentProvider.isCourseEnrolled(widget.course.courseId);
 
-    if (_isTheCourseEnrolled) {
+    Future<void> displayPremiumAlertDialog() async {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            final themeModeProvider =
+                Provider.of<ThemeModeProvider>(context, listen: false);
+            return AlertDialog(
+              backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+                  ? AppColor.lightestBlueColor
+                  : AppColor.darkGreyLight2,
+              title: Text(
+                AppLocalizations.of(context)!.paid_content,
+                style: AppFontStyle.alertTitleOffBlack(context),
+              ),
+              content: Text(
+                AppLocalizations.of(context)!.paid_content_message,
+                style: AppFontStyle.alertTextOffBlack(context),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    _displayPaymentBottomSheet(context);
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.buy_now,
+                    style: AppFontStyle.navTextPrimary,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.close,
+                    style: AppFontStyle.navTextOffBlack(context),
+                  ),
+                ),
+              ],
+            );
+          });
+    }
+
+    Future<void> displayFreeEnrollAlertDialog() async {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            final themeModeProvider =
+                Provider.of<ThemeModeProvider>(context, listen: false);
+            return AlertDialog(
+              backgroundColor: themeModeProvider.themeMode == ThemeMode.light
+                  ? AppColor.lightestBlueColor
+                  : AppColor.darkGreyLight2,
+              title: Text(
+                AppLocalizations.of(context)!.enroll_course,
+                style: AppFontStyle.alertTitleOffBlack(context),
+              ),
+              content: Text(
+                AppLocalizations.of(context)!.enroll_course_message,
+                style: AppFontStyle.alertTextOffBlack(context),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    if (!isTheCourseEnrolled) {
+                      courseEnrollmentProvider
+                          .enrollCourse(widget.course.courseId);
+                      displaySuccessfulSnackBar(
+                        context,
+                        AppLocalizations.of(context)!
+                            .successfully_enrolled_course,
+                        2000,
+                      );
+                    }
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.enroll_now,
+                    style: AppFontStyle.navTextPrimary,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    AppLocalizations.of(context)!.close,
+                    style: AppFontStyle.navTextOffBlack(context),
+                  ),
+                ),
+              ],
+            );
+          });
+    }
+
+    if (courseEnrollmentProvider.isCourseEnrolled(widget.course.courseId)) {
       switch (courseMaterial.courseMaterialType) {
         case "video":
           iconData = Icons.play_circle_outline_rounded;
@@ -681,7 +693,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             padding: const EdgeInsets.all(4),
             child: GestureDetector(
               onTap: () {
-                if (_isTheCourseEnrolled) {
+                if (courseEnrollmentProvider
+                    .isCourseEnrolled(widget.course.courseId)) {
                   switch (courseMaterial.courseMaterialType) {
                     case "video":
                       _navigateToVideoPlayer(courseMaterial);
@@ -716,11 +729,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         }
                       } else {
                         // Handle the actions for the other course materials in the first premium course section.
-                        _displayPremiumAlertDialog();
+                        displayPremiumAlertDialog();
                       }
                     } else {
                       // Handle the actions for the course materials in other premium course sections.
-                      _displayPremiumAlertDialog();
+                      displayPremiumAlertDialog();
                     }
                   } else {
                     // Free course sections
@@ -743,11 +756,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         }
                       } else {
                         // Handle the actions for the other course materials in the first free course section.
-                        _displayFreeEnrollAlertDialog();
+                        displayFreeEnrollAlertDialog();
                       }
                     } else {
                       // Handle the actions for the course materials in other free course sections.
-                      _displayFreeEnrollAlertDialog();
+                      displayFreeEnrollAlertDialog();
                     }
                   }
                 }
@@ -768,11 +781,16 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    _checkSecureMode();
     int currentSectionIndex;
     final isFavourite = boxCourses.get('key_${widget.course.courseId}') != null;
     final themeModeProvider =
         Provider.of<ThemeModeProvider>(context, listen: false);
-    _checkSecureMode();
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context);
+    final bool isTheCourseEnrolled =
+        courseEnrollmentProvider.isCourseEnrolled(widget.course.courseId);
+
     return Scaffold(
       appBar: CustomAppBarWithBackArrowWithoutTitle(
         appBarBackgroundColor: AppColor.pureWhiteColor,
@@ -957,7 +975,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             child: Text(
               widget.course.courseType == "free"
                   ? AppLocalizations.of(context)!.free
-                  : '${_coursePrice.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
+                  : '${_courseTotalInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
               style: AppFontStyle.title3OffBlack(context),
             ),
           ),
@@ -971,29 +989,32 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   flex: 4,
                   child: CustomFilledButtonRounded(
                     onPressed: () {
-                      widget.course.courseType == "free"
-                          ? (!_isTheCourseEnrolled)
-                              ? _enrollTheCourse()
-                              : displaySuccessfulSnackBar(
-                                  context,
-                                  AppLocalizations.of(context)!
-                                      .already_enrolled_course,
-                                  2000,
-                                )
-                          : (!_isTheCourseEnrolled)
-                              ? _displayPaymentBottomSheet()
-                              : displaySuccessfulSnackBar(
-                                  context,
-                                  AppLocalizations.of(context)!
-                                      .already_enrolled_course,
-                                  2000,
-                                );
+                      if (!isTheCourseEnrolled) {
+                        if (widget.course.courseType == "free") {
+                          courseEnrollmentProvider
+                              .enrollCourse(widget.course.courseId);
+                          displaySuccessfulSnackBar(
+                            context,
+                            AppLocalizations.of(context)!
+                                .successfully_enrolled_course,
+                            2000,
+                          );
+                        } else {
+                          _displayPaymentBottomSheet(context);
+                        }
+                      } else {
+                        displaySuccessfulSnackBar(
+                          context,
+                          AppLocalizations.of(context)!.already_enrolled_course,
+                          2000,
+                        );
+                      }
                     },
                     text: widget.course.courseType == "free"
-                        ? _isTheCourseEnrolled
+                        ? isTheCourseEnrolled
                             ? AppLocalizations.of(context)!.course_enrolled
                             : AppLocalizations.of(context)!.free_enroll
-                        : _isTheCourseEnrolled
+                        : isTheCourseEnrolled
                             ? AppLocalizations.of(context)!.course_enrolled
                             : AppLocalizations.of(context)!.buy_now,
                   ),
