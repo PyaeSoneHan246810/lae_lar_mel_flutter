@@ -12,26 +12,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
   bool _isSignedIn = false;
-  bool get isSignedIn => _isSignedIn;
-
   bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
   String? _userId;
-  String get userId => _userId!;
-
   UserModel? _userModel;
+
+  //GETTERS//
+
+  bool get isSignedIn => _isSignedIn;
+  bool get isLoading => _isLoading;
+  String get userId => _userId!;
   UserModel get userModel => _userModel!;
+
+  //FIREBASE SERVICES//
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFireStore = FirebaseFirestore.instance;
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
+  //SIGN IN, SIGN OUT OPERATIONS//
+
+  //check if the user is already signed in
   AuthProvider() {
     checkSignIn();
   }
-
-  //check is its already signed in
   void checkSignIn() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
@@ -39,6 +42,7 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //set the user as he is already signed in
   Future setSignIn() async {
     final SharedPreferences sharedPreferences =
         await SharedPreferences.getInstance();
@@ -47,7 +51,18 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //sign in
+  //user sign out
+  Future userSignOut() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await _firebaseAuth.signOut();
+    _isSignedIn = false;
+    notifyListeners();
+    sharedPreferences.clear();
+  }
+
+  //PHONE AUTHENTICATION OPERATIONS//
+
+  //sign in with phone number
   void signInWithPhone(BuildContext context, String phoneNumber) async {
     try {
       await _firebaseAuth.verifyPhoneNumber(
@@ -74,7 +89,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //verify OTP
+  //verify OTP code
   void verifyOTP({
     required BuildContext context,
     required String verificationId,
@@ -98,7 +113,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //Database Operations
+  //DATABASE & STORAGE OPERATIONS//
 
   //check existing user
   Future<bool> checkExistingUser() async {
@@ -113,7 +128,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //save userdata to firebase;
+  //save userdata to Firebase
   void saveUserDataToFirebase({
     required BuildContext context,
     required UserModel userModel,
@@ -123,7 +138,7 @@ class AuthProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
     try {
-      //upload image to firebase storage
+      //upload user image to Firebase Storage
       await storeFileToStorage("profilePic/$_userId", profilePic).then((value) {
         userModel.profilePic = value;
         userModel.createdAt = DateTime.now().millisecondsSinceEpoch.toString();
@@ -132,7 +147,7 @@ class AuthProvider extends ChangeNotifier {
       });
       _userModel = userModel;
 
-      //uploading to database
+      //upload user data to Firebase FireStore Database
       await _firebaseFireStore
           .collection("users")
           .doc(_userId)
@@ -149,7 +164,7 @@ class AuthProvider extends ChangeNotifier {
     }
   }
 
-  //storage image to storage
+  //store image file to Firebase Storage
   Future<String> storeFileToStorage(String ref, File file) async {
     UploadTask uploadTask = _firebaseStorage.ref().child(ref).putFile(file);
     TaskSnapshot snapshot = await uploadTask;
@@ -157,6 +172,7 @@ class AuthProvider extends ChangeNotifier {
     return downloadUrl;
   }
 
+  //get user data from Firebase FireStore Database
   Future getDataFromFireStore() async {
     await _firebaseFireStore
         .collection("users")
@@ -175,27 +191,21 @@ class AuthProvider extends ChangeNotifier {
     });
   }
 
-  //store userdata to sp
+  //SHARED PREFERENCES OPERATIONS//
+
+  //store userdata to Shared Preferences
   Future saveUserDataToSharedPreferences() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString(
         "user_model", jsonEncode(userModel.toMap()));
   }
 
-  //get userdata from sp
+  //get userdata from Shared Preferences
   Future getUserDataFromSharedPreferences() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String data = sharedPreferences.getString("user_model") ?? '';
     _userModel = UserModel.fromMap(jsonDecode(data));
     _userId = _userModel!.userId;
     notifyListeners();
-  }
-
-  Future userSignOut() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await _firebaseAuth.signOut();
-    _isSignedIn = false;
-    notifyListeners();
-    sharedPreferences.clear();
   }
 }
