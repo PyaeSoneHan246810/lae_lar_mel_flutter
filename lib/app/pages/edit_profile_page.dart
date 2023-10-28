@@ -42,6 +42,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     super.dispose();
   }
 
+  //display image picker bottom sheet
   Future<void> _displayImagePickerSheet(BuildContext context) async {
     if (Theme.of(context).platform == TargetPlatform.android) {
       // Modal Button Sheet for android devices
@@ -151,6 +152,32 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
+  //update username and email in database, and store them in shared preferences
+  Future updateUsernameAndEmail() async {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    if (_usernameTextController.text.isEmpty) {
+      _usernameTextController.text = authProvider.userModel.name;
+    }
+    if (_emailTextController.text.isEmpty) {
+      _emailTextController.text = authProvider.userModel.email;
+    }
+
+    final docUser =
+        FirebaseFirestore.instance.collection('users').doc(authProvider.userId);
+    try {
+      await docUser.update({
+        'name': _usernameTextController.text.trim(),
+        'email': _emailTextController.text.trim(),
+      });
+      authProvider.userModel.name = _usernameTextController.text.trim();
+      authProvider.userModel.email = _emailTextController.text.trim();
+      authProvider.saveUserDataToSharedPreferences();
+    } catch (e) {
+      print("Error updating data: $e");
+    }
+  }
+
+  //update user profile image in both database and storage, and store it in shared preferences
   Future updateImage() async {
     if (image == null) {
       return;
@@ -159,13 +186,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     try {
       String imageUrl = await authProvider.storeFileToStorage(
           "profilePic/${authProvider.userId}", image!);
-      // Update the profile picture URL in FireStore
       await FirebaseFirestore.instance
           .collection("users")
           .doc(authProvider.userId)
           .update({'profilePic': imageUrl});
-      // Update the userModel's profilePic as well
       authProvider.userModel.profilePic = imageUrl;
+      authProvider.saveUserDataToSharedPreferences();
     } catch (e) {
       print('Error updating image: $e');
     }
@@ -313,26 +339,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: CustomFilledButton(
                   onPressed: () {
-                    if (_usernameTextController.text.isEmpty) {
-                      _usernameTextController.text =
-                          authProvider.userModel.name; // Set a default username
-                    }
-                    if (_emailTextController.text.isEmpty) {
-                      _emailTextController.text =
-                          authProvider.userModel.email; // Set a default email
-                    }
-                    final docUser = FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(authProvider.userId);
-                    docUser.update({
-                      'name': _usernameTextController.text.trim(),
-                      'email': _emailTextController.text.trim(),
-                    });
+                    updateUsernameAndEmail();
                     updateImage();
                     showSnackBar(
                         context, AppLocalizations.of(context)!.updated_message);
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, 'phoneNumberPage', (route) => false);
                   },
                   text: AppLocalizations.of(context)!.save,
                 ),

@@ -375,7 +375,7 @@
     "@enter_coupon_code" : {
         "description" : "Enter Coupon Code"
     },
-    "updated_message" : "The user information has been updated. Please log in to your account again.",
+    "updated_message" : "The user information has been updated.",
     "@updated_message" : {
         "description" : "Updated Message"
     },
