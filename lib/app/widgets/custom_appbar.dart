@@ -6,10 +6,12 @@ import '../providers/theme_mode_provider.dart';
 
 class CustomAppBar extends AppBar {
   final String titleText;
+  final bool isSearchIconVisible;
   final BuildContext context;
 
   CustomAppBar({
     required this.titleText,
+    required this.isSearchIconVisible,
     required this.context,
     Key? key,
   }) : super(
@@ -31,6 +33,18 @@ class CustomAppBar extends AppBar {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Visibility(
+                    visible: isSearchIconVisible,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('searchPage');
+                      },
+                      icon: const Icon(
+                        Icons.search_rounded,
+                        size: 28,
+                      ),
+                    ),
+                  ),
                   IconButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed('wishlistPage');
@@ -42,13 +56,10 @@ class CustomAppBar extends AppBar {
                   ),
                   IconButton(
                     onPressed: () {
-                      final themeModeProvider = Provider.of<ThemeModeProvider>(
-                          context,
-                          listen: false);
-                      displayLanguagePickerSheet(context, false);
+                      Navigator.of(context).pushNamed('notificationsPage');
                     },
                     icon: const Icon(
-                      Icons.language_rounded,
+                      Icons.notifications_rounded,
                       size: 28,
                     ),
                   ),

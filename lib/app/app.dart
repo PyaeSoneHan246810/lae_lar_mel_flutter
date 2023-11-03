@@ -7,6 +7,9 @@ import 'package:lae_lar_mel_app/app/pages/courses_page_japanese.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_korean.dart';
 import 'package:lae_lar_mel_app/app/pages/edit_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/faq_page.dart';
+import 'package:lae_lar_mel_app/app/pages/notifications_page.dart';
+import 'package:lae_lar_mel_app/app/pages/search_page.dart';
+import 'package:lae_lar_mel_app/app/pages/settings_page.dart';
 import 'package:lae_lar_mel_app/app/pages/welcome_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_chinese.dart';
 import 'package:lae_lar_mel_app/app/pages/complete_account_page.dart';
@@ -66,12 +69,15 @@ class App extends StatelessWidget {
               'loginPage': (context) => const LoginPage(),
               'resetPasswordPage': (context) => const ResetPasswordPage(),
               'rootPage': (context) => const RootPage(),
+              'searchPage': (context) => const SearchPage(),
+              'notificationsPage': (context) => const NotificationsPage(),
               'wishlistPage': (context) => const WishlistPage(),
               'englishCoursesPage': (context) => const EnglishCoursesPage(),
               'chineseCoursesPage': (context) => const ChineseCoursesPage(),
               'japaneseCoursesPage': (context) => const JapaneseCoursesPage(),
               'koreanCoursesPage': (context) => const KoreanCoursesPage(),
               'editProfilePage': (context) => const EditProfilePage(),
+              'settingsPage': (context) => const SettingsPage(),
               'aboutUsPage': (context) => const AboutUsPage(),
               'contactUsPage': (context) => const ContactUsPage(),
               'faqPage': (context) => const FAQPage(),

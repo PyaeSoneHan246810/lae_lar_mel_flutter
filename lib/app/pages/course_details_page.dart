@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
@@ -126,6 +127,17 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       MaterialPageRoute(
         builder: (context) => VideoPlayerPage(
           videoID: courseMaterial.content,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToQuizPage(CourseMaterial courseMaterial) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => QuizPage(
+          questions: courseMaterial.content,
         ),
       ),
     );
@@ -702,6 +714,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     case "document":
                       break;
                     case "quiz":
+                      _navigateToQuizPage(courseMaterial);
                       break;
                     default:
                       // Set a default action if needed
@@ -722,6 +735,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           case "document":
                             break;
                           case "quiz":
+                            _navigateToQuizPage(courseMaterial);
                             break;
                           default:
                             // Set a default action if needed
@@ -749,6 +763,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                           case "document":
                             break;
                           case "quiz":
+                            _navigateToQuizPage(courseMaterial);
                             break;
                           default:
                             // Set a default action if needed
@@ -793,8 +808,6 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
 
     return Scaffold(
       appBar: CustomAppBarWithBackArrowWithoutTitle(
-        appBarBackgroundColor: AppColor.pureWhiteColor,
-        appBarBackArrowColor: AppColor.offBlackColor,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },

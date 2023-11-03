@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_tabbar_view.dart';
+import '../config/colors.dart';
+import '../config/font_styles.dart';
 import '../models/course_model.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_list_view.dart';
-import '../widgets/custom_courses_tabbar.dart';
 
 class EnglishCoursesPage extends StatefulWidget {
   const EnglishCoursesPage({super.key});
@@ -33,18 +34,23 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
         ),
         body: Column(
           children: [
-            const CoursesTabBar(
-              tab1Label: 'Beginner',
-              tab2Label: 'Intermediate',
-              tab3Label: 'Advanced',
-              tab4Label: 'IELTS',
+            const TabBar(
+              tabs: [
+                Tab(text: 'Beginner'),
+                Tab(text: 'Intermediate'),
+                Tab(text: 'Advanced'),
+                Tab(text: 'IELTS'),
+              ],
+              isScrollable: true,
+              indicatorColor: AppColor.primaryColor,
+              labelStyle: AppFontStyle.tabNavText,
+              labelPadding: EdgeInsets.only(left: 18, right: 18),
             ),
             Expanded(
               child: TabBarView(
                 children: [
                   CoursesTabBarView(
-                    level: 'Beginner',
-                    language: 'English',
+                    languageLevel: 'Beginner English',
                     child: Center(
                       child: CoursesListView(
                         courses: beginnerEnglishCourses,
@@ -54,22 +60,19 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                     ),
                   ),
                   const CoursesTabBarView(
-                    level: 'Intermediate',
-                    language: 'English',
+                    languageLevel: 'Intermediate English',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   const CoursesTabBarView(
-                    level: 'Advanced',
-                    language: 'English',
+                    languageLevel: 'Advanced English',
                     child: Center(
                       child: Text('Example'),
                     ),
                   ),
                   const CoursesTabBarView(
-                    level: 'IELTS',
-                    language: 'English',
+                    languageLevel: 'IELTS',
                     child: Center(
                       child: Text('Example'),
                     ),
