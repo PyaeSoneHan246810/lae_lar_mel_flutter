@@ -51,6 +51,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.featured,
+        isSearchIconVisible: true,
         context: context,
       ),
       body: FadeInDown(

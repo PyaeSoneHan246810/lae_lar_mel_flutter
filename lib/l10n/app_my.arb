@@ -47,6 +47,8 @@
   "empty_ongoing_course_message" : "သင့်တွင် လေ့လာလက်စသင်တန်းမရှိသေးပါ။ တစ်ခုခုကို စတင်လေ့လာလိုက်ပါ။",
 
   "edit_profile" : "ပရိုဖိုင်ပြုပြင်မည်",
+  "settings" : "စက်တင်များ",
+  "app_language" : "ဘာသာစကား",
   "redeem_code" : "လက်ဆောင်ကုဒ် (redeem code) ထည့်သွင်းမည်",
   "type_redeem_code" : "Redeem code သေချာရိုက်ထည့်ပါ",
   "code_apply" : "လျှောက်ထားမည်",

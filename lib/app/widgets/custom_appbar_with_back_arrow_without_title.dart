@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBarWithBackArrowWithoutTitle extends AppBar {
-  final Color appBarBackgroundColor;
-  final Color appBarBackArrowColor;
   final Function()? onBackButtonPressed;
 
   CustomAppBarWithBackArrowWithoutTitle({
-    required this.appBarBackgroundColor,
-    required this.appBarBackArrowColor,
     this.onBackButtonPressed,
     Key? key,
   }) : super(

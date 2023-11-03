@@ -2,6 +2,8 @@ import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:hive/hive.dart';
+import 'package:lae_lar_mel_app/app/models/quiz_option_model.dart';
+import 'package:lae_lar_mel_app/app/models/quiz_question_model.dart';
 
 part 'course_model.g.dart';
 
@@ -143,6 +145,71 @@ class Course {
                 courseMaterialType: "quiz",
                 courseMaterialTitle: 'Lesson 1 Quizzes',
                 durationInMinute: 03.00,
+                content: [
+                  QuizQuestion(
+                    title: "Which sentence is grammatically correct?",
+                    options: [
+                      QuizOption(
+                        text: "She don't like pizza.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "She doesn't likes pizza.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "She doesn't like pizza.",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "She not like pizza.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title: "Which of the following words is an adjective?",
+                    options: [
+                      QuizOption(
+                        text: "Quickly",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Blue",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Running",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Jumped",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title: "Which sentence is written in the passive voice?",
+                    options: [
+                      QuizOption(
+                        text: "The cat chased the mouse.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "The mouse was chased by the cat.",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "The mouse chased the cat.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "The cat is chasing the mouse.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -341,7 +408,7 @@ class Course {
               'Tr. Hnin is a highly experienced Japanese language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Japanese, Tr. Hsu has been a valuable member of our team. Known for making Japanese learning engaging and effective, students love her classes. Tr. Hsu also enjoys reading, traveling, and exploring the beauty of language and culture.',
         ),
         courseLanguage: 'Japanese',
-        courseLevel: 'Beginner',
+        courseLevel: 'N5',
         courseSkill: 'Grammar',
         coursePreviewImage:
             'https://img.freepik.com/premium-photo/japan-illustration-ai-generated_201606-7376.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1696896000&semt=ais',

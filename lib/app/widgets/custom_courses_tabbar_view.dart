@@ -3,13 +3,11 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import '../config/colors.dart';
 
 class CoursesTabBarView extends StatelessWidget {
-  final String level;
-  final String language;
+  final String languageLevel;
   final Widget child;
   const CoursesTabBarView({
     super.key,
-    required this.level,
-    required this.language,
+    required this.languageLevel,
     required this.child,
   });
 
@@ -25,7 +23,7 @@ class CoursesTabBarView extends StatelessWidget {
             height: 10,
           ),
           Text(
-            '$level $language Courses',
+            '$languageLevel Courses',
             style: AppFontStyle.title2OffBlack(context),
           ),
           const SizedBox(

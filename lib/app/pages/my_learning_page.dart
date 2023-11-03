@@ -26,6 +26,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.my_learning,
+        isSearchIconVisible: false,
         context: context,
       ),
       body: FadeInDown(

@@ -167,6 +167,14 @@
     "@edit_profile" : {
         "description" : "Edit Profile"
     },
+    "settings" : "Settings",
+    "@settings" : {
+        "description" : "Settings"
+    },
+    "app_language" : "App language",
+    "@app_language" : {
+        "description" : "App Language"
+    },
     "redeem_code" : "Redeem code",
     "@redeem_code" : {
         "description" : "Redeem Code"

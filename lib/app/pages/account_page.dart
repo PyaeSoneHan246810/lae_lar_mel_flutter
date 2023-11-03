@@ -158,10 +158,10 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-    bool isSwitched = themeModeProvider.isDarkThemeEnabled;
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.account,
+        isSearchIconVisible: false,
         context: context,
       ),
       body: FadeInDown(
@@ -220,25 +220,7 @@ class _AccountPageState extends State<AccountPage> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 10.0, 0.0),
-                child: SwitchListTile(
-                  contentPadding: const EdgeInsets.all(0),
-                  title: Text(
-                    'Dark Theme',
-                    style: AppFontStyle.bodyOffBlack(context),
-                  ),
-                  value: isSwitched,
-                  activeColor: AppColor.primaryColor,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched = value;
-                    });
-                    themeModeProvider.toggleTheme();
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushNamed('editProfilePage');
@@ -248,6 +230,27 @@ class _AccountPageState extends State<AccountPage> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.edit_profile,
+                        style: AppFontStyle.bodyOffBlack(context),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('settingsPage');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.settings,
                         style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
