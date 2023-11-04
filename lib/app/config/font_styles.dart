@@ -277,6 +277,18 @@ class AppFontStyle {
     );
   }
 
+  static TextStyle bodyNavTextOffBlackUnderlined(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+      color: Theme.of(context).brightness == Brightness.light
+          ? AppColor.offBlackColor
+          : AppColor.greyColor,
+      decoration: TextDecoration.underline,
+    );
+  }
+
   static const TextStyle bodyNavTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,
@@ -425,5 +437,11 @@ class AppFontStyle {
     fontSize: 64,
     fontWeight: FontWeight.w800,
     color: AppColor.pureWhiteColor,
+  );
+  static const TextStyle hugeTextPrimary = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 64,
+    fontWeight: FontWeight.w800,
+    color: AppColor.primaryColor,
   );
 }

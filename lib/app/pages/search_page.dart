@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
-
 import '../config/font_styles.dart';
 
 class SearchPage extends StatefulWidget {

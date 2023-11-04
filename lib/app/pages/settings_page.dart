@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/pages/welcome_page.dart';
 import 'package:provider/provider.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import 'package:animate_do/animate_do.dart';

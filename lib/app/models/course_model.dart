@@ -106,6 +106,8 @@ class Course {
                 courseMaterialId: 5,
                 courseMaterialType: "document",
                 courseMaterialTitle: 'Download the textbook',
+                content:
+                    'https://ismailabdi.files.wordpress.com/2018/02/basic-english-grammar.pdf',
               ),
             ],
           ),

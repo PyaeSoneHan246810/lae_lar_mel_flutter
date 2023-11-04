@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
+import 'package:lae_lar_mel_app/app/models/my_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/contact_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_japanese.dart';
@@ -15,7 +16,6 @@ import 'package:lae_lar_mel_app/app/pages/courses_page_chinese.dart';
 import 'package:lae_lar_mel_app/app/pages/complete_account_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_english.dart';
 import 'package:lae_lar_mel_app/app/pages/login_page.dart';
-import 'package:lae_lar_mel_app/app/pages/otp_verification_page.dart';
 import 'package:lae_lar_mel_app/app/pages/phone_number_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reset_password_page.dart';
 import 'package:lae_lar_mel_app/app/pages/root_page.dart';
@@ -66,8 +66,6 @@ class App extends StatelessWidget {
               'welcomePage': (context) => const WelcomePage(),
               'phoneNumberPage': (context) => const PhoneNumberPage(),
               'completeAccountPage': (context) => const CompleteAccountPage(),
-              'loginPage': (context) => const LoginPage(),
-              'resetPasswordPage': (context) => const ResetPasswordPage(),
               'rootPage': (context) => const RootPage(),
               'searchPage': (context) => const SearchPage(),
               'notificationsPage': (context) => const NotificationsPage(),
@@ -78,6 +76,7 @@ class App extends StatelessWidget {
               'koreanCoursesPage': (context) => const KoreanCoursesPage(),
               'editProfilePage': (context) => const EditProfilePage(),
               'settingsPage': (context) => const SettingsPage(),
+              'myRewardPointsPage': (context) => const MyRewardPointsPage(),
               'aboutUsPage': (context) => const AboutUsPage(),
               'contactUsPage': (context) => const ContactUsPage(),
               'faqPage': (context) => const FAQPage(),
