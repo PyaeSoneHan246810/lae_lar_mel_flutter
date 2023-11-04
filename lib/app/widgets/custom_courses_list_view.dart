@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../models/course_model.dart';
 import '../pages/course_details_page.dart';
 import 'custom_course_view.dart';

@@ -5,7 +5,6 @@ import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lottie/lottie.dart';
-
 import '../config/colors.dart';
 import '../models/quiz_question_model.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';

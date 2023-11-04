@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
-import '../config/colors.dart';
 
 class CoursesTabBarView extends StatelessWidget {
   final String languageLevel;

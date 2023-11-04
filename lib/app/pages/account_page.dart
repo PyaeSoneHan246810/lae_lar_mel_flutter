@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
+import '../widgets/custom_separator.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -30,75 +31,6 @@ class _AccountPageState extends State<AccountPage> {
   void dispose() {
     _redeemCodeTextController.dispose();
     super.dispose();
-  }
-
-  Future<void> _displayEnterRedeemCodeAlertDialog() async {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        final themeModeProvider =
-            Provider.of<ThemeModeProvider>(context, listen: false);
-        return AlertDialog(
-          backgroundColor: themeModeProvider.themeMode == ThemeMode.light
-              ? AppColor.lightestBlueColor
-              : AppColor.darkGreyLight2,
-          contentPadding: const EdgeInsets.only(
-            top: 20,
-            left: 16,
-            right: 16,
-          ),
-          actionsPadding: const EdgeInsets.only(
-            right: 16,
-          ),
-          content: TextFormField(
-            controller: _redeemCodeTextController,
-            cursorColor: AppColor.primaryColor,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColor.greyColor,
-              hintText: AppLocalizations.of(context)!.type_redeem_code,
-              hintStyle: AppFontStyle.inputHintText,
-              labelStyle: AppFontStyle.inputText,
-              contentPadding: const EdgeInsets.only(
-                left: 15,
-                right: 15,
-                top: 20,
-                bottom: 20,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: AppColor.primaryColor,
-                ),
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                AppLocalizations.of(context)!.code_apply,
-                style: AppFontStyle.navTextPrimary,
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                AppLocalizations.of(context)!.code_cancel,
-                style: AppFontStyle.navTextOffBlack(context),
-              ),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   Future<void> showAlertDialog() async {
@@ -176,10 +108,10 @@ class _AccountPageState extends State<AccountPage> {
                         ? AppColor.primaryColor
                         : AppColor.darkGrey,
                     width: double.infinity,
-                    height: 236,
+                    height: 250,
                   ),
                   Positioned(
-                    top: 30,
+                    top: 20,
                     child: GestureDetector(
                       onTap: () {
                         showDialog(
@@ -212,9 +144,40 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                   Positioned(
                     bottom: 20,
-                    child: Text(
-                      authProvider.userModel.name,
-                      style: AppFontStyle.title1PureWhite,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          authProvider.userModel.name,
+                          style: AppFontStyle.title1PureWhite,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.star_outline_rounded,
+                              color: AppColor.pureWhiteColor,
+                              size: 18,
+                            ),
+                            CustomSeparator(
+                              width: 4,
+                              height: 0,
+                            ),
+                            Text(
+                              '0',
+                              style: AppFontStyle.bodyPureWhite,
+                            ),
+                            CustomSeparator(
+                              width: 4,
+                              height: 0,
+                            ),
+                            Text(
+                              'Reward Points',
+                              style: AppFontStyle.bodyPureWhite,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -264,12 +227,14 @@ class _AccountPageState extends State<AccountPage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: GestureDetector(
-                  onTap: _displayEnterRedeemCodeAlertDialog,
+                  onTap: () {
+                    Navigator.of(context).pushNamed('myRewardPointsPage');
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        AppLocalizations.of(context)!.redeem_code,
+                        AppLocalizations.of(context)!.reward_points,
                         style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
@@ -279,6 +244,9 @@ class _AccountPageState extends State<AccountPage> {
                     ],
                   ),
                 ),
+              ),
+              const CustomSeparator(
+                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
@@ -379,7 +347,7 @@ class _AccountPageState extends State<AccountPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
                 child: TextButton(
                   onPressed: () {
                     showAlertDialog();

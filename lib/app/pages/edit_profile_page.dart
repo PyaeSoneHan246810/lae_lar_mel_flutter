@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../providers/auth_provider.dart';
 import '../providers/theme_mode_provider.dart';
 
@@ -211,7 +209,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FadeInDown(
+            ZoomIn(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 20.0),
                 child: Center(

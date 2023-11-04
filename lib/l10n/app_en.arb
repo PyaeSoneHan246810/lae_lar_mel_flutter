@@ -175,13 +175,25 @@
     "@app_language" : {
         "description" : "App Language"
     },
-    "redeem_code" : "Redeem code",
-    "@redeem_code" : {
-        "description" : "Redeem Code"
+    "reward_points" : "My reward points",
+    "@reward_points" : {
+        "description" : "Reward Points"
     },
-    "type_redeem_code" : "Type your redeem code",
-    "@type_redeem_code" : {
-        "description" : "Type Redeem Code"
+    "accumulated" : "You have accumulated",
+    "@accumulated" : {
+        "description" : "Accumulated"
+    },
+    "get_more_reward" : "Get more reward points by just watching ads!",
+    "@get_more_reward" : {
+        "description" : "Get More Reward"
+    },
+    "get_reward_points" : "Get Reward Points",
+    "@get_reward_points" : {
+        "description" : "Get Reward Points"
+    },
+    "view_points_used" : "View points used history",
+    "@view_points_used" : {
+        "description" : "View Points Used"
     },
     "code_apply" : "Apply",
     "@code_apply" : {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
 import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
@@ -138,6 +139,17 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
       MaterialPageRoute(
         builder: (context) => QuizPage(
           questions: courseMaterial.content,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToPdfViewerPage(CourseMaterial courseMaterial) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PdfViewerPage(
+          pdfUrl: courseMaterial.content,
         ),
       ),
     );
@@ -366,7 +378,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       hoverElevation: 2.0,
                       child: Text(
                         AppLocalizations.of(context)!.pay_now,
-                        style: AppFontStyle.navTextPureWhite,
+                        style: AppFontStyle.buttonNavTextPureWhite,
                       ),
                     ),
                   ),
@@ -712,6 +724,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       _navigateToVideoPlayer(courseMaterial);
                       break;
                     case "document":
+                      _navigateToPdfViewerPage(courseMaterial);
                       break;
                     case "quiz":
                       _navigateToQuizPage(courseMaterial);
@@ -733,6 +746,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             _navigateToVideoPlayer(courseMaterial);
                             break;
                           case "document":
+                            _navigateToPdfViewerPage(courseMaterial);
                             break;
                           case "quiz":
                             _navigateToQuizPage(courseMaterial);
@@ -761,6 +775,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             _navigateToVideoPlayer(courseMaterial);
                             break;
                           case "document":
+                            _navigateToPdfViewerPage(courseMaterial);
                             break;
                           case "quiz":
                             _navigateToQuizPage(courseMaterial);

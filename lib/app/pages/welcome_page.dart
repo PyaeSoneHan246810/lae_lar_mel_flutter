@@ -6,7 +6,6 @@ import 'package:country_flags/country_flags.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/providers/locale_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../providers/auth_provider.dart';

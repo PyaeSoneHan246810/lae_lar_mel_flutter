@@ -3,7 +3,6 @@ import 'package:lae_lar_mel_app/app/pages/account_page.dart';
 import 'package:lae_lar_mel_app/app/pages/featured_page.dart';
 import 'package:lae_lar_mel_app/app/pages/my_learning_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../config/colors.dart';
 import '../config/font_styles.dart';
 
 class RootPage extends StatefulWidget {
