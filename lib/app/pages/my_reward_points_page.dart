@@ -112,7 +112,10 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
               ),
               FadeInLeft(
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed("myRewardPointsUsedHistoryPage");
+                  },
                   child: Text(
                     AppLocalizations.of(context)!.view_points_used,
                     style: AppFontStyle.bodyNavTextOffBlackUnderlined(context),

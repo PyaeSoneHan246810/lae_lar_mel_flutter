@@ -675,21 +675,21 @@ class Course {
     return courses;
   }
 
-  //free courses
+  //get free courses
   static List<Course> getFreeCourses() {
     List<Course> freeCourses =
         getCourses().where((course) => course.courseType == "free").toList();
     return freeCourses.reversed.toList();
   }
 
-  //premium courses
+  //get premium courses
   static List<Course> getPremiumCourses() {
     List<Course> premiumCourses =
         getCourses().where((course) => course.courseType == "premium").toList();
     return premiumCourses.reversed.toList();
   }
 
-  //beginner english courses
+  //get beginner english courses
   static List<Course> getBeginnerEnglishCourses() {
     List<Course> beginnerEnglishCourses = getCourses()
         .where((course) =>
@@ -699,7 +699,7 @@ class Course {
     return beginnerEnglishCourses.reversed.toList();
   }
 
-  //intermediate english courses
+  //get intermediate english courses
   static List<Course> getIntermediateEnglishCourses() {
     List<Course> intermediateEnglishCourses = getCourses()
         .where((course) =>
@@ -709,7 +709,7 @@ class Course {
     return intermediateEnglishCourses.reversed.toList();
   }
 
-  //advanced english courses
+  //get advanced english courses
   static List<Course> getAdvancedEnglishCourses() {
     List<Course> advancedEnglishCourses = getCourses()
         .where((course) =>
@@ -719,7 +719,7 @@ class Course {
     return advancedEnglishCourses.reversed.toList();
   }
 
-  //advanced ielts courses
+  //get ielts english courses
   static List<Course> getIeltsEnglishCourses() {
     List<Course> ieltsEnglishCourses = getCourses()
         .where((course) =>
