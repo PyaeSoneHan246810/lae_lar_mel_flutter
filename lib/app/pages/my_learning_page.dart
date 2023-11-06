@@ -5,6 +5,7 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../config/colors.dart';
+import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
@@ -23,6 +24,8 @@ class _MyLearningPageState extends State<MyLearningPage> {
   @override
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context);
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.my_learning,
