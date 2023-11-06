@@ -5,9 +5,11 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import '../config/colors.dart';
+import '../models/course_model.dart';
 import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
+import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_separator.dart';
 
 class MyLearningPage extends StatefulWidget {
@@ -21,11 +23,16 @@ class _MyLearningPageState extends State<MyLearningPage> {
   int numberOfCoursesEnrolled = 0;
   int numberOfCoursesCompleted = 0;
   int totalMinutesLearnedToday = 0;
+  List<Course> enrolledCourses = [];
+  void _getInitialInfo(BuildContext context) {
+    enrolledCourses = Course.getEnrolledCourses(context);
+    numberOfCoursesEnrolled = enrolledCourses.length;
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
-    final courseEnrollmentProvider =
-        Provider.of<CourseEnrollmentProvider>(context);
+    _getInitialInfo(context);
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.my_learning,
@@ -239,22 +246,33 @@ class _MyLearningPageState extends State<MyLearningPage> {
                 const CustomSeparator(
                   height: 28,
                 ),
-                Center(
-                  child: SizedBox(
-                    width: 230,
-                    height: 170,
-                    child: SvgPicture.asset(
-                      'assets/images/empty_course_placeholder.svg',
-                    ),
-                  ),
-                ),
-                const CustomSeparator(
-                  height: 28,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.empty_ongoing_course_message,
-                  style: AppFontStyle.bodyOffBlack(context),
-                ),
+                (enrolledCourses.isEmpty)
+                    ? Column(
+                        children: [
+                          Center(
+                            child: SizedBox(
+                              width: 230,
+                              height: 170,
+                              child: SvgPicture.asset(
+                                'assets/images/empty_course_placeholder.svg',
+                              ),
+                            ),
+                          ),
+                          const CustomSeparator(
+                            height: 28,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!
+                                .empty_ongoing_course_message,
+                            style: AppFontStyle.bodyOffBlack(context),
+                          ),
+                        ],
+                      )
+                    : CoursesListView(
+                        courses: enrolledCourses,
+                        displayItemCount: enrolledCourses.length,
+                        isHeroAnimationEnabled: true,
+                      ),
               ],
             ),
           ),

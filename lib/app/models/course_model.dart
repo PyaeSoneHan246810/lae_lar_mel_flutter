@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_section_model.dart';
 import 'package:lae_lar_mel_app/app/models/course_material_model.dart';
 import 'package:hive/hive.dart';
 import 'package:lae_lar_mel_app/app/models/quiz_option_model.dart';
 import 'package:lae_lar_mel_app/app/models/quiz_question_model.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/course_enrollment_provider.dart';
 
 part 'course_model.g.dart';
 
@@ -673,6 +677,18 @@ class Course {
       ),
     );
     return courses;
+  }
+
+  //get enrolled courses
+  static List<Course> getEnrolledCourses(BuildContext context) {
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context);
+    Map<int, bool> enrolledCourses = courseEnrollmentProvider.enrolledCourses;
+    List<Course> enrolledCourseData = getCourses().where((course) {
+      return enrolledCourses.containsKey(course.courseId) &&
+          enrolledCourses[course.courseId] == true;
+    }).toList();
+    return enrolledCourseData.reversed.toList();
   }
 
   //get free courses
