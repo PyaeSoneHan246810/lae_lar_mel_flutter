@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/pages/free_course_video_player_page.dart';
+import 'package:lae_lar_mel_app/app/pages/instructor_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
 import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/pages/premium_course_video_player_page.dart';
@@ -114,11 +115,11 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
 
   void _applyCoupon() {
     String couponCode = _couponTextController.text;
-    if (couponCode == 'SAMPLE10') {
+    if (couponCode == 'Sample10') {
       setState(() {
         _discountInMMK = 0.1 * _courseTotalInMMK;
       });
-    } else if (couponCode == 'SAMPLE20') {
+    } else if (couponCode == 'Sample20') {
       setState(() {
         _discountInMMK = 0.2 * _courseTotalInMMK;
       });
@@ -178,6 +179,15 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
         builder: (context) => PdfViewerPage(
           pdfUrl: courseMaterial.content,
         ),
+      ),
+    );
+  }
+
+  void _navigateToInstructorProfilePage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const InstructorProfilePage(),
       ),
     );
   }
@@ -366,7 +376,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                       ),
                     ),
                   ),
-                  const CustomSeparator(height: 24),
+                  const CustomSeparator(height: 20),
                   Center(
                     child: MaterialButton(
                       onPressed: () {
@@ -410,6 +420,37 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     ),
                   ),
                   const CustomSeparator(height: 12),
+                  Center(
+                    child: Text(
+                      'Or',
+                      style: AppFontStyle.captionMediumOffBlack(context),
+                    ),
+                  ),
+                  const CustomSeparator(height: 12),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star_rounded,
+                            color: AppColor.primaryColor,
+                          ),
+                          Text(
+                            'Purchase with reward points',
+                            style: AppFontStyle.navTextPrimary,
+                          ),
+                          Icon(
+                            Icons.star_rounded,
+                            color: AppColor.primaryColor,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const CustomSeparator(height: 20),
                   Center(
                     child: GestureDetector(
                       onTap: () {
@@ -1058,11 +1099,40 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   },
                   body: Padding(
                     padding: const EdgeInsets.only(top: 12, bottom: 12),
-                    child: Text(
-                      widget
-                          .course.courseInstructor.courseInstructorDescription,
-                      style: AppFontStyle.bodyOffBlack(context),
-                      textAlign: TextAlign.justify,
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.course.courseInstructor
+                              .courseInstructorDescription,
+                          style: AppFontStyle.bodyOffBlack(context),
+                          textAlign: TextAlign.justify,
+                        ),
+                        const CustomSeparator(
+                          height: 10,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: () {
+                                  _navigateToInstructorProfilePage();
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  side: const BorderSide(
+                                    color: AppColor.primaryColor,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Text(
+                                  'View profile',
+                                  style: AppFontStyle.buttonNavTextOffBlack(
+                                      context),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                   isExpanded: _isInstructorExpansionPanelExpanded,
