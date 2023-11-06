@@ -5,18 +5,20 @@ import 'package:pod_player/pod_player.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 
-class VideoPlayerPage extends StatefulWidget {
+class PremiumCourseVideoPlayerPage extends StatefulWidget {
   final String videoID;
-  const VideoPlayerPage({
+  const PremiumCourseVideoPlayerPage({
     super.key,
     required this.videoID,
   });
 
   @override
-  State<VideoPlayerPage> createState() => _VideoPlayerPageState();
+  State<PremiumCourseVideoPlayerPage> createState() =>
+      _PremiumCourseVideoPlayerPageState();
 }
 
-class _VideoPlayerPageState extends State<VideoPlayerPage> {
+class _PremiumCourseVideoPlayerPageState
+    extends State<PremiumCourseVideoPlayerPage> {
   late final PodPlayerController _podPlayerController;
 
   @override

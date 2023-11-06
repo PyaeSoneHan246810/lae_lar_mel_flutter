@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:lae_lar_mel_app/app/pages/free_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
 import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
-import 'package:lae_lar_mel_app/app/pages/video_player_page.dart';
+import 'package:lae_lar_mel_app/app/pages/premium_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:pod_player/pod_player.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_material_model.dart';
@@ -46,6 +48,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   late TextEditingController _couponTextController;
   late List<bool> _isExpandedList;
   late final PodPlayerController _podPlayerController;
+  late final YoutubePlayerController _youtubePlayerController;
 
   @override
   void initState() {
@@ -55,20 +58,33 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     _grandTotalInMMK = _courseTotalInMMK;
     _couponTextController = TextEditingController();
     _isExpandedList = List.generate(
-        widget.course.courseSections.length, (index) => index == 0);
-    _podPlayerController = PodPlayerController(
-      playVideoFrom: PlayVideoFrom.vimeo(widget.course.coursePreviewVideo),
-      podPlayerConfig: const PodPlayerConfig(
-        autoPlay: true,
-        isLooping: false,
-      ),
-    )..initialise();
+      widget.course.courseSections.length,
+      (index) => index == 0,
+    );
+    if (widget.course.courseType == "free") {
+      _youtubePlayerController = YoutubePlayerController(
+        initialVideoId:
+            YoutubePlayer.convertUrlToId(widget.course.coursePreviewVideo)!,
+        flags: const YoutubePlayerFlags(
+          autoPlay: true,
+        ),
+      );
+    } else {
+      _podPlayerController = PodPlayerController(
+        playVideoFrom: PlayVideoFrom.vimeo(widget.course.coursePreviewVideo),
+        podPlayerConfig: const PodPlayerConfig(
+          autoPlay: true,
+          isLooping: false,
+        ),
+      )..initialise();
+    }
   }
 
   @override
   void dispose() {
     _couponTextController.dispose();
     _podPlayerController.dispose();
+    _youtubePlayerController.dispose();
     super.dispose();
   }
 
@@ -122,11 +138,22 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     });
   }
 
-  void _navigateToVideoPlayer(CourseMaterial courseMaterial) {
+  void _navigateToFreeCourseVideoPlayer(CourseMaterial courseMaterial) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => VideoPlayerPage(
+        builder: (context) => FreeCourseVideoPlayerPage(
+          videoUrl: courseMaterial.content,
+        ),
+      ),
+    );
+  }
+
+  void _navigateToPremiumCourseVideoPlayer(CourseMaterial courseMaterial) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PremiumCourseVideoPlayerPage(
           videoID: courseMaterial.content,
         ),
       ),
@@ -404,40 +431,64 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   }
 
   Widget _buildVideoPlayer() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8),
-      child: PodVideoPlayer(
-        controller: _podPlayerController,
-        alwaysShowProgressBar: false,
-        podProgressBarConfig: const PodProgressBarConfig(
-          backgroundColor: AppColor.offBlackColor,
-          circleHandlerColor: AppColor.primaryColor,
-          bufferedBarColor: AppColor.lightBlackColor,
-          playingBarColor: AppColor.primaryColor,
+    if (widget.course.courseType == "free") {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: YoutubePlayer(
+          controller: _youtubePlayerController,
+          showVideoProgressIndicator: true,
+          bottomActions: [
+            CurrentPosition(),
+            ProgressBar(
+              isExpanded: true,
+              colors: const ProgressBarColors(
+                backgroundColor: AppColor.offBlackColor,
+                handleColor: AppColor.primaryColor,
+                bufferedColor: AppColor.lightBlackColor,
+                playedColor: AppColor.primaryColor,
+              ),
+            ),
+            RemainingDuration(),
+            const PlaybackSpeedButton(),
+          ],
         ),
-        onLoading: (context) {
-          return const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircularProgressIndicator(
-                color: AppColor.primaryColor,
-              ),
-              CustomSeparator(
-                height: 18,
-              ),
-              SizedBox(
-                height: 20.0,
-                child: Text(
-                  'Loading',
-                  style: AppFontStyle.captionBigPureWhite,
+      );
+    } else {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: PodVideoPlayer(
+          controller: _podPlayerController,
+          alwaysShowProgressBar: false,
+          podProgressBarConfig: const PodProgressBarConfig(
+            backgroundColor: AppColor.offBlackColor,
+            circleHandlerColor: AppColor.primaryColor,
+            bufferedBarColor: AppColor.lightBlackColor,
+            playingBarColor: AppColor.primaryColor,
+          ),
+          onLoading: (context) {
+            return const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  color: AppColor.primaryColor,
                 ),
-              ),
-            ],
-          );
-        },
-      ),
-    );
+                CustomSeparator(
+                  height: 18,
+                ),
+                SizedBox(
+                  height: 20.0,
+                  child: Text(
+                    'Loading',
+                    style: AppFontStyle.captionBigPureWhite,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      );
+    }
   }
 
   Widget _buildPreviewImage() {
@@ -719,21 +770,42 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               onTap: () {
                 if (courseEnrollmentProvider
                     .isCourseEnrolled(widget.course.courseId)) {
-                  switch (courseMaterial.courseMaterialType) {
-                    case "video":
-                      _navigateToVideoPlayer(courseMaterial);
-                      break;
-                    case "document":
-                      _navigateToPdfViewerPage(courseMaterial);
-                      break;
-                    case "quiz":
-                      _navigateToQuizPage(courseMaterial);
-                      break;
-                    default:
-                      // Set a default action if needed
-                      break;
+                  //enrolled courses
+                  if (widget.course.courseType == "premium") {
+                    //enrolled premium courses
+                    switch (courseMaterial.courseMaterialType) {
+                      case "video":
+                        _navigateToPremiumCourseVideoPlayer(courseMaterial);
+                        break;
+                      case "document":
+                        _navigateToPdfViewerPage(courseMaterial);
+                        break;
+                      case "quiz":
+                        _navigateToQuizPage(courseMaterial);
+                        break;
+                      default:
+                        // Set a default action if needed
+                        break;
+                    }
+                  } else {
+                    //enrolled free courses
+                    switch (courseMaterial.courseMaterialType) {
+                      case "video":
+                        _navigateToFreeCourseVideoPlayer(courseMaterial);
+                        break;
+                      case "document":
+                        _navigateToPdfViewerPage(courseMaterial);
+                        break;
+                      case "quiz":
+                        _navigateToQuizPage(courseMaterial);
+                        break;
+                      default:
+                        // Set a default action if needed
+                        break;
+                    }
                   }
                 } else {
+                  //courses that are not enrolled
                   if (widget.course.courseType == "premium") {
                     // Premium course sections
                     if (widget.course.courseSections[currentSectionIndex] ==
@@ -743,7 +815,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         // Handle the actions for the first three course materials in the first premium course section based on the course material type.
                         switch (courseMaterial.courseMaterialType) {
                           case "video":
-                            _navigateToVideoPlayer(courseMaterial);
+                            _navigateToPremiumCourseVideoPlayer(courseMaterial);
                             break;
                           case "document":
                             _navigateToPdfViewerPage(courseMaterial);
@@ -772,7 +844,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                         // Handle the actions for the first three course materials in the first free course section based on the course material type.
                         switch (courseMaterial.courseMaterialType) {
                           case "video":
-                            _navigateToVideoPlayer(courseMaterial);
+                            _navigateToFreeCourseVideoPlayer(courseMaterial);
                             break;
                           case "document":
                             _navigateToPdfViewerPage(courseMaterial);
