@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
-import 'package:lae_lar_mel_app/app/models/my_reward_points_page.dart';
+import 'package:lae_lar_mel_app/app/pages/my_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/contact_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_japanese.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_korean.dart';
 import 'package:lae_lar_mel_app/app/pages/edit_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/faq_page.dart';
+import 'package:lae_lar_mel_app/app/pages/my_reward_points_used_history_page.dart';
 import 'package:lae_lar_mel_app/app/pages/notifications_page.dart';
 import 'package:lae_lar_mel_app/app/pages/search_page.dart';
 import 'package:lae_lar_mel_app/app/pages/settings_page.dart';
@@ -77,6 +78,8 @@ class App extends StatelessWidget {
               'editProfilePage': (context) => const EditProfilePage(),
               'settingsPage': (context) => const SettingsPage(),
               'myRewardPointsPage': (context) => const MyRewardPointsPage(),
+              'myRewardPointsUsedHistoryPage': (context) =>
+                  const MyRewardPointsUsedHistoryPage(),
               'aboutUsPage': (context) => const AboutUsPage(),
               'contactUsPage': (context) => const ContactUsPage(),
               'faqPage': (context) => const FAQPage(),
