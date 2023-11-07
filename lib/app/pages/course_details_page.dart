@@ -422,7 +422,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   const CustomSeparator(height: 12),
                   Center(
                     child: Text(
-                      'Or',
+                      AppLocalizations.of(context)!.or,
                       style: AppFontStyle.captionMediumOffBlack(context),
                     ),
                   ),
@@ -430,35 +430,24 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   Center(
                     child: GestureDetector(
                       onTap: () {},
-                      child: const Row(
+                      child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.star_rounded,
                             color: AppColor.primaryColor,
                           ),
                           Text(
-                            'Purchase with reward points',
+                            AppLocalizations.of(context)!
+                                .purchase_with_reward_points,
                             style: AppFontStyle.navTextPrimary,
                           ),
-                          Icon(
+                          const Icon(
                             Icons.star_rounded,
                             color: AppColor.primaryColor,
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                  const CustomSeparator(height: 20),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.back,
-                        style: AppFontStyle.navTextOffBlack(context),
                       ),
                     ),
                   ),
@@ -1124,7 +1113,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                                   ),
                                 ),
                                 child: Text(
-                                  'View profile',
+                                  AppLocalizations.of(context)!.view_profile,
                                   style: AppFontStyle.buttonNavTextOffBlack(
                                       context),
                                 ),
