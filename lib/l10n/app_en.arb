@@ -326,6 +326,10 @@
     "@mmk" : {
         "description" : "MMK"
     },
+    "view_profile" : "View Profile",
+    "@view_profile" : {
+        "description" : "View Profile"
+    },
     "course_content" : "Course Content",
     "@course_content" : {
         "description" : "Course Content"
@@ -383,9 +387,13 @@
     "@pay_now" : {
         "description" : "Pay Now"
     },
-    "back" : "Back",
-    "@back" : {
-        "description" : "Back"
+    "or" : "Or",
+    "@or" : {
+        "description" : "Or"
+    },
+    "purchase_with_reward_points" : "Purchase with reward points",
+    "@purchase_with_reward_points" : {
+        "description" : "Purchase With Reward Points"
     },
     "coupon_code" : "Add Coupon Code",
     "@coupon_code" : {
