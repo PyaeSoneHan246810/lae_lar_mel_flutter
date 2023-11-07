@@ -245,6 +245,27 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pushNamed('exchangeRewardPointsPage');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Exchange reward points',
+                        style: AppFontStyle.bodyOffBlack(context),
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 16,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               const CustomSeparator(
                 height: 10,
               ),

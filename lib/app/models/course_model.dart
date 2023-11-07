@@ -6,7 +6,6 @@ import 'package:hive/hive.dart';
 import 'package:lae_lar_mel_app/app/models/quiz_option_model.dart';
 import 'package:lae_lar_mel_app/app/models/quiz_question_model.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/course_enrollment_provider.dart';
 
 part 'course_model.g.dart';
@@ -51,6 +50,8 @@ class Course {
     required this.coursePreviewVideo,
     required this.courseSections,
   });
+
+  //get all courses
   static List<Course> getCourses() {
     List<Course> courses = [];
     courses.add(

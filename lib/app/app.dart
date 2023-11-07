@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
+import 'package:lae_lar_mel_app/app/pages/exchange_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/my_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
 import 'package:lae_lar_mel_app/app/pages/contact_us_page.dart';
@@ -80,6 +81,8 @@ class App extends StatelessWidget {
               'myRewardPointsPage': (context) => const MyRewardPointsPage(),
               'myRewardPointsUsedHistoryPage': (context) =>
                   const MyRewardPointsUsedHistoryPage(),
+              'exchangeRewardPointsPage': (context) =>
+                  const ExchangeRewardPoints(),
               'aboutUsPage': (context) => const AboutUsPage(),
               'contactUsPage': (context) => const ContactUsPage(),
               'faqPage': (context) => const FAQPage(),

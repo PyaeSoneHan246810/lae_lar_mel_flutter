@@ -24,51 +24,50 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
           Navigator.pop(context);
         },
       ),
-      body: Padding(
-        padding:
-            const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ZoomIn(
-                child: Text(
-                  AppLocalizations.of(context)!.accumulated,
-                  style: AppFontStyle.title2OffBlack(context),
-                ),
+      body: SafeArea(
+        child: ListView(
+          padding:
+              const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
+          children: [
+            ZoomIn(
+              child: Column(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.accumulated,
+                    style: AppFontStyle.title2OffBlack(context),
+                  ),
+                  const CustomSeparator(
+                    height: 10,
+                  ),
+                  Text(
+                    rewardPoints.toString(),
+                    style: AppFontStyle.hugeTextPrimary,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.star_outline_rounded,
+                        color: AppColor.primaryColor,
+                      ),
+                      const CustomSeparator(
+                        width: 4,
+                        height: 0,
+                      ),
+                      Text(
+                        'Reward Points',
+                        style: AppFontStyle.captionBigOffBlack(context),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              const CustomSeparator(
-                height: 10,
-              ),
-              ZoomIn(
-                child: Text(
-                  rewardPoints.toString(),
-                  style: AppFontStyle.hugeTextPrimary,
-                ),
-              ),
-              ZoomIn(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.star_outline_rounded,
-                      color: AppColor.primaryColor,
-                    ),
-                    const CustomSeparator(
-                      width: 4,
-                      height: 0,
-                    ),
-                    Text(
-                      'Reward Points',
-                      style: AppFontStyle.captionBigOffBlack(context),
-                    ),
-                  ],
-                ),
-              ),
-              const CustomSeparator(
-                height: 70,
-              ),
-              FadeInLeft(
+            ),
+            const CustomSeparator(
+              height: 70,
+            ),
+            FadeInLeft(
+              child: Center(
                 child: SizedBox(
                   height: 155,
                   width: 155,
@@ -78,19 +77,23 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
                   ),
                 ),
               ),
-              const CustomSeparator(
-                height: 10,
-              ),
-              FadeInLeft(
+            ),
+            const CustomSeparator(
+              height: 10,
+            ),
+            FadeInLeft(
+              child: Center(
                 child: Text(
                   AppLocalizations.of(context)!.get_more_reward,
                   style: AppFontStyle.captionMediumOffBlack(context),
                 ),
               ),
-              const CustomSeparator(
-                height: 30,
-              ),
-              FadeInLeft(
+            ),
+            const CustomSeparator(
+              height: 30,
+            ),
+            FadeInLeft(
+              child: Center(
                 child: MaterialButton(
                   onPressed: () {},
                   color: AppColor.primaryColor,
@@ -107,10 +110,12 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
                   ),
                 ),
               ),
-              const CustomSeparator(
-                height: 20,
-              ),
-              FadeInLeft(
+            ),
+            const CustomSeparator(
+              height: 20,
+            ),
+            FadeInLeft(
+              child: Center(
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context)
@@ -122,8 +127,8 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
