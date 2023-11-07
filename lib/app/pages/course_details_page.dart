@@ -216,7 +216,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
             decoration: InputDecoration(
               filled: true,
               fillColor: AppColor.greyColor,
-              hintText: AppLocalizations.of(context)!.enter_coupon_code,
+              hintText: AppLocalizations.of(context)!.coupon_code,
               hintStyle: AppFontStyle.inputHintText,
               labelStyle: AppFontStyle.inputText,
               contentPadding: const EdgeInsets.only(

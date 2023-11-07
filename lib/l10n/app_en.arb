@@ -410,5 +410,19 @@
     "enter_6_digit" : "Please enter 6-digit code.",
     "@enter_6_digit" : {
         "description" : "Enter 6 Digit"
+    },
+
+    "search" : "Search",
+    "@search" : {
+        "description" : "Search"
+    },
+    "points_used_history" : "Points used history",
+    "@points_used_history" : {
+        "description" : "Points Used History"
+    },
+
+    "notifications" : "Notifications",
+    "@notifications" : {
+        "description" : "Notifications"
     }
 }

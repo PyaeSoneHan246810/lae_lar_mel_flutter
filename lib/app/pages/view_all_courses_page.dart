@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_list_view.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../models/course_model.dart';
 
 class ViewAllCoursesPage extends StatefulWidget {
@@ -23,8 +23,9 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText:
-            (widget.courseType == "free") ? "Free Courses" : "Premium Courses",
+        titleText: (widget.courseType == "free")
+            ? AppLocalizations.of(context)!.free_courses_title
+            : AppLocalizations.of(context)!.premium_courses_title,
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },

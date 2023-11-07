@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
             );
           },
           child: Text(
-            'Search',
+            AppLocalizations.of(context)!.search,
             style: AppFontStyle.navTextOffBlack(context),
           ),
         ),
@@ -71,7 +71,7 @@ class _SearchPageState extends State<SearchPage> {
             ),
             FadeInLeft(
               child: Text(
-                'Browse Language Categories',
+                AppLocalizations.of(context)!.app_language,
                 style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
