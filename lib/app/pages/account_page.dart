@@ -228,7 +228,7 @@ class _AccountPageState extends State<AccountPage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed('myRewardPointsPage');
+                    Navigator.of(context).pushNamed('rewardPointsPage');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,7 +249,7 @@ class _AccountPageState extends State<AccountPage> {
                 padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushNamed('exchangeRewardPointsPage');
+                    Navigator.of(context).pushNamed('rewardPointsExchangePage');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

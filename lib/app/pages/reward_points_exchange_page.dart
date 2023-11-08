@@ -13,14 +13,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../widgets/custom_reward_points_exchange_view.dart';
 
-class ExchangeRewardPoints extends StatefulWidget {
-  const ExchangeRewardPoints({super.key});
+class RewardPointsExchangePage extends StatefulWidget {
+  const RewardPointsExchangePage({super.key});
 
   @override
-  State<ExchangeRewardPoints> createState() => _ExchangeRewardPointsState();
+  State<RewardPointsExchangePage> createState() =>
+      _RewardPointsExchangePageState();
 }
 
-class _ExchangeRewardPointsState extends State<ExchangeRewardPoints> {
+class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,6 +149,24 @@ class _ExchangeRewardPointsState extends State<ExchangeRewardPoints> {
               imagePath: 'assets/images/discount_illustration_1.png',
               couponPriceInMMK: 5000,
               numberOfRewardPoints: 5000,
+            ),
+            const Divider(),
+            RewardPointsExchangeView(
+              onTap: () {
+                Navigator.of(context).push(
+                  PopupCardRoute(
+                    builder: (context) {
+                      return const _RewardPointsExchangePopupCard(
+                        couponPriceInMMK: 10000,
+                        numberOfRewardPoints: 10000,
+                      );
+                    },
+                  ),
+                );
+              },
+              imagePath: 'assets/images/discount_illustration_1.png',
+              couponPriceInMMK: 10000,
+              numberOfRewardPoints: 10000,
             ),
           ],
         ),
