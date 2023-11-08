@@ -6,14 +6,14 @@ import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class MyRewardPointsPage extends StatefulWidget {
-  const MyRewardPointsPage({super.key});
+class RewardPointsPage extends StatefulWidget {
+  const RewardPointsPage({super.key});
 
   @override
-  State<MyRewardPointsPage> createState() => _MyRewardPointsPageState();
+  State<RewardPointsPage> createState() => _RewardPointsPageState();
 }
 
-class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
+class _RewardPointsPageState extends State<RewardPointsPage> {
   var rewardPoints = 0;
   @override
   Widget build(BuildContext context) {
@@ -119,7 +119,7 @@ class _MyRewardPointsPageState extends State<MyRewardPointsPage> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.of(context)
-                        .pushNamed("myRewardPointsUsedHistoryPage");
+                        .pushNamed("rewardPointsUsedHistoryPage");
                   },
                   child: Text(
                     AppLocalizations.of(context)!.view_points_used,

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 
-class MyRewardPointsUsedHistoryPage extends StatefulWidget {
-  const MyRewardPointsUsedHistoryPage({super.key});
+class RewardPointsUsedHistoryPage extends StatefulWidget {
+  const RewardPointsUsedHistoryPage({super.key});
 
   @override
-  State<MyRewardPointsUsedHistoryPage> createState() =>
-      _MyRewardPointsUsedHistoryPageState();
+  State<RewardPointsUsedHistoryPage> createState() =>
+      _RewardPointsUsedHistoryPageState();
 }
 
-class _MyRewardPointsUsedHistoryPageState
-    extends State<MyRewardPointsUsedHistoryPage> {
+class _RewardPointsUsedHistoryPageState
+    extends State<RewardPointsUsedHistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
