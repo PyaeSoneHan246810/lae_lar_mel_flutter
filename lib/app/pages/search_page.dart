@@ -79,10 +79,12 @@ class _SearchPageState extends State<SearchPage> {
               height: 20,
               width: 0,
             ),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.pushNamed(context, 'englishCoursesPage');
               },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: FadeInLeft(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,10 +105,12 @@ class _SearchPageState extends State<SearchPage> {
               height: 14,
               width: 0,
             ),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.pushNamed(context, 'chineseCoursesPage');
               },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: FadeInLeft(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,10 +131,12 @@ class _SearchPageState extends State<SearchPage> {
               height: 14,
               width: 0,
             ),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.pushNamed(context, 'japaneseCoursesPage');
               },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: FadeInLeft(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,10 +157,12 @@ class _SearchPageState extends State<SearchPage> {
               height: 14,
               width: 0,
             ),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.pushNamed(context, 'koreanCoursesPage');
               },
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               child: FadeInLeft(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

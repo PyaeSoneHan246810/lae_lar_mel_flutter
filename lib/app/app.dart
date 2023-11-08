@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
+import 'package:lae_lar_mel_app/app/pages/purchase_with_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_exchange_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
@@ -27,6 +28,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/providers/auth_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/course_enrollment_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/locale_provider.dart';
+import 'package:lae_lar_mel_app/app/providers/reward_points_provider.dart';
 import 'package:lae_lar_mel_app/app/providers/theme_mode_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +47,8 @@ class App extends StatelessWidget {
         ChangeNotifierProvider<AuthProvider>(create: (_) => AuthProvider()),
         ChangeNotifierProvider<CourseEnrollmentProvider>(
             create: (_) => CourseEnrollmentProvider()),
+        ChangeNotifierProvider<RewardPointsProvider>(
+            create: (_) => RewardPointsProvider()),
       ],
       child: Builder(
         builder: (context) {

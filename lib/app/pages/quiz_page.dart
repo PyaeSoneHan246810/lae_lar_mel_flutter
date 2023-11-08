@@ -128,10 +128,15 @@ class _QuizPageState extends State<QuizPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        option.text,
-                                        style: AppFontStyle.captionBigOffBlack(
-                                          context,
+                                      Expanded(
+                                        child: Text(
+                                          option.text,
+                                          style:
+                                              AppFontStyle.captionBigOffBlack(
+                                            context,
+                                          ),
+                                          maxLines: 5,
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
                                       getIconForOption(question, option),

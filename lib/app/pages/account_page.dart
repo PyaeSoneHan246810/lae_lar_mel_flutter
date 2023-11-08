@@ -182,12 +182,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('editProfilePage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('editProfilePage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -203,12 +205,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('settingsPage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('settingsPage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -224,12 +228,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('rewardPointsPage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('rewardPointsPage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -245,12 +251,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('rewardPointsExchangePage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('rewardPointsExchangePage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -281,12 +289,14 @@ class _AccountPageState extends State<AccountPage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('aboutUsPage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('aboutUsPage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -302,12 +312,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('contactUsPage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('contactUsPage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -323,12 +335,14 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('faqPage');
-                  },
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('faqPage');
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -344,14 +358,16 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Share.share(
-                      'လေ့လာမယ်ဟာ အရည်အချင်းပြည့်မှီသော ဆရာဆရာမများမှ သင်ကြားပို့ချသည့် ဘာသာစကား video courses များကို ၀ယ်ယူရရှိနိုင်ပြီး ကျောင်းသားကျောင်းသူများ လွယ်ကူအဆင်ပြေချောမွေ့စွာ မိမိလေ့လာလိုသောဘာသာစကားများကို အချိန်နေရာမရွေး ဈေးနှုန်းသက်သာစွာ ၀ယ်ယူလေ့လာနိုင်မည့် အဆင့်မြင့် e-learning mobile application platform တစ်ခုပဲဖြစ်ပါတယ်။\nLaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors.\nThe application is available for both Android and iOS. Download the app now to start improving your language skills with us. https://linktr.ee/laelarmel',
-                    );
-                  },
+              InkWell(
+                onTap: () {
+                  Share.share(
+                    'လေ့လာမယ်ဟာ အရည်အချင်းပြည့်မှီသော ဆရာဆရာမများမှ သင်ကြားပို့ချသည့် ဘာသာစကား video courses များကို ၀ယ်ယူရရှိနိုင်ပြီး ကျောင်းသားကျောင်းသူများ လွယ်ကူအဆင်ပြေချောမွေ့စွာ မိမိလေ့လာလိုသောဘာသာစကားများကို အချိန်နေရာမရွေး ဈေးနှုန်းသက်သာစွာ ၀ယ်ယူလေ့လာနိုင်မည့် အဆင့်မြင့် e-learning mobile application platform တစ်ခုပဲဖြစ်ပါတယ်။\nLaeLarMel is the e-learning mobile application platform, offering language courses that include both free and paid options, taught by skilled instructors.\nThe application is available for both Android and iOS. Download the app now to start improving your language skills with us. https://linktr.ee/laelarmel',
+                  );
+                },
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 0.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

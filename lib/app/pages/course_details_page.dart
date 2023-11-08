@@ -3,6 +3,7 @@ import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/pages/free_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/pages/instructor_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
+import 'package:lae_lar_mel_app/app/pages/purchase_with_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/pages/premium_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
@@ -114,23 +115,23 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
   }
 
   void _applyCoupon() {
-    String couponCode = _couponTextController.text;
-    if (couponCode == 'Sample10') {
-      setState(() {
-        _discountInMMK = 0.1 * _courseTotalInMMK;
-      });
-    } else if (couponCode == 'Sample20') {
-      setState(() {
-        _discountInMMK = 0.2 * _courseTotalInMMK;
-      });
-    } else {
-      setState(() {
-        _discountInMMK = 0.0;
-      });
-    }
-    setState(() {
-      _grandTotalInMMK = _courseTotalInMMK - _discountInMMK;
-    });
+    // String couponCode = _couponTextController.text;
+    // if (couponCode == 'Sample10') {
+    //   setState(() {
+    //     _discountInMMK = 0.1 * _courseTotalInMMK;
+    //   });
+    // } else if (couponCode == 'Sample20') {
+    //   setState(() {
+    //     _discountInMMK = 0.2 * _courseTotalInMMK;
+    //   });
+    // } else {
+    //   setState(() {
+    //     _discountInMMK = 0.0;
+    //   });
+    // }
+    // setState(() {
+    //   _grandTotalInMMK = _courseTotalInMMK - _discountInMMK;
+    // });
   }
 
   void _updateSelectedPaymentOption(String? option) {
@@ -429,25 +430,24 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   const CustomSeparator(height: 12),
                   Center(
                     child: GestureDetector(
-                      onTap: () {},
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.star_rounded,
-                            color: AppColor.primaryColor,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return PurchaseWithRewardPointsPage(
+                                courseId: widget.course.courseId,
+                                coursePriceInMMK:
+                                    widget.course.coursePriceInMMK,
+                              );
+                            },
                           ),
-                          Text(
-                            AppLocalizations.of(context)!
-                                .purchase_with_reward_points,
-                            style: AppFontStyle.navTextPrimary,
-                          ),
-                          const Icon(
-                            Icons.star_rounded,
-                            color: AppColor.primaryColor,
-                          ),
-                        ],
+                        );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!
+                            .purchase_with_reward_points,
+                        style: AppFontStyle.navTextPrimary,
                       ),
                     ),
                   ),

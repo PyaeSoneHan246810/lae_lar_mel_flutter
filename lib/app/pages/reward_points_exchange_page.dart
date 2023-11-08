@@ -7,6 +7,7 @@ import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:provider/provider.dart';
 import '../config/font_styles.dart';
+import '../providers/reward_points_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -24,6 +25,7 @@ class RewardPointsExchangePage extends StatefulWidget {
 class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
   @override
   Widget build(BuildContext context) {
+    final rewardPointsProvider = Provider.of<RewardPointsProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: 'Exchange reward points',
@@ -59,8 +61,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Text(
-                            '0',
+                          Text(
+                            rewardPointsProvider.rewardPoints.toString(),
                             style: AppFontStyle.headerPrimary,
                           ),
                           const CustomSeparator(
@@ -76,7 +78,7 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                     ],
                   ),
                   SvgPicture.asset(
-                    'assets/images/reward_star_illustration.svg',
+                    'assets/images/reward_star_illustration_1.svg',
                     height: 124,
                     fit: BoxFit.fill,
                   ),
@@ -103,8 +105,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                   PopupCardRoute(
                     builder: (context) {
                       return const _RewardPointsExchangePopupCard(
-                        couponPriceInMMK: 1000,
-                        numberOfRewardPoints: 1000,
+                        priceInMMK: 1000,
+                        rewardPointsAmount: 1000,
                       );
                     },
                   ),
@@ -121,8 +123,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                   PopupCardRoute(
                     builder: (context) {
                       return const _RewardPointsExchangePopupCard(
-                        couponPriceInMMK: 3000,
-                        numberOfRewardPoints: 3000,
+                        priceInMMK: 3000,
+                        rewardPointsAmount: 3000,
                       );
                     },
                   ),
@@ -139,8 +141,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                   PopupCardRoute(
                     builder: (context) {
                       return const _RewardPointsExchangePopupCard(
-                        couponPriceInMMK: 5000,
-                        numberOfRewardPoints: 5000,
+                        priceInMMK: 5000,
+                        rewardPointsAmount: 5000,
                       );
                     },
                   ),
@@ -157,8 +159,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                   PopupCardRoute(
                     builder: (context) {
                       return const _RewardPointsExchangePopupCard(
-                        couponPriceInMMK: 10000,
-                        numberOfRewardPoints: 10000,
+                        priceInMMK: 10000,
+                        rewardPointsAmount: 10000,
                       );
                     },
                   ),
@@ -176,12 +178,12 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
 }
 
 class _RewardPointsExchangePopupCard extends StatefulWidget {
-  final int couponPriceInMMK;
-  final int numberOfRewardPoints;
+  final int priceInMMK;
+  final int rewardPointsAmount;
   const _RewardPointsExchangePopupCard({
     super.key,
-    required this.couponPriceInMMK,
-    required this.numberOfRewardPoints,
+    required this.priceInMMK,
+    required this.rewardPointsAmount,
   });
 
   @override
@@ -212,7 +214,7 @@ class _RewardPointsExchangePopupCardState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "${widget.couponPriceInMMK.toString()} MMK off Discount Coupon",
+                    "${widget.priceInMMK.toString()} MMK off Discount Coupon",
                     style: AppFontStyle.subtitleOffBlack(context),
                   ),
                   const CustomSeparator(
@@ -231,7 +233,7 @@ class _RewardPointsExchangePopupCardState
                         height: 0,
                       ),
                       Text(
-                        '${widget.numberOfRewardPoints.toString()} Reward Points',
+                        '${widget.rewardPointsAmount.toString()} Reward Points',
                         style: AppFontStyle.captionMediumOffBlack(context),
                       ),
                     ],
