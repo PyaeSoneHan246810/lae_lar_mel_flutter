@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
+import 'package:lae_lar_mel_app/app/providers/reward_points_provider.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class RewardPointsPage extends StatefulWidget {
   const RewardPointsPage({super.key});
@@ -14,9 +16,9 @@ class RewardPointsPage extends StatefulWidget {
 }
 
 class _RewardPointsPageState extends State<RewardPointsPage> {
-  var rewardPoints = 0;
   @override
   Widget build(BuildContext context) {
+    final rewardPointsProvider = Provider.of<RewardPointsProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: AppLocalizations.of(context)!.reward_points,
@@ -40,7 +42,7 @@ class _RewardPointsPageState extends State<RewardPointsPage> {
                     height: 10,
                   ),
                   Text(
-                    rewardPoints.toString(),
+                    rewardPointsProvider.rewardPoints.toString(),
                     style: AppFontStyle.hugeTextPrimary,
                   ),
                   Row(
@@ -95,7 +97,9 @@ class _RewardPointsPageState extends State<RewardPointsPage> {
             FadeInLeft(
               child: Center(
                 child: MaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    rewardPointsProvider.addPoints(30);
+                  },
                   color: AppColor.primaryColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),

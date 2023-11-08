@@ -20,9 +20,11 @@ class RewardPointsExchangeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: FadeInLeft(
+    return FadeInLeft(
+      child: InkWell(
+        onTap: onTap,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         child: Row(
           children: [
             ClipRRect(

@@ -251,6 +251,14 @@ class AppFontStyle {
     );
   }
 
+  static const TextStyle bodyLightBlack = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColor.lightBlackColor,
+    height: 1.8,
+  );
+
   static const TextStyle bodyPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 12,

@@ -16,8 +16,14 @@ class EnglishCoursesPage extends StatefulWidget {
 
 class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
   List<Course> beginnerEnglishCourses = [];
+  List<Course> intermediateEnglishCourses = [];
+  List<Course> advancedEnglishCourses = [];
+  List<Course> ieltsEnglishCourses = [];
   void _getInitialInfo() {
     beginnerEnglishCourses = Course.getBeginnerEnglishCourses();
+    intermediateEnglishCourses = Course.getIntermediateEnglishCourses();
+    advancedEnglishCourses = Course.getAdvancedEnglishCourses();
+    ieltsEnglishCourses = Course.getIeltsEnglishCourses();
   }
 
   @override
@@ -59,22 +65,34 @@ class _EnglishCoursesPageState extends State<EnglishCoursesPage> {
                       ),
                     ),
                   ),
-                  const CoursesTabBarView(
+                  CoursesTabBarView(
                     languageLevel: 'Intermediate English',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: intermediateEnglishCourses,
+                        displayItemCount: intermediateEnglishCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
-                  const CoursesTabBarView(
+                  CoursesTabBarView(
                     languageLevel: 'Advanced English',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: advancedEnglishCourses,
+                        displayItemCount: advancedEnglishCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
-                  const CoursesTabBarView(
+                  CoursesTabBarView(
                     languageLevel: 'IELTS',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: ieltsEnglishCourses,
+                        displayItemCount: ieltsEnglishCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                 ],
