@@ -7,6 +7,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
+import '../providers/reward_points_provider.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
@@ -90,6 +91,7 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final rewardPointsProvider = Provider.of<RewardPointsProvider>(context);
     return Scaffold(
       appBar: CustomAppBar(
         titleText: AppLocalizations.of(context)!.account,
@@ -151,27 +153,27 @@ class _AccountPageState extends State<AccountPage> {
                           authProvider.userModel.name,
                           style: AppFontStyle.title1PureWhite,
                         ),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.star_outline_rounded,
                               color: AppColor.pureWhiteColor,
                               size: 18,
                             ),
-                            CustomSeparator(
+                            const CustomSeparator(
                               width: 4,
                               height: 0,
                             ),
                             Text(
-                              '0',
+                              rewardPointsProvider.rewardPoints.toString(),
                               style: AppFontStyle.bodyPureWhite,
                             ),
-                            CustomSeparator(
+                            const CustomSeparator(
                               width: 4,
                               height: 0,
                             ),
-                            Text(
+                            const Text(
                               'Reward Points',
                               style: AppFontStyle.bodyPureWhite,
                             ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../models/course_model.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
+import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
 
 class ChineseCoursesPage extends StatefulWidget {
@@ -13,8 +15,24 @@ class ChineseCoursesPage extends StatefulWidget {
 }
 
 class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
+  List<Course> hsk1ChineseCourses = [];
+  List<Course> hsk2ChineseCourses = [];
+  List<Course> hsk3ChineseCourses = [];
+  List<Course> hsk4ChineseCourses = [];
+  List<Course> hsk5ChineseCourses = [];
+  List<Course> hsk6ChineseCourses = [];
+  void _getInitialInfo() {
+    hsk1ChineseCourses = Course.getHSK1ChineseCourses();
+    hsk2ChineseCourses = Course.getHSK2ChineseCourses();
+    hsk3ChineseCourses = Course.getHSK3ChineseCourses();
+    hsk4ChineseCourses = Course.getHSK4ChineseCourses();
+    hsk5ChineseCourses = Course.getHSK5ChineseCourses();
+    hsk6ChineseCourses = Course.getHSK6ChineseCourses();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _getInitialInfo();
     return DefaultTabController(
       length: 6,
       child: Scaffold(
@@ -24,9 +42,9 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
             Navigator.pop(context);
           },
         ),
-        body: const Column(
+        body: Column(
           children: [
-            TabBar(
+            const TabBar(
               tabs: [
                 Tab(text: 'Chinese HSK1'),
                 Tab(text: 'Chinese HSK2'),
@@ -46,37 +64,61 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK1',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk1ChineseCourses,
+                        displayItemCount: hsk1ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK2',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk2ChineseCourses,
+                        displayItemCount: hsk2ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK3',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk3ChineseCourses,
+                        displayItemCount: hsk3ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK4',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk4ChineseCourses,
+                        displayItemCount: hsk4ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK5',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk5ChineseCourses,
+                        displayItemCount: hsk5ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK6',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: hsk6ChineseCourses,
+                        displayItemCount: hsk6ChineseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                 ],

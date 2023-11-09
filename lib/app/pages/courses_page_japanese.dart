@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../models/course_model.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
+import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
 
 class JapaneseCoursesPage extends StatefulWidget {
@@ -13,8 +15,22 @@ class JapaneseCoursesPage extends StatefulWidget {
 }
 
 class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
+  List<Course> n5JapaneseCourses = [];
+  List<Course> n4JapaneseCourses = [];
+  List<Course> n3JapaneseCourses = [];
+  List<Course> n2JapaneseCourses = [];
+  List<Course> n1JapaneseCourses = [];
+  void _getInitialInfo() {
+    n5JapaneseCourses = Course.getN5JapaneseCourses();
+    n4JapaneseCourses = Course.getN4JapaneseCourses();
+    n3JapaneseCourses = Course.getN3JapaneseCourses();
+    n2JapaneseCourses = Course.getN2JapaneseCourses();
+    n1JapaneseCourses = Course.getN1JapaneseCourses();
+  }
+
   @override
   Widget build(BuildContext context) {
+    _getInitialInfo();
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -24,9 +40,9 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
             Navigator.pop(context);
           },
         ),
-        body: const Column(
+        body: Column(
           children: [
-            TabBar(
+            const TabBar(
               tabs: [
                 Tab(text: 'Japanese N5'),
                 Tab(text: 'Japanese N4'),
@@ -45,31 +61,51 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                   CoursesTabBarView(
                     languageLevel: 'Japanese N5',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: n5JapaneseCourses,
+                        displayItemCount: n5JapaneseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Japanese N4',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: n4JapaneseCourses,
+                        displayItemCount: n4JapaneseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Japanese N3',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: n3JapaneseCourses,
+                        displayItemCount: n3JapaneseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Japanese N2',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: n2JapaneseCourses,
+                        displayItemCount: n2JapaneseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Japanese N1',
                     child: Center(
-                      child: Text('Example'),
+                      child: CoursesListView(
+                        courses: n1JapaneseCourses,
+                        displayItemCount: n1JapaneseCourses.length,
+                        isHeroAnimationEnabled: false,
+                      ),
                     ),
                   ),
                 ],
