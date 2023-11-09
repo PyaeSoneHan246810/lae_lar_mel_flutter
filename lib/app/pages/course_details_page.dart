@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
 import 'package:lae_lar_mel_app/app/pages/free_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/pages/instructor_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
@@ -184,11 +185,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
     );
   }
 
-  void _navigateToInstructorProfilePage() {
+  void _navigateToInstructorProfilePage(CourseInstructor courseInstructor) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const InstructorProfilePage(),
+        builder: (context) => InstructorProfilePage(
+          courseInstructor: courseInstructor,
+        ),
       ),
     );
   }
@@ -1104,7 +1107,8 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                             Expanded(
                               child: OutlinedButton(
                                 onPressed: () {
-                                  _navigateToInstructorProfilePage();
+                                  _navigateToInstructorProfilePage(
+                                      widget.course.courseInstructor);
                                 },
                                 style: OutlinedButton.styleFrom(
                                   side: const BorderSide(
