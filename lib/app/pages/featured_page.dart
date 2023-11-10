@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/pages/view_all_courses_page.dart';
-import 'package:lae_lar_mel_app/app/widgets/course_card_skeleton.dart';
+import 'package:lae_lar_mel_app/app/widgets/custom_course_view_skeleton.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_outlined_button_rounded.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
@@ -15,6 +15,7 @@ import '../models/course_model.dart';
 import '../models/language_category_model.dart';
 import '../providers/auth_provider.dart';
 import '../providers/theme_mode_provider.dart';
+import '../widgets/custom_course_view_shimmer.dart';
 import '../widgets/custom_courses_list_view.dart';
 
 class FeaturedPage extends StatefulWidget {
@@ -163,15 +164,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             ),
             const CustomSeparator(height: 16),
             (_isLoading)
-                ? Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: CourseCardSkeleton(),
-                    ),
-                  )
+                ? const CourseViewShimmer()
                 : CoursesListView(
                     courses: freeCourses,
                     displayItemCount: 3,
@@ -193,15 +186,7 @@ class _FeaturedPageState extends State<FeaturedPage> {
             ),
             const CustomSeparator(height: 16),
             (_isLoading)
-                ? Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: CourseCardSkeleton(),
-                    ),
-                  )
+                ? const CourseViewShimmer()
                 : CoursesListView(
                     courses: premiumCourses,
                     displayItemCount: 3,

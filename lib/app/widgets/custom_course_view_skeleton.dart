@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:shimmer/shimmer.dart';
 
-class CourseCardSkeleton extends StatelessWidget {
+class CourseViewSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(

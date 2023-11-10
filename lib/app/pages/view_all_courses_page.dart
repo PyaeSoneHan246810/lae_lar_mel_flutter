@@ -8,7 +8,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:shimmer/shimmer.dart';
 import '../models/course_model.dart';
-import '../widgets/course_card_skeleton.dart';
+import '../widgets/custom_course_view_shimmer.dart';
+import '../widgets/custom_course_view_skeleton.dart';
 
 class ViewAllCoursesPage extends StatefulWidget {
   final List<Course> courses;
@@ -144,15 +145,7 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
                 width: 0,
               ),
               (_isLoading)
-                  ? Shimmer.fromColors(
-                      baseColor: Colors.grey[300]!,
-                      highlightColor: Colors.grey[100]!,
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.grey[300]!,
-                        highlightColor: Colors.grey[100]!,
-                        child: CourseCardSkeleton(),
-                      ),
-                    )
+                  ? const CourseViewShimmer()
                   : CoursesListView(
                       courses: displayedCourses,
                       displayItemCount: displayedCourses.length,
