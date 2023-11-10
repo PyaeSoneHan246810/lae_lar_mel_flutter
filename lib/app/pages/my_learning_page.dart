@@ -9,7 +9,8 @@ import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
-import '../widgets/course_card_skeleton.dart';
+import '../widgets/custom_course_view_shimmer.dart';
+import '../widgets/custom_course_view_skeleton.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_separator.dart';
@@ -285,15 +286,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                         ],
                       )
                     : (_isLoading)
-                        ? Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: CourseCardSkeleton(),
-                            ),
-                          )
+                        ? const CourseViewShimmer()
                         : CoursesListView(
                             courses: enrolledCourses,
                             displayItemCount: enrolledCourses.length,

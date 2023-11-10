@@ -4,7 +4,8 @@ import 'package:shimmer/shimmer.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_model.dart';
-import '../widgets/course_card_skeleton.dart';
+import '../widgets/custom_course_view_shimmer.dart';
+import '../widgets/custom_course_view_skeleton.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
@@ -78,15 +79,7 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                     languageLevel: 'Japanese N5',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: n5JapaneseCourses,
                               displayItemCount: n5JapaneseCourses.length,
@@ -98,15 +91,7 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                     languageLevel: 'Japanese N4',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: n4JapaneseCourses,
                               displayItemCount: n4JapaneseCourses.length,
@@ -118,15 +103,7 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                     languageLevel: 'Japanese N3',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: n3JapaneseCourses,
                               displayItemCount: n3JapaneseCourses.length,
@@ -138,15 +115,7 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                     languageLevel: 'Japanese N2',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: n2JapaneseCourses,
                               displayItemCount: n2JapaneseCourses.length,
@@ -158,15 +127,7 @@ class _JapaneseCoursesPageState extends State<JapaneseCoursesPage> {
                     languageLevel: 'Japanese N1',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: n1JapaneseCourses,
                               displayItemCount: n1JapaneseCourses.length,

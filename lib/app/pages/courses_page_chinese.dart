@@ -4,7 +4,8 @@ import 'package:shimmer/shimmer.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_model.dart';
-import '../widgets/course_card_skeleton.dart';
+import '../widgets/custom_course_view_shimmer.dart';
+import '../widgets/custom_course_view_skeleton.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
@@ -81,15 +82,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK1',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk1ChineseCourses,
                               displayItemCount: hsk1ChineseCourses.length,
@@ -101,15 +94,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK2',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk2ChineseCourses,
                               displayItemCount: hsk2ChineseCourses.length,
@@ -121,15 +106,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK3',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk3ChineseCourses,
                               displayItemCount: hsk3ChineseCourses.length,
@@ -141,15 +118,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK4',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk4ChineseCourses,
                               displayItemCount: hsk4ChineseCourses.length,
@@ -161,15 +130,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK5',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk5ChineseCourses,
                               displayItemCount: hsk5ChineseCourses.length,
@@ -181,15 +142,7 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                     languageLevel: 'Chinese HSK6',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: hsk6ChineseCourses,
                               displayItemCount: hsk6ChineseCourses.length,

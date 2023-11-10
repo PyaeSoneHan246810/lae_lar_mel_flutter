@@ -4,7 +4,8 @@ import 'package:shimmer/shimmer.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_model.dart';
-import '../widgets/course_card_skeleton.dart';
+import '../widgets/custom_course_view_shimmer.dart';
+import '../widgets/custom_course_view_skeleton.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
@@ -71,15 +72,7 @@ class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
                     languageLevel: 'Korean TOPIK I (Level 1 & 2)',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: topikILevel1And2KoreanCourses,
                               displayItemCount:
@@ -92,15 +85,7 @@ class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
                     languageLevel: 'Korean TOPIK II (Level 3 & 4)',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: topikIILevel3And4KoreanCourses,
                               displayItemCount:
@@ -113,15 +98,7 @@ class _KoreanCoursesPageState extends State<KoreanCoursesPage> {
                     languageLevel: 'Korean TOPIK II (Level 5 & 6)',
                     child: Center(
                       child: (_isLoading)
-                          ? Shimmer.fromColors(
-                              baseColor: Colors.grey[300]!,
-                              highlightColor: Colors.grey[100]!,
-                              child: Shimmer.fromColors(
-                                baseColor: Colors.grey[300]!,
-                                highlightColor: Colors.grey[100]!,
-                                child: CourseCardSkeleton(),
-                              ),
-                            )
+                          ? const CourseViewShimmer()
                           : CoursesListView(
                               courses: topikIILevel5And6KoreanCourses,
                               displayItemCount:
