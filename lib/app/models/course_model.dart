@@ -3916,6 +3916,648 @@ class Course {
         ],
       ),
     );
+    courses.add(
+      Course(
+        courseId: 19,
+        courseName: 'Hangul Full Course',
+        courseType: "free",
+        coursePriceInMMK: 0.0,
+        courseTotalDurationInHour: 2.0,
+        courseInstructor: CourseInstructor(
+          courseInstructorName: 'Tr. Shwe',
+          courseInstructorImage:
+              'https://learnlanguagesfromhome.com/wp-content/uploads/2021/03/korean-tutor-onlne-1024x683.jpg',
+          courseInstructorMajor: 'Korean Instructor',
+          courseInstructorDescription:
+              'Tr. Shwe is a highly experienced Korean language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Korean, Tr. Shwe has been a valuable member of our team. Known for making Korean learning engaging and effective, students love her classes. Tr. Shwe also enjoys reading, traveling, and exploring the beauty of language and culture.',
+          courseInstructorCityAddress: "Yangon",
+        ),
+        courseLanguage: 'Korean',
+        courseLevel: 'TOPIK I (Level 1 & 2)',
+        courseSkill: 'Korean Basic',
+        coursePreviewImage:
+            'https://ih1.redbubble.net/image.584226227.8647/farp,small,wall_texture,product,750x1000.u1.jpg',
+        coursePreviewVideo: 'https://youtu.be/LcGaMWal6Gk?si=ZZdjXQoEqBMhGeBM',
+        courseSections: [
+          CourseSection(
+            courseSectionTitle: 'Introduction',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Introduction to the course',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lessons Overview',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "document",
+                courseMaterialTitle: 'Document',
+                content: 'https://www.eps.go.kr/exam/Hanguel.pdf',
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 1',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 1 Overview',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "quiz",
+                courseMaterialTitle: 'Quizzes',
+                durationInMinute: 03.00,
+                content: [
+                  QuizQuestion(
+                    title:
+                        "What is a common way to suggest meeting up with a friend in the evening?",
+                    options: [
+                      QuizOption(
+                        text: "Let's meet at 8:00 AM",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "How about meeting at the park?",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "I'm not sure",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Can I borrow your book?",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "What should you say to thank the waiter after your meal is served?",
+                    options: [
+                      QuizOption(
+                        text: "Go away",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Thank you",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Give me more",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "No, thanks",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "What is the polite way to introduce yourself to someone you've just met?",
+                    options: [
+                      QuizOption(
+                        text: "I don't know",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "No",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Hi, my name is John. Nice to meet you.",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "What's your address?",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 2',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 2 Overview',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: 'https://youtu.be/DicRqwRUB5o?si=GDBkjXFEK58WVqo2',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    courses.add(
+      Course(
+        courseId: 20,
+        courseName: 'Korean Conversations in Business',
+        courseType: "premium",
+        coursePriceInMMK: 3000.0,
+        courseTotalDurationInHour: 4.0,
+        courseInstructor: CourseInstructor(
+          courseInstructorName: 'Tr. Shwe',
+          courseInstructorImage:
+              'https://learnlanguagesfromhome.com/wp-content/uploads/2021/03/korean-tutor-onlne-1024x683.jpg',
+          courseInstructorMajor: 'Korean Instructor',
+          courseInstructorDescription:
+              'Tr. Shwe is a highly experienced Korean language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Korean, Tr. Shwe has been a valuable member of our team. Known for making Korean learning engaging and effective, students love her classes. Tr. Shwe also enjoys reading, traveling, and exploring the beauty of language and culture.',
+          courseInstructorCityAddress: "Yangon",
+        ),
+        courseLanguage: 'Korean',
+        courseLevel: 'TOPIK II (Level 3 & 4)',
+        courseSkill: 'Speaking & Listening',
+        coursePreviewImage:
+            'https://img.freepik.com/free-vector/business-people-office-korean-illustration_52683-26403.jpg',
+        coursePreviewVideo: '882474323',
+        courseSections: [
+          CourseSection(
+            courseSectionTitle: 'Introduction',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Introduction to the course',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lessons Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "document",
+                courseMaterialTitle: 'Document',
+                content: 'https://www.eps.go.kr/exam/Hanguel.pdf',
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 1',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 1 Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "quiz",
+                courseMaterialTitle: 'Quizzes',
+                durationInMinute: 03.00,
+                content: [
+                  QuizQuestion(
+                    title:
+                        "Which of the following is NOT a good note-taking strategy during the IELTS listening test?",
+                    options: [
+                      QuizOption(
+                        text: "Trying to write down every word you hear. ",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Using symbols and abbreviations to save time.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Focusing on key information and main ideas.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Organizing your notes in a structured way.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "How can you improve your listening comprehension when practicing with audio materials?",
+                    options: [
+                      QuizOption(
+                        text: "Listening passively without taking any notes.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Replaying the audio multiple times until you understand every word.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Distracting yourself with other tasks while listening.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Actively engaging with the material, and trying to understand the context.",
+                        isCorrect: true,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "What can you do to improve your ability to predict the content of a listening passage?",
+                    options: [
+                      QuizOption(
+                        text: "Randomly guess what the topic might be.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Skip the first few minutes of the audio.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Read the questions carefully before listening. ",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Close your eyes to focus solely on the audio.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 2',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 2 Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+    courses.add(
+      Course(
+        courseId: 21,
+        courseName: 'Korean Essay Writing Guideline Course',
+        courseType: "premium",
+        coursePriceInMMK: 5000.0,
+        courseTotalDurationInHour: 4.0,
+        courseInstructor: CourseInstructor(
+          courseInstructorName: 'Tr. Shwe',
+          courseInstructorImage:
+              'https://learnlanguagesfromhome.com/wp-content/uploads/2021/03/korean-tutor-onlne-1024x683.jpg',
+          courseInstructorMajor: 'Korean Instructor',
+          courseInstructorDescription:
+              'Tr. Shwe is a highly experienced Korean language instructor at YUFl. With a passion for teaching and a dedication to helping students excel in Korean, Tr. Shwe has been a valuable member of our team. Known for making Korean learning engaging and effective, students love her classes. Tr. Shwe also enjoys reading, traveling, and exploring the beauty of language and culture.',
+          courseInstructorCityAddress: "Yangon",
+        ),
+        courseLanguage: 'Korean',
+        courseLevel: 'TOPIK II (Level 5 & 6)',
+        courseSkill: 'Writing',
+        coursePreviewImage:
+            'https://contenthub-static.grammarly.com/blog/wp-content/uploads/2021/08/how-to-start-an-essay.jpeg',
+        coursePreviewVideo: '882474323',
+        courseSections: [
+          CourseSection(
+            courseSectionTitle: 'Introduction',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Introduction to the course',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lessons Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "document",
+                courseMaterialTitle: 'Document',
+                content: 'https://www.eps.go.kr/exam/Hanguel.pdf',
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 1',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 1 Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "quiz",
+                courseMaterialTitle: 'Quizzes',
+                durationInMinute: 03.00,
+                content: [
+                  QuizQuestion(
+                    title:
+                        "Which of the following is NOT a good note-taking strategy during the IELTS listening test?",
+                    options: [
+                      QuizOption(
+                        text: "Trying to write down every word you hear. ",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Using symbols and abbreviations to save time.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Focusing on key information and main ideas.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Organizing your notes in a structured way.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "How can you improve your listening comprehension when practicing with audio materials?",
+                    options: [
+                      QuizOption(
+                        text: "Listening passively without taking any notes.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Replaying the audio multiple times until you understand every word.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Distracting yourself with other tasks while listening.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text:
+                            "Actively engaging with the material, and trying to understand the context.",
+                        isCorrect: true,
+                      ),
+                    ],
+                  ),
+                  QuizQuestion(
+                    title:
+                        "What can you do to improve your ability to predict the content of a listening passage?",
+                    options: [
+                      QuizOption(
+                        text: "Randomly guess what the topic might be.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Skip the first few minutes of the audio.",
+                        isCorrect: false,
+                      ),
+                      QuizOption(
+                        text: "Read the questions carefully before listening. ",
+                        isCorrect: true,
+                      ),
+                      QuizOption(
+                        text: "Close your eyes to focus solely on the audio.",
+                        isCorrect: false,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          CourseSection(
+            courseSectionTitle: 'Lesson 2',
+            courseMaterials: [
+              CourseMaterial(
+                courseMaterialId: 1,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Lesson 2 Overview',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 2,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 3,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 4,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+              CourseMaterial(
+                courseMaterialId: 5,
+                courseMaterialType: "video",
+                courseMaterialTitle: 'Video',
+                durationInMinute: 03.00,
+                content: '882476919',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
     return courses;
   }
 
@@ -4156,6 +4798,36 @@ class Course {
             course.courseLevel == 'HSK6' && course.courseLanguage == 'Chinese')
         .toList();
     return hsk6ChineseCourses.reversed.toList();
+  }
+
+  //get TOPIK I (Level 1 & 2) korean courses
+  static List<Course> getTOPIKILevel1And2KoreanCourses() {
+    List<Course> koreanCourses = getCourses()
+        .where((course) =>
+            course.courseLevel == 'TOPIK I (Level 1 & 2)' &&
+            course.courseLanguage == 'Korean')
+        .toList();
+    return koreanCourses.reversed.toList();
+  }
+
+  //get TOPIK II (Level 3 & 4) korean courses
+  static List<Course> getTOPIKIILevel3And4KoreanCourses() {
+    List<Course> koreanCourses = getCourses()
+        .where((course) =>
+            course.courseLevel == 'TOPIK II (Level 3 & 4)' &&
+            course.courseLanguage == 'Korean')
+        .toList();
+    return koreanCourses.reversed.toList();
+  }
+
+  //get TOPIK II (Level 3 & 4) korean courses
+  static List<Course> getTOPIKIILevel5And6KoreanCourses() {
+    List<Course> koreanCourses = getCourses()
+        .where((course) =>
+            course.courseLevel == 'TOPIK II (Level 5 & 6)' &&
+            course.courseLanguage == 'Korean')
+        .toList();
+    return koreanCourses.reversed.toList();
   }
 
   //get instructor courses
