@@ -4,10 +4,12 @@ import 'package:animate_do/animate_do.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import '../config/colors.dart';
 import '../models/course_model.dart';
 import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
+import '../widgets/course_card_skeleton.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_separator.dart';
@@ -24,6 +26,20 @@ class _MyLearningPageState extends State<MyLearningPage> {
   int numberOfCoursesCompleted = 0;
   int totalMinutesLearnedToday = 0;
   List<Course> enrolledCourses = [];
+
+  late bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(milliseconds: 600), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   void _getInitialInfo(BuildContext context) {
     enrolledCourses = Course.getEnrolledCourses(context);
     numberOfCoursesEnrolled = enrolledCourses.length;
@@ -268,11 +284,21 @@ class _MyLearningPageState extends State<MyLearningPage> {
                           ),
                         ],
                       )
-                    : CoursesListView(
-                        courses: enrolledCourses,
-                        displayItemCount: enrolledCourses.length,
-                        isHeroAnimationEnabled: true,
-                      ),
+                    : (_isLoading)
+                        ? Shimmer.fromColors(
+                            baseColor: Colors.grey[300]!,
+                            highlightColor: Colors.grey[100]!,
+                            child: Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: CourseCardSkeleton(),
+                            ),
+                          )
+                        : CoursesListView(
+                            courses: enrolledCourses,
+                            displayItemCount: enrolledCourses.length,
+                            isHeroAnimationEnabled: true,
+                          ),
               ],
             ),
           ),
