@@ -3938,11 +3938,86 @@ class Course {
     return freeCourses.reversed.toList();
   }
 
+  //get free english courses
+  static List<Course> getFreeEnglishCourses() {
+    List<Course> freeEnglishCourses = getCourses()
+        .where((course) =>
+            course.courseType == "free" && course.courseLanguage == 'English')
+        .toList();
+    return freeEnglishCourses.reversed.toList();
+  }
+
+  //get free chinese courses
+  static List<Course> getFreeChineseCourses() {
+    List<Course> freeChineseCourses = getCourses()
+        .where((course) =>
+            course.courseType == "free" && course.courseLanguage == 'Chinese')
+        .toList();
+    return freeChineseCourses.reversed.toList();
+  }
+
+  //get free japanese courses
+  static List<Course> getFreeJapaneseCourses() {
+    List<Course> freeJapaneseCourses = getCourses()
+        .where((course) =>
+            course.courseType == "free" && course.courseLanguage == 'Japanese')
+        .toList();
+    return freeJapaneseCourses.reversed.toList();
+  }
+
+  //get free korean courses
+  static List<Course> getFreeKoreanCourses() {
+    List<Course> freeKoreanCourses = getCourses()
+        .where((course) =>
+            course.courseType == "free" && course.courseLanguage == 'Korean')
+        .toList();
+    return freeKoreanCourses.reversed.toList();
+  }
+
   //get premium courses
   static List<Course> getPremiumCourses() {
     List<Course> premiumCourses =
         getCourses().where((course) => course.courseType == "premium").toList();
     return premiumCourses.reversed.toList();
+  }
+
+  //get premium english courses
+  static List<Course> getPremiumEnglishCourses() {
+    List<Course> premiumEnglishCourses = getCourses()
+        .where((course) =>
+            course.courseType == "premium" &&
+            course.courseLanguage == 'English')
+        .toList();
+    return premiumEnglishCourses.reversed.toList();
+  }
+
+  //get premium chinese courses
+  static List<Course> getPremiumChineseCourses() {
+    List<Course> premiumChineseCourses = getCourses()
+        .where((course) =>
+            course.courseType == "premium" &&
+            course.courseLanguage == 'Chinese')
+        .toList();
+    return premiumChineseCourses.reversed.toList();
+  }
+
+  //get premium japanese courses
+  static List<Course> getPremiumJapaneseCourses() {
+    List<Course> premiumJapaneseCourses = getCourses()
+        .where((course) =>
+            course.courseType == "premium" &&
+            course.courseLanguage == 'Japanese')
+        .toList();
+    return premiumJapaneseCourses.reversed.toList();
+  }
+
+  //get premium korean courses
+  static List<Course> getPremiumKoreanCourses() {
+    List<Course> premiumKoreanCourses = getCourses()
+        .where((course) =>
+            course.courseType == "premium" && course.courseLanguage == 'Korean')
+        .toList();
+    return premiumKoreanCourses.reversed.toList();
   }
 
   //get beginner english courses
