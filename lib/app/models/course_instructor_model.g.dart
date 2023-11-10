@@ -21,13 +21,14 @@ class CourseInstructorAdapter extends TypeAdapter<CourseInstructor> {
       courseInstructorImage: fields[1] as String,
       courseInstructorMajor: fields[2] as String,
       courseInstructorDescription: fields[3] as String,
+      courseInstructorCityAddress: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, CourseInstructor obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.courseInstructorName)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class CourseInstructorAdapter extends TypeAdapter<CourseInstructor> {
       ..writeByte(2)
       ..write(obj.courseInstructorMajor)
       ..writeByte(3)
-      ..write(obj.courseInstructorDescription);
+      ..write(obj.courseInstructorDescription)
+      ..writeByte(4)
+      ..write(obj.courseInstructorCityAddress);
   }
 
   @override
