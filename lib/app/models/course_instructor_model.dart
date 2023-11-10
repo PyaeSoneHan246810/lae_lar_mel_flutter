@@ -12,10 +12,13 @@ class CourseInstructor {
   String courseInstructorMajor;
   @HiveField(3)
   String courseInstructorDescription;
+  @HiveField(4)
+  String courseInstructorCityAddress;
   CourseInstructor({
     required this.courseInstructorName,
     required this.courseInstructorImage,
     required this.courseInstructorMajor,
     required this.courseInstructorDescription,
+    required this.courseInstructorCityAddress,
   });
 }

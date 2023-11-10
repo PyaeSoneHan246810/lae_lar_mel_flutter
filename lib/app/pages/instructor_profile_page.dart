@@ -99,14 +99,14 @@ class _InstructorProfilePageState extends State<InstructorProfilePage> {
                             height: 0,
                           ),
                           Text(
-                            'Yangon',
+                            widget.courseInstructor.courseInstructorCityAddress,
                             style: AppFontStyle.captionMediumOffBlack(context),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
             const CustomSeparator(
@@ -187,15 +187,15 @@ class _InstructorProfilePageState extends State<InstructorProfilePage> {
                     ),
                     InkWell(
                       onTap: () async {
-                        final Uri emailUri = Uri(
-                          scheme: 'mailto',
-                          path: 'pyaesonehan246810@gmail.com',
-                        );
-                        if (await canLaunchUrl(emailUri)) {
-                          launchUrl(emailUri);
-                        } else {
-                          throw Exception('Could not launch $emailUri');
-                        }
+                        // final Uri emailUri = Uri(
+                        //   scheme: 'mailto',
+                        //   path: 'pyaesonehan246810@gmail.com',
+                        // );
+                        // if (await canLaunchUrl(emailUri)) {
+                        //   launchUrl(emailUri);
+                        // } else {
+                        //   throw Exception('Could not launch $emailUri');
+                        // }
                       },
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
