@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:shimmer/shimmer.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../models/course_model.dart';
+import '../widgets/course_card_skeleton.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import '../widgets/custom_courses_list_view.dart';
 import '../widgets/custom_courses_tabbar_view.dart';
@@ -21,6 +23,20 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
   List<Course> hsk4ChineseCourses = [];
   List<Course> hsk5ChineseCourses = [];
   List<Course> hsk6ChineseCourses = [];
+
+  late bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(milliseconds: 600), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   void _getInitialInfo() {
     hsk1ChineseCourses = Course.getHSK1ChineseCourses();
     hsk2ChineseCourses = Course.getHSK2ChineseCourses();
@@ -64,61 +80,121 @@ class _ChineseCoursesPageState extends State<ChineseCoursesPage> {
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK1',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk1ChineseCourses,
-                        displayItemCount: hsk1ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk1ChineseCourses,
+                              displayItemCount: hsk1ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK2',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk2ChineseCourses,
-                        displayItemCount: hsk2ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk2ChineseCourses,
+                              displayItemCount: hsk2ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK3',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk3ChineseCourses,
-                        displayItemCount: hsk3ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk3ChineseCourses,
+                              displayItemCount: hsk3ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK4',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk4ChineseCourses,
-                        displayItemCount: hsk4ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk4ChineseCourses,
+                              displayItemCount: hsk4ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK5',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk5ChineseCourses,
-                        displayItemCount: hsk5ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk5ChineseCourses,
+                              displayItemCount: hsk5ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                   CoursesTabBarView(
                     languageLevel: 'Chinese HSK6',
                     child: Center(
-                      child: CoursesListView(
-                        courses: hsk6ChineseCourses,
-                        displayItemCount: hsk6ChineseCourses.length,
-                        isHeroAnimationEnabled: false,
-                      ),
+                      child: (_isLoading)
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey[300]!,
+                              highlightColor: Colors.grey[100]!,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.grey[300]!,
+                                highlightColor: Colors.grey[100]!,
+                                child: CourseCardSkeleton(),
+                              ),
+                            )
+                          : CoursesListView(
+                              courses: hsk6ChineseCourses,
+                              displayItemCount: hsk6ChineseCourses.length,
+                              isHeroAnimationEnabled: false,
+                            ),
                     ),
                   ),
                 ],

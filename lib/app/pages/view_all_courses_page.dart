@@ -6,7 +6,9 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_list_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
+import 'package:shimmer/shimmer.dart';
 import '../models/course_model.dart';
+import '../widgets/course_card_skeleton.dart';
 
 class ViewAllCoursesPage extends StatefulWidget {
   final List<Course> courses;
@@ -25,6 +27,21 @@ class ViewAllCoursesPage extends StatefulWidget {
 class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
   late List<Course> displayedCourses;
   late Map<String, Map<String, List<Course>>> allCourses;
+
+  late bool _isLoading;
+
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(milliseconds: 600), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    _getInitialInfo();
+    displayedCourses = widget.courses;
+    super.initState();
+  }
 
   void _getInitialInfo() {
     allCourses = {
@@ -51,13 +68,6 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
     "Japanese",
     "Korean"
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    _getInitialInfo();
-    displayedCourses = widget.courses;
-  }
 
   void updateDisplayedCourses() {
     String language = _dropdownValue;
@@ -86,10 +96,10 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
         padding:
             const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            FadeInRight(
-              child: Row(
+        child: FadeInDown(
+          child: Column(
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
@@ -129,19 +139,27 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
                   ),
                 ],
               ),
-            ),
-            const CustomSeparator(
-              height: 20,
-              width: 0,
-            ),
-            FadeInDown(
-              child: CoursesListView(
-                courses: displayedCourses,
-                displayItemCount: displayedCourses.length,
-                isHeroAnimationEnabled: false,
+              const CustomSeparator(
+                height: 20,
+                width: 0,
               ),
-            ),
-          ],
+              (_isLoading)
+                  ? Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: CourseCardSkeleton(),
+                      ),
+                    )
+                  : CoursesListView(
+                      courses: displayedCourses,
+                      displayItemCount: displayedCourses.length,
+                      isHeroAnimationEnabled: false,
+                    ),
+            ],
+          ),
         ),
       ),
     );
