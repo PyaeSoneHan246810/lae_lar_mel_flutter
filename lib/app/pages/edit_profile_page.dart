@@ -198,6 +198,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: AppLocalizations.of(context)!.edit_profile,
@@ -273,7 +274,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   controller: _usernameTextController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: AppColor.greyColor,
+                    fillColor: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.greyColor
+                        : AppColor.darkGreyLight1,
                     hintText: authProvider.userModel.name,
                     hintStyle: AppFontStyle.inputHintText,
                     labelStyle: AppFontStyle.inputText,
@@ -311,7 +314,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   controller: _emailTextController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: AppColor.greyColor,
+                    fillColor: themeModeProvider.themeMode == ThemeMode.light
+                        ? AppColor.greyColor
+                        : AppColor.darkGreyLight1,
                     hintText: authProvider.userModel.email,
                     hintStyle: AppFontStyle.inputHintText,
                     labelStyle: AppFontStyle.inputText,

@@ -4570,7 +4570,7 @@ class Course {
       return enrolledCourses.containsKey(course.courseId) &&
           enrolledCourses[course.courseId] == true;
     }).toList();
-    return enrolledCourseData.reversed.toList();
+    return enrolledCourseData.toList();
   }
 
   //get free courses

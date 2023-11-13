@@ -424,5 +424,47 @@
     "notifications" : "Notifications",
     "@notifications" : {
         "description" : "Notifications"
+    },
+    "course_info" : "Course Info",
+    "@course_info" : {
+        "description" : "Course Info"
+    },
+    "promotions" : "Promotions",
+    "@promotions" : {
+        "description" : "Promotions"
+    },
+    "software_updates" : "Software Updates",
+    "@software_updates" : {
+        "description" : "Software Updates"
+    },
+
+    "purchase_the_course" : "Purchase the course with",
+    "@purchase_the_course" : {
+        "description" : "Purchase the course"
+    },
+    "purchase_with" : "Purchase with",
+    "@purchase_with" : {
+        "description" : "Purchase with"
+    },
+    "not_enough_points_to_purchase" : "You don't have enough points to purchase.",
+    "@not_enough_points_to_purchase" : {
+        "description" : "Not enough points to purchase"
+    },
+    "not_enough_points" : "Not enough points?",
+    "@not_enough_points" : {
+        "description" : "Not enough points?"
+    },
+    "exchange_reward_points" : "Exchange reward points with discount coupon code",
+    "@exchange_reward_points" : {
+        "description" : "Exchange reward points"
+    },
+
+    "exchange_reward" : "Exchange reward points",
+    "@exchange_reward" : {
+        "description" : "Exchange reward points"
+    },
+    "redeem" : "Redeem",
+    "@redeem" : {
+        "description" : "Redeem"
     }
 }

@@ -37,6 +37,7 @@ class _CoursesListViewState extends State<CoursesListView> {
       itemCount: widget.displayItemCount,
       itemBuilder: (context, index) {
         return CustomCourseView(
+          courseId: widget.courses[index].courseId,
           courseType: widget.courses[index].courseType,
           courseImage: widget.courses[index].coursePreviewImage,
           courseName: widget.courses[index].courseName,

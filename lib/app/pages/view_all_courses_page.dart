@@ -6,8 +6,10 @@ import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_ti
 import 'package:lae_lar_mel_app/app/widgets/custom_courses_list_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import '../models/course_model.dart';
+import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_course_view_shimmer.dart';
 import '../widgets/custom_course_view_skeleton.dart';
 
@@ -84,6 +86,7 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeProvider = Provider.of<ThemeModeProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: (widget.courseType == "free")
@@ -130,9 +133,11 @@ class _ViewAllCoursesPageState extends State<ViewAllCoursesPage> {
                         },
                         style: AppFontStyle.bodyNavTextOffBlack(context),
                         borderRadius: BorderRadius.circular(10),
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.keyboard_arrow_down_rounded,
-                          color: AppColor.offBlackColor,
+                          color: themeModeProvider.themeMode == ThemeMode.light
+                              ? AppColor.offBlackColor
+                              : AppColor.pureWhiteColor,
                         ),
                         underline: Container(),
                       ),

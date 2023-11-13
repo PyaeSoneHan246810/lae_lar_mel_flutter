@@ -26,17 +26,17 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ),
         body: Column(
           children: [
-            const TabBar(
+            TabBar(
               tabs: [
-                Tab(text: 'Featured'),
-                Tab(text: 'Course Info'),
-                Tab(text: 'Promotions'),
-                Tab(text: 'Software Updates'),
+                Tab(text: AppLocalizations.of(context)!.featured),
+                Tab(text: AppLocalizations.of(context)!.course_info),
+                Tab(text: AppLocalizations.of(context)!.promotions),
+                Tab(text: AppLocalizations.of(context)!.software_updates),
               ],
               isScrollable: true,
               indicatorColor: AppColor.primaryColor,
               labelStyle: AppFontStyle.tabNavText,
-              labelPadding: EdgeInsets.only(left: 18, right: 18),
+              labelPadding: const EdgeInsets.only(left: 18, right: 18),
             ),
             Expanded(
               child: TabBarView(

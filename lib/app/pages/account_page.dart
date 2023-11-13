@@ -265,7 +265,7 @@ class _AccountPageState extends State<AccountPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Exchange reward points',
+                        AppLocalizations.of(context)!.exchange_reward,
                         style: AppFontStyle.bodyOffBlack(context),
                       ),
                       const Icon(
