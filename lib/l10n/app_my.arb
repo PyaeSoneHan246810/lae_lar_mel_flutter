@@ -116,5 +116,16 @@
   "search" : "ရှာဖွေရန်",
   "points_used_history" : "အသုံးပြုထားသောဆုအမှတ်မှတ်တမ်း",
 
-  "notifications" : "အသိပေးချက်များ"
+  "notifications" : "အသိပေးချက်များ",
+  "course_info" : "သင်တန်းအချက်အလက်များ",
+  "promotions" : "ပရိုမိုးရှင်းများ",
+  "software_updates" : "ဆော့ဖ်ဝဲဗားရှင်းအသစ်များ",
+
+  "purchase_the_course" : "သင်တန်းကိုဆုအမှတ်များဖြင့်၀ယ်ယူလိုက်ပါ",
+  "purchase_with" : "ပေးချေမည်",
+  "not_enough_points_to_purchase" : "သင့်မှာ၀ယ်ယူရန်ဆုအမှတ်မလုံလောက်သေးပါ",
+  "not_enough_points" : "ဆုအမှတ်မလုံလောက်ပါသလား?",
+  "exchange_reward_points" : "ဆုအမှတ်များကိုလျှော့ဈေးကူပွန်ကုဒ်ဖြင့်လဲလှယ်ပါ။",
+  "exchange_reward" : "ဆုအမှတ်များကိုလဲလှယ်မည်",
+  "redeem" : "ရယူမည်"
 }

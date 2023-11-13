@@ -4,9 +4,11 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../providers/course_enrollment_provider.dart';
 import '../providers/theme_mode_provider.dart';
 
 class CustomCourseView extends StatefulWidget {
+  final int courseId;
   final String courseType;
   final String courseImage;
   final String courseName;
@@ -19,6 +21,7 @@ class CustomCourseView extends StatefulWidget {
   final Function()? onTap;
   const CustomCourseView({
     super.key,
+    required this.courseId,
     required this.courseType,
     required this.courseImage,
     required this.courseName,
@@ -39,6 +42,8 @@ class _CustomCourseViewState extends State<CustomCourseView> {
   @override
   Widget build(BuildContext context) {
     final themeModeProvider = Provider.of<ThemeModeProvider>(context);
+    final courseEnrollmentProvider =
+        Provider.of<CourseEnrollmentProvider>(context);
     return GestureDetector(
       onTap: widget.onTap,
       child: Column(
@@ -96,12 +101,17 @@ class _CustomCourseViewState extends State<CustomCourseView> {
                       maxLines: 2,
                     ),
                   ),
-                  Text(
-                    widget.courseType == "free"
-                        ? AppLocalizations.of(context)!.free
-                        : '${widget.coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
-                    style: AppFontStyle.captionMediumOffBlack(context),
-                  ),
+                  courseEnrollmentProvider.isCourseEnrolled(widget.courseId)
+                      ? Text(
+                          'Enrolled',
+                          style: AppFontStyle.captionMediumOffBlack(context),
+                        )
+                      : Text(
+                          widget.courseType == "free"
+                              ? AppLocalizations.of(context)!.free
+                              : '${widget.coursePriceInMMK.toStringAsFixed(0)} ${AppLocalizations.of(context)!.mmk}',
+                          style: AppFontStyle.captionMediumOffBlack(context),
+                        ),
                 ],
               )),
           Text(

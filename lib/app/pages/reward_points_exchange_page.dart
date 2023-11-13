@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../config/font_styles.dart';
 import '../providers/reward_points_provider.dart';
 import '../providers/theme_mode_provider.dart';
+import '../utils/utils.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -28,7 +29,7 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
     final rewardPointsProvider = Provider.of<RewardPointsProvider>(context);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'Exchange reward points',
+        titleText: AppLocalizations.of(context)!.exchange_reward,
         onBackButtonPressed: () {
           Navigator.pop(context);
         },
@@ -91,7 +92,7 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
             ),
             FadeInLeft(
               child: Text(
-                'Exchange your reward points for a discount coupon.',
+                AppLocalizations.of(context)!.exchange_reward_points,
                 style: AppFontStyle.captionBigOffBlack(context),
               ),
             ),
@@ -104,9 +105,21 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                 Navigator.of(context).push(
                   PopupCardRoute(
                     builder: (context) {
-                      return const _RewardPointsExchangePopupCard(
+                      return _RewardPointsExchangePopupCard(
                         priceInMMK: 1000,
                         rewardPointsAmount: 1000,
+                        onRedeemButtonClicked: () {
+                          if (rewardPointsProvider.rewardPoints >= 1000) {
+                            rewardPointsProvider.subtractPoints(1000);
+                          } else {
+                            showSnackBar(
+                              context,
+                              AppLocalizations.of(context)!
+                                  .not_enough_points_to_purchase,
+                            );
+                          }
+                          Navigator.pop(context);
+                        },
                       );
                     },
                   ),
@@ -122,9 +135,21 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                 Navigator.of(context).push(
                   PopupCardRoute(
                     builder: (context) {
-                      return const _RewardPointsExchangePopupCard(
+                      return _RewardPointsExchangePopupCard(
                         priceInMMK: 3000,
                         rewardPointsAmount: 3000,
+                        onRedeemButtonClicked: () {
+                          if (rewardPointsProvider.rewardPoints >= 3000) {
+                            rewardPointsProvider.subtractPoints(3000);
+                          } else {
+                            showSnackBar(
+                              context,
+                              AppLocalizations.of(context)!
+                                  .not_enough_points_to_purchase,
+                            );
+                          }
+                          Navigator.pop(context);
+                        },
                       );
                     },
                   ),
@@ -140,9 +165,21 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                 Navigator.of(context).push(
                   PopupCardRoute(
                     builder: (context) {
-                      return const _RewardPointsExchangePopupCard(
+                      return _RewardPointsExchangePopupCard(
                         priceInMMK: 5000,
                         rewardPointsAmount: 5000,
+                        onRedeemButtonClicked: () {
+                          if (rewardPointsProvider.rewardPoints >= 5000) {
+                            rewardPointsProvider.subtractPoints(5000);
+                          } else {
+                            showSnackBar(
+                              context,
+                              AppLocalizations.of(context)!
+                                  .not_enough_points_to_purchase,
+                            );
+                          }
+                          Navigator.pop(context);
+                        },
                       );
                     },
                   ),
@@ -158,9 +195,21 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                 Navigator.of(context).push(
                   PopupCardRoute(
                     builder: (context) {
-                      return const _RewardPointsExchangePopupCard(
+                      return _RewardPointsExchangePopupCard(
                         priceInMMK: 10000,
                         rewardPointsAmount: 10000,
+                        onRedeemButtonClicked: () {
+                          if (rewardPointsProvider.rewardPoints >= 10000) {
+                            rewardPointsProvider.subtractPoints(10000);
+                          } else {
+                            showSnackBar(
+                              context,
+                              AppLocalizations.of(context)!
+                                  .not_enough_points_to_purchase,
+                            );
+                          }
+                          Navigator.pop(context);
+                        },
                       );
                     },
                   ),
@@ -180,10 +229,12 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
 class _RewardPointsExchangePopupCard extends StatefulWidget {
   final int priceInMMK;
   final int rewardPointsAmount;
+  final VoidCallback onRedeemButtonClicked;
   const _RewardPointsExchangePopupCard({
     super.key,
     required this.priceInMMK,
     required this.rewardPointsAmount,
+    required this.onRedeemButtonClicked,
   });
 
   @override
@@ -246,8 +297,8 @@ class _RewardPointsExchangePopupCardState
                     ),
                   ),
                   CustomFilledButton(
-                    onPressed: () {},
-                    text: "Redeem",
+                    onPressed: widget.onRedeemButtonClicked,
+                    text: AppLocalizations.of(context)!.redeem,
                   )
                 ],
               ),

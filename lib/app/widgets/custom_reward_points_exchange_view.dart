@@ -31,13 +31,13 @@ class RewardPointsExchangeView extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
                 imagePath,
-                width: 120,
+                width: 105,
                 height: 80,
                 fit: BoxFit.cover,
               ),
             ),
             const CustomSeparator(
-              width: 4,
+              width: 10,
               height: 0,
             ),
             Column(

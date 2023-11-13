@@ -48,7 +48,7 @@ class _PurchaseWithRewardPointsPageState
         rewardPointsAmountRequired - rewardPointsProvider.rewardPoints;
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: 'Purchase with reward points',
+        titleText: AppLocalizations.of(context)!.purchase_with_reward_points,
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },
@@ -111,7 +111,7 @@ class _PurchaseWithRewardPointsPageState
             ),
             FadeInLeft(
               child: Text(
-                'Purchase the course with',
+                AppLocalizations.of(context)!.purchase_the_course,
                 style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
@@ -144,7 +144,8 @@ class _PurchaseWithRewardPointsPageState
                           } else {
                             showSnackBar(
                               context,
-                              "You don't have enough points to purchase.",
+                              AppLocalizations.of(context)!
+                                  .not_enough_points_to_purchase,
                             );
                             Navigator.of(context).pop();
                           }
@@ -201,7 +202,7 @@ class _PurchaseWithRewardPointsPageState
             ),
             FadeInLeft(
               child: Text(
-                'Not enough points?',
+                AppLocalizations.of(context)!.not_enough_points,
                 style: AppFontStyle.subtitleOffBlack(context),
               ),
             ),
@@ -223,7 +224,7 @@ class _PurchaseWithRewardPointsPageState
                     children: [
                       Expanded(
                         child: Text(
-                          'Exchange reward points with discount coupon code',
+                          AppLocalizations.of(context)!.exchange_reward_points,
                           style: AppFontStyle.bodyOffBlack(context),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -252,7 +253,7 @@ class _PurchaseWithRewardPointsPageState
                     children: [
                       Expanded(
                         child: Text(
-                          'Get more reward points',
+                          AppLocalizations.of(context)!.get_more_reward,
                           style: AppFontStyle.bodyOffBlack(context),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -311,7 +312,7 @@ class _PurchaseWithRewardPointsPopupCardState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Purchase with",
+                    AppLocalizations.of(context)!.purchase_with,
                     style: AppFontStyle.subtitleOffBlack(context),
                   ),
                   const CustomSeparator(
@@ -347,7 +348,7 @@ class _PurchaseWithRewardPointsPopupCardState
                   ),
                   CustomFilledButton(
                     onPressed: widget.onBuyNowButtonPressed,
-                    text: "Buy now",
+                    text: AppLocalizations.of(context)!.buy_now,
                   ),
                 ],
               ),
