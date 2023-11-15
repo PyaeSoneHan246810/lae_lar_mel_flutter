@@ -147,16 +147,23 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 3000,
                         rewardPointsAmount: 3000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 3000) {
-                            rewardPointsProvider.subtractPoints(3000);
+                          if (rewardPointsProvider.rewardPoints >= 1000) {
+                            rewardPointsProvider.subtractPoints(1000);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DiscountCouponCodePage()),
+                            );
                           } else {
                             showSnackBar(
                               context,
                               AppLocalizations.of(context)!
                                   .not_enough_points_to_purchase,
                             );
+                            Navigator.pop(
+                                context); // Move inside the else block
                           }
-                          Navigator.pop(context);
                         },
                       );
                     },
@@ -177,16 +184,23 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 5000,
                         rewardPointsAmount: 5000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 5000) {
-                            rewardPointsProvider.subtractPoints(5000);
+                          if (rewardPointsProvider.rewardPoints >= 1000) {
+                            rewardPointsProvider.subtractPoints(1000);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DiscountCouponCodePage()),
+                            );
                           } else {
                             showSnackBar(
                               context,
                               AppLocalizations.of(context)!
                                   .not_enough_points_to_purchase,
                             );
+                            Navigator.pop(
+                                context); // Move inside the else block
                           }
-                          Navigator.pop(context);
                         },
                       );
                     },
@@ -207,16 +221,23 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 10000,
                         rewardPointsAmount: 10000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 10000) {
-                            rewardPointsProvider.subtractPoints(10000);
+                          if (rewardPointsProvider.rewardPoints >= 1000) {
+                            rewardPointsProvider.subtractPoints(1000);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DiscountCouponCodePage()),
+                            );
                           } else {
                             showSnackBar(
                               context,
                               AppLocalizations.of(context)!
                                   .not_enough_points_to_purchase,
                             );
+                            Navigator.pop(
+                                context); // Move inside the else block
                           }
-                          Navigator.pop(context);
                         },
                       );
                     },
