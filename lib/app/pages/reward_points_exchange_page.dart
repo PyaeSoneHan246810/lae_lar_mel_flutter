@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
+import 'package:lae_lar_mel_app/app/pages/discount_coupon_code_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/popup_card_route.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
@@ -111,14 +112,21 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         onRedeemButtonClicked: () {
                           if (rewardPointsProvider.rewardPoints >= 1000) {
                             rewardPointsProvider.subtractPoints(1000);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const DiscountCouponCodePage()),
+                            );
                           } else {
                             showSnackBar(
                               context,
                               AppLocalizations.of(context)!
                                   .not_enough_points_to_purchase,
                             );
+                            Navigator.pop(
+                                context); // Move inside the else block
                           }
-                          Navigator.pop(context);
                         },
                       );
                     },
