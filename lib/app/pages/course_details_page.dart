@@ -950,7 +950,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               style: AppFontStyle.title3OffBlack(context),
             ),
           ),
-          const CustomSeparator(height: 4),
+          const CustomSeparator(height: 8),
           FadeInLeft(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -972,6 +972,13 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                     ),
                   ],
                 ),
+              ],
+            ),
+          ),
+          const CustomSeparator(height: 8),
+          FadeInLeft(
+            child: Row(
+              children: [
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: AppColor.primaryColor, width: 1),
