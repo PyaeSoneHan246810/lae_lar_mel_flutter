@@ -147,8 +147,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 3000,
                         rewardPointsAmount: 3000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 1000) {
-                            rewardPointsProvider.subtractPoints(1000);
+                          if (rewardPointsProvider.rewardPoints >= 3000) {
+                            rewardPointsProvider.subtractPoints(3000);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -184,8 +184,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 5000,
                         rewardPointsAmount: 5000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 1000) {
-                            rewardPointsProvider.subtractPoints(1000);
+                          if (rewardPointsProvider.rewardPoints >= 5000) {
+                            rewardPointsProvider.subtractPoints(5000);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -221,8 +221,8 @@ class _RewardPointsExchangePageState extends State<RewardPointsExchangePage> {
                         priceInMMK: 10000,
                         rewardPointsAmount: 10000,
                         onRedeemButtonClicked: () {
-                          if (rewardPointsProvider.rewardPoints >= 1000) {
-                            rewardPointsProvider.subtractPoints(1000);
+                          if (rewardPointsProvider.rewardPoints >= 10000) {
+                            rewardPointsProvider.subtractPoints(10000);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
