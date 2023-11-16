@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
-import 'package:lae_lar_mel_app/app/pages/purchase_with_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_exchange_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
@@ -18,9 +17,7 @@ import 'package:lae_lar_mel_app/app/pages/welcome_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_chinese.dart';
 import 'package:lae_lar_mel_app/app/pages/complete_account_page.dart';
 import 'package:lae_lar_mel_app/app/pages/courses_page_english.dart';
-import 'package:lae_lar_mel_app/app/pages/login_page.dart';
 import 'package:lae_lar_mel_app/app/pages/phone_number_page.dart';
-import 'package:lae_lar_mel_app/app/pages/reset_password_page.dart';
 import 'package:lae_lar_mel_app/app/pages/root_page.dart';
 import 'package:lae_lar_mel_app/app/pages/splash_screen.dart';
 import 'package:lae_lar_mel_app/app/pages/wishlist_page.dart';
