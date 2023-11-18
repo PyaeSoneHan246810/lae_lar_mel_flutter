@@ -122,8 +122,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 'Photo Gallery',
                 style: AppFontStyle.alertTextOffBlack(context),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async {
+                image = await pickImageFromGallery(context);
+                setState(() {});
               },
             ),
             CupertinoActionSheetAction(
@@ -131,8 +132,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 'Camera',
                 style: AppFontStyle.alertTextOffBlack(context),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async {
+                image = await pickImageFromCamera(context);
+                setState(() {});
               },
             ),
           ],
