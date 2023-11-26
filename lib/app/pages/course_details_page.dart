@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:lae_lar_mel_app/app/models/course_instructor_model.dart';
+import 'package:lae_lar_mel_app/app/pages/course_certificate_page.dart';
 import 'package:lae_lar_mel_app/app/pages/free_course_video_player_page.dart';
 import 'package:lae_lar_mel_app/app/pages/instructor_profile_page.dart';
 import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
@@ -1324,6 +1325,70 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   isExpanded: _isExpandedList[index],
                 );
               }).toList(),
+            ),
+          ),
+          const CustomSeparator(
+            height: 40,
+            width: 0,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CourseCertificatePage(
+                    courseTitle: widget.course.courseName,
+                    instructorName:
+                        widget.course.courseInstructor.courseInstructorName,
+                  ),
+                ),
+              );
+            },
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.workspace_premium_rounded,
+                  size: 24,
+                  color: AppColor.primaryColor,
+                ),
+                const CustomSeparator(
+                  width: 8,
+                  height: 0,
+                ),
+                Text(
+                  "Course Certificate",
+                  style: AppFontStyle.captionMediumOffBlack(context),
+                ),
+              ],
+            ),
+          ),
+          const CustomSeparator(
+            height: 22,
+            width: 0,
+          ),
+          InkWell(
+            onTap: () {},
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.share_rounded,
+                  size: 24,
+                  color: AppColor.primaryColor,
+                ),
+                const CustomSeparator(
+                  width: 8,
+                  height: 0,
+                ),
+                Text(
+                  "Share this Course",
+                  style: AppFontStyle.captionMediumOffBlack(context),
+                ),
+              ],
             ),
           ),
         ],
