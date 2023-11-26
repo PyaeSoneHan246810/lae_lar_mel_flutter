@@ -39,6 +39,7 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^23.1.43
   youtube_player_flutter: ^8.1.2
   shimmer: ^3.0.0
+  printing: ^5.11.1
 
 dev_dependencies:
   flutter_test:
