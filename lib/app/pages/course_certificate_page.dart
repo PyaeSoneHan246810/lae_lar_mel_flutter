@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lae_lar_mel_app/app/config/colors.dart';
@@ -54,138 +55,144 @@ class _CourseCertificatePageState extends State<CourseCertificatePage> {
         child: SingleChildScrollView(
           padding:
               const EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40,
-                  bottom: 40,
-                ),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: themeModeProvider.themeMode == ThemeMode.light
-                        ? AppColor.greyColor
-                        : AppColor.darkGreyLight2,
-                    borderRadius: BorderRadius.circular(8),
+          child: FadeInLeft(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 40,
+                    bottom: 40,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const CustomSeparator(
-                          height: 30,
-                          width: 0,
-                        ),
-                        Text(
-                          "CERTIFICATE OF COMPLETION",
-                          style: AppFontStyle.subtitleOffBlack(context),
-                        ),
-                        const CustomSeparator(
-                          height: 12,
-                          width: 0,
-                        ),
-                        Text(
-                          widget.courseTitle,
-                          style: AppFontStyle.headerOffBlack(context),
-                        ),
-                        const CustomSeparator(
-                          height: 4,
-                          width: 0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Instructor:',
-                              style: AppFontStyle.bodyOffBlack(context),
-                            ),
-                            const CustomSeparator(
-                              width: 4,
-                              height: 0,
-                            ),
-                            Text(
-                              widget.instructorName,
-                              style:
-                                  AppFontStyle.captionMediumOffBlack(context),
-                            ),
-                          ],
-                        ),
-                        Center(
-                          child: Image.asset(
-                            "assets/images/certificate_illustration.png",
-                            width: 160,
-                            height: 160,
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: themeModeProvider.themeMode == ThemeMode.light
+                          ? AppColor.greyColor
+                          : AppColor.darkGreyLight2,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12, right: 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const CustomSeparator(
+                            height: 30,
+                            width: 0,
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  authProvider.userModel.name,
-                                  style: AppFontStyle.subtitleOffBlack(context),
-                                ),
-                                const CustomSeparator(
-                                  height: 4,
-                                  width: 0,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Date:',
-                                      style: AppFontStyle.bodyOffBlack(context),
-                                    ),
-                                    const CustomSeparator(
-                                      width: 4,
-                                      height: 0,
-                                    ),
-                                    Text(
-                                      formattedDate,
-                                      style: AppFontStyle.captionMediumOffBlack(
-                                          context),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          Text(
+                            "CERTIFICATE OF COMPLETION",
+                            style: AppFontStyle.subtitleOffBlack(context),
+                          ),
+                          const CustomSeparator(
+                            height: 12,
+                            width: 0,
+                          ),
+                          Text(
+                            widget.courseTitle,
+                            style: AppFontStyle.headerOffBlack(context),
+                          ),
+                          const CustomSeparator(
+                            height: 4,
+                            width: 0,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Instructor:',
+                                style: AppFontStyle.bodyOffBlack(context),
+                              ),
+                              const CustomSeparator(
+                                width: 4,
+                                height: 0,
+                              ),
+                              Text(
+                                widget.instructorName,
+                                style:
+                                    AppFontStyle.captionMediumOffBlack(context),
+                              ),
+                            ],
+                          ),
+                          Center(
+                            child: Image.asset(
+                              "assets/images/certificate_illustration.png",
+                              width: 160,
+                              height: 160,
                             ),
-                            SvgPicture.asset(
-                              "assets/images/app_logo.svg",
-                              height: 90,
-                              width: 90,
-                              fit: BoxFit.cover,
-                            ),
-                          ],
-                        ),
-                        const CustomSeparator(
-                          height: 20,
-                          width: 0,
-                        ),
-                      ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    authProvider.userModel.name,
+                                    style:
+                                        AppFontStyle.subtitleOffBlack(context),
+                                  ),
+                                  const CustomSeparator(
+                                    height: 4,
+                                    width: 0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Date:',
+                                        style:
+                                            AppFontStyle.bodyOffBlack(context),
+                                      ),
+                                      const CustomSeparator(
+                                        width: 4,
+                                        height: 0,
+                                      ),
+                                      Text(
+                                        formattedDate,
+                                        style:
+                                            AppFontStyle.captionMediumOffBlack(
+                                                context),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SvgPicture.asset(
+                                "assets/images/app_logo.svg",
+                                height: 90,
+                                width: 90,
+                                fit: BoxFit.cover,
+                              ),
+                            ],
+                          ),
+                          const CustomSeparator(
+                            height: 20,
+                            width: 0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const CustomSeparator(
-                height: 20,
-                width: 0,
-              ),
-              CustomFilledButton(
-                onPressed: () {
-                  printDoc();
-                },
-                text: "Save as PDF",
-              )
-            ],
+                const CustomSeparator(
+                  height: 20,
+                  width: 0,
+                ),
+                CustomFilledButton(
+                  onPressed: () {
+                    printDoc();
+                  },
+                  text: "Save as PDF",
+                )
+              ],
+            ),
           ),
         ),
       ),
