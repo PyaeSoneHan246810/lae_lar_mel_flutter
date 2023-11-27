@@ -2,9 +2,15 @@ import 'package:animate_do/animate_do.dart';
 import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lae_lar_mel_app/app/pages/games_chinese_page.dart';
+import 'package:lae_lar_mel_app/app/pages/games_english_page.dart';
+import 'package:lae_lar_mel_app/app/pages/games_japanese_page.dart';
+import 'package:lae_lar_mel_app/app/pages/games_korean_page.dart';
+import 'package:provider/provider.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
+import '../providers/auth_provider.dart';
 import '../widgets/custom_appbar.dart';
 import '../widgets/custom_separator.dart';
 
@@ -18,6 +24,7 @@ class GamesPage extends StatefulWidget {
 class _GamesPageState extends State<GamesPage> {
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBar(
         titleText: "Games",
@@ -33,7 +40,7 @@ class _GamesPageState extends State<GamesPage> {
               children: [
                 const CustomSeparator(height: 14),
                 Text(
-                  "Welcome, Pyae Sone.",
+                  "Welcome, ${authProvider.userModel.name}.",
                   style: AppFontStyle.title1OffBlack(context),
                 ),
                 Padding(
@@ -55,12 +62,26 @@ class _GamesPageState extends State<GamesPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomChooseLanguageButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EnglishGamesPage(),
+                                ),
+                              );
+                            },
                             countryCode: "GB",
                             languageName: "English",
                           ),
                           CustomChooseLanguageButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ChineseGamesPage(),
+                                ),
+                              );
+                            },
                             countryCode: "CN",
                             languageName: "Chinese",
                           ),
@@ -75,12 +96,25 @@ class _GamesPageState extends State<GamesPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomChooseLanguageButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const JapaneseGamesPage(),
+                                ),
+                              );
+                            },
                             countryCode: "JP",
                             languageName: "Japanese",
                           ),
                           CustomChooseLanguageButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const KoreanGamesPage(),
+                                ),
+                              );
+                            },
                             countryCode: "KR",
                             languageName: "Korean",
                           ),
