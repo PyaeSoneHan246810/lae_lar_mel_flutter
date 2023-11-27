@@ -8,6 +8,7 @@ import 'package:lae_lar_mel_app/app/pages/pdf_viewer_page.dart';
 import 'package:lae_lar_mel_app/app/pages/purchase_with_reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
 import 'package:lae_lar_mel_app/app/pages/premium_course_video_player_page.dart';
+import 'package:lae_lar_mel_app/app/utils/utils.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_payment_option_selector.dart';
 import 'package:lae_lar_mel_app/boxes.dart';
 import 'package:provider/provider.dart';
@@ -1333,15 +1334,21 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CourseCertificatePage(
-                    courseTitle: widget.course.courseName,
-                    instructorName:
-                        widget.course.courseInstructor.courseInstructorName,
+              if (courseEnrollmentProvider
+                  .isCourseEnrolled(widget.course.courseId)) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CourseCertificatePage(
+                      courseTitle: widget.course.courseName,
+                      instructorName:
+                          widget.course.courseInstructor.courseInstructorName,
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                showSnackBar(context,
+                    "Enroll in the course and begin learning to obtain the course certificate.");
+              }
             },
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
