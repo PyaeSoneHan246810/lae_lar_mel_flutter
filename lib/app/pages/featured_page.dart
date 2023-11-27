@@ -71,137 +71,138 @@ class _FeaturedPageState extends State<FeaturedPage> {
         isSearchIconVisible: true,
         context: context,
       ),
-      body: FadeInDown(
-        duration: const Duration(milliseconds: 750),
-        child: ListView(
-          padding: const EdgeInsets.all(20),
-          scrollDirection: Axis.vertical,
-          children: [
-            const CustomSeparator(height: 14),
-            Text(
-              '${AppLocalizations.of(context)!.greeting_title} ${authProvider.userModel.name}.',
-              style: AppFontStyle.headerSecondary(context),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                AppLocalizations.of(context)!.greeting_subtitle,
-                style: AppFontStyle.bodyOffBlack(context),
-                textAlign: TextAlign.justify,
+      body: SafeArea(
+        child: FadeInDown(
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            scrollDirection: Axis.vertical,
+            children: [
+              const CustomSeparator(height: 14),
+              Text(
+                '${AppLocalizations.of(context)!.greeting_title} ${authProvider.userModel.name}.',
+                style: AppFontStyle.headerSecondary(context),
               ),
-            ),
-            const CustomSeparator(height: 42),
-            Text(
-              AppLocalizations.of(context)!.languages_title,
-              style: AppFontStyle.title1OffBlack(context),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                AppLocalizations.of(context)!.languages_subtitle,
-                style: AppFontStyle.bodyOffBlack(context),
-                textAlign: TextAlign.justify,
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  AppLocalizations.of(context)!.greeting_subtitle,
+                  style: AppFontStyle.bodyOffBlack(context),
+                  textAlign: TextAlign.justify,
+                ),
               ),
-            ),
-            const CustomSeparator(height: 16),
-            GridView.builder(
-              itemCount: languageCategories.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 14,
-                childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 4.5),
+              const CustomSeparator(height: 42),
+              Text(
+                AppLocalizations.of(context)!.languages_title,
+                style: AppFontStyle.title1OffBlack(context),
               ),
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      languageCategories[index].pageRouteName,
-                    );
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Container(
-                      color: themeModeProvider.themeMode == ThemeMode.light
-                          ? AppColor.secondaryColor
-                          : AppColor.darkGreyLight2,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 16, right: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 50,
-                              height: 34,
-                              child: CountryFlag.fromCountryCode(
-                                languageCategories[index].languageCountryCode,
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  AppLocalizations.of(context)!.languages_subtitle,
+                  style: AppFontStyle.bodyOffBlack(context),
+                  textAlign: TextAlign.justify,
+                ),
+              ),
+              const CustomSeparator(height: 16),
+              GridView.builder(
+                itemCount: languageCategories.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 12,
+                  mainAxisSpacing: 14,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 4.5),
+                ),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        languageCategories[index].pageRouteName,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        color: themeModeProvider.themeMode == ThemeMode.light
+                            ? AppColor.secondaryColor
+                            : AppColor.darkGreyLight2,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 50,
+                                height: 34,
+                                child: CountryFlag.fromCountryCode(
+                                  languageCategories[index].languageCountryCode,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8),
-                              child: Text(
-                                languageCategories[index].languageName,
-                                style: AppFontStyle.captionMediumPureWhite,
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8),
+                                child: Text(
+                                  languageCategories[index].languageName,
+                                  style: AppFontStyle.captionMediumPureWhite,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
-            ),
-            const CustomSeparator(height: 42),
-            Text(
-              AppLocalizations.of(context)!.free_courses_title,
-              style: AppFontStyle.title1OffBlack(context),
-            ),
-            const CustomSeparator(height: 16),
-            (_isLoading)
-                ? const CourseViewShimmer()
-                : CoursesListView(
-                    courses: freeCourses,
-                    displayItemCount: 3,
-                    isHeroAnimationEnabled: true,
-                  ),
-            const CustomSeparator(height: 16),
-            Center(
-              child: CustomOutlinedButtonRounded(
-                onPressed: () {
-                  _navigateToViewAllCoursesPage(freeCourses, "free");
+                  );
                 },
-                text: AppLocalizations.of(context)!.view_all,
               ),
-            ),
-            const CustomSeparator(height: 42),
-            Text(
-              AppLocalizations.of(context)!.premium_courses_title,
-              style: AppFontStyle.title1OffBlack(context),
-            ),
-            const CustomSeparator(height: 16),
-            (_isLoading)
-                ? const CourseViewShimmer()
-                : CoursesListView(
-                    courses: premiumCourses,
-                    displayItemCount: 3,
-                    isHeroAnimationEnabled: true,
-                  ),
-            const CustomSeparator(height: 16),
-            Center(
-              child: CustomOutlinedButtonRounded(
-                onPressed: () {
-                  _navigateToViewAllCoursesPage(premiumCourses, "premium");
-                },
-                text: AppLocalizations.of(context)!.view_all,
+              const CustomSeparator(height: 42),
+              Text(
+                AppLocalizations.of(context)!.free_courses_title,
+                style: AppFontStyle.title1OffBlack(context),
               ),
-            ),
-          ],
+              const CustomSeparator(height: 16),
+              (_isLoading)
+                  ? const CourseViewShimmer()
+                  : CoursesListView(
+                      courses: freeCourses,
+                      displayItemCount: 3,
+                      isHeroAnimationEnabled: true,
+                    ),
+              const CustomSeparator(height: 16),
+              Center(
+                child: CustomOutlinedButtonRounded(
+                  onPressed: () {
+                    _navigateToViewAllCoursesPage(freeCourses, "free");
+                  },
+                  text: AppLocalizations.of(context)!.view_all,
+                ),
+              ),
+              const CustomSeparator(height: 42),
+              Text(
+                AppLocalizations.of(context)!.premium_courses_title,
+                style: AppFontStyle.title1OffBlack(context),
+              ),
+              const CustomSeparator(height: 16),
+              (_isLoading)
+                  ? const CourseViewShimmer()
+                  : CoursesListView(
+                      courses: premiumCourses,
+                      displayItemCount: 3,
+                      isHeroAnimationEnabled: true,
+                    ),
+              const CustomSeparator(height: 16),
+              Center(
+                child: CustomOutlinedButtonRounded(
+                  onPressed: () {
+                    _navigateToViewAllCoursesPage(premiumCourses, "premium");
+                  },
+                  text: AppLocalizations.of(context)!.view_all,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

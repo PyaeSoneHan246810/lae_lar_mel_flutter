@@ -56,10 +56,10 @@ class _MyLearningPageState extends State<MyLearningPage> {
         isSearchIconVisible: false,
         context: context,
       ),
-      body: FadeInDown(
+      body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          child: FadeInDown(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
