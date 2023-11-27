@@ -366,14 +366,14 @@ class AppFontStyle {
   //bottom_nav_text_unselected
   static const TextStyle bottomNavTextUnselected = TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w500,
     color: AppColor.lightBlackColor,
   );
   //bottom_nav_text_selected
   static const TextStyle bottomNavTextSelected = TextStyle(
     fontFamily: 'Poppins',
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: FontWeight.w600,
     color: AppColor.primaryColor,
   );
