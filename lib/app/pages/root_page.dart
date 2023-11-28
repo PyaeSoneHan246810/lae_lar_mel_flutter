@@ -4,7 +4,7 @@ import 'package:lae_lar_mel_app/app/pages/featured_page.dart';
 import 'package:lae_lar_mel_app/app/pages/my_learning_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../config/font_styles.dart';
-import 'games_page.dart';
+import 'mini_games_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({super.key});
@@ -18,7 +18,7 @@ class _RootPageState extends State<RootPage> {
   final List<Widget> _mainPages = const [
     FeaturedPage(),
     MyLearningPage(),
-    GamesPage(),
+    MiniGamesPage(),
     AccountPage()
   ];
   void _navigateBottomNavBarItem(int index) {
@@ -57,15 +57,15 @@ class _RootPageState extends State<RootPage> {
               ),
               label: AppLocalizations.of(context)!.my_learning,
             ),
-            BottomNavigationBarItem(
-              icon: const Padding(
+            const BottomNavigationBarItem(
+              icon: Padding(
                 padding: EdgeInsets.only(bottom: 6),
                 child: Icon(
                   Icons.extension_rounded,
                   size: 26,
                 ),
               ),
-              label: "Games",
+              label: "Mini Games",
             ),
             BottomNavigationBarItem(
               icon: const Padding(
