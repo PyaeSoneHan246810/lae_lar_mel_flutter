@@ -6,6 +6,7 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_filled_button.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
@@ -46,7 +47,7 @@ class _CourseCertificatePageState extends State<CourseCertificatePage> {
         Provider.of<ThemeModeProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: "Course Certificate",
+        titleText: AppLocalizations.of(context)!.course_certificate,
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },
@@ -189,7 +190,7 @@ class _CourseCertificatePageState extends State<CourseCertificatePage> {
                   onPressed: () {
                     printDoc();
                   },
-                  text: "Save as PDF",
+                  text: AppLocalizations.of(context)!.save_as_pdf,
                 )
               ],
             ),

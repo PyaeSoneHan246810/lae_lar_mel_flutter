@@ -1347,7 +1347,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                 );
               } else {
                 showSnackBar(context,
-                    "Enroll in the course and begin learning to obtain the course certificate.");
+                    AppLocalizations.of(context)!.enroll_to_obtain_certificate);
               }
             },
             splashColor: Colors.transparent,
@@ -1365,7 +1365,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   height: 0,
                 ),
                 Text(
-                  "Course Certificate",
+                  AppLocalizations.of(context)!.course_certificate,
                   style: AppFontStyle.captionMediumOffBlack(context),
                 ),
               ],
@@ -1392,7 +1392,7 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
                   height: 0,
                 ),
                 Text(
-                  "Share this Course",
+                  AppLocalizations.of(context)!.share_course,
                   style: AppFontStyle.captionMediumOffBlack(context),
                 ),
               ],

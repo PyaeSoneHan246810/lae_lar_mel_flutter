@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lae_lar_mel_app/app/pages/notifications_course_info_page.dart';
+import 'package:lae_lar_mel_app/app/pages/notifications_featured_page.dart';
+import 'package:lae_lar_mel_app/app/pages/notifications_promotions_page.dart';
+import 'package:lae_lar_mel_app/app/pages/notifications_software_updates_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -38,15 +42,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
               labelStyle: AppFontStyle.tabNavText,
               labelPadding: const EdgeInsets.only(left: 18, right: 18),
             ),
-            Expanded(
+            const Expanded(
               child: TabBarView(
                 children: [
-                  Center(
-                    child: Text(
-                      'No notifications yet.',
-                      style: AppFontStyle.bodyOffBlack(context),
-                    ),
-                  ),
+                  NotificationsFeaturedPage(),
+                  NotificationsCourseInfoPage(),
+                  NotificationsPromotionsPage(),
+                  NotificationsSoftwareUpdatesPage(),
                 ],
               ),
             ),
