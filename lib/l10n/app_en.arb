@@ -487,5 +487,35 @@
     "enroll_to_obtain_certificate" : "Enroll in the course and begin learning to obtain the course certificate.",
     "@enroll_to_obtain_certificate" : {
         "description" : "Enroll To Obtain Certificate."
+    },
+
+    "mini_games" : "Mini Games",
+    "@mini_games" : {
+        "description" : "Mini Games"
+    },
+    "welcome" : "Welcome",
+    "@welcome" : {
+        "description" : "Welcome"
+    },
+    "let_play" : "Let's play mini quiz games to improve your language proficiency while having fun. Choose a language below.",
+    "@let_play" : {
+        "description" : "Let Play"
+    },
+
+    "english_quiz_games" : "English Quiz Games",
+    "@english_quiz_games" : {
+        "description" : "English Quiz Games"
+    },
+    "chinese_quiz_games" : "Chinese Quiz Games",
+    "@chinese_quiz_games" : {
+        "description" : "Chinese Quiz Games"
+    },
+    "japanese_quiz_games" : "Japanese Quiz Games",
+    "@japanese_quiz_games" : {
+        "description" : "Japanese Quiz Games"
+    },
+    "korean_quiz_games" : "Korean Quiz Games",
+    "@korean_quiz_games" : {
+        "description" : "Korean Quiz Games"
     }
 }

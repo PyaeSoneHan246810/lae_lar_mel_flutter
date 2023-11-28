@@ -57,15 +57,15 @@ class _RootPageState extends State<RootPage> {
               ),
               label: AppLocalizations.of(context)!.my_learning,
             ),
-            const BottomNavigationBarItem(
-              icon: Padding(
+            BottomNavigationBarItem(
+              icon: const Padding(
                 padding: EdgeInsets.only(bottom: 6),
                 child: Icon(
                   Icons.extension_rounded,
                   size: 26,
                 ),
               ),
-              label: "Mini Games",
+              label: AppLocalizations.of(context)!.mini_games,
             ),
             BottomNavigationBarItem(
               icon: const Padding(

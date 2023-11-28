@@ -7,6 +7,7 @@ import 'package:lae_lar_mel_app/app/pages/mini_games_english_page.dart';
 import 'package:lae_lar_mel_app/app/pages/mini_games_japanese_page.dart';
 import 'package:lae_lar_mel_app/app/pages/mini_games_korean_page.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
@@ -30,7 +31,7 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
         Provider.of<ThemeModeProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBar(
-        titleText: "Mini Games",
+        titleText: AppLocalizations.of(context)!.mini_games,
         isSearchIconVisible: false,
         context: context,
       ),
@@ -43,13 +44,13 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
               children: [
                 const CustomSeparator(height: 14),
                 Text(
-                  "Welcome, ${authProvider.userModel.name}.",
+                  "${AppLocalizations.of(context)!.welcome}, ${authProvider.userModel.name}.",
                   style: AppFontStyle.title1OffBlack(context),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
-                    "Let's play mini quiz games to improve your language proficiency while having fun. Choose a language below.",
+                    AppLocalizations.of(context)!.let_play,
                     style: AppFontStyle.bodyOffBlack(context),
                     textAlign: TextAlign.justify,
                   ),
@@ -74,7 +75,7 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
                               );
                             },
                             countryCode: "GB",
-                            languageName: "English",
+                            languageName: AppLocalizations.of(context)!.english,
                           ),
                           CustomChooseLanguageButton(
                             onTap: () {
@@ -86,7 +87,7 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
                               );
                             },
                             countryCode: "CN",
-                            languageName: "Chinese",
+                            languageName: AppLocalizations.of(context)!.chinese,
                           ),
                         ],
                       ),
@@ -108,7 +109,8 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
                               );
                             },
                             countryCode: "JP",
-                            languageName: "Japanese",
+                            languageName:
+                                AppLocalizations.of(context)!.japanese,
                           ),
                           CustomChooseLanguageButton(
                             onTap: () {
@@ -120,7 +122,7 @@ class _MiniGamesPageState extends State<MiniGamesPage> {
                               );
                             },
                             countryCode: "KR",
-                            languageName: "Korean",
+                            languageName: AppLocalizations.of(context)!.korean,
                           ),
                         ],
                       )

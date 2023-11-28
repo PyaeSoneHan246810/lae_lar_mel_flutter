@@ -29,7 +29,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
         Provider.of<ThemeModeProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: "English Quiz Games",
+        titleText: AppLocalizations.of(context)!.english_quiz_games,
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },
