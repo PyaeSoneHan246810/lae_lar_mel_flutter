@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../config/colors.dart';
@@ -28,7 +29,7 @@ class _KoreanMiniGamesPageState extends State<KoreanMiniGamesPage> {
         Provider.of<ThemeModeProvider>(context, listen: false);
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
-        titleText: "Korean Quiz Games",
+        titleText: AppLocalizations.of(context)!.korean_quiz_games,
         onBackButtonPressed: () {
           Navigator.of(context).pop();
         },
