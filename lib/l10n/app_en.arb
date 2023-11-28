@@ -425,6 +425,10 @@
     "@notifications" : {
         "description" : "Notifications"
     },
+    "no_notifications" : "No notifications yet.",
+    "@no_notifications" : {
+        "description" : "No Notifications"
+    },
     "course_info" : "Course Info",
     "@course_info" : {
         "description" : "Course Info"
@@ -466,5 +470,22 @@
     "redeem" : "Redeem",
     "@redeem" : {
         "description" : "Redeem"
+    },
+
+    "course_certificate" : "Course Certificate",
+    "@course_certificate" : {
+        "description" : "Course Certificate"
+    },
+    "share_course" : "Share this Course",
+    "@share_course" : {
+        "description" : "Share Course"
+    },
+    "save_as_pdf" : "Save as PDF",
+    "@save_as_pdf" : {
+        "description" : "Save As PDF"
+    },
+    "enroll_to_obtain_certificate" : "Enroll in the course and begin learning to obtain the course certificate.",
+    "@enroll_to_obtain_certificate" : {
+        "description" : "Enroll To Obtain Certificate."
     }
 }

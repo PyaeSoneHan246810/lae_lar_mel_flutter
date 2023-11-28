@@ -158,109 +158,125 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                           top: 20, bottom: 20, left: 10, right: 10),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Beginner",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.primaryColor,
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Beginner",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.primaryColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(9.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(9.0),
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width:
-                                          125.0, // Adjust the width as needed
-                                      lineHeight: 25,
-                                      percent: 0.0,
-                                      progressColor: AppColor.primaryColor,
-                                      backgroundColor:
-                                          themeModeProvider.themeMode ==
-                                                  ThemeMode.light
-                                              ? AppColor.greyColor
-                                              : AppColor.darkGreyLight2,
-                                      padding: const EdgeInsets.all(0.0),
-                                      barRadius: const Radius.circular(8.0),
-                                      center: Text(
-                                        "0.0% Finished",
-                                        style:
-                                            AppFontStyle.bodyOffBlack(context),
+                                      child: LinearPercentIndicator(
+                                        width:
+                                            125.0, // Adjust the width as needed
+                                        lineHeight: 25,
+                                        percent: 0.0,
+                                        progressColor: AppColor.primaryColor,
+                                        backgroundColor:
+                                            themeModeProvider.themeMode ==
+                                                    ThemeMode.light
+                                                ? AppColor.greyColor
+                                                : AppColor.darkGreyLight2,
+                                        padding: const EdgeInsets.all(0.0),
+                                        barRadius: const Radius.circular(8.0),
+                                        center: Text(
+                                          "0.0% Finished",
+                                          style: AppFontStyle.bodyOffBlack(
+                                              context),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              )
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Intermediate",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Advanced",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Advanced",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -391,109 +407,125 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                           top: 20, bottom: 20, left: 10, right: 10),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Beginner",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.primaryColor,
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Beginner",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.primaryColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(9.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(9.0),
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width:
-                                          125.0, // Adjust the width as needed
-                                      lineHeight: 25,
-                                      percent: 0.0,
-                                      progressColor: AppColor.primaryColor,
-                                      backgroundColor:
-                                          themeModeProvider.themeMode ==
-                                                  ThemeMode.light
-                                              ? AppColor.greyColor
-                                              : AppColor.darkGreyLight2,
-                                      padding: const EdgeInsets.all(0.0),
-                                      barRadius: const Radius.circular(8.0),
-                                      center: Text(
-                                        "0.0% Finished",
-                                        style:
-                                            AppFontStyle.bodyOffBlack(context),
+                                      child: LinearPercentIndicator(
+                                        width:
+                                            125.0, // Adjust the width as needed
+                                        lineHeight: 25,
+                                        percent: 0.0,
+                                        progressColor: AppColor.primaryColor,
+                                        backgroundColor:
+                                            themeModeProvider.themeMode ==
+                                                    ThemeMode.light
+                                                ? AppColor.greyColor
+                                                : AppColor.darkGreyLight2,
+                                        padding: const EdgeInsets.all(0.0),
+                                        barRadius: const Radius.circular(8.0),
+                                        center: Text(
+                                          "0.0% Finished",
+                                          style: AppFontStyle.bodyOffBlack(
+                                              context),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              )
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Intermediate",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Advanced",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Advanced",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -624,109 +656,125 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                           top: 20, bottom: 20, left: 10, right: 10),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Beginner",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.primaryColor,
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Beginner",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.primaryColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(9.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(9.0),
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width:
-                                          125.0, // Adjust the width as needed
-                                      lineHeight: 25,
-                                      percent: 0.0,
-                                      progressColor: AppColor.primaryColor,
-                                      backgroundColor:
-                                          themeModeProvider.themeMode ==
-                                                  ThemeMode.light
-                                              ? AppColor.greyColor
-                                              : AppColor.darkGreyLight2,
-                                      padding: const EdgeInsets.all(0.0),
-                                      barRadius: const Radius.circular(8.0),
-                                      center: Text(
-                                        "0.0% Finished",
-                                        style:
-                                            AppFontStyle.bodyOffBlack(context),
+                                      child: LinearPercentIndicator(
+                                        width:
+                                            125.0, // Adjust the width as needed
+                                        lineHeight: 25,
+                                        percent: 0.0,
+                                        progressColor: AppColor.primaryColor,
+                                        backgroundColor:
+                                            themeModeProvider.themeMode ==
+                                                    ThemeMode.light
+                                                ? AppColor.greyColor
+                                                : AppColor.darkGreyLight2,
+                                        padding: const EdgeInsets.all(0.0),
+                                        barRadius: const Radius.circular(8.0),
+                                        center: Text(
+                                          "0.0% Finished",
+                                          style: AppFontStyle.bodyOffBlack(
+                                              context),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              )
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Intermediate",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Advanced",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Advanced",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -857,109 +905,125 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                           top: 20, bottom: 20, left: 10, right: 10),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Beginner",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.primaryColor,
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Beginner",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.primaryColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(9.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(9.0),
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width:
-                                          125.0, // Adjust the width as needed
-                                      lineHeight: 25,
-                                      percent: 0.0,
-                                      progressColor: AppColor.primaryColor,
-                                      backgroundColor:
-                                          themeModeProvider.themeMode ==
-                                                  ThemeMode.light
-                                              ? AppColor.greyColor
-                                              : AppColor.darkGreyLight2,
-                                      padding: const EdgeInsets.all(0.0),
-                                      barRadius: const Radius.circular(8.0),
-                                      center: Text(
-                                        "0.0% Finished",
-                                        style:
-                                            AppFontStyle.bodyOffBlack(context),
+                                      child: LinearPercentIndicator(
+                                        width:
+                                            125.0, // Adjust the width as needed
+                                        lineHeight: 25,
+                                        percent: 0.0,
+                                        progressColor: AppColor.primaryColor,
+                                        backgroundColor:
+                                            themeModeProvider.themeMode ==
+                                                    ThemeMode.light
+                                                ? AppColor.greyColor
+                                                : AppColor.darkGreyLight2,
+                                        padding: const EdgeInsets.all(0.0),
+                                        barRadius: const Radius.circular(8.0),
+                                        center: Text(
+                                          "0.0% Finished",
+                                          style: AppFontStyle.bodyOffBlack(
+                                              context),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              )
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Intermediate",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Advanced",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Advanced",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -1090,109 +1154,125 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                           top: 20, bottom: 20, left: 10, right: 10),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Beginner",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.primaryColor,
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Beginner",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.primaryColor,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(9.0),
                                       ),
-                                      borderRadius: BorderRadius.circular(9.0),
-                                    ),
-                                    child: LinearPercentIndicator(
-                                      width:
-                                          125.0, // Adjust the width as needed
-                                      lineHeight: 25,
-                                      percent: 0.0,
-                                      progressColor: AppColor.primaryColor,
-                                      backgroundColor:
-                                          themeModeProvider.themeMode ==
-                                                  ThemeMode.light
-                                              ? AppColor.greyColor
-                                              : AppColor.darkGreyLight2,
-                                      padding: const EdgeInsets.all(0.0),
-                                      barRadius: const Radius.circular(8.0),
-                                      center: Text(
-                                        "0.0% Finished",
-                                        style:
-                                            AppFontStyle.bodyOffBlack(context),
+                                      child: LinearPercentIndicator(
+                                        width:
+                                            125.0, // Adjust the width as needed
+                                        lineHeight: 25,
+                                        percent: 0.0,
+                                        progressColor: AppColor.primaryColor,
+                                        backgroundColor:
+                                            themeModeProvider.themeMode ==
+                                                    ThemeMode.light
+                                                ? AppColor.greyColor
+                                                : AppColor.darkGreyLight2,
+                                        padding: const EdgeInsets.all(0.0),
+                                        barRadius: const Radius.circular(8.0),
+                                        center: Text(
+                                          "0.0% Finished",
+                                          style: AppFontStyle.bodyOffBlack(
+                                              context),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              )
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Intermediate",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           const CustomSeparator(
                             width: 0,
                             height: 20,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Advanced",
-                                style:
-                                    AppFontStyle.bodyNavTextOffBlack(context),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.lock_rounded,
-                                    size: 18,
-                                  ),
-                                  const CustomSeparator(
-                                    width: 2,
-                                    height: 0,
-                                  ),
-                                  Text(
-                                    "Locked",
-                                    style: AppFontStyle.bodyOffBlack(context),
-                                  ),
-                                ],
-                              ),
-                            ],
+                          InkWell(
+                            onTap: () {},
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Advanced",
+                                  style:
+                                      AppFontStyle.bodyNavTextOffBlack(context),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.lock_rounded,
+                                      size: 18,
+                                    ),
+                                    const CustomSeparator(
+                                      width: 2,
+                                      height: 0,
+                                    ),
+                                    Text(
+                                      "Locked",
+                                      style: AppFontStyle.bodyOffBlack(context),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           )
                         ],
                       ),
