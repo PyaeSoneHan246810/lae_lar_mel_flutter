@@ -439,8 +439,15 @@ class AppFontStyle {
     fontWeight: FontWeight.w400,
     color: Colors.red,
   );
+  //medium_text
+  static const TextStyle mediumTextPureWhite = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 32,
+    fontWeight: FontWeight.w800,
+    color: AppColor.pureWhiteColor,
+  );
   //huge_title
-  static const TextStyle hugeText = TextStyle(
+  static const TextStyle hugeTextPureWhite = TextStyle(
     fontFamily: 'Poppins',
     fontSize: 64,
     fontWeight: FontWeight.w800,

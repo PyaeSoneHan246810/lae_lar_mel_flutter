@@ -101,7 +101,7 @@ class _AboutUsPageState extends State<AboutUsPage>
                     height: 4,
                     decoration: BoxDecoration(
                       color: themeModeProvider.themeMode == ThemeMode.light
-                          ? AppColor.featuredColor
+                          ? AppColor.orangeColor
                           : AppColor.lightPurpleColor,
                     ),
                   ),
