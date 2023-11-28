@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lae_lar_mel_app/app/pages/mini_games_loading_page_orange.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,8 @@ import '../config/colors.dart';
 import '../config/font_styles.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_separator.dart';
+import 'mini_games_loading_page_yellow.dart';
+import 'mini_games_loading_page_cyan.dart';
 
 class EnglishMiniGamesPage extends StatefulWidget {
   const EnglishMiniGamesPage({super.key});
@@ -159,7 +162,14 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                       child: Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MiniGamesLoadingPageOrange(),
+                                ),
+                              );
+                            },
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             child: Row(
@@ -211,7 +221,14 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MiniGamesLoadingPageYellow(),
+                                ),
+                              );
+                            },
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             child: Row(
@@ -247,7 +264,14 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                             height: 20,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MiniGamesLoadingPageCyan(),
+                                ),
+                              );
+                            },
                             splashColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             child: Row(

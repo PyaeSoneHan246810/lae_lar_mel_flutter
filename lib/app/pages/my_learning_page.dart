@@ -203,7 +203,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                             borderRadius: BorderRadius.circular(8),
                             color:
                                 themeModeProvider.themeMode == ThemeMode.light
-                                    ? AppColor.featuredColor
+                                    ? AppColor.orangeColor
                                     : AppColor.darkGreyLight2,
                           ),
                           child: Padding(
@@ -213,7 +213,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                               children: [
                                 Text(
                                   totalMinutesLearnedToday.toString(),
-                                  style: AppFontStyle.hugeText,
+                                  style: AppFontStyle.hugeTextPureWhite,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -224,7 +224,7 @@ class _MyLearningPageState extends State<MyLearningPage> {
                                       color: themeModeProvider.themeMode ==
                                               ThemeMode.light
                                           ? AppColor.pureWhiteColor
-                                          : AppColor.featuredColor,
+                                          : AppColor.orangeColor,
                                     ),
                                     const CustomSeparator(
                                       width: 10,
