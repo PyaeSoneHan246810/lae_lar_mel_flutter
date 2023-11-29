@@ -476,10 +476,6 @@
     "@course_certificate" : {
         "description" : "Course Certificate"
     },
-    "share_course" : "Share this Course",
-    "@share_course" : {
-        "description" : "Share Course"
-    },
     "save_as_pdf" : "Save as PDF",
     "@save_as_pdf" : {
         "description" : "Save As PDF"
