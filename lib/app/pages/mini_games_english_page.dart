@@ -46,6 +46,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
               ExpansionPanelList(
                 elevation: 0,
                 expandedHeaderPadding: const EdgeInsets.all(0),
+                dividerColor: Colors.transparent,
                 children: [
                   ExpansionPanel(
                     hasIcon: false,
@@ -58,98 +59,102 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         color: themeModeProvider.themeMode == ThemeMode.light
                             ? AppColor.pureWhiteColor
                             : AppColor.darkGrey,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isFamilyMiniGamesExpansionPanelExpanded =
-                                  !_isFamilyMiniGamesExpansionPanelExpanded;
-                            });
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: themeModeProvider.themeMode ==
-                                        ThemeMode.light
-                                    ? AppColor.greyColor
-                                    : AppColor.darkGreyLight2,
-                                width: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _isFamilyMiniGamesExpansionPanelExpanded =
+                                    !_isFamilyMiniGamesExpansionPanelExpanded;
+                              });
+                            },
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: themeModeProvider.themeMode ==
+                                          ThemeMode.light
+                                      ? AppColor.greyColor
+                                      : AppColor.darkGreyLight2,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/mini_games_family_illustration_1.png",
-                                        width: 100,
-                                        height: 70,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const CustomSeparator(
-                                        width: 20,
-                                        height: 0,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Family",
-                                            style:
-                                                AppFontStyle.subtitleOffBlack(
-                                                    context),
-                                          ),
-                                          const CustomSeparator(
-                                            width: 0,
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "0%",
-                                                style: AppFontStyle
-                                                    .captionMediumSecondary(
-                                                        context),
-                                              ),
-                                              const CustomSeparator(
-                                                width: 2,
-                                                height: 0,
-                                              ),
-                                              Text(
-                                                "Finished",
-                                                style: AppFontStyle
-                                                    .captionMediumOffBlack(
-                                                        context),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    _isFamilyMiniGamesExpansionPanelExpanded ==
-                                            false
-                                        ? Icons.keyboard_arrow_down_rounded
-                                        : Icons.keyboard_arrow_up_rounded,
-                                    color: themeModeProvider.themeMode ==
-                                            ThemeMode.light
-                                        ? AppColor.offBlackColor
-                                        : AppColor.greyColor,
-                                    size: 30,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/mini_games_family_illustration_1.png",
+                                          width: 100,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 20,
+                                          height: 0,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Family",
+                                              style:
+                                                  AppFontStyle.subtitleOffBlack(
+                                                      context),
+                                            ),
+                                            const CustomSeparator(
+                                              width: 0,
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "0%",
+                                                  style: AppFontStyle
+                                                      .captionMediumSecondary(
+                                                          context),
+                                                ),
+                                                const CustomSeparator(
+                                                  width: 2,
+                                                  height: 0,
+                                                ),
+                                                Text(
+                                                  "Finished",
+                                                  style: AppFontStyle
+                                                      .captionMediumOffBlack(
+                                                          context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      _isFamilyMiniGamesExpansionPanelExpanded ==
+                                              false
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.offBlackColor
+                                          : AppColor.greyColor,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -158,7 +163,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     },
                     body: Padding(
                       padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 10, right: 10),
+                          top: 10, bottom: 10, left: 10, right: 10),
                       child: Column(
                         children: [
                           InkWell(
@@ -307,16 +312,6 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     ),
                     isExpanded: _isFamilyMiniGamesExpansionPanelExpanded,
                   ),
-                ],
-              ),
-              const CustomSeparator(
-                height: 30,
-                width: 0,
-              ),
-              ExpansionPanelList(
-                elevation: 0,
-                expandedHeaderPadding: const EdgeInsets.all(0),
-                children: [
                   ExpansionPanel(
                     hasIcon: false,
                     backgroundColor:
@@ -328,98 +323,102 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         color: themeModeProvider.themeMode == ThemeMode.light
                             ? AppColor.pureWhiteColor
                             : AppColor.darkGrey,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isFoodMiniGamesExpansionPanelExpanded =
-                                  !_isFoodMiniGamesExpansionPanelExpanded;
-                            });
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: themeModeProvider.themeMode ==
-                                        ThemeMode.light
-                                    ? AppColor.greyColor
-                                    : AppColor.darkGreyLight2,
-                                width: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _isFoodMiniGamesExpansionPanelExpanded =
+                                    !_isFoodMiniGamesExpansionPanelExpanded;
+                              });
+                            },
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: themeModeProvider.themeMode ==
+                                          ThemeMode.light
+                                      ? AppColor.greyColor
+                                      : AppColor.darkGreyLight2,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/mini_games_food_illustration_1.png",
-                                        width: 100,
-                                        height: 70,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const CustomSeparator(
-                                        width: 20,
-                                        height: 0,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Food",
-                                            style:
-                                                AppFontStyle.subtitleOffBlack(
-                                                    context),
-                                          ),
-                                          const CustomSeparator(
-                                            width: 0,
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "0%",
-                                                style: AppFontStyle
-                                                    .captionMediumSecondary(
-                                                        context),
-                                              ),
-                                              const CustomSeparator(
-                                                width: 2,
-                                                height: 0,
-                                              ),
-                                              Text(
-                                                "Finished",
-                                                style: AppFontStyle
-                                                    .captionMediumOffBlack(
-                                                        context),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    _isFoodMiniGamesExpansionPanelExpanded ==
-                                            false
-                                        ? Icons.keyboard_arrow_down_rounded
-                                        : Icons.keyboard_arrow_up_rounded,
-                                    color: themeModeProvider.themeMode ==
-                                            ThemeMode.light
-                                        ? AppColor.offBlackColor
-                                        : AppColor.greyColor,
-                                    size: 30,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/mini_games_food_illustration_1.png",
+                                          width: 100,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 20,
+                                          height: 0,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Food",
+                                              style:
+                                                  AppFontStyle.subtitleOffBlack(
+                                                      context),
+                                            ),
+                                            const CustomSeparator(
+                                              width: 0,
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "0%",
+                                                  style: AppFontStyle
+                                                      .captionMediumSecondary(
+                                                          context),
+                                                ),
+                                                const CustomSeparator(
+                                                  width: 2,
+                                                  height: 0,
+                                                ),
+                                                Text(
+                                                  "Finished",
+                                                  style: AppFontStyle
+                                                      .captionMediumOffBlack(
+                                                          context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      _isFoodMiniGamesExpansionPanelExpanded ==
+                                              false
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.offBlackColor
+                                          : AppColor.greyColor,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -556,16 +555,6 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     ),
                     isExpanded: _isFoodMiniGamesExpansionPanelExpanded,
                   ),
-                ],
-              ),
-              const CustomSeparator(
-                height: 30,
-                width: 0,
-              ),
-              ExpansionPanelList(
-                elevation: 0,
-                expandedHeaderPadding: const EdgeInsets.all(0),
-                children: [
                   ExpansionPanel(
                     hasIcon: false,
                     backgroundColor:
@@ -577,98 +566,102 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         color: themeModeProvider.themeMode == ThemeMode.light
                             ? AppColor.pureWhiteColor
                             : AppColor.darkGrey,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isPlacesMiniGamesExpansionPanelExpanded =
-                                  !_isPlacesMiniGamesExpansionPanelExpanded;
-                            });
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: themeModeProvider.themeMode ==
-                                        ThemeMode.light
-                                    ? AppColor.greyColor
-                                    : AppColor.darkGreyLight2,
-                                width: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _isPlacesMiniGamesExpansionPanelExpanded =
+                                    !_isPlacesMiniGamesExpansionPanelExpanded;
+                              });
+                            },
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: themeModeProvider.themeMode ==
+                                          ThemeMode.light
+                                      ? AppColor.greyColor
+                                      : AppColor.darkGreyLight2,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/mini_games_places_illustration_1.png",
-                                        width: 100,
-                                        height: 70,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const CustomSeparator(
-                                        width: 20,
-                                        height: 0,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Places",
-                                            style:
-                                                AppFontStyle.subtitleOffBlack(
-                                                    context),
-                                          ),
-                                          const CustomSeparator(
-                                            width: 0,
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "0%",
-                                                style: AppFontStyle
-                                                    .captionMediumSecondary(
-                                                        context),
-                                              ),
-                                              const CustomSeparator(
-                                                width: 2,
-                                                height: 0,
-                                              ),
-                                              Text(
-                                                "Finished",
-                                                style: AppFontStyle
-                                                    .captionMediumOffBlack(
-                                                        context),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    _isPlacesMiniGamesExpansionPanelExpanded ==
-                                            false
-                                        ? Icons.keyboard_arrow_down_rounded
-                                        : Icons.keyboard_arrow_up_rounded,
-                                    color: themeModeProvider.themeMode ==
-                                            ThemeMode.light
-                                        ? AppColor.offBlackColor
-                                        : AppColor.greyColor,
-                                    size: 30,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/mini_games_places_illustration_1.png",
+                                          width: 100,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 20,
+                                          height: 0,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Places",
+                                              style:
+                                                  AppFontStyle.subtitleOffBlack(
+                                                      context),
+                                            ),
+                                            const CustomSeparator(
+                                              width: 0,
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "0%",
+                                                  style: AppFontStyle
+                                                      .captionMediumSecondary(
+                                                          context),
+                                                ),
+                                                const CustomSeparator(
+                                                  width: 2,
+                                                  height: 0,
+                                                ),
+                                                Text(
+                                                  "Finished",
+                                                  style: AppFontStyle
+                                                      .captionMediumOffBlack(
+                                                          context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      _isPlacesMiniGamesExpansionPanelExpanded ==
+                                              false
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.offBlackColor
+                                          : AppColor.greyColor,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -677,7 +670,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     },
                     body: Padding(
                       padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 10, right: 10),
+                          top: 10, bottom: 10, left: 10, right: 10),
                       child: Column(
                         children: [
                           InkWell(
@@ -805,16 +798,6 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     ),
                     isExpanded: _isPlacesMiniGamesExpansionPanelExpanded,
                   ),
-                ],
-              ),
-              const CustomSeparator(
-                height: 30,
-                width: 0,
-              ),
-              ExpansionPanelList(
-                elevation: 0,
-                expandedHeaderPadding: const EdgeInsets.all(0),
-                children: [
                   ExpansionPanel(
                     hasIcon: false,
                     backgroundColor:
@@ -826,98 +809,102 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         color: themeModeProvider.themeMode == ThemeMode.light
                             ? AppColor.pureWhiteColor
                             : AppColor.darkGrey,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isBusinessMiniGamesExpansionPanelExpanded =
-                                  !_isBusinessMiniGamesExpansionPanelExpanded;
-                            });
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: themeModeProvider.themeMode ==
-                                        ThemeMode.light
-                                    ? AppColor.greyColor
-                                    : AppColor.darkGreyLight2,
-                                width: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _isBusinessMiniGamesExpansionPanelExpanded =
+                                    !_isBusinessMiniGamesExpansionPanelExpanded;
+                              });
+                            },
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: themeModeProvider.themeMode ==
+                                          ThemeMode.light
+                                      ? AppColor.greyColor
+                                      : AppColor.darkGreyLight2,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/mini_games_business_illustration_1.png",
-                                        width: 100,
-                                        height: 70,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const CustomSeparator(
-                                        width: 20,
-                                        height: 0,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Business",
-                                            style:
-                                                AppFontStyle.subtitleOffBlack(
-                                                    context),
-                                          ),
-                                          const CustomSeparator(
-                                            width: 0,
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "0%",
-                                                style: AppFontStyle
-                                                    .captionMediumSecondary(
-                                                        context),
-                                              ),
-                                              const CustomSeparator(
-                                                width: 2,
-                                                height: 0,
-                                              ),
-                                              Text(
-                                                "Finished",
-                                                style: AppFontStyle
-                                                    .captionMediumOffBlack(
-                                                        context),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    _isBusinessMiniGamesExpansionPanelExpanded ==
-                                            false
-                                        ? Icons.keyboard_arrow_down_rounded
-                                        : Icons.keyboard_arrow_up_rounded,
-                                    color: themeModeProvider.themeMode ==
-                                            ThemeMode.light
-                                        ? AppColor.offBlackColor
-                                        : AppColor.greyColor,
-                                    size: 30,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/mini_games_business_illustration_1.png",
+                                          width: 100,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 20,
+                                          height: 0,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Business",
+                                              style:
+                                                  AppFontStyle.subtitleOffBlack(
+                                                      context),
+                                            ),
+                                            const CustomSeparator(
+                                              width: 0,
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "0%",
+                                                  style: AppFontStyle
+                                                      .captionMediumSecondary(
+                                                          context),
+                                                ),
+                                                const CustomSeparator(
+                                                  width: 2,
+                                                  height: 0,
+                                                ),
+                                                Text(
+                                                  "Finished",
+                                                  style: AppFontStyle
+                                                      .captionMediumOffBlack(
+                                                          context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      _isBusinessMiniGamesExpansionPanelExpanded ==
+                                              false
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.offBlackColor
+                                          : AppColor.greyColor,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -926,7 +913,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     },
                     body: Padding(
                       padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 10, right: 10),
+                          top: 10, bottom: 10, left: 10, right: 10),
                       child: Column(
                         children: [
                           InkWell(
@@ -1054,16 +1041,6 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     ),
                     isExpanded: _isBusinessMiniGamesExpansionPanelExpanded,
                   ),
-                ],
-              ),
-              const CustomSeparator(
-                height: 30,
-                width: 0,
-              ),
-              ExpansionPanelList(
-                elevation: 0,
-                expandedHeaderPadding: const EdgeInsets.all(0),
-                children: [
                   ExpansionPanel(
                     hasIcon: false,
                     backgroundColor:
@@ -1075,98 +1052,102 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         color: themeModeProvider.themeMode == ThemeMode.light
                             ? AppColor.pureWhiteColor
                             : AppColor.darkGrey,
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              _isEntertainmentMiniGamesExpansionPanelExpanded =
-                                  !_isEntertainmentMiniGamesExpansionPanelExpanded;
-                            });
-                          },
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: themeModeProvider.themeMode ==
-                                        ThemeMode.light
-                                    ? AppColor.greyColor
-                                    : AppColor.darkGreyLight2,
-                                width: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16, bottom: 16),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _isEntertainmentMiniGamesExpansionPanelExpanded =
+                                    !_isEntertainmentMiniGamesExpansionPanelExpanded;
+                              });
+                            },
+                            splashColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: themeModeProvider.themeMode ==
+                                          ThemeMode.light
+                                      ? AppColor.greyColor
+                                      : AppColor.darkGreyLight2,
+                                  width: 1,
+                                ),
                               ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/mini_games_entertainment_illustration_1.png",
-                                        width: 100,
-                                        height: 70,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      const CustomSeparator(
-                                        width: 20,
-                                        height: 0,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Entertainment",
-                                            style:
-                                                AppFontStyle.subtitleOffBlack(
-                                                    context),
-                                          ),
-                                          const CustomSeparator(
-                                            width: 0,
-                                            height: 10,
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "0%",
-                                                style: AppFontStyle
-                                                    .captionMediumSecondary(
-                                                        context),
-                                              ),
-                                              const CustomSeparator(
-                                                width: 2,
-                                                height: 0,
-                                              ),
-                                              Text(
-                                                "Finished",
-                                                style: AppFontStyle
-                                                    .captionMediumOffBlack(
-                                                        context),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Icon(
-                                    _isEntertainmentMiniGamesExpansionPanelExpanded ==
-                                            false
-                                        ? Icons.keyboard_arrow_down_rounded
-                                        : Icons.keyboard_arrow_up_rounded,
-                                    color: themeModeProvider.themeMode ==
-                                            ThemeMode.light
-                                        ? AppColor.offBlackColor
-                                        : AppColor.greyColor,
-                                    size: 30,
-                                  ),
-                                ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "assets/images/mini_games_entertainment_illustration_1.png",
+                                          width: 100,
+                                          height: 70,
+                                          fit: BoxFit.cover,
+                                        ),
+                                        const CustomSeparator(
+                                          width: 20,
+                                          height: 0,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Entertainment",
+                                              style:
+                                                  AppFontStyle.subtitleOffBlack(
+                                                      context),
+                                            ),
+                                            const CustomSeparator(
+                                              width: 0,
+                                              height: 10,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "0%",
+                                                  style: AppFontStyle
+                                                      .captionMediumSecondary(
+                                                          context),
+                                                ),
+                                                const CustomSeparator(
+                                                  width: 2,
+                                                  height: 0,
+                                                ),
+                                                Text(
+                                                  "Finished",
+                                                  style: AppFontStyle
+                                                      .captionMediumOffBlack(
+                                                          context),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Icon(
+                                      _isEntertainmentMiniGamesExpansionPanelExpanded ==
+                                              false
+                                          ? Icons.keyboard_arrow_down_rounded
+                                          : Icons.keyboard_arrow_up_rounded,
+                                      color: themeModeProvider.themeMode ==
+                                              ThemeMode.light
+                                          ? AppColor.offBlackColor
+                                          : AppColor.greyColor,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -1175,7 +1156,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                     },
                     body: Padding(
                       padding: const EdgeInsets.only(
-                          top: 20, bottom: 20, left: 10, right: 10),
+                          top: 10, bottom: 10, left: 10, right: 10),
                       child: Column(
                         children: [
                           InkWell(
