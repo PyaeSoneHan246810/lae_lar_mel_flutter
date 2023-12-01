@@ -5,7 +5,7 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/models/mini_games_quiz_option_model.dart';
 import 'package:lae_lar_mel_app/app/models/mini_games_quiz_question_model.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
-import 'package:lae_lar_mel_app/app/widgets/mini_games_quiz_result_page.dart';
+import 'package:lae_lar_mel_app/app/pages/mini_games_quiz_result_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import '../providers/theme_mode_provider.dart';
