@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:lae_lar_mel_app/app/pages/mini_games_loading_page_orange.dart';
+import 'package:lae_lar_mel_app/app/utils/utils.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
@@ -8,12 +9,9 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 import '../config/colors.dart';
 import '../config/font_styles.dart';
-import '../models/mini_games_quiz_option_model.dart';
 import '../models/mini_games_quiz_question_model.dart';
 import '../providers/theme_mode_provider.dart';
 import '../widgets/custom_separator.dart';
-import 'mini_games_loading_page_yellow.dart';
-import 'mini_games_loading_page_cyan.dart';
 
 class EnglishMiniGamesPage extends StatefulWidget {
   const EnglishMiniGamesPage({super.key});
@@ -29,81 +27,19 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
   bool _isBusinessMiniGamesExpansionPanelExpanded = false;
   bool _isEntertainmentMiniGamesExpansionPanelExpanded = false;
 
-  final List<MiniGamesQuizQuestion> familyBeginnerQuestions = [
-    MiniGamesQuizQuestion(
-      title: "What is the relationship between your father's sister and you?",
-      image:
-          "https://thumb.ac-illust.com/8f/8fb19daa30b7cb2ccb198999edbc2305_t.jpeg",
-      options: [
-        MiniGamesQuizOption(
-          text: "Aunt",
-          isCorrect: true,
-        ),
-        MiniGamesQuizOption(
-          text: "Cousin",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Niece",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Sister",
-          isCorrect: false,
-        ),
-      ],
-    ),
-    MiniGamesQuizQuestion(
-      title: "In genealogy, what is the term for your father's father?",
-      image:
-          "https://media.istockphoto.com/id/1222015134/vector/grandfather-hugging-his-grandsonbeing-proud-of-him-happy-family-concept.jpg?s=612x612&w=0&k=20&c=rwhItU5t7a9mphgsO_rXwW8CgIbdH1ong4rDyGNV6t0=",
-      options: [
-        MiniGamesQuizOption(
-          text: "Granduncle",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Grandfather",
-          isCorrect: true,
-        ),
-        MiniGamesQuizOption(
-          text: "Grand-uncle",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Step-grandfather",
-          isCorrect: false,
-        ),
-      ],
-    ),
-    MiniGamesQuizQuestion(
-      title:
-          "What is the term used to refer to brothers and sisters who are born to the same parents?",
-      image:
-          "https://media.istockphoto.com/id/916910830/vector/sibling-rivalry-naughty-kids-fighting-mothers-attention-original-hand-drawn-illustration.jpg?s=612x612&w=0&k=20&c=zYVUvX2EoBrrOKMRnTUkdllRMIjKPa6B5uooA-jGRKk=",
-      options: [
-        MiniGamesQuizOption(
-          text: "Nephews",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Cousins",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Friends",
-          isCorrect: false,
-        ),
-        MiniGamesQuizOption(
-          text: "Siblings",
-          isCorrect: true,
-        ),
-      ],
-    ),
-  ];
+  List<MiniGamesQuizQuestion> familyBeginnerQuestions = [];
+  List<MiniGamesQuizQuestion> foodBeginnerQuestions = [];
+
+  void _getInitialInfo() {
+    familyBeginnerQuestions =
+        MiniGamesQuizQuestion.getEnglishFamilyBeginnerQuizQuestions();
+    foodBeginnerQuestions =
+        MiniGamesQuizQuestion.getEnglishFoodBeginnerQuizQuestions();
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getInitialInfo();
     final themeModeProvider =
         Provider.of<ThemeModeProvider>(context, listen: false);
     return Scaffold(
@@ -123,6 +59,7 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                 child: ExpansionPanelList(
                   elevation: 0,
                   expandedHeaderPadding: const EdgeInsets.all(0),
+                  animationDuration: const Duration(milliseconds: 500),
                   dividerColor: Colors.transparent,
                   children: [
                     ExpansionPanel(
@@ -306,11 +243,9 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MiniGamesLoadingPageYellow(),
-                                  ),
+                                showSnackBar(
+                                  context,
+                                  "To unlock the intermediate quiz questions, complete the beginner level first.",
                                 );
                               },
                               splashColor: Colors.transparent,
@@ -351,11 +286,9 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MiniGamesLoadingPageCyan(),
-                                  ),
+                                showSnackBar(
+                                  context,
+                                  "To unlock the advanced quiz questions, complete the beginner level first.",
                                 );
                               },
                               splashColor: Colors.transparent,
@@ -514,7 +447,15 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MiniGamesLoadingPageOrange(
+                                            questions: foodBeginnerQuestions),
+                                  ),
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -567,7 +508,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the intermediate quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -605,7 +551,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the advanced quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -815,7 +766,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the intermediate quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -853,7 +809,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the advanced quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -1063,7 +1024,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the intermediate quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -1101,7 +1067,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the advanced quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -1311,7 +1282,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the intermediate quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -1349,7 +1325,12 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                               height: 20,
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                showSnackBar(
+                                  context,
+                                  "To unlock the advanced quiz questions, complete the beginner level first.",
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(

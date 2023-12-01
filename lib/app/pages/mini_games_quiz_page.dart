@@ -4,6 +4,7 @@ import 'package:lae_lar_mel_app/app/config/colors.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/models/mini_games_quiz_option_model.dart';
 import 'package:lae_lar_mel_app/app/models/mini_games_quiz_question_model.dart';
+import 'package:lae_lar_mel_app/app/pages/mini_games_english_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_appbar_with_back_arrow_and_title.dart';
 import 'package:lae_lar_mel_app/app/pages/mini_games_quiz_result_page.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -48,7 +49,9 @@ class _MiniGamesQuizPageState extends State<MiniGamesQuizPage> {
         titleText: "Back",
         textStyle: AppFontStyle.title2OffBlack(context),
         onBackButtonPressed: () {
-          Navigator.of(context).pop();
+          Navigator.of(context).popUntil(
+            (route) => route.isFirst,
+          );
         },
       ),
       body: SafeArea(
@@ -130,7 +133,7 @@ class _MiniGamesQuizPageState extends State<MiniGamesQuizPage> {
                                   final color =
                                       getColorForOption(question, option);
                                   return GestureDetector(
-                                    onTap: () {
+                                    onTap: () async {
                                       if (question.isLocked) {
                                         return;
                                       } else {
@@ -245,9 +248,7 @@ class _MiniGamesQuizPageState extends State<MiniGamesQuizPage> {
                                             child: Text(
                                               option.text,
                                               style: AppFontStyle
-                                                  .captionBigOffBlack(
-                                                context,
-                                              ),
+                                                  .bodyNavTextOffBlack(context),
                                               maxLines: 5,
                                               overflow: TextOverflow.ellipsis,
                                             ),

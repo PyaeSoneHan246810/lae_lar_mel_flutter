@@ -46,7 +46,11 @@ class _MiniGamesQuizResultPageState extends State<MiniGamesQuizResultPage> {
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: "Quiz Result",
         textStyle: AppFontStyle.title2OffBlack(context),
-        onBackButtonPressed: () {},
+        onBackButtonPressed: () {
+          Navigator.of(context).popUntil(
+            (route) => route.isFirst,
+          );
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -109,7 +113,11 @@ class _MiniGamesQuizResultPageState extends State<MiniGamesQuizResultPage> {
             ),
             SlideInUp(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).popUntil(
+                    (route) => route.isFirst,
+                  );
+                },
                 child: Text(
                   "Back",
                   style: AppFontStyle.buttonNavTextOffBlack(context),
