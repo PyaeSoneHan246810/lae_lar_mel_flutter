@@ -1371,33 +1371,6 @@ class _CourseDetailsPageState extends State<CourseDetailsPage> {
               ],
             ),
           ),
-          const CustomSeparator(
-            height: 22,
-            width: 0,
-          ),
-          InkWell(
-            onTap: () {},
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.share_rounded,
-                  size: 24,
-                  color: AppColor.primaryColor,
-                ),
-                const CustomSeparator(
-                  width: 8,
-                  height: 0,
-                ),
-                Text(
-                  AppLocalizations.of(context)!.share_course,
-                  style: AppFontStyle.captionMediumOffBlack(context),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

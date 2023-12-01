@@ -3,10 +3,12 @@ import '../config/font_styles.dart';
 
 class CustomAppBarWithBackArrowAndTitle extends AppBar {
   final String titleText;
+  final TextStyle? textStyle;
   final Function()? onBackButtonPressed;
 
   CustomAppBarWithBackArrowAndTitle({
     required this.titleText,
+    this.textStyle,
     this.onBackButtonPressed,
     Key? key,
   }) : super(
@@ -14,7 +16,7 @@ class CustomAppBarWithBackArrowAndTitle extends AppBar {
           elevation: 0,
           title: Text(
             titleText,
-            style: AppFontStyle.title2Primary,
+            style: textStyle ?? AppFontStyle.title2Primary,
           ),
           centerTitle: false,
           leading: Padding(
