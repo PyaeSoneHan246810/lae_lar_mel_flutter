@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lae_lar_mel_app/app/config/font_styles.dart';
-import 'package:lae_lar_mel_app/app/pages/quiz_page.dart';
+import 'package:lae_lar_mel_app/app/models/mini_games_quiz_question_model.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lottie/lottie.dart';
 import '../config/colors.dart';
-import '../models/quiz_question_model.dart';
 import '../widgets/custom_appbar_with_back_arrow_and_title.dart';
 
-class QuizResultPage extends StatefulWidget {
+class MiniGamesQuizResultPage extends StatefulWidget {
   final int score;
   final int totalNumberOfQuestions;
-  final List<QuizQuestion> questions;
-  const QuizResultPage({
+  final List<MiniGamesQuizQuestion> questions;
+  const MiniGamesQuizResultPage({
     super.key,
     required this.score,
     required this.totalNumberOfQuestions,
@@ -21,10 +20,11 @@ class QuizResultPage extends StatefulWidget {
   });
 
   @override
-  State<QuizResultPage> createState() => _QuizResultPageState();
+  State<MiniGamesQuizResultPage> createState() =>
+      _MiniGamesQuizResultPageState();
 }
 
-class _QuizResultPageState extends State<QuizResultPage> {
+class _MiniGamesQuizResultPageState extends State<MiniGamesQuizResultPage> {
   String getResultMessage() {
     double percentage = widget.score / widget.totalNumberOfQuestions * 100;
     if (percentage >= 90) {
@@ -45,9 +45,8 @@ class _QuizResultPageState extends State<QuizResultPage> {
     return Scaffold(
       appBar: CustomAppBarWithBackArrowAndTitle(
         titleText: "Quiz Result",
-        onBackButtonPressed: () {
-          Navigator.pop(context);
-        },
+        textStyle: AppFontStyle.title2OffBlack(context),
+        onBackButtonPressed: () {},
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -89,31 +88,31 @@ class _QuizResultPageState extends State<QuizResultPage> {
               ),
             ),
             const CustomSeparator(
-              height: 36,
+              height: 30,
             ),
             SlideInUp(
               child: ElevatedButton(
                 onPressed: () {
-                  for (var question in widget.questions) {
-                    question.reset();
-                  }
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => QuizPage(
-                        questions: widget.questions,
-                      ),
-                    ),
-                  );
+                  Navigator.of(context).pop();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                     AppColor.primaryColor,
-                  ), // Customize the button style
+                  ),
                   padding: MaterialStateProperty.all(const EdgeInsets.all(14)),
                 ),
                 child: const Text(
-                  'See Results',
+                  'Check Answers',
                   style: AppFontStyle.buttonNavTextPureWhite,
+                ),
+              ),
+            ),
+            SlideInUp(
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Back",
+                  style: AppFontStyle.buttonNavTextOffBlack(context),
                 ),
               ),
             ),

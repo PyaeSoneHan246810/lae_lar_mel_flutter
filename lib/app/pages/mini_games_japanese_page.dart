@@ -168,14 +168,7 @@ class _JapaneseMiniGamesPageState extends State<JapaneseMiniGamesPage> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const MiniGamesLoadingPageOrange(),
-                                  ),
-                                );
-                              },
+                              onTap: () {},
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(

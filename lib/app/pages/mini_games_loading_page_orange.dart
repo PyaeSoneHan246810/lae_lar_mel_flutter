@@ -5,10 +5,15 @@ import 'package:lae_lar_mel_app/app/config/font_styles.dart';
 import 'package:lae_lar_mel_app/app/pages/mini_games_quiz_page.dart';
 import 'package:lae_lar_mel_app/app/widgets/custom_separator.dart';
 
+import '../models/mini_games_quiz_question_model.dart';
 import '../widgets/custom_circle_animation_gif.dart';
 
 class MiniGamesLoadingPageOrange extends StatefulWidget {
-  const MiniGamesLoadingPageOrange({super.key});
+  final List<MiniGamesQuizQuestion> questions;
+  const MiniGamesLoadingPageOrange({
+    super.key,
+    required this.questions,
+  });
 
   @override
   State<MiniGamesLoadingPageOrange> createState() =>
@@ -25,7 +30,9 @@ class _MiniGamesLoadingPageOrangeState extends State<MiniGamesLoadingPageOrange>
       () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
-            return const MiniGamesQuizPage();
+            return MiniGamesQuizPage(
+              questions: widget.questions,
+            );
           },
         ));
       },
