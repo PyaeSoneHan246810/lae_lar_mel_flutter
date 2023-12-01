@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lae_lar_mel_app/app/config/themes.dart';
+import 'package:lae_lar_mel_app/app/pages/mini_games_english_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_exchange_page.dart';
 import 'package:lae_lar_mel_app/app/pages/reward_points_page.dart';
 import 'package:lae_lar_mel_app/app/pages/about_us_page.dart';
