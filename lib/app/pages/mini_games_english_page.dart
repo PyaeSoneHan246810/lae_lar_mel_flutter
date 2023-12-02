@@ -29,12 +29,21 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
 
   List<MiniGamesQuizQuestion> familyBeginnerQuestions = [];
   List<MiniGamesQuizQuestion> foodBeginnerQuestions = [];
+  List<MiniGamesQuizQuestion> placesBeginnerQuestions = [];
+  List<MiniGamesQuizQuestion> businessBeginnerQuestions = [];
+  List<MiniGamesQuizQuestion> entertainmentBeginnerQuestions = [];
 
   void _getInitialInfo() {
     familyBeginnerQuestions =
         MiniGamesQuizQuestion.getEnglishFamilyBeginnerQuizQuestions();
     foodBeginnerQuestions =
         MiniGamesQuizQuestion.getEnglishFoodBeginnerQuizQuestions();
+    placesBeginnerQuestions =
+        MiniGamesQuizQuestion.getEnglishPlacesBeginnerQuizQuestions();
+    businessBeginnerQuestions =
+        MiniGamesQuizQuestion.getEnglishBusinessBeginnerQuizQuestions();
+    entertainmentBeginnerQuestions =
+        MiniGamesQuizQuestion.getEnglishEntertainmentBeginnerQuizQuestions();
   }
 
   @override
@@ -713,7 +722,16 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MiniGamesLoadingPageOrange(
+                                      questions: placesBeginnerQuestions,
+                                    ),
+                                  ),
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -971,7 +989,16 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MiniGamesLoadingPageOrange(
+                                      questions: businessBeginnerQuestions,
+                                    ),
+                                  ),
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
@@ -1229,7 +1256,16 @@ class _EnglishMiniGamesPageState extends State<EnglishMiniGamesPage> {
                         child: Column(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        MiniGamesLoadingPageOrange(
+                                      questions: entertainmentBeginnerQuestions,
+                                    ),
+                                  ),
+                                );
+                              },
                               splashColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               child: Row(
