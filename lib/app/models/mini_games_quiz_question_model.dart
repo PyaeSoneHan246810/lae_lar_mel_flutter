@@ -412,7 +412,7 @@ class MiniGamesQuizQuestion {
     englishBusinessBeginnerQuizQuestions.add(
       MiniGamesQuizQuestion(
         title:
-            "Several of the sales _____________ told me that they have received numerous complaints from customers.",
+            "Several of the sales _____________ told me that they have received numerous complaints.",
         image:
             "https://static-00.iconduck.com/assets.00/salesman-illustration-512x392-5mrz030f.png",
         options: [
