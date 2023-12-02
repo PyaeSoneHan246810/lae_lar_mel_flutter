@@ -117,8 +117,8 @@ class _MiniGamesQuizPageState extends State<MiniGamesQuizPage> {
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.network(
                                   question.image,
-                                  width: 220,
-                                  height: 180,
+                                  width: 210,
+                                  height: 170,
                                   fit: BoxFit.cover,
                                 ),
                               ),

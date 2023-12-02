@@ -523,7 +523,7 @@ class MiniGamesQuizQuestion {
         title:
             "Some people have natural ________ talent and understand how instruments work without much help.",
         image:
-            "https://static-00.iconduck.com/assets.00/salesman-illustration-512x392-5mrz030f.png",
+            "https://i.pinimg.com/736x/f8/69/1d/f8691d12916e16ccf636d988b8037564.jpg",
         options: [
           MiniGamesQuizOption(
             text: "tune",
@@ -531,7 +531,7 @@ class MiniGamesQuizQuestion {
           ),
           MiniGamesQuizOption(
             text: "soul",
-            isCorrect: true,
+            isCorrect: false,
           ),
           MiniGamesQuizOption(
             text: "rap",
@@ -539,7 +539,7 @@ class MiniGamesQuizQuestion {
           ),
           MiniGamesQuizOption(
             text: "musical",
-            isCorrect: false,
+            isCorrect: true,
           ),
         ],
       ),
